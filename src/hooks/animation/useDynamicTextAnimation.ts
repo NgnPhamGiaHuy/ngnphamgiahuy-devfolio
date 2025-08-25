@@ -1,6 +1,6 @@
 "use client";
 
-export function useDynamicTextAnimation() {
+const useDynamicTextAnimation = () => {
     const TYPING_SPEED = 60;
     const PAUSE_AFTER_SECTION = 400;
     const MIN_SECTION_DURATION = 800;

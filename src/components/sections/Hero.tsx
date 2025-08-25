@@ -5,16 +5,16 @@ import { motion } from "framer-motion";
 
 import VLineBlock from "@/components/ui/VLineBlock";
 import BackgroundText from "@/components/ui/BackgroundText";
-import HeroIntro from "@/components/sections/HeroIntro";
-import HeroDescription from "@/components/sections/HeroDescription";
-import HeroProfileBlock from "@/components/sections/HeroProfileBlock";
+import HeroIntro from "@/components/sections/hero/HeroIntro";
+import HeroDescription from "@/components/sections/hero/HeroDescription";
+import HeroProfileBlock from "@/components/sections/hero/HeroProfileBlock";
 import DownloadCVButton from "@/components/ui/DownloadCVButton";
 
 import { HeroAnimationProvider } from "@/context/HeroAnimationContext";
 
 import data from "@/data/data.json";
 
-import { useDynamicTextAnimation } from "@/hooks/animation";
+import useDynamicTextAnimation from "@/hooks/animation/useDynamicTextAnimation";
 
 import { AnimationVariants } from "@/types";
 

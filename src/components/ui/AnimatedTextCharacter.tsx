@@ -5,15 +5,15 @@ import { motion } from "framer-motion";
 
 import { Easing } from "@/config/animation.config";
 
-import { useHeroAnimation } from "@/hooks/animation";
+import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
 import { AnimatedTextCharacterProps } from "@/types";
 
-const AnimatedTextCharacter: React.FC<AnimatedTextCharacterProps> = ({ text, stage, baseDelay = 0, className = "", containerClassName = "" }) => {
-    const { prefersReducedMotion, shouldAnimate } = useHeroAnimation();
+const AnimatedTextCharacter: React.FC<AnimatedTextCharacterProps> = ({ text, baseDelay = 0, className = "", containerClassName = "" }) => {
+    const prefersReducedMotion = usePrefersReducedMotion();
 
     if (prefersReducedMotion) {
-        return <span className={containerClassName}>{text}</span>;
+        return <span className={containerClassName}>{ text }</span>;
     }
 
     const characterVariants = {
@@ -44,15 +44,14 @@ const AnimatedTextCharacter: React.FC<AnimatedTextCharacterProps> = ({ text, sta
     };
 
     return (
-        <motion.span className={containerClassName} initial={"hidden"} animate={shouldAnimate(stage) ? "visible" : "hidden"} variants={containerVariants}>
+        <motion.span className={containerClassName} initial={"hidden"} animate={"visible"} variants={containerVariants}>
             { text.split("").map((char, index) => (
                 <motion.span
                     key={`${char}-${index}`}
                     className={className}
                     custom={index}
                     initial={"hidden"}
-                    animate={shouldAnimate(stage) ? "visible" : "hidden"}
-                    style={{ opacity: shouldAnimate(stage) ? undefined : 0 }}
+                    animate={"visible"}
                     variants={characterVariants}
                 >
                     { char }

@@ -53,13 +53,11 @@ const HeroIntro: React.FC<HeroIntroProps> = () => {
                 <span>
                     <AnimatedTextCharacter
                         text={"Hello, "}
-                        stage={"intro"}
                         baseDelay={timeline.intro?.sectionDelay || 0}
                     />
                     <b className={"text-primary"}>
                         <AnimatedTextCharacter
                             text={"my name is"}
-                            stage={"intro"}
                             baseDelay={(timeline.intro?.sectionDelay || 0) + 450}
                         />
                     </b>
@@ -70,7 +68,6 @@ const HeroIntro: React.FC<HeroIntroProps> = () => {
                     <b className={"hero-firstname"}>
                         <AnimatedTextCharacter
                             text={firstName}
-                            stage={"name"}
                             baseDelay={(timeline.name?.sectionDelay || 0) + 200}
                         />
                     </b>
@@ -86,7 +83,6 @@ const HeroIntro: React.FC<HeroIntroProps> = () => {
                         >
                             <AnimatedTextCharacter
                                 text={word}
-                                stage={"name"}
                                 baseDelay={(timeline.name?.sectionDelay || 0) + ((wordIndex + 1) * 400)}
                             />
                         </motion.span>
@@ -96,7 +92,6 @@ const HeroIntro: React.FC<HeroIntroProps> = () => {
             <motion.div className={"hero-subtitle"} variants={itemVariants}>
                 <AnimatedTextCharacter
                     text={"I am "}
-                    stage={"job"}
                     baseDelay={timeline.job?.sectionDelay || 0}
                 />
                 <motion.strong
@@ -107,7 +102,6 @@ const HeroIntro: React.FC<HeroIntroProps> = () => {
                 >
                     <AnimatedTextCharacter
                         text={profile.job_title}
-                        stage={"job"}
                         baseDelay={(timeline.job?.sectionDelay || 0) + 200}
                     />
                 </motion.strong>

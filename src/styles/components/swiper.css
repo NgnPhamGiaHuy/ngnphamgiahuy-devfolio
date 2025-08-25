@@ -1,0 +1,39 @@
+@layer components {
+    .swiper-container {
+        @apply w-full h-full p-0 text-center visible touch-pan-y transform translate-x-0 translate-y-0 opacity-100 relative;
+        transition: transform 0.7s cubic-bezier(0.3,0,0.3,1) 0.15s,opacity 0.4s linear,color 0.3s linear,-webkit-transform 0.7s cubic-bezier(0.3,0,0.3,1);
+    }
+
+    .swiper-wrapper {
+        @apply w-full h-auto mb-[50px] flex text-left visible transition-transform transform translate-x-0 translate-y-0 translate-z-[0px] duration-0 box-content relative z-1;
+    }
+
+    /* Swiper Navigation */
+    .swiper-navigation {
+        @apply w-auto bottom-[10px] left-0 text-center transition-opacity duration-300 transform translate-x-0 translate-y-0 translate-z-0 inline-block relative z-10;
+    }
+
+    .swiper-navigation::before {
+        @apply content-[''] w-full h-[2px] top-1/2 left-0 bg-black block absolute;
+    }
+
+    .swiper-dot-active {
+        @apply w-[13px] h-[13px] top-[2px] bg-primary border-2 border-solid border-black rounded-[50%] opacity-100 inline-block cursor-pointer relative;
+    }
+
+    .swiper-dot-inactive {
+        @apply w-[8px] h-[8px] top-0 bg-white border-2 border-solid border-black rounded-[50%] opacity-100 inline-block cursor-pointer relative;
+    }
+
+    .swiper-pagination-dot {
+        @apply mr-[4px] transition-all duration-300 ease-in-out;
+    }
+
+    .swiper-pagination-dot:last-child {
+        margin-right: 0;
+    }
+
+    .swiper-pagination-dot:hover {
+        @apply transform scale-110;
+    }
+}

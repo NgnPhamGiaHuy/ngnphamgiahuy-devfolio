@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import SocialLinks from "@/components/ui/SocialLinks";
 import AnimatedTextCharacter from "@/components/ui/AnimatedTextCharacter";
 
-import { useHeroAnimation } from "@/hooks/animation";
 import { useHeroAnimationContext } from "@/context/HeroAnimationContext";
 
 import { HeroDescriptionProps, AnimationVariants } from "@/types";
@@ -15,10 +14,13 @@ import data from "@/data/data.json";
 
 import { generateSocialLinks } from "@/utils/socialLinks";
 
+import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+
 const HeroDescription: React.FC<HeroDescriptionProps> = () => {
     const { profile } = data;
-    const { prefersReducedMotion } = useHeroAnimation();
     const { timeline } = useHeroAnimationContext();
+
+    const prefersReducedMotion  = usePrefersReducedMotion();
 
     const descriptionLength = profile.description.length;
     const dynamicStagger = Math.min(0.3, descriptionLength * 0.001);
@@ -49,15 +51,14 @@ const HeroDescription: React.FC<HeroDescriptionProps> = () => {
         <motion.div className={"hero-description"} variants={containerVariants} initial={"hidden"} animate={"visible"}>
             <motion.div variants={itemVariants}>
                 <p className={"hero-description-text"}>
-                    { prefersReducedMotion ? (
+                    {prefersReducedMotion ? (
                         profile.description
                     ) : (
                         <AnimatedTextCharacter
                             text={profile.description}
-                            stage={"description"}
                             baseDelay={timeline.description?.sectionDelay || 0}
                         />
-                    ) }
+                    )}
                 </p>
             </motion.div>
             <motion.div variants={itemVariants} transition={{

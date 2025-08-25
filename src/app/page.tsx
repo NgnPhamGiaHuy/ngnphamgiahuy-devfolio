@@ -2,6 +2,7 @@ import React from "react";
 
 import Hero from "@/components/sections/Hero";
 import Header from "@/components/navigation/Header";
+import Services from "@/components/sections/Services";
 
 const Home: React.FC = () => {
     return (
@@ -9,6 +10,7 @@ const Home: React.FC = () => {
             <Header />
             <div className={"wrapper"}>
                 <Hero />
+                <Services />
             </div>
         </div>
     );

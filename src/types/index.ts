@@ -123,8 +123,6 @@ export interface EasingConfig {
 export interface AnimatedTextCharacterProps {
     /** Text content to be animated character by character */
     text: string;
-    /** Animation stage that controls when this text should appear */
-    stage: Extract<AnimationStage, 'intro' | 'name' | 'job' | 'description'>;
     /** Optional base delay in milliseconds before animation starts */
     baseDelay?: number;
     /** Optional CSS class name for each character span */
@@ -137,12 +135,14 @@ export interface AnimatedTextCharacterProps {
  * Props for the VLineBlock component
  */
 export interface VLineBlockProps {
-    /** CSS left position value */
-    left?: string;
     /** CSS top position value */
     top?: string;
+    /** CSS right position value */
+    right?: string;
     /** CSS bottom position value */
     bottom?: string;
+    /** CSS left position value */
+    left?: string;
     /** CSS width value */
     width?: string;
     /** Tailwind shadow classes */
@@ -307,4 +307,23 @@ export interface HeroProfileBlockProps {
     animate?: boolean | string | Record<string, any>;
     /** Animation transition properties */
     transition?: any;
+}
+
+export interface Service {
+    category: string;
+    title: string;
+    description: string;
+}
+
+export interface ServicesProps {
+    services: Service[];
+}
+
+export interface ServiceCardProps {
+    service: {
+        category: string;
+        title: string;
+        description: string;
+    };
+    index: number;
 }

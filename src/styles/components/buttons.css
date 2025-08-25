@@ -1,11 +1,7 @@
 /* Button Components */
 @layer components {
-    .buttons-container {
-        @apply flex flex-wrap items-center;
-    }
-
     .cv-download-button {
-        @apply h-[56px] px-10 text-[13px] text-black text-center font-bold border-2 border-solid border-black shadow-[5px_5px_rgba(0,0,0,0.2)] rounded-[56px] outline-none tracking-wider leading-[52px] align-top overflow-hidden inline-block cursor-pointer uppercase relative;
+        @apply h-[56px] px-[40px] text-[13px] text-black text-center font-bold border-2 border-solid border-black shadow-[5px_5px_rgba(0,0,0,0.2)] rounded-[56px] outline-none tracking-wider leading-[52px] align-top overflow-hidden inline-block cursor-pointer uppercase relative;
         transition: color 0.3s ease;
     }
 
