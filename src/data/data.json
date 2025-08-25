@@ -1,9 +1,10 @@
 {
+    "logo": "NgnPham",
     "profile": {
-        "name": "Lorem Ipsum",
+        "name": "Ngn Huy",
         "title": "Lorem Title",
         "subtitle": "Lorem subtitle",
-        "job_title": "Lorem jobtitle",
+        "job_title": "Web developer",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "location": "Lorem City, Country",
         "experience_years": 12,

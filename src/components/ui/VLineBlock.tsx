@@ -1,26 +1,14 @@
 import React from "react";
 
-interface VLineBlockProps {
-    left?: string;
-    top?: string;
-    bottom?: string;
-    width?: string;
-    showPattern?: boolean;
-    className?: string;
-}
+import { VLineBlockProps } from "@/types";
 
-const VLineBlock: React.FC<VLineBlockProps> = ({
-    left = "0",
-    top = "0",
-    bottom = "0",
-    width = "2px",
-    showPattern = true,
-    className = ""
-}) => {
+const VLineBlock: React.FC<VLineBlockProps> = ({ left = "0", top = "0", bottom = "0", width = "2px", shadow = "before:shadow-[5px_5px_0_rgb(0_0_0/0.2)] after:shadow-[5px_5px_0_rgb(0_0_0/0.2)]", showPattern = true, className = "" }) => {
+    const style: React.CSSProperties = { width, left, top, bottom, position: "absolute" };
+
     return (
-        <div className={`bg-black pointer-events-none absolute z-3 circle-before circle-after ${className}`} style={{ width, left, top, bottom, position: "absolute" }}>
+        <div className={`vline-block ${shadow} ${className}`} style={style}>
             { showPattern && (
-                <span className={"w-[226px] h-[226px] top-[-188px] bottom-auto left-[-168px] bg-[url('/images/pat-1.png')] bg-no-repeat bg-contain block absolute"}></span>
+                <span className={"vline-pattern"}></span>
             ) }
         </div>
     );

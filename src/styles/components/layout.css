@@ -1,0 +1,10 @@
+/* Layout Components */
+@layer components {
+    .wrapper {
+        @apply relative;
+    }
+
+    .elementor-section {
+        @apply bg-transparent bg-[linear-gradient(0deg,#fff_0%,#f0ebe3_100%)] relative;
+    }
+}

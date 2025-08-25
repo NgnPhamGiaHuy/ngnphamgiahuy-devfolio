@@ -1,0 +1,10 @@
+/* Social Links Components */
+@layer components {
+    .social-links-container {
+        @apply relative z-3;
+    }
+
+    .social-link-icon {
+        @apply align-top leading-none transition-all duration-300 inline-block relative;
+    }
+}

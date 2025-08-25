@@ -1,0 +1,22 @@
+/* Stat Components */
+@layer components {
+    .stat-card {
+        @apply px-[20px] flex items-center text-black border-2 border-solid border-black bg-white rounded-[82px] shadow-[5px_5px_rgba(0,0,0,.2)];
+    }
+
+    .stat-value {
+        @apply w-1/2 text-[37px] text-center font-bold leading-5 uppercase block;
+    }
+
+    .stat-highlight {
+        @apply top-[-4px] text-primary font-bold relative;
+    }
+
+    .stat-label {
+        @apply w-1/2 text-[13px] text-left font-bold tracking-wider leading-5 uppercase block;
+    }
+
+    .stat-label-highlight {
+        @apply text-primary font-bold relative;
+    }
+}

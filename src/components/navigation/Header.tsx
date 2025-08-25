@@ -7,7 +7,11 @@ import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
 import Sidebar from "@/components/navigation/Sidebar";
 
+import data from "@/data/data.json";
+
 const Header: React.FC = () => {
+    const { logo } = data;
+
     const [isSticky, setIsSticky] = useState<boolean>(false);
     const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -52,23 +56,23 @@ const Header: React.FC = () => {
 
     return (
         <header className={clsx("header", isSticky && "sticky animate-in")}>
-            <section className={"relative"}>
-                <div className={"mx-auto flex max-lg:flex-wrap justify-between relative"}>
-                    <div className={"min-h-[1px] flex relative"}>
-                        <div className={"w-full flex flex-wrap items-center content-center relative"}>
+            <section className={"header-section"}>
+                <div className={"header-container"}>
+                    <div className={"header-side"}>
+                        <div className={"header-content"}>
                             <Link href={"/"}>
-                                <span className={"text-2xl font-black uppercase dot-after"}>NgnPhm</span>
+                                <span className={"header-logo"}>{ logo }</span>
                             </Link>
                         </div>
                     </div>
-                    <div className={"min-h-[1px] flex relative"}>
-                        <div className={"w-full flex flex-wrap items-center content-center relative"}>
-                            <div className={"mr-10 icon-button"} onClick={toggleDarkMode}>
-                                { isDarkMode ? <SunIcon className="w-7 h-7" /> : <MoonIcon className="w-7 h-7" /> }
+                    <div className={"header-side"}>
+                        <div className={"header-content"}>
+                            <div className={"header-toggle-theme"} onClick={toggleDarkMode}>
+                                { isDarkMode ? <SunIcon className={"w-7 h-7"} /> : <MoonIcon className={"w-7 h-7"} /> }
                             </div>
-                            <div className={"w-[28px] h-[30px] top-0 right-0 relative z-3 cursor-pointer"} onClick={toggleMenu}>
-                                <span className={clsx(isMenuOpen ? "top-[14px] -rotate-45" : "top-[8px]", "left-0 w-full h-[2px] bg-black block transition-all duration-500 absolute")}></span>
-                                <span className={clsx(isMenuOpen ? "top-[14px] rotate-45" : "bottom-[8px]", "left-0 w-full h-[2px] bg-black block transition-all duration-500 absolute")}></span>
+                            <div className={"header-toggle-menu"} onClick={toggleMenu}>
+                                <span className={clsx("header-menu-bar", isMenuOpen ? "header-menu-top-active" : "header-menu-top")}></span>
+                                <span className={clsx("header-menu-bar", isMenuOpen ? "header-menu-bottom-active" : "header-menu-bottom")}></span>
                             </div>
                             <Sidebar isMenuOpen={isMenuOpen} />
                         </div>

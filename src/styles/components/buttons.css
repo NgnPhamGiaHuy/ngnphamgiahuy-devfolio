@@ -1,0 +1,33 @@
+/* Button Components */
+@layer components {
+    .buttons-container {
+        @apply flex flex-wrap items-center;
+    }
+
+    .cv-download-button {
+        @apply h-[56px] px-10 text-[13px] text-black text-center font-bold border-2 border-solid border-black shadow-[5px_5px_rgba(0,0,0,0.2)] rounded-[56px] outline-none tracking-wider leading-[52px] align-top overflow-hidden inline-block cursor-pointer uppercase relative;
+        transition: color 0.3s ease;
+    }
+
+    .cv-download-button::before {
+        @apply content-[''] w-0 h-0 top-1/2 left-1/2 rounded-[56px] opacity-100 bg-primary transform -translate-x-1/2 -translate-y-1/2 transition-[width,height] duration-700 ease-[ease] z-[-1] absolute;
+    }
+
+    .cv-download-button:hover {
+        @apply text-white border-primary;
+        transition: color 0.3s ease 0.2s,border-color 0.3s ease;
+    }
+
+    .cv-download-button:hover::before {
+        @apply w-[97%] h-[90%];
+    }
+
+    /* Skill Components */
+    .my-skill {
+        @apply h-[56px] max-md:mt-[20px] max-md:pt-[40px] pl-[70px] max-md:pl-0 max-md:block align-top text-[13px] text-black font-bold tracking-wider leading-[56px] uppercase relative;
+    }
+
+    .my-skill::before {
+        @apply content-[''] w-[40px] max-md:w-[2px] h-[2px] max-md:h-[40px] mt-[-1px] max-md:mt-0 max-md:ml-[-1px] top-1/2 max-md:top-0 left-[-1px] max-md:left-1/2 bg-black absolute;
+    }
+}
