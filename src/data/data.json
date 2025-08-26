@@ -46,10 +46,10 @@
     ],
     "skills": [
         { "name": "Skill 1", "experience_years": 2, "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-        { "name": "Skill 2", "experience_years": 2, "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem." },
-        { "name": "Skill 3", "experience_years": 2, "description": "Ut enim ad minima veniam, quis nostrum exercitationem ullam." },
-        { "name": "Skill 4", "experience_years": 2, "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut." },
-        { "name": "Skill 5", "experience_years": 2, "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet." },
+        { "name": "Skill 2", "experience_years": 1, "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem." },
+        { "name": "Skill 3", "experience_years": 6, "description": "Ut enim ad minima veniam, quis nostrum exercitationem ullam." },
+        { "name": "Skill 4", "experience_years": 3, "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut." },
+        { "name": "Skill 5", "experience_years": 10, "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet." },
         { "name": "Skill 6", "experience_years": 2, "description": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit." }
     ],
     "portfolio": [

@@ -7,7 +7,15 @@ import { AnimationVariants } from "@/types";
 
 import AnimatedTextCharacter from "@/components/ui/AnimatedTextCharacter";
 
-const ServicesHeader = () => {
+interface ServicesHeaderProps {
+    title: string;
+    subtitle: string;
+}
+
+const WrapperHeader : React.FC<ServicesHeaderProps> = ({ title, subtitle }) => {
+    const firstSubtitleWord = subtitle.split(" ")[0];
+    const restSubtitleWords = subtitle.split(" ").slice(1).toString();
+
     const itemVariants: AnimationVariants = {
         hidden: { opacity: 0, y: 20 },
         visible: {
@@ -31,35 +39,35 @@ const ServicesHeader = () => {
     }
 
     return (
-        <section className={"services-header-section"}>
-            <div className={"services-header-container"}>
-                <div className={"services-wrapper"}>
-                    <div className={"services-content-wrapper"}>
-                        <div className={"services-header-content"}>
-                            <motion.h2 className={"services-title"} variants={itemVariants}>
-                                { "What i do".split(" ").map((word, index) => (
+        <section className={"wrapper-header-section"}>
+            <div className={"wrapper-header-container"}>
+                <div className={"wrapper-header-outer"}>
+                    <div className={"wrapper-header-content-wrapper"}>
+                        <div className={"wrapper-header-content"}>
+                            <motion.h2 className={"wrapper-header-title"} variants={itemVariants}>
+                                { title?.split(" ").map((word, index) => (
                                     <motion.span
                                         key={`name-${index}`}
-                                        className={"services-title-word"}
+                                        className={"wrapper-header-title-word"}
                                         variants={spanVariants({ index })}
                                     >
                                         { word }
                                     </motion.span>
                                 ))}
                             </motion.h2>
-                            <motion.div className={"services-subtitle"} variants={itemVariants}>
+                            <motion.div className={"wrapper-header-subtitle"} variants={itemVariants}>
                                 <AnimatedTextCharacter
-                                    text={"My"}
+                                    text={firstSubtitleWord}
                                     baseDelay={0}
                                 />
                                 <motion.strong
-                                    className={"services-subtitle-text"}
+                                    className={"wrapper-header-subtitle-text"}
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.2 }}
                                 >
                                     <AnimatedTextCharacter
-                                        text={"Service"}
+                                        text={restSubtitleWords}
                                         baseDelay={1200}
                                     />
                                 </motion.strong>
@@ -72,4 +80,4 @@ const ServicesHeader = () => {
     );
 };
 
-export default ServicesHeader;
+export default WrapperHeader;

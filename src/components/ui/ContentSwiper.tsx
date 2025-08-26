@@ -10,12 +10,12 @@ import ServiceCard from "@/components/sections/services/ServiceCard";
 
 import { ServicesProps } from "@/types";
 
-const ServicesSwiper: React.FC<ServicesProps> = ({ services }) => {
+const ContentSwiper: React.FC<ServicesProps> = ({ cards }) => {
     const [mounted, setMounted] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const swiperRef = useRef<SwiperType | null>(null);
 
-    const totalSlides = services.length;
+    const totalSlides = cards.length;
 
     useEffect(() => {
         setMounted(true);
@@ -28,7 +28,7 @@ const ServicesSwiper: React.FC<ServicesProps> = ({ services }) => {
     };
 
     return (
-        <div className={"services-swiper-container"}>
+        <div className={"swiper-container-outer"}>
             <div className={"swiper-container"}>
                 { mounted && (
                     <Swiper
@@ -57,9 +57,9 @@ const ServicesSwiper: React.FC<ServicesProps> = ({ services }) => {
                             },
                         }}
                     >
-                        { services.map((service, index) => (
+                        { cards.map((card, index) => (
                             <SwiperSlide key={index}>
-                                <ServiceCard service={service} index={index} />
+                                <ServiceCard service={card} index={index} />
                             </SwiperSlide>
                         )) }
                     </Swiper>
@@ -78,4 +78,4 @@ const ServicesSwiper: React.FC<ServicesProps> = ({ services }) => {
     );
 };
 
-export default ServicesSwiper;
+export default ContentSwiper;

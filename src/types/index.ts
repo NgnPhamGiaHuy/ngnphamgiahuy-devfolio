@@ -316,7 +316,7 @@ export interface Service {
 }
 
 export interface ServicesProps {
-    services: Service[];
+    cards: Service[];
 }
 
 export interface ServiceCardProps {

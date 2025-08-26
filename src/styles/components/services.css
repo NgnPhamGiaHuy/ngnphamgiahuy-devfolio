@@ -1,65 +1,12 @@
 /* Service Section Components */
 @layer components {
-    .services-section {
-        @apply pt-[20px] max-md:pt-[50px] max-lg:pt-0 pb-[210px] max-md:pb-[20px] max-lg:pb-[120px] relative;
-    }
-
-    .services-container {
-        @apply mx-auto flex max-lg:flex-wrap relative;
-    }
-
     .services-wrapper {
         @apply w-full min-h-[1px] flex relative;
     }
 
-    .services-content-wrapper {
-        @apply w-full flex flex-wrap content-start relative;
-    }
-
-    /* Services Header Section */
-    .services-header-section {
-        @apply w-full mt-0 max-lg:mt-0 mb-[60px] max-lg:mb-[30px] max-md:p-0 relative;
-    }
-
-    .services-header-container {
-        @apply max-w-[1300px] mx-auto flex max-lg:flex-wrap relative;
-    }
-
-    .services-header-content {
-        @apply w-full text-center relative;
-    }
-
-    .services-title {
-        @apply mt-0 mb-[10px] max-lg:mb-[10px] text-[44px] max-md:text-[26px] max-lg:text-[34px] text-black font-bold uppercase tracking-wider break-words leading-snug;
-    }
-
-    .services-title-word {
-        @apply ml-3 text-[44px] max-md:text-[26px] max-lg:text-[34px] text-black;
-    }
-
-    .services-subtitle {
-        @apply text-[14px] text-primary font-bold uppercase leading-none;
-    }
-
-    .services-subtitle-text {
-        @apply ml-[10px] text-[30px] max-lg:text-[24px] text-black font-bold font-['Caveat'] tracking-normal normal-case;
-    }
-
     /* Services Content Section */
-    .services-content-section {
-        @apply w-full max-md:px-[10px] max-lg:px-[20px] relative;
-    }
-
-    .services-content-container {
-        @apply max-w-[1300px] mx-auto flex max-lg:flex-wrap relative;
-    }
-
     .services-content-wrapper {
         @apply w-full p-[10px] flex flex-wrap content-start relative;
-    }
-
-    .services-swiper-container {
-        @apply w-full mb-[20px] relative;
     }
 
     /* Service Card Components */

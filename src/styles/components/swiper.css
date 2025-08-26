@@ -1,4 +1,8 @@
 @layer components {
+    .swiper-container-outer {
+        @apply w-full mb-[20px] relative;
+    }
+
     .swiper-container {
         @apply w-full h-full p-0 text-center visible touch-pan-y transform translate-x-0 translate-y-0 opacity-100 relative;
         transition: transform 0.7s cubic-bezier(0.3,0,0.3,1) 0.15s,opacity 0.4s linear,color 0.3s linear,-webkit-transform 0.7s cubic-bezier(0.3,0,0.3,1);
@@ -8,7 +12,6 @@
         @apply w-full h-auto mb-[50px] flex text-left visible transition-transform transform translate-x-0 translate-y-0 translate-z-[0px] duration-0 box-content relative z-1;
     }
 
-    /* Swiper Navigation */
     .swiper-navigation {
         @apply w-auto bottom-[10px] left-0 text-center transition-opacity duration-300 transform translate-x-0 translate-y-0 translate-z-0 inline-block relative z-10;
     }
