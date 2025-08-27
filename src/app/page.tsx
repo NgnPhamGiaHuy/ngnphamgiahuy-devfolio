@@ -3,7 +3,8 @@ import React from "react";
 import Hero from "@/components/sections/Hero";
 import Header from "@/components/navigation/Header";
 import Services from "@/components/sections/Services";
-import Professional from "@/components/sections/Professional";
+import Skills from "@/components/sections/Skills";
+import Work from "@/components/sections/Work";
 
 const Home : React.FC = () => {
     return (
@@ -12,7 +13,8 @@ const Home : React.FC = () => {
             <div className={"wrapper"}>
                 <Hero />
                 <Services />
-                <Professional />
+                <Skills />
+                <Work />
             </div>
         </div>
     );

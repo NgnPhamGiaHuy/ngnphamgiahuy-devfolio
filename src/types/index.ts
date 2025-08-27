@@ -1,47 +1,6 @@
-import { ReactElement, CSSProperties } from "react";
+import React, { ReactElement } from "react";
 import { Variants } from "framer-motion";
-
-// -----------------------------------------------------------------------------
-// Animation Types
-// -----------------------------------------------------------------------------
-
-/**
- * Animation stage that controls the sequence of animations
- */
-export type AnimationStage =
-    | 'intro'        // Introduction ("Hello, my name is")
-    | 'name'         // Name animation
-    | 'job'          // Job title animation
-    | 'description'  // Description paragraph
-    | 'social'       // Social links
-    | 'cta'          // Call to action buttons
-    | 'completed';   // All animations completed
-
-/**
- * Context data for animation state management
- */
-export interface AnimationContextType {
-    currentStage: AnimationStage;
-    prefersReducedMotion: boolean;
-    shouldAnimate: (stage: AnimationStage) => boolean;
-    getAnimationProps: (stage: AnimationStage, customDelay?: number) => AnimationProps;
-    calculateTextDelay: (index: number, baseDelay?: number) => number;
-}
-
-/**
- * Animation properties for framer-motion elements
- */
-export interface AnimationProps {
-    initial: boolean | { opacity: number; y: number };
-    animate: boolean | { opacity: number; y: number };
-    transition?: {
-        duration: number;
-        delay: number;
-        ease: number[];
-        when: string;
-        staggerChildren: number;
-    };
-}
+import { Portfolio } from "@/data/data";
 
 /**
  * Base animation variants type for Framer Motion
@@ -68,40 +27,6 @@ export interface AnimationVariantsType {
  * Complete animation variants compatible with Framer Motion
  */
 export type AnimationVariants = Variants & AnimationVariantsType;
-
-// -----------------------------------------------------------------------------
-// Animation Configuration Types
-// -----------------------------------------------------------------------------
-
-/**
- * Spring animation configuration
- */
-export interface SpringConfig {
-    /** Spring stiffness value */
-    STIFF: number;
-    /** Spring damping value */
-    DAMPING: number;
-}
-
-// Note: These types have been removed as they are no longer used with the dynamic animation system
-
-/**
- * Animation stage durations in milliseconds
- */
-export interface StageDurationConfig {
-    /** Intro animation duration */
-    INTRO: number;
-    /** Name animation duration */
-    NAME: number;
-    /** Job title animation duration */
-    JOB: number;
-    /** Description animation duration */
-    DESCRIPTION: number;
-    /** Social links animation duration */
-    SOCIAL: number;
-    /** Call-to-action buttons animation duration */
-    CTA: number;
-}
 
 /**
  * Animation easing presets as cubic-bezier arrays
@@ -326,4 +251,33 @@ export interface ServiceCardProps {
         description: string;
     };
     index: number;
+}
+
+export interface PortfolioFilterProps {
+    categories: string[];
+    activeCategory: string;
+    onCategoryChange: (category: string) => void;
+}
+
+export interface PortfolioGridProps {
+    portfolios: Portfolio[];
+}
+
+export interface PortfolioCardProps {
+    portfolio: {
+        name: string;
+        category: string;
+        description: string;
+        image: string;
+        link: string;
+    };
+    index: number;
+}
+
+export interface SectionWrapperProps {
+    title: string;
+    subtitle: string;
+    background?: "gradientUp" | "gradientDown" | "none";
+    vlinePosition?: "left" | "right";
+    children: React.ReactNode;
 }

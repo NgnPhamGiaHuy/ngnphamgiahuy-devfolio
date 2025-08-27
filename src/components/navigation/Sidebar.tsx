@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState, useEffect, useCallback } from "react";
 
-import data from "@/data/data.json";
+import { data } from "@/data/data";
 
 import { generateSocialLinks } from "@/utils/socialLinks";
 
@@ -51,19 +51,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isMenuOpen }) => {
                         <div className={"sidebar-column"}>
                             <div className={"sidebar-menu-container"}>
                                 <ul>
-                                    { ["Home", "Services", "Skills", "Works", "Resume", "Testimonials", "Pricing", "Blog", "Contact"].map((item, index) => (
+                                    {["Home", "Services", "Skills", "Works", "Resume", "Testimonials", "Pricing", "Blog", "Contact"].map((item, index) => (
                                         <li key={index} className={`sidebar-menu-item ${sidebarEntered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`} style={{ transitionDelay: prefersReducedMotion ? "0ms" : `${index * 90}ms` }}>
                                             <Link href={"/"}>
                                                 <span className={"sidebar-menu-text group"}>
-                                                    { item.split("").map((item, index) => (
+                                                    {item.split("").map((item, index) => (
                                                         <span key={index} className={"sidebar-menu-letter"} style={{ transitionDelay: `${index * 25}ms` }}>
                                                             {item}
                                                         </span>
-                                                    )) }
+                                                    ))}
                                                 </span>
                                             </Link>
                                         </li>
-                                    )) }
+                                    ))}
                                 </ul>
                             </div>
                             <SocialLinks

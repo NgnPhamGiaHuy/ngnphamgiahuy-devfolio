@@ -10,7 +10,7 @@ import { useHeroAnimationContext } from "@/context/HeroAnimationContext";
 
 import { HeroDescriptionProps, AnimationVariants } from "@/types";
 
-import data from "@/data/data.json";
+import { data } from "@/data/data";
 
 import { generateSocialLinks } from "@/utils/socialLinks";
 
@@ -20,7 +20,7 @@ const HeroDescription: React.FC<HeroDescriptionProps> = () => {
     const { profile } = data;
     const { timeline } = useHeroAnimationContext();
 
-    const prefersReducedMotion  = usePrefersReducedMotion();
+    const prefersReducedMotion = usePrefersReducedMotion();
 
     const descriptionLength = profile.description.length;
     const dynamicStagger = Math.min(0.3, descriptionLength * 0.001);

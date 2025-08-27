@@ -1,0 +1,96 @@
+@layer components {
+
+    /* Work Section Layout */
+    .work-section-wrapper {
+        @apply w-full min-h-[1px] relative;
+    }
+
+    .work-content-wrapper {
+        @apply w-full p-[10px] flex flex-wrap content-start relative;
+    }
+
+    .work-main-container {
+        @apply w-full mb-[20px] relative;
+    }
+
+    .work-inner-container {
+        @apply mx-[-20px] max-lg:mx-auto relative z-2;
+    }
+
+    /* Filter Buttons */
+    .work-filter-container {
+        @apply mb-[30px] text-center transform translate-x-0 translate-y-0 z-2 relative;
+    }
+
+    .work-filter-button {
+        @apply mx-[20px] max-md:mx-[10px] mb-[20px] max-md:mb-[10px] inline-block align-top text-[13px] text-black font-bold uppercase tracking-wider cursor-pointer outline-none transition duration-700 ease-[cubic-bezier(.3,0,.3,1)] relative;
+    }
+
+    .work-filter-button::before {
+        @apply content-[''] max-w-[60%] w-[40px] h-[2px] left-0 bottom-[-10px] bg-primary absolute;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s cubic-bezier(.3,0,.3,1);
+    }
+
+    .work-filter-button-active {
+        @apply text-primary;
+    }
+
+    .work-filter-button:hover::before,
+    .work-filter-button-active::before {
+        transform: scaleX(1);
+    }
+
+    /* Portfolio Grid */
+    .portfolio-grid {
+        @apply mt-[-40px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative;
+        will-change: transform,opacity,height;
+        overflow: hidden;
+        min-height: 0;
+        position: relative;
+    }
+
+    /* Ensure smooth height transitions */
+    .portfolio-grid>* {
+        transform-origin: center top;
+    }
+
+    .portfolio-item {
+        @apply max-w-full pt-[30px] px-[10px] flex-none basis-full overflow-hidden;
+        will-change: transform,opacity;
+    }
+
+    /* Portfolio Card */
+    .portfolio-card {
+        @apply p-[30px] bg-white rounded-[20px] overflow-hidden relative;
+    }
+
+    .portfolio-card-image-container {
+        @apply rounded-[18px] overflow-hidden leading-none relative;
+    }
+
+    .portfolio-card-image {
+        @apply max-w-full w-full h-[240px] object-cover border-none shadow-none rounded-[18px];
+    }
+
+    .portfolio-card-content {
+        @apply pt-[30px] bottom-0 relative;
+    }
+
+    .portfolio-card-category {
+        @apply mb-[5px] text-[13px] text-primary font-bold tracking-wider uppercase block;
+    }
+
+    .portfolio-card-title {
+        @apply m-0 text-[24px];
+    }
+
+    .portfolio-card-description {
+        @apply min-h-[125px] mt-[15px] text-black;
+    }
+
+    .portfolio-card-description-text {
+        @apply my-[30px] max-md:my-[20px] line-clamp-3;
+    }
+}

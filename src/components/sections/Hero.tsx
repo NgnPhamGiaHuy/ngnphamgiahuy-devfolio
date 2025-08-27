@@ -12,7 +12,7 @@ import DownloadCVButton from "@/components/ui/DownloadCVButton";
 
 import { HeroAnimationProvider } from "@/context/HeroAnimationContext";
 
-import data from "@/data/data.json";
+import { data } from "@/data/data";
 
 import useDynamicTextAnimation from "@/hooks/animation/useDynamicTextAnimation";
 

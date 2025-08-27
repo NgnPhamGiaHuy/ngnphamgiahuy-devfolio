@@ -7,7 +7,7 @@ import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
 import Sidebar from "@/components/navigation/Sidebar";
 
-import data from "@/data/data.json";
+import { data } from "@/data/data";
 
 const Header: React.FC = () => {
     const { logo } = data;
@@ -61,14 +61,14 @@ const Header: React.FC = () => {
                     <div className={"header-side"}>
                         <div className={"header-content"}>
                             <Link href={"/"}>
-                                <span className={"header-logo"}>{ logo }</span>
+                                <span className={"header-logo"}>{logo}</span>
                             </Link>
                         </div>
                     </div>
                     <div className={"header-side"}>
                         <div className={"header-content"}>
                             <div className={"header-toggle-theme"} onClick={toggleDarkMode}>
-                                { isDarkMode ? <SunIcon className={"w-7 h-7"} /> : <MoonIcon className={"w-7 h-7"} /> }
+                                {isDarkMode ? <SunIcon className={"w-7 h-7"} /> : <MoonIcon className={"w-7 h-7"} />}
                             </div>
                             <div className={"header-toggle-menu"} onClick={toggleMenu}>
                                 <span className={clsx("header-menu-bar", isMenuOpen ? "header-menu-top-active" : "header-menu-top")}></span>

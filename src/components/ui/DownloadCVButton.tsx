@@ -39,7 +39,7 @@ const DownloadCVButton: React.FC<DownloadCVButtonProps> = () => {
     return (
         <motion.div variants={containerVariants as Variants} initial={"hidden"} animate={"visible"}>
             <Link href={"/"}>
-                <motion.span variants={buttonVariants as Variants} className={"cv-download-button"}>
+                <motion.span variants={buttonVariants as Variants} className={"primary-button"}>
                     Download CV
                 </motion.span>
             </Link>

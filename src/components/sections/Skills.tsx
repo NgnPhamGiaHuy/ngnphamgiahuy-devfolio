@@ -3,15 +3,16 @@
 import React from "react";
 import CountUp from "react-countup";
 
-import data from "@/data/data.json";
+import { data } from "@/data/data";
 
+import BackgroundText from "@/components/ui/BackgroundText";
 import SectionWrapper from "@/components/sections/SectionWrapper";
 
-const Professional = () => {
+const Skills = () => {
     const { skills } = data;
 
     return (
-        <SectionWrapper title={"Professional Skills"} subtitle={"My Talent"} background={"bg-[linear-gradient(0deg,#fff_0%,#f0ebe3_100%)]"} vlinePosition={"left"}>
+        <SectionWrapper title={"Professional Skills"} subtitle={"My Talent"} background={"none"} vlinePosition={"left"}>
             <div className="p-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-24">
                 { skills.map((item, index) => (
                     <div key={index} className={"transform translate-x-0 translate-y-0 relative"}>
@@ -35,8 +36,9 @@ const Professional = () => {
                     </div>
                 )) }
             </div>
+            <BackgroundText text={"Skills"} />
         </SectionWrapper>
     );
 };
 
-export default Professional;
+export default Skills;
