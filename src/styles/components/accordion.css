@@ -1,0 +1,56 @@
+/* Accordion Components */
+@layer components {
+    .accordion-container {
+        @apply w-full;
+    }
+
+    .accordion-label {
+        @apply m-0 pb-[30px] text-[24px] text-center border-b-2 border-solid border-black leading-none block relative;
+    }
+
+    .accordion-items-container {
+        @apply max-md:mb-[40px] relative z-2;
+    }
+
+    /* Accordion Item */
+    .accordion-item {
+        @apply border-b-2 border-solid border-black z-20 relative;
+    }
+
+    .accordion-item-subsequent {
+        @apply border-b-2 border-r-2 border-solid border-black z-19 relative;
+    }
+
+    .accordion-item-header {
+        @apply p-[30px] max-md:py-[25px] max-md:pr-[50px] max-md:pl-[20px] text-[21px] max-md:text-[18px] cursor-pointer;
+    }
+
+    .accordion-item-header::after {
+        @apply absolute w-[48px] h-[48px] right-[-24px] bottom-[-24px] leading-[40px] shadow-[rgba(0,0,0,0.2)_5px_5px] text-[30px] text-center font-normal z-2 rounded-[50%] border-2 border-solid border-black transition duration-1200 ease-[cubic-bezier(.3,0,.3,1)];
+    }
+
+    .accordion-item-header-open::after {
+        @apply content-['-'] bg-[rgb(240,235,227)];
+    }
+
+    .accordion-item-header-closed::after {
+        @apply content-['+'] bg-white;
+    }
+
+    /* Accordion Content */
+    .accordion-content {
+        @apply pr-[50px] pl-[30px] max-md:px-[20px] box-border overflow-hidden relative;
+    }
+
+    .accordion-content-subheading {
+        @apply w-[70%] max-md:w-full float-left max-md:float-none text-[28px] max-md:text-[24px] text-black font-bold font-['Caveat'] leading-[40px];
+    }
+
+    .accordion-content-meta {
+        @apply float-right max-md:float-none text-[13px] text-black font-bold uppercase tracking-wider max-md:leading-snug leading-[46px];
+    }
+
+    .accordion-content-description {
+        @apply pt-[15px] pb-[30px] clear-both;
+    }
+}

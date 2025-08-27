@@ -5,6 +5,7 @@ import Header from "@/components/navigation/Header";
 import Services from "@/components/sections/Services";
 import Skills from "@/components/sections/Skills";
 import Work from "@/components/sections/Work";
+import Resume from "@/components/sections/Resume";
 
 const Home : React.FC = () => {
     return (
@@ -15,6 +16,7 @@ const Home : React.FC = () => {
                 <Services />
                 <Skills />
                 <Work />
+                <Resume />
             </div>
         </div>
     );
