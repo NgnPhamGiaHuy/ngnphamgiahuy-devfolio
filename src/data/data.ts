@@ -223,7 +223,9 @@ export const data: AppData = {
         ]
     },
     testimonials: [
-        { name: "John Doe", position: "CEO, Company", quote: "Lorem ipsum dolor sit amet.", image: "https://via.placeholder.com/100x100" }
+        { name: "John Doe", position: "CEO, Company", quote: "Lorem ipsum dolor sit amet.", image: "https://picsum.photos/600/400?random" },
+        { name: "John Doe", position: "CEO, Company", quote: "Lorem ipsum dolor sit amet.", image: "https://picsum.photos/600/400?random" },
+        { name: "John Doe", position: "CEO, Company", quote: "Lorem ipsum dolor sit amet.", image: "https://picsum.photos/600/400?random" },
     ],
     blog: [
         { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://via.placeholder.com/600x400" }

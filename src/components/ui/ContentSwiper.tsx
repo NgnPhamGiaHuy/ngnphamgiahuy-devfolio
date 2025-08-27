@@ -6,16 +6,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import React, { useEffect, useState, useRef } from "react";
 
-import ServiceCard from "@/components/sections/services/ServiceCard";
+interface GenericSwiperProps<T> {
+    items: T[];
+    renderItem: (item: T, index: number) => React.ReactNode;
+}
 
-import { ServicesProps } from "@/types";
-
-const ContentSwiper: React.FC<ServicesProps> = ({ cards }) => {
+const ContentSwiper = <T,>({ items, renderItem }: GenericSwiperProps<T>) => {
     const [mounted, setMounted] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const swiperRef = useRef<SwiperType | null>(null);
 
-    const totalSlides = cards.length;
+    const totalSlides = items.length;
 
     useEffect(() => {
         setMounted(true);
@@ -30,7 +31,7 @@ const ContentSwiper: React.FC<ServicesProps> = ({ cards }) => {
     return (
         <div className={"swiper-container-outer"}>
             <div className={"swiper-container"}>
-                { mounted && (
+                {mounted && (
                     <Swiper
                         autoHeight={true}
                         modules={[Pagination]}
@@ -57,21 +58,21 @@ const ContentSwiper: React.FC<ServicesProps> = ({ cards }) => {
                             },
                         }}
                     >
-                        { cards.map((card, index) => (
+                        {items.map((item, index) => (
                             <SwiperSlide key={index}>
-                                <ServiceCard service={card} index={index} />
+                                {renderItem(item, index)}
                             </SwiperSlide>
-                        )) }
+                        ))}
                     </Swiper>
-                ) }
+                )}
                 <div className={"swiper-navigation"}>
-                    { mounted && Array.from({ length: totalSlides }).map((_, index) => (
+                    {mounted && Array.from({ length: totalSlides }).map((_, index) => (
                         <span
                             key={index}
                             className={`swiper-pagination-dot ${index === activeIndex ? "swiper-dot-active" : "swiper-dot-inactive"}`}
                             onClick={() => handlePaginationClick(index)}
                         ></span>
-                    )) }
+                    ))}
                 </div>
             </div>
         </div>

@@ -234,18 +234,8 @@ export interface HeroProfileBlockProps {
     transition?: any;
 }
 
-export interface Service {
-    category: string;
-    title: string;
-    description: string;
-}
-
-export interface ServicesProps {
-    cards: Service[];
-}
-
-export interface ServiceCardProps {
-    service: {
+export interface ContentCardProps {
+    item: {
         category: string;
         title: string;
         description: string;
@@ -306,4 +296,13 @@ export interface AccordionProps {
         content: string;
     }>;
     label: string;
+}
+
+export interface QuoteCardProps {
+    item: {
+        name: string;
+        position: string;
+        quote: string;
+        image: string;
+    };
 }

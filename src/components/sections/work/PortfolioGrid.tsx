@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import PortfolioCard from "@/components/ui/PortfolioCard";
+import PortfolioCard from "@/components/ui/cards/PortfolioCard";
 
 import { PortfolioGridProps } from "@/types";
 

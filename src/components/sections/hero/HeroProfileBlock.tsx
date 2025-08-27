@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import StatCard from "@/components/ui/StatCard";
+import StatCard from "@/components/ui/cards/StatCard";
 
 import { HeroLayerProps, StatInfo, HeroProfileBlockProps } from "@/types";
 

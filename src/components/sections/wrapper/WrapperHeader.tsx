@@ -14,7 +14,7 @@ interface ServicesHeaderProps {
 
 const WrapperHeader : React.FC<ServicesHeaderProps> = ({ title, subtitle }) => {
     const firstSubtitleWord = subtitle.split(" ")[0];
-    const restSubtitleWords = subtitle.split(" ").slice(1).toString();
+    const restSubtitleWords = subtitle.split(" ").slice(1).join(" ");
 
     const itemVariants: AnimationVariants = {
         hidden: { opacity: 0, y: 20 },

@@ -23,7 +23,7 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ portfolio, index }) => {
             <motion.div className={"portfolio-card"} whileHover={{ y: -5, boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }} transition={{ type: "spring", stiffness: 300 }}>
                 <Link href={portfolio.link}>
                     <div className={"portfolio-card-image-container"}>
-                        <img src={portfolio.image} alt={portfolio.name} className={"portfolio-card-image"}/>
+                        <img src={portfolio.image} alt={portfolio.name} className={"portfolio-card-image"} />
                     </div>
                     <div className={"portfolio-card-content"}>
                         <span className={"portfolio-card-category"}>
@@ -35,11 +35,11 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ portfolio, index }) => {
                                 { portfolio.description }
                             </p>
                         </div>
-                        <span className={"service-link"}>
+                        <span className={"content-card-link"}>
                             See project
                         </span>
                     </div>
-                    <motion.div className={"service-card-pattern bottom-[-36px]"} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} />
+                    <motion.div className={"content-card-pattern bottom-[-36px]"} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} />
                 </Link>
             </motion.div>
         </motion.div>
