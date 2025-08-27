@@ -18,6 +18,22 @@
         @apply w-[97%] h-[90%];
     }
 
+    .secondary-button {
+        @apply h-[56px] px-[40px] text-[13px] text-white text-center font-bold outline-none border-2 border-solid border-black shadow-[5px_5px_rgba(0,0,0,.2)] rounded-[56px] inline-block uppercase tracking-wider overflow-hidden align-top cursor-pointer relative leading-[52px];
+    }
+
+    .secondary-button::before {
+        @apply content-[''] w-[calc(100%-4px)] h-[calc(100%-4px)] top-1/2 left-1/2 bg-primary  transform -translate-x-1/2 -translate-y-1/2  rounded-[56px] absolute z-1;
+    }
+
+    .secondary-button::after {
+        @apply content-['\f061'] top-0 right-[30px] text-white font-bold font-['Font_Awesome_7_Free'] transition-[right] duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] absolute z-2;
+    }
+
+    .secondary-button:hover::after {
+        @apply right-[35px];
+    }
+
     /* Skill Components */
     .my-skill {
         @apply h-[56px] max-md:mt-[20px] max-md:pt-[40px] pl-[70px] max-md:pl-0 max-md:block align-top text-[13px] text-black font-bold tracking-wider leading-[56px] uppercase relative;

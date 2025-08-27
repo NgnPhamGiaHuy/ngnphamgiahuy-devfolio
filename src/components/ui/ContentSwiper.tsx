@@ -8,12 +8,14 @@ import React, { useEffect, useState, useRef } from "react";
 
 interface GenericSwiperProps<T> {
     items: T[];
+    spaceBetween?: number;
     renderItem: (item: T, index: number) => React.ReactNode;
 }
 
-const ContentSwiper = <T,>({ items, renderItem }: GenericSwiperProps<T>) => {
+const ContentSwiper = <T,>({ items, spaceBetween = 40, renderItem }: GenericSwiperProps<T>) => {
     const [mounted, setMounted] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
+    const [slidesPerView, setSlidesPerView] = useState(1);
     const swiperRef = useRef<SwiperType | null>(null);
 
     const totalSlides = items.length;
@@ -31,17 +33,24 @@ const ContentSwiper = <T,>({ items, renderItem }: GenericSwiperProps<T>) => {
     return (
         <div className={"swiper-container-outer"}>
             <div className={"swiper-container"}>
-                {mounted && (
+                { mounted && (
                     <Swiper
                         autoHeight={true}
                         modules={[Pagination]}
-                        spaceBetween={40}
+                        spaceBetween={spaceBetween}
                         slidesPerView={1}
                         loop={true}
                         speed={800}
                         effect="slide"
                         onSwiper={(swiper) => {
                             swiperRef.current = swiper;
+                            setSlidesPerView(swiper.params.slidesPerView as number);
+                        }}
+                        onResize={(swiper) => {
+                            setSlidesPerView(swiper.params.slidesPerView as number);
+                        }}
+                        onBreakpoint={(swiper) => {
+                            setSlidesPerView(swiper.params.slidesPerView as number);
                         }}
                         onSlideChange={(swiper) => {
                             setActiveIndex(swiper.realIndex);
@@ -58,22 +67,28 @@ const ContentSwiper = <T,>({ items, renderItem }: GenericSwiperProps<T>) => {
                             },
                         }}
                     >
-                        {items.map((item, index) => (
+                        { items.map((item, index) => (
                             <SwiperSlide key={index}>
                                 {renderItem(item, index)}
                             </SwiperSlide>
-                        ))}
+                        )) }
                     </Swiper>
-                )}
-                <div className={"swiper-navigation"}>
-                    {mounted && Array.from({ length: totalSlides }).map((_, index) => (
-                        <span
-                            key={index}
-                            className={`swiper-pagination-dot ${index === activeIndex ? "swiper-dot-active" : "swiper-dot-inactive"}`}
-                            onClick={() => handlePaginationClick(index)}
-                        ></span>
-                    ))}
-                </div>
+                ) }
+                { mounted && totalSlides > slidesPerView && (
+                    <div className={"swiper-navigation"}>
+                        {Array.from({ length: totalSlides }).map((_, index) => (
+                            <span
+                                key={index}
+                                className={`swiper-pagination-dot ${
+                                    index === activeIndex
+                                        ? "swiper-dot-active"
+                                        : "swiper-dot-inactive"
+                                }`}
+                                onClick={() => handlePaginationClick(index)}
+                            />
+                        ))}
+                    </div>
+                ) }
             </div>
         </div>
     );

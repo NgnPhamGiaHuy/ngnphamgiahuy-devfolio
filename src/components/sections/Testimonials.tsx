@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React from "react";
 
 import ContentSwiper from "@/components/ui/ContentSwiper";
 import BackgroundText from "@/components/ui/BackgroundText";
@@ -19,6 +19,7 @@ const Testimonials: React.FC = () => {
                 <div className={"items-content-wrapper"}>
                     <ContentSwiper
                         items={testimonials}
+                        spaceBetween={20}
                         renderItem={(item, index) => (
                             <QuoteCard key={index} item={item} />
                         )}

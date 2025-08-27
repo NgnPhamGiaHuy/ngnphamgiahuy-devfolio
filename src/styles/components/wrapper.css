@@ -59,4 +59,13 @@
     .wrapper-section-content-container {
         @apply max-w-[1300px] mx-auto flex max-lg:flex-wrap relative;
     }
+
+    /* Pricing Section Wrapper */
+    .items-wrapper {
+        @apply w-full min-h-[1px] flex relative;
+    }
+
+    .items-content-wrapper {
+        @apply w-full flex flex-wrap content-start relative;
+    }
 }

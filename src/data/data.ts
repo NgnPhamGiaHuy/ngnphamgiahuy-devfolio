@@ -54,6 +54,18 @@ export interface Testimonial {
     image: string;
 }
 
+export interface Pricing {
+    plan: string;
+    price: string;
+    period: string; // e.g. "per month", "per project"
+    description: string;
+    features: {
+        included: string[];
+        not_included: string[];
+    };
+    highlight?: boolean; // optional: mark recommended plan
+}
+
 export interface BlogPost {
     title: string;
     date: string;
@@ -76,6 +88,7 @@ export interface AppData {
     portfolios: Portfolio[];
     resume: Resume;
     testimonials: Testimonial[];
+    pricing: Pricing[];
     blog: BlogPost[];
     contact: Contact;
 }
@@ -226,6 +239,60 @@ export const data: AppData = {
         { name: "John Doe", position: "CEO, Company", quote: "Lorem ipsum dolor sit amet.", image: "https://picsum.photos/600/400?random" },
         { name: "John Doe", position: "CEO, Company", quote: "Lorem ipsum dolor sit amet.", image: "https://picsum.photos/600/400?random" },
         { name: "John Doe", position: "CEO, Company", quote: "Lorem ipsum dolor sit amet.", image: "https://picsum.photos/600/400?random" },
+    ],
+    pricing: [
+        {
+            plan: "Basic",
+            price: "199",
+            period: "per project",
+            description: "A starter package for small websites and personal projects.",
+            features: {
+                included: [
+                    "Up to 3 pages",
+                    "Responsive design",
+                    "Basic SEO setup"
+                ],
+                not_included: [
+                    "Custom animations",
+                    "Priority support"
+                ]
+            }
+        },
+        {
+            plan: "Standard",
+            price: "499",
+            period: "per project",
+            description: "Best for small businesses needing a professional presence.",
+            features: {
+                included: [
+                    "Up to 10 pages",
+                    "Custom design",
+                    "1 month free support"
+                ],
+                not_included: [
+                    "Unlimited revisions",
+                    "Dedicated account manager"
+                ]
+            },
+            highlight: true
+        },
+        {
+            plan: "Premium",
+            price: "999",
+            period: "per project",
+            description: "Full-scale solution for businesses that need advanced features.",
+            features: {
+                included: [
+                    "Unlimited pages",
+                    "Custom animations",
+                    "6 months premium support"
+                ],
+                not_included: [
+                    "On-site consulting",
+                    "Lifetime updates"
+                ]
+            }
+        }
     ],
     blog: [
         { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://via.placeholder.com/600x400" }
