@@ -11,6 +11,7 @@ import Pricing from "@/components/sections/Pricing";
 import Blog from "@/components/sections/Blog";
 import Contact from "@/components/sections/Contact";
 import ScrollToTopButton from "@/components/ui/button/ScrollToTopButton";
+import Map from "@/components/sections/Map";
 
 const Home: React.FC = () => {
     return (
@@ -26,6 +27,7 @@ const Home: React.FC = () => {
                 <Pricing />
                 <Blog />
                 <Contact />
+                <Map />
             </div>
             <ScrollToTopButton />
         </div>
