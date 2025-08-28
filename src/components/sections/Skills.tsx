@@ -12,10 +12,10 @@ const Skills = () => {
     const { skills } = data;
 
     return (
-        <SectionWrapper title={"Professional Skills"} subtitle={"My Talent"} background={"none"} vlinePosition={"left"}>
-            <div className="p-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-24">
+        <SectionWrapper title={"Professional Skills"} subtitle={"My Talent"} background={"none"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1320px"} vlinePosition={"left"}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 { skills.map((item, index) => (
-                    <div key={index} className={"transform translate-x-0 translate-y-0 relative"}>
+                    <div key={index} className={"mb-[70px] p-[20px] relative"}>
                         <h6 className="!mx-[30px] !mb-[20px] text-[21px] max-md:text-[18px] leading-5">
                             { item.name }
                         </h6>

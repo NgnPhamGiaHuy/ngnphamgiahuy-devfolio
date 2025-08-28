@@ -13,7 +13,11 @@ const Pricing = () => {
         <SectionWrapper title={"Pricing"} subtitle={"My Price Board"} background={"none"} vlinePosition={"left"}>
             <div className={"items-wrapper"}>
                 <div className={"items-content-wrapper"}>
-                    <PricingGrid pricing={pricing} />
+                    <div className={"w-full text-left"}>
+                        <div className={"mx-[-20px] flex flex-wrap"}>
+                            <PricingGrid pricing={pricing} />
+                        </div>
+                    </div>
                 </div>
             </div>
             <BackgroundText text={"Pricing"} />

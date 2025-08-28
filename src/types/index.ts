@@ -267,8 +267,10 @@ export interface PortfolioCardProps {
 export interface SectionWrapperProps {
     title: string;
     subtitle: string;
+    sectionContentMaxWidth?: string;
     background?: "gradientUp" | "gradientDown" | "none";
     vlinePosition?: "left" | "right";
+    hasSectionBodyPadding?: boolean;
     children: React.ReactNode;
 }
 

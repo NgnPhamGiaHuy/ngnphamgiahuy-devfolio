@@ -7,7 +7,7 @@ import SectionWrapper from "@/components/sections/SectionWrapper";
 
 const Resume = () => {
     return (
-        <SectionWrapper title={"Resume"} subtitle={"My Story"} background={"gradientDown"} vlinePosition={"left"}>
+        <SectionWrapper title={"Resume"} subtitle={"My Story"} background={"gradientDown"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1360px"} vlinePosition={"left"}>
             <div className={"resume-section-wrapper"}>
                 <div className={"resume-content-wrapper"}>
                     <Accordion

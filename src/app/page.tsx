@@ -8,6 +8,7 @@ import Work from "@/components/sections/Work";
 import Resume from "@/components/sections/Resume";
 import Testimonials from "@/components/sections/Testimonials";
 import Pricing from "@/components/sections/Pricing";
+import Blog from "@/components/sections/Blog";
 
 const Home : React.FC = () => {
     return (
@@ -21,6 +22,7 @@ const Home : React.FC = () => {
                 <Resume />
                 <Testimonials />
                 <Pricing />
+                <Blog />
             </div>
         </div>
     );

@@ -17,7 +17,7 @@ const Work: React.FC = () => {
     const { categories, activeCategory, filteredPortfolios, handleCategoryChange } = usePortfolioFilter(portfolios);
 
     return (
-        <SectionWrapper title={"Portfolio"} subtitle={"My Cases"} background={"gradientUp"} vlinePosition={"right"}>
+        <SectionWrapper title={"Portfolio"} subtitle={"My Cases"} background={"gradientUp"} hasSectionBodyPadding={false} vlinePosition={"right"}>
             <div className={"work-section-wrapper"}>
                 <div className={"work-content-wrapper"}>
                     <div className={"work-main-container"}>

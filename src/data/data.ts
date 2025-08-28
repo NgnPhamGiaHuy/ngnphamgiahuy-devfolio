@@ -89,7 +89,7 @@ export interface AppData {
     resume: Resume;
     testimonials: Testimonial[];
     pricing: Pricing[];
-    blog: BlogPost[];
+    blogs: BlogPost[];
     contact: Contact;
 }
 
@@ -294,8 +294,11 @@ export const data: AppData = {
             }
         }
     ],
-    blog: [
-        { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://via.placeholder.com/600x400" }
+    blogs: [
+        { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://picsum.photos/600/400?random" },
+        { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://picsum.photos/600/400?random" },
+        { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://picsum.photos/600/400?random" },
+        { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://picsum.photos/600/400?random" },
     ],
     contact: {
         email: "lorem@example.com",

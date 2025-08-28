@@ -1,4 +1,13 @@
 @layer components {
+    .items-wrapper {
+        @apply w-full min-h-[1px] flex relative;
+    }
+
+    /* Items Content Section */
+    .items-content-wrapper {
+        @apply w-full p-[10px] flex flex-wrap content-start relative;
+    }
+
     .wrapper-section {
         @apply pt-[20px] max-md:pt-[50px] max-lg:pt-0 pb-[210px] max-md:pb-[20px] max-lg:pb-[120px] relative;
     }
@@ -37,11 +46,11 @@
     }
 
     .wrapper-header-title {
-        @apply mt-0 mb-[10px] max-lg:mb-[10px] text-[44px] max-md:text-[26px] max-lg:text-[34px] text-black font-bold uppercase tracking-wider break-words leading-snug;
+        @apply mt-0 mb-[10px]! text-[44px] max-md:text-[26px] max-lg:text-[34px] text-black font-bold uppercase tracking-wider break-words leading-snug;
     }
 
     .wrapper-header-title-word {
-        @apply ml-3 text-[44px] max-md:text-[26px] max-lg:text-[34px] text-black;
+        @apply text-[44px] max-md:text-[26px] max-lg:text-[34px] text-black;
     }
 
     .wrapper-header-subtitle {
@@ -53,19 +62,10 @@
     }
 
     .wrapper-section-body {
-        @apply w-full max-md:px-[10px] max-lg:px-[20px] relative;
+        @apply w-full relative;
     }
 
     .wrapper-section-content-container {
-        @apply max-w-[1300px] mx-auto flex max-lg:flex-wrap relative;
-    }
-
-    /* Pricing Section Wrapper */
-    .items-wrapper {
-        @apply w-full min-h-[1px] flex relative;
-    }
-
-    .items-content-wrapper {
-        @apply w-full flex flex-wrap content-start relative;
+        @apply mx-auto flex max-lg:flex-wrap relative;
     }
 }

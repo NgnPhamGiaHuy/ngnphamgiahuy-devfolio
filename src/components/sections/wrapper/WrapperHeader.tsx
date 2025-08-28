@@ -45,14 +45,18 @@ const WrapperHeader : React.FC<ServicesHeaderProps> = ({ title, subtitle }) => {
                     <div className={"wrapper-header-content-wrapper"}>
                         <div className={"wrapper-header-content"}>
                             <motion.h2 className={"wrapper-header-title"} variants={itemVariants}>
-                                { title?.split(" ").map((word, index) => (
-                                    <motion.span
-                                        key={`name-${index}`}
-                                        className={"wrapper-header-title-word"}
-                                        variants={spanVariants({ index })}
-                                    >
-                                        { word }
-                                    </motion.span>
+                                { title?.split(" ").map((word, index, array) => (
+                                    <React.Fragment key={index}>
+                                        <motion.span
+                                            className={"wrapper-header-title-word"}
+                                            variants={spanVariants({ index })}
+                                        >
+                                            { word }
+                                        </motion.span>
+                                        { index !== array.length - 1 && (
+                                            <span> </span>
+                                        ) }
+                                    </React.Fragment>
                                 ))}
                             </motion.h2>
                             <motion.div className={"wrapper-header-subtitle"} variants={itemVariants}>

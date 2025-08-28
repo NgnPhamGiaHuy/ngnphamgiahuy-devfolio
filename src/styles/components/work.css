@@ -57,7 +57,7 @@
     }
 
     .portfolio-item {
-        @apply max-w-full pt-[30px] px-[10px] flex-none basis-full overflow-hidden;
+        @apply max-w-full pt-[40px] max-md:pt-[30px] px-[20px] max-md:px-[10px] flex-none basis-full overflow-hidden;
         will-change: transform,opacity;
     }
 

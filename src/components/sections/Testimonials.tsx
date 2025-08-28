@@ -19,7 +19,7 @@ const Testimonials: React.FC = () => {
                 <div className={"items-content-wrapper"}>
                     <ContentSwiper
                         items={testimonials}
-                        spaceBetween={20}
+                        spaceBetween={40}
                         renderItem={(item, index) => (
                             <QuoteCard key={index} item={item} />
                         )}

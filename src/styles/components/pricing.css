@@ -5,7 +5,7 @@
     }
 
     .pricing-card-wrapper {
-        @apply max-w-full w-full md:px-[20px] mb-[40px] max-md:mb-[30px] shrink-0 relative;
+        @apply max-w-full w-full px-[20px] mb-[40px] max-md:mb-[30px] shrink-0 relative;
     }
 
     .pricing-card {

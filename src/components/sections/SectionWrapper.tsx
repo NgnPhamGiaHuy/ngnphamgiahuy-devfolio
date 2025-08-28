@@ -43,7 +43,7 @@ const vlinePositions = {
     },
 } as const;
 
-const SectionWrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = "", background = "gradientUp", vlinePosition = "right", children }) => {
+const SectionWrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = "", background = "gradientUp", sectionContentMaxWidth = "1300px", hasSectionBodyPadding = true, vlinePosition = "right", children }) => {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
@@ -56,8 +56,8 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = 
                 <div className={"wrapper-section-inner"}>
                     <div className={"wrapper-section-content"}>
                         <WrapperHeader title={title} subtitle={subtitle} />
-                        <section className={"wrapper-section-body"}>
-                            <div className={"wrapper-section-content-container"}>
+                        <section className={clsx(hasSectionBodyPadding && "max-md:px-[10px] max-lg:px-[20px]", "wrapper-section-body")}>
+                            <div className={"wrapper-section-content-container"} style={{ maxWidth: sectionContentMaxWidth }}>
                                 { children }
                                 <VLineBlock {...vlineProps} />
                             </div>
