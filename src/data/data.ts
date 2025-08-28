@@ -74,10 +74,11 @@ export interface BlogPost {
     image: string;
 }
 
-export interface Contact {
-    email: string;
-    phone: string;
-    location: string;
+export interface ContactItem {
+    type: string; // e.g. "email", "phone", "location", "office"
+    value: string;
+    // Optional additional properties can be added here as needed
+    // For example: label?: string; or isActive?: boolean;
 }
 
 export interface AppData {
@@ -90,7 +91,7 @@ export interface AppData {
     testimonials: Testimonial[];
     pricing: Pricing[];
     blogs: BlogPost[];
-    contact: Contact;
+    contacts: ContactItem[];
 }
 
 export const data: AppData = {
@@ -300,9 +301,10 @@ export const data: AppData = {
         { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://picsum.photos/600/400?random" },
         { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://picsum.photos/600/400?random" },
     ],
-    contact: {
-        email: "lorem@example.com",
-        phone: "+00 123 456 789",
-        location: "Lorem Street, Ipsum City"
-    }
+    contacts: [
+        { type: "email", value: "lorem@example.com" },
+        { type: "phone", value: "+00 123 456 789" },
+        { type: "location", value: "Lorem Street, Ipsum City" },
+        { type: "office", value: "Lorem Company HQ" }
+    ]
 };

@@ -9,8 +9,10 @@ import Resume from "@/components/sections/Resume";
 import Testimonials from "@/components/sections/Testimonials";
 import Pricing from "@/components/sections/Pricing";
 import Blog from "@/components/sections/Blog";
+import Contact from "@/components/sections/Contact";
+import ScrollToTopButton from "@/components/ui/button/ScrollToTopButton";
 
-const Home : React.FC = () => {
+const Home: React.FC = () => {
     return (
         <div className={"min-h-[50vh] overflow-hidden relative"}>
             <Header />
@@ -23,7 +25,9 @@ const Home : React.FC = () => {
                 <Testimonials />
                 <Pricing />
                 <Blog />
+                <Contact />
             </div>
+            <ScrollToTopButton />
         </div>
     );
 };

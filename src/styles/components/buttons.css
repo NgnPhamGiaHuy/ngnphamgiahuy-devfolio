@@ -6,7 +6,7 @@
     }
 
     .primary-button::before {
-        @apply content-[''] w-0 h-0 top-1/2 left-1/2 rounded-[56px] opacity-100 bg-primary transform -translate-x-1/2 -translate-y-1/2 transition-[width,height] duration-700 ease-[ease] z-[-1] absolute;
+        @apply content-[''] w-0 h-0 top-1/2 left-1/2 rounded-[56px] opacity-100 bg-primary! transform -translate-x-1/2 -translate-y-1/2 transition-[width,height] duration-700 ease-[ease] z-[-1] absolute;
     }
 
     .primary-button:hover {

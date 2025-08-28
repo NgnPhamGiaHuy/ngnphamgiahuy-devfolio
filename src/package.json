@@ -14,13 +14,16 @@
         "@fortawesome/free-solid-svg-icons": "^7.0.0",
         "@fortawesome/react-fontawesome": "^3.0.1",
         "@heroicons/react": "^2.2.0",
+        "@hookform/resolvers": "^5.2.1",
         "clsx": "^2.1.1",
         "framer-motion": "^12.23.12",
         "next": "15.4.6",
         "react": "19.1.0",
         "react-countup": "^6.5.3",
         "react-dom": "19.1.0",
-        "swiper": "^11.2.10"
+        "react-hook-form": "^7.62.0",
+        "swiper": "^11.2.10",
+        "zod": "^4.1.4"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3",
