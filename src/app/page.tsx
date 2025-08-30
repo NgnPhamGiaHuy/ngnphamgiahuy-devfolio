@@ -12,6 +12,7 @@ import Blog from "@/components/sections/Blog";
 import Contact from "@/components/sections/Contact";
 import ScrollToTopButton from "@/components/ui/button/ScrollToTopButton";
 import Map from "@/components/sections/Map";
+import Footer from "@/components/navigation/Footer";
 
 const Home: React.FC = () => {
     return (
@@ -29,6 +30,7 @@ const Home: React.FC = () => {
                 <Contact />
                 <Map />
             </div>
+            <Footer />
             <ScrollToTopButton />
         </div>
     );
