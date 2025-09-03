@@ -1,79 +1,41 @@
 "use client"
 
-import clsx from "clsx";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
-
-import Sidebar from "@/components/navigation/Sidebar";
+import React, { useRef } from "react";
 
 import { data } from "@/data/data";
+import { HeaderProps } from "@/types";
 
-const Header: React.FC = () => {
+import { useHeaderScroll } from "@/hooks/useHeaderScroll";
+import { getHeaderClasses } from "@/utils/headerUtils";
+
+import useTheme from "@/hooks/useTheme";
+import useMenuState from "@/hooks/useMenuState";
+import Sidebar from "@/components/navigation/Sidebar";
+import HeaderLogo from "@/components/navigation/headers/HeaderLogo";
+import HeaderThemeToggle from "@/components/navigation/headers/HeaderThemeToggle";
+import HeaderMenuToggle from "@/components/navigation/headers/HeaderMenuToggle";
+
+
+const Header: React.FC<HeaderProps> = ({ className }) => {
     const { logo } = data;
 
-    const [isSticky, setIsSticky] = useState<boolean>(false);
-    const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
-    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+    const headerRef = useRef<HTMLElement>(null);
 
-    useEffect(() => {
-        const savedTheme = localStorage.getItem("theme");
-
-        if (savedTheme) {
-            setIsDarkMode(savedTheme === "dark");
-            document.documentElement.classList.toggle("dark", savedTheme === "dark");
-        } else {
-            const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            setIsDarkMode(systemPrefersDark);
-            document.documentElement.classList.toggle("dark", systemPrefersDark);
-        }
-    }, []);
-
-    useEffect(() => {
-        const handleScroll = (): void => {
-            setIsSticky(window.scrollY > 50)
-        };
-
-        window.addEventListener("scroll", handleScroll);
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        }
-    }, []);
-
-    const toggleDarkMode = (): void => {
-        const newDarkMode = !isDarkMode;
-
-        setIsDarkMode(newDarkMode);
-
-        document.documentElement.classList.toggle("dark", newDarkMode);
-        localStorage.setItem("theme", newDarkMode ? "dark" : "light");
-    };
-
-    const toggleMenu = (): void => {
-        setIsMenuOpen((prev) => !prev);
-    };
+    const { isMenuOpen, toggleMenu } = useMenuState();
+    const { isDarkMode, toggleDarkMode } = useTheme();
+    const { headerState, handleAnimationEnd } = useHeaderScroll();
 
     return (
-        <header className={clsx("header", isSticky && "sticky animate-in")}>
+        <header ref={headerRef} className={`${getHeaderClasses(headerState)} ${className || ""}`} onAnimationEnd={handleAnimationEnd}>
             <section className={"header-section"}>
                 <div className={"header-container"}>
                     <div className={"header-side"}>
-                        <div className={"header-content"}>
-                            <Link href={"/"}>
-                                <span className={"header-logo"}>{logo}</span>
-                            </Link>
-                        </div>
+                        <HeaderLogo logo={logo} />
                     </div>
                     <div className={"header-side"}>
                         <div className={"header-content"}>
-                            <div className={"header-toggle-theme"} onClick={toggleDarkMode}>
-                                {isDarkMode ? <SunIcon className={"w-7 h-7"} /> : <MoonIcon className={"w-7 h-7"} />}
-                            </div>
-                            <div className={"header-toggle-menu"} onClick={toggleMenu}>
-                                <span className={clsx("header-menu-bar", isMenuOpen ? "header-menu-top-active" : "header-menu-top")}></span>
-                                <span className={clsx("header-menu-bar", isMenuOpen ? "header-menu-bottom-active" : "header-menu-bottom")}></span>
-                            </div>
+                            <HeaderThemeToggle isDarkMode={isDarkMode} onToggle={toggleDarkMode} />
+                            <HeaderMenuToggle isMenuOpen={isMenuOpen} onToggle={toggleMenu}/>
                             <Sidebar isMenuOpen={isMenuOpen} />
                         </div>
                     </div>

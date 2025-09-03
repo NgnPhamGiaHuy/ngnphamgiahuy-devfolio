@@ -1,18 +1,12 @@
 /* Responsive Styles */
 @layer components {
-    @media screen and (max-width: 1200px) {
-        .header.sticky {
-            background: #fff;
-        }
-    }
-
     @media screen and (min-width: 1200px) {
         .header.animate-in {
-            animation: header_animate_one .8s cubic-bezier(.3, 0, .3, 1) 0s forwards;
+            animation: header_animate_one .6s cubic-bezier(.25, .46, .45, .94) 0s forwards;
         }
 
         .header.animate-out {
-            animation: header_animate_two .8s cubic-bezier(.3, 0, .3, 1) 0s forwards;
+            animation: header_animate_two .3s cubic-bezier(.55, .06, .68, .19) 0s forwards;
         }
 
         @keyframes header_animate_one {

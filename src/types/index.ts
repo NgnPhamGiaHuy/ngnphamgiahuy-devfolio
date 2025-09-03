@@ -308,3 +308,59 @@ export interface QuoteCardProps {
         image: string;
     };
 }
+
+// -----------------------------------------------------------------------------
+// Header Component Types
+// -----------------------------------------------------------------------------
+
+/**
+ * Header state for scroll-based animations
+ */
+export type HeaderState = 'absolute' | 'fixed' | 'animating-in' | 'animating-out';
+
+/**
+ * Theme mode for dark/light theme switching
+ */
+export type ThemeMode = 'light' | 'dark';
+
+/**
+ * Props for the Header component
+ */
+export interface HeaderProps {
+    /** Optional additional CSS classes */
+    className?: string;
+}
+
+/**
+ * Props for the HeaderLogo component
+ */
+export interface HeaderLogoProps {
+    /** Logo text content */
+    logo: string;
+    /** Optional additional CSS classes */
+    className?: string;
+}
+
+/**
+ * Props for the HeaderThemeToggle component
+ */
+export interface HeaderThemeToggleProps {
+    /** Current theme mode */
+    isDarkMode: boolean;
+    /** Toggle theme handler */
+    onToggle: () => void;
+    /** Optional additional CSS classes */
+    className?: string;
+}
+
+/**
+ * Props for the HeaderMenuToggle component
+ */
+export interface HeaderMenuToggleProps {
+    /** Current menu open state */
+    isMenuOpen: boolean;
+    /** Toggle menu handler */
+    onToggle: () => void;
+    /** Optional additional CSS classes */
+    className?: string;
+}
