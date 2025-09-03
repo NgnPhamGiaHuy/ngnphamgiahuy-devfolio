@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
 
     const headerRef = useRef<HTMLElement>(null);
 
-    const { isMenuOpen, toggleMenu } = useMenuState();
+    const { isMenuOpen, toggleMenu, closeMenu } = useMenuState();
     const { isDarkMode, toggleDarkMode } = useTheme();
     const { headerState, handleAnimationEnd } = useHeaderScroll();
 
@@ -35,8 +35,8 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
                     <div className={"header-side"}>
                         <div className={"header-content"}>
                             <HeaderThemeToggle isDarkMode={isDarkMode} onToggle={toggleDarkMode} />
-                            <HeaderMenuToggle isMenuOpen={isMenuOpen} onToggle={toggleMenu}/>
-                            <Sidebar isMenuOpen={isMenuOpen} />
+                            <HeaderMenuToggle isMenuOpen={isMenuOpen} onToggle={toggleMenu} />
+                            <Sidebar isMenuOpen={isMenuOpen} onMenuItemClick={closeMenu} />
                         </div>
                     </div>
                 </div>

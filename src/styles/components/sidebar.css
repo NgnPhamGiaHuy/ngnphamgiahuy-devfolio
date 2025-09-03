@@ -1,16 +1,29 @@
 /* Sidebar Components */
 @layer components {
     .sidebar-container {
-        @apply max-md:w-full w-[512px] h-screen top-0 fixed z-2 transition-all duration-800 ease-in-out;
+        @apply max-md:w-full w-[512px] h-screen top-0 fixed z-2;
         @apply before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-white before:transform before:skew-y-0;
+        transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1.0);
+    }
+
+    .sidebar-container::before {
+        transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1.0);
     }
 
     .sidebar-visible {
-        @apply right-0 opacity-100 visible pointer-events-auto before:skew-x-0;
+        @apply right-0 opacity-100 visible pointer-events-auto;
+    }
+
+    .sidebar-visible::before {
+        @apply skew-x-0;
     }
 
     .sidebar-hidden {
-        @apply -right-[612px] opacity-0 invisible pointer-events-none before:skew-x-10;
+        @apply -right-[612px] opacity-0 invisible pointer-events-none;
+    }
+
+    .sidebar-hidden::before {
+        @apply skew-x-10;
     }
 
     .sidebar-content {
@@ -34,14 +47,56 @@
     }
 
     .sidebar-menu-item {
-        @apply mb-5 transition-all duration-300 ease-out;
+        @apply mb-5;
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0);
+        transform: translateY(8px);
+        opacity: 0;
+    }
+
+    .sidebar-menu-item.opacity-100 {
+        transform: translateY(0);
+        opacity: 1;
     }
 
     .sidebar-menu-text {
         @apply text-2xl text-black font-bold leading-none tracking-wider align-top uppercase relative cursor-pointer;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .sidebar-menu-text:hover {
+        @apply text-primary;
+        transform: translateX(4px);
     }
 
     .sidebar-menu-letter {
-        @apply transition-colors duration-300 ease-in-out group-hover:text-primary;
+        @apply transition-colors duration-300 ease-in-out;
+        transition: color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1.0);
+    }
+
+    .sidebar-menu-letter:hover {
+        @apply text-primary;
+    }
+
+    /* Focus styles for accessibility */
+    .sidebar-menu-item:focus-within .sidebar-menu-text {
+        @apply text-primary;
+        transform: translateX(4px);
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+
+        .sidebar-container,
+        .sidebar-container::before,
+        .sidebar-menu-item,
+        .sidebar-menu-text,
+        .sidebar-menu-letter {
+            transition: none;
+        }
+
+        .sidebar-menu-item {
+            transform: none;
+            opacity: 1;
+        }
     }
 }
