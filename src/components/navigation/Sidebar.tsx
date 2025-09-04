@@ -3,6 +3,7 @@
 import React, { memo } from "react";
 
 import { data } from "@/data/data";
+import { SidebarProps } from "@/types";
 import { generateSocialLinks } from "@/utils/socialLinks";
 
 import SIDEBAR_CONFIG from "@/config/sidebar.config";
@@ -11,17 +12,12 @@ import VLineBlock from "@/components/ui/VLineBlock";
 import SocialLinks from "@/components/ui/SocialLinks";
 import SidebarMenuItem from "@/components/navigation/sidebars/SidebarMenuItem";
 
-interface SidebarProps {
-    isMenuOpen: boolean;
-    onMenuItemClick?: () => void;
-}
-
 const Sidebar: React.FC<SidebarProps> = memo(({ isMenuOpen, onMenuItemClick }) => {
     const { profile } = data;
     const { sidebarEntered, handleTransitionEnd, prefersReducedMotion } = useSidebarAnimation(isMenuOpen);
     const socialLinks = generateSocialLinks(profile.social_links);
 
-    const sidebarClasses = `sidebar-container ${isMenuOpen ? "sidebar-visible" : "sidebar-hidden" }`;
+    const sidebarClasses = `sidebar-container ${isMenuOpen ? "sidebar-visible" : "sidebar-hidden"}`;
 
     return (
         <div className={sidebarClasses} onTransitionEnd={handleTransitionEnd} role={"navigation"} aria-label={"Main navigation menu"}>

@@ -5,16 +5,15 @@ import React, { useRef } from "react";
 import { data } from "@/data/data";
 import { HeaderProps } from "@/types";
 
-import { useHeaderScroll } from "@/hooks/useHeaderScroll";
 import { getHeaderClasses } from "@/utils/headerUtils";
 
 import useTheme from "@/hooks/useTheme";
 import useMenuState from "@/hooks/useMenuState";
+import useHeaderScroll from "@/hooks/useHeaderScroll";
 import Sidebar from "@/components/navigation/Sidebar";
 import HeaderLogo from "@/components/navigation/headers/HeaderLogo";
 import HeaderThemeToggle from "@/components/navigation/headers/HeaderThemeToggle";
 import HeaderMenuToggle from "@/components/navigation/headers/HeaderMenuToggle";
-
 
 const Header: React.FC<HeaderProps> = ({ className }) => {
     const { logo } = data;

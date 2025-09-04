@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { HeaderState } from "@/config/header.config";
 
-export const useHeaderScroll = () => {
+const useHeaderScroll = () => {
     const lastScrollY = useRef<number>(0);
 
     const [headerState, setHeaderState] = useState<HeaderState>("absolute");
@@ -56,3 +56,5 @@ export const useHeaderScroll = () => {
 
     return { headerState, handleAnimationEnd };
 };
+
+export default useHeaderScroll;

@@ -11,7 +11,7 @@ const StatCard: React.FC<StatCardProps> = ({ value, label, highlight, className 
     const labelHighlight = hasMultipleWords ? labelWords.slice(-1)[0] : label;
 
     return (
-        <li style={style} className={`${margin} stat-card ${className}`}>
+        <div style={style} className={`${margin} stat-card ${className}`}>
             <span className={"stat-value"}>
                 { value }
                 { highlight && <strong className={"stat-highlight"}>&nbsp;{ highlight }</strong> }
@@ -28,7 +28,7 @@ const StatCard: React.FC<StatCardProps> = ({ value, label, highlight, className 
                     <strong className={"stat-label-highlight"}>{labelHighlight}</strong>
                 ) }
             </span>
-        </li>
+        </div>
     );
 };
 

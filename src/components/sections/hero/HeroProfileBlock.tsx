@@ -1,52 +1,129 @@
-import React from "react";
-import { motion } from "framer-motion";
+"use client";
+
+import React, { memo, useMemo } from "react";
+import { motion, Variants } from "framer-motion";
+
+import { HeroProfileBlockProps } from "@/types";
+import { DEFAULT_PATTERN_LAYERS, DEFAULT_STATS } from "@/config/hero.config";
 
 import StatCard from "@/components/ui/cards/StatCard";
+import HeroLayer from "@/components/sections/hero/HeroLayer";
+import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
-import { HeroLayerProps, StatInfo, HeroProfileBlockProps } from "@/types";
+const HeroProfileBlock: React.FC<HeroProfileBlockProps> = memo(({ className = "", profileImage = "/images/profile2.png", patternLayers = DEFAULT_PATTERN_LAYERS, stats = DEFAULT_STATS, variants = {}, initial = "", animate = "", transition = {} }) => {
+    const prefersReducedMotion = usePrefersReducedMotion();
 
-const HeroLayer: React.FC<HeroLayerProps> = ({ width, height, top, right, bottom, left }) => {
-    const style: React.CSSProperties = { width, height, top, right, bottom, left };
+    const defaultVariants: Variants = useMemo(() => ({
+        hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 50 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: prefersReducedMotion ? "tween" : "spring",
+                stiffness: prefersReducedMotion ? 0 : 160,
+                damping: prefersReducedMotion ? 0 : 80,
+                duration: prefersReducedMotion ? 0.2 : 0.8
+            }
+        }
+    }), [prefersReducedMotion]);
 
-    return (
-        <span className={"hero-pattern-layer"} style={style} />
+    const imageVariants: Variants = useMemo(() => ({
+        hidden: { opacity: 0, scale: prefersReducedMotion ? 1 : 0.8 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                delay: prefersReducedMotion ? 0 : 0.2,
+                duration: prefersReducedMotion ? 0.1 : 0.6,
+                ease: "easeOut"
+            }
+        }
+    }), [prefersReducedMotion]);
+
+    const statsVariants: Variants = useMemo(() => ({
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                delayChildren: prefersReducedMotion ? 0 : 0.4,
+                staggerChildren: prefersReducedMotion ? 0 : 0.1,
+                duration: prefersReducedMotion ? 0.1 : 0.3
+            }
+        }
+    }), [prefersReducedMotion]);
+
+    const statItemVariants: Variants = useMemo(() => ({
+        hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: prefersReducedMotion ? 0.1 : 0.4,
+                ease: "easeOut"
+            }
+        }
+    }), [prefersReducedMotion]);
+
+    const mergedVariants = useMemo(() =>
+            Object.keys(variants).length > 0 ? variants : defaultVariants,
+        [variants, defaultVariants]
     );
-};
 
-const DEFAULT_PATTERN_LAYERS: HeroLayerProps[] = [
-    { width: "226px", height: "226px", top: "75px", right: "40px", bottom: "0", left: "auto" },
-    { width: "141px", height: "141px", top: "auto", right: "auto", bottom: "50px", left: "-110px" },
-    { width: "141px", height: "141px", top: "auto", right: "-14px", bottom: "10px", left: "auto" }
-];
-
-const DEFAULT_STATS: StatInfo[] = [
-    { value: "12", margin: "mt-[160px] ml-[100px]", label: "Years of Experience", highlight: "+" },
-    { value: "330", margin: "mt-[-30px] ml-[520px]", label: "Completed Projects" }
-];
-
-const HeroProfileBlock: React.FC<HeroProfileBlockProps> = ({ className = "", profileImage = "/images/profile2.png", patternLayers = DEFAULT_PATTERN_LAYERS, stats = DEFAULT_STATS, variants = {}, initial = "", animate = "", transition = {} }) => {
     return (
         <motion.div
             className={`hero-profile-container ${className}`}
-            variants={variants}
-            initial={initial === "" ? undefined : initial}
-            animate={animate === "" ? undefined : animate}
+            variants={mergedVariants}
+            initial={initial === "" ? "hidden" : initial}
+            animate={animate === "" ? "visible" : animate}
             transition={transition}
+            role={"img"}
+            aria-label={"Profile image with professional statistics"}
         >
-            <img src={profileImage} alt={"profile"} className={"hero-profile-image"} />
-            <span className={"avatar-circle"} />
+            <motion.img
+                src={profileImage}
+                alt={"Professional profile picture"}
+                className={"hero-profile-image"}
+                variants={imageVariants}
+                initial={"hidden"}
+                animate={"visible"}
+            />
+            <span
+                className={"avatar-circle"}
+                role={"presentation"}
+                aria-hidden={"true"}
+            />
             { patternLayers.map((layer, index) => (
                 <HeroLayer key={`layer-${index}`} {...layer} />
             )) }
-            <div className={"hero-stats-container"}>
-                <ul>
+            <motion.div
+                className={"hero-stats-container"}
+                variants={statsVariants}
+                initial={"hidden"}
+                animate={"visible"}
+                role={"group"}
+                aria-label={"Professional statistics"}
+            >
+                <ul role={"list"}>
                     { stats.map((stat, index) => (
-                        <StatCard key={`stat-${index}`} value={stat.value} margin={stat.margin} label={stat.label} highlight={stat.highlight} />
+                        <motion.li
+                            key={`stat-${index}`}
+                            variants={statItemVariants}
+                            role={"listitem"}
+                        >
+                            <StatCard
+                                value={stat.value}
+                                margin={stat.margin}
+                                label={stat.label}
+                                highlight={stat.highlight}
+                            />
+                        </motion.li>
                     )) }
                 </ul>
-            </div>
+            </motion.div>
         </motion.div>
     );
-};
+});
+
+HeroProfileBlock.displayName = "HeroProfileBlock";
 
 export default HeroProfileBlock;

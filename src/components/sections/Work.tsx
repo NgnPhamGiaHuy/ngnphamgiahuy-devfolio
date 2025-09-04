@@ -3,12 +3,11 @@
 import React from "react";
 import Link from "next/link";
 
+import usePortfolioFilter from "@/hooks/usePortfolioFilter";
 import SectionWrapper from "@/components/sections/SectionWrapper";
 import BackgroundText from "@/components/ui/BackgroundText";
 import PortfolioFilter from "@/components/sections/work/PortfolioFilter";
 import PortfolioGrid from "@/components/sections/work/PortfolioGrid";
-
-import { usePortfolioFilter } from "@/hooks/usePortfolioFilter";
 
 import { data } from "@/data/data";
 

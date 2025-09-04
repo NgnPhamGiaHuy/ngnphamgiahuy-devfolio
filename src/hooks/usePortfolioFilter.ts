@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 
 import { Portfolio } from "@/data/data";
 
-export const usePortfolioFilter = (portfolios: Portfolio[]) => {
+const usePortfolioFilter = (portfolios: Portfolio[]) => {
     const categories = useMemo(() => {
         const unique = Array.from(new Set(portfolios.map(p => p.category)));
         return ["All", ...unique];
@@ -21,3 +21,5 @@ export const usePortfolioFilter = (portfolios: Portfolio[]) => {
 
     return { categories, activeCategory, filteredPortfolios, handleCategoryChange };
 };
+
+export default usePortfolioFilter;

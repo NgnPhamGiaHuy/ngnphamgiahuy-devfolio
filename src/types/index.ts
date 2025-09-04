@@ -1,119 +1,58 @@
-import React, { ReactElement } from "react";
 import { Variants } from "framer-motion";
+import React, { ReactElement } from "react";
+
 import { Portfolio } from "@/data/data";
 
-/**
- * Base animation variants type for Framer Motion
- */
-export interface AnimationVariantsType {
-    hidden: { opacity: number; y?: number };
-    visible: {
-        opacity: number;
-        y?: number;
-        transition: {
-            delayChildren?: number;
-            staggerChildren?: number;
-            duration?: number;
-            type?: string;
-            stiffness?: number;
-            damping?: number;
-            when?: string;
-        };
-    };
-    [key: string]: any; // Index signature for string
-}
+// -----------------------------------------------------------------------------
+// Animation-related Types
+// -----------------------------------------------------------------------------
 
 /**
  * Complete animation variants compatible with Framer Motion
  */
-export type AnimationVariants = Variants & AnimationVariantsType;
+export type AnimationVariants = Variants;
 
 /**
- * Animation easing presets as cubic-bezier arrays
+ * Standard animation configuration with reusable animation variants
  */
-export interface EasingConfig {
-    /** Default easing: cubic-bezier(0.25, 0.1, 0.25, 1.0) */
-    DEFAULT: [number, number, number, number];
-    /** Bounce easing: cubic-bezier(0.2, 0.65, 0.3, 0.9) */
-    BOUNCE: [number, number, number, number];
+export interface AnimationConfig {
+    fadeIn: (prefersReducedMotion?: boolean) => AnimationVariants;
+    fadeInUp: (prefersReducedMotion?: boolean, distance?: number) => AnimationVariants;
+    fadeInDown: (prefersReducedMotion?: boolean, distance?: number) => AnimationVariants;
+    scaleIn: (prefersReducedMotion?: boolean, startScale?: number) => AnimationVariants;
+    springUp: (prefersReducedMotion?: boolean, distance?: number) => AnimationVariants;
+    staggerChildren: (prefersReducedMotion?: boolean, staggerTime?: number, delayTime?: number) => AnimationVariants;
+    buttonHover: (prefersReducedMotion?: boolean) => AnimationVariants;
+    [key: string]: (...args: any[]) => AnimationVariants;
 }
 
 // -----------------------------------------------------------------------------
-// Component Props Types
+// Shared/Common Component Props
 // -----------------------------------------------------------------------------
 
 /**
  * Props for the AnimatedTextCharacter component
  */
 export interface AnimatedTextCharacterProps {
-    /** Text content to be animated character by character */
     text: string;
-    /** Optional base delay in milliseconds before animation starts */
     baseDelay?: number;
-    /** Optional CSS class name for each character span */
     className?: string;
-    /** Optional CSS class name for the container span */
     containerClassName?: string;
-}
-
-/**
- * Props for the VLineBlock component
- */
-export interface VLineBlockProps {
-    /** CSS top position value */
-    top?: string;
-    /** CSS right position value */
-    right?: string;
-    /** CSS bottom position value */
-    bottom?: string;
-    /** CSS left position value */
-    left?: string;
-    /** CSS width value */
-    width?: string;
-    /** Tailwind shadow classes */
-    shadow?: string;
-    /** Whether to show the pattern or not */
-    showPattern?: boolean;
-    /** Additional CSS classes */
-    className?: string;
+    staggerDelay?: number;
+    ease?: string;
+    duration?: number;
 }
 
 /**
  * Props for the BackgroundText component
  */
 export interface BackgroundTextProps {
-    /** Text content to display in the background */
     text: string;
-    /** CSS top position value */
     top?: string;
-    /** CSS right position value */
     right?: string;
-    /** CSS bottom position value */
     bottom?: string;
-    /** CSS left position value */
     left?: string;
-    /** Additional CSS classes */
     className?: string;
-}
-
-/**
- * Props for the StatCard component
- */
-export interface StatCardProps {
-    /** Main value displayed in the stat card */
-    value: string;
-    /** Label describing what the value represents */
-    label: string;
-    /** Optional highlight text shown after the value */
-    highlight?: string;
-    /** Additional CSS classes */
-    className?: string;
-    /** CSS width of the card */
-    width?: string;
-    /** CSS height of the card */
-    height?: string;
-    /** CSS margin value */
-    margin?: string;
 }
 
 /**
@@ -124,11 +63,35 @@ export interface DownloadCVButtonProps {
 }
 
 /**
- * Props for the HeroIntro component
+ * Props for the StatCard component
  */
-export interface HeroIntroProps {
-    // Component has no props but using interface for consistency
+export interface StatCardProps {
+    value: string;
+    label: string;
+    highlight?: string;
+    className?: string;
+    width?: string;
+    height?: string;
+    margin?: string;
 }
+
+/**
+ * Props for the VLineBlock component
+ */
+export interface VLineBlockProps {
+    top?: string;
+    right?: string;
+    bottom?: string;
+    left?: string;
+    width?: string;
+    shadow?: string;
+    showPattern?: boolean;
+    className?: string;
+}
+
+// -----------------------------------------------------------------------------
+// Hero Section Props
+// -----------------------------------------------------------------------------
 
 /**
  * Props for the HeroDescription component
@@ -137,8 +100,138 @@ export interface HeroDescriptionProps {
     // Component has no props but using interface for consistency
 }
 
+/**
+ * Props for the HeroIntro component
+ */
+export interface HeroIntroProps {
+    // Component has no props but using interface for consistency
+}
+
+/**
+ * Props for the HeroLayer component
+ */
+export interface HeroLayerProps {
+    width?: string;
+    height?: string;
+    top?: string;
+    right?: string;
+    bottom?: string;
+    left?: string;
+}
+
+/**
+ * Props for the HeroProfileBlock component
+ */
+export interface HeroProfileBlockProps {
+    className?: string;
+    profileImage?: string;
+    patternLayers?: HeroLayerProps[];
+    stats?: StatInfo[];
+    variants?: any;
+    initial?: boolean | string | Record<string, any>;
+    animate?: boolean | string | Record<string, any>;
+    transition?: any;
+}
+
+/**
+ * Structure for stat information displayed in the hero section
+ */
+export interface StatInfo {
+    value: string;
+    label: string;
+    highlight?: string;
+    margin: string;
+}
+
 // -----------------------------------------------------------------------------
-// Social Media Types
+// Portfolio-related Props
+// -----------------------------------------------------------------------------
+
+export interface ContentCardProps {
+    item: {
+        category: string;
+        title: string;
+        description: string;
+    };
+    index: number;
+}
+
+export interface PortfolioCardProps {
+    portfolio: {
+        name: string;
+        category: string;
+        description: string;
+        image: string;
+        link: string;
+    };
+    index: number;
+}
+
+export interface PortfolioFilterProps {
+    categories: string[];
+    activeCategory: string;
+    onCategoryChange: (category: string) => void;
+}
+
+export interface PortfolioGridProps {
+    portfolios: Portfolio[];
+}
+
+export interface SectionWrapperProps {
+    title: string;
+    subtitle: string;
+    sectionContentMaxWidth?: string;
+    background?: "gradientUp" | "gradientDown" | "none";
+    vlinePosition?: "left" | "right";
+    hasSectionBodyPadding?: boolean;
+    children: React.ReactNode;
+}
+
+// -----------------------------------------------------------------------------
+// Accordion-related Props
+// -----------------------------------------------------------------------------
+
+export interface AccordionContentProps {
+    isOpen: boolean;
+    subheading: string;
+    meta: string;
+    content: string;
+}
+
+export interface AccordionItemProps {
+    heading: string;
+    subheading: string;
+    meta: string;
+    content: string;
+    index: number;
+    isFirstItem?: boolean;
+}
+
+export interface AccordionProps {
+    items: Array<{
+        heading: string;
+        subheading: string;
+        meta: string;
+        content: string;
+    }>;
+    label: string;
+}
+
+// -----------------------------------------------------------------------------
+// Quote/testimonial Props
+// -----------------------------------------------------------------------------
+
+export interface QuoteCardProps {
+    item: {
+        name: string;
+        position: string;
+        quote: string;
+        image: string;
+    };
+}
+
+// -----------------------------------------------------------------------------
+// Social-related Types
 // -----------------------------------------------------------------------------
 
 /**
@@ -177,157 +270,13 @@ export interface SocialLinksProps {
 }
 
 // -----------------------------------------------------------------------------
-// Hero Profile Block Types
+// Header-related Types
 // -----------------------------------------------------------------------------
-
-/**
- * Props for the HeroLayer component
- */
-export interface HeroLayerProps {
-    /** CSS width value */
-    width?: string;
-    /** CSS height value */
-    height?: string;
-    /** CSS top position value */
-    top?: string;
-    /** CSS right position value */
-    right?: string;
-    /** CSS bottom position value */
-    bottom?: string;
-    /** CSS left position value */
-    left?: string;
-}
-
-/**
- * Structure for stat information displayed in the hero section
- */
-export interface StatInfo {
-    /** Main numerical value of the stat */
-    value: string;
-    /** Label describing what the stat represents */
-    label: string;
-    /** Optional text to highlight (e.g., "+" or "k") */
-    highlight?: string;
-    /** CSS margin value */
-    margin: string;
-}
-
-/**
- * Props for the HeroProfileBlock component
- */
-export interface HeroProfileBlockProps {
-    /** Additional CSS classes */
-    className?: string;
-    /** Path to profile image */
-    profileImage?: string;
-    /** Configuration for pattern layers */
-    patternLayers?: HeroLayerProps[];
-    /** Stats to display */
-    stats?: StatInfo[];
-    /** Animation variants */
-    variants?: any;
-    /** Initial animation state */
-    initial?: boolean | string | Record<string, any>;
-    /** Target animation state */
-    animate?: boolean | string | Record<string, any>;
-    /** Animation transition properties */
-    transition?: any;
-}
-
-export interface ContentCardProps {
-    item: {
-        category: string;
-        title: string;
-        description: string;
-    };
-    index: number;
-}
-
-export interface PortfolioFilterProps {
-    categories: string[];
-    activeCategory: string;
-    onCategoryChange: (category: string) => void;
-}
-
-export interface PortfolioGridProps {
-    portfolios: Portfolio[];
-}
-
-export interface PortfolioCardProps {
-    portfolio: {
-        name: string;
-        category: string;
-        description: string;
-        image: string;
-        link: string;
-    };
-    index: number;
-}
-
-export interface SectionWrapperProps {
-    title: string;
-    subtitle: string;
-    sectionContentMaxWidth?: string;
-    background?: "gradientUp" | "gradientDown" | "none";
-    vlinePosition?: "left" | "right";
-    hasSectionBodyPadding?: boolean;
-    children: React.ReactNode;
-}
-
-export interface AccordionContentProps {
-    isOpen: boolean;
-    subheading: string;
-    meta: string;
-    content: string;
-}
-
-export interface AccordionItemProps {
-    heading: string;
-    subheading: string;
-    meta: string;
-    content: string;
-    index: number;
-    isFirstItem?: boolean;
-}
-
-export interface AccordionProps {
-    items: Array<{
-        heading: string;
-        subheading: string;
-        meta: string;
-        content: string;
-    }>;
-    label: string;
-}
-
-export interface QuoteCardProps {
-    item: {
-        name: string;
-        position: string;
-        quote: string;
-        image: string;
-    };
-}
-
-// -----------------------------------------------------------------------------
-// Header Component Types
-// -----------------------------------------------------------------------------
-
-/**
- * Header state for scroll-based animations
- */
-export type HeaderState = 'absolute' | 'fixed' | 'animating-in' | 'animating-out';
-
-/**
- * Theme mode for dark/light theme switching
- */
-export type ThemeMode = 'light' | 'dark';
 
 /**
  * Props for the Header component
  */
 export interface HeaderProps {
-    /** Optional additional CSS classes */
     className?: string;
 }
 
@@ -335,21 +284,7 @@ export interface HeaderProps {
  * Props for the HeaderLogo component
  */
 export interface HeaderLogoProps {
-    /** Logo text content */
     logo: string;
-    /** Optional additional CSS classes */
-    className?: string;
-}
-
-/**
- * Props for the HeaderThemeToggle component
- */
-export interface HeaderThemeToggleProps {
-    /** Current theme mode */
-    isDarkMode: boolean;
-    /** Toggle theme handler */
-    onToggle: () => void;
-    /** Optional additional CSS classes */
     className?: string;
 }
 
@@ -357,10 +292,39 @@ export interface HeaderThemeToggleProps {
  * Props for the HeaderMenuToggle component
  */
 export interface HeaderMenuToggleProps {
-    /** Current menu open state */
     isMenuOpen: boolean;
-    /** Toggle menu handler */
     onToggle: () => void;
-    /** Optional additional CSS classes */
     className?: string;
+}
+
+/**
+ * Props for the HeaderThemeToggle component
+ */
+export interface HeaderThemeToggleProps {
+    isDarkMode: boolean;
+    onToggle: () => void;
+    className?: string;
+}
+
+/**
+ * Theme mode for dark/light theme switching
+ */
+export type ThemeMode = 'light' | 'dark';
+
+// -----------------------------------------------------------------------------
+// Sidebar-related Props
+// -----------------------------------------------------------------------------
+
+export interface SidebarMenuItemProps {
+    text: string;
+    index: number;
+    sidebarEntered: boolean;
+    prefersReducedMotion: boolean;
+    href?: string;
+    onClick?: () => void;
+}
+
+export interface SidebarProps {
+    isMenuOpen: boolean;
+    onMenuItemClick?: () => void;
 }

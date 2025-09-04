@@ -1,14 +1,7 @@
 import Link from "next/link";
 import React, { useCallback, memo } from "react";
 
-interface SidebarMenuItemProps {
-    text: string;
-    index: number;
-    sidebarEntered: boolean;
-    prefersReducedMotion: boolean;
-    href?: string;
-    onClick?: () => void;
-}
+import { SidebarMenuItemProps } from "@/types";
 
 const SidebarMenuItem: React.FC<SidebarMenuItemProps> = memo(({ text, index, sidebarEntered, prefersReducedMotion, href = "/", onClick }) => {
     const itemClasses = `sidebar-menu-item ${sidebarEntered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2" }`;

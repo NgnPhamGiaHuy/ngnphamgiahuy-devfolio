@@ -1,25 +1,24 @@
-"use client"
+"use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, memo } from "react";
 import { motion } from "framer-motion";
+
+import { data } from "@/data/data";
+import { StandardAnimations } from "@/config/animation.config";
+import { HeroAnimationProvider } from "@/context/HeroAnimationContext";
 
 import VLineBlock from "@/components/ui/VLineBlock";
 import BackgroundText from "@/components/ui/BackgroundText";
 import HeroIntro from "@/components/sections/hero/HeroIntro";
+import DownloadCVButton from "@/components/ui/button/DownloadCVButton";
 import HeroDescription from "@/components/sections/hero/HeroDescription";
 import HeroProfileBlock from "@/components/sections/hero/HeroProfileBlock";
-import DownloadCVButton from "@/components/ui/DownloadCVButton";
-
-import { HeroAnimationProvider } from "@/context/HeroAnimationContext";
-
-import { data } from "@/data/data";
-
+import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import useDynamicTextAnimation from "@/hooks/animation/useDynamicTextAnimation";
 
-import { AnimationVariants } from "@/types";
-
-const Hero = () => {
+const Hero: React.FC = memo(() => {
     const { createTypingTimeline } = useDynamicTextAnimation();
+    const prefersReducedMotion = usePrefersReducedMotion();
 
     const heroTextTimeline = useMemo(() => {
         const { profile } = data;
@@ -34,35 +33,23 @@ const Hero = () => {
         return createTypingTimeline(textSections);
     }, [createTypingTimeline]);
 
-    const containerVariants: AnimationVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                when: "beforeChildren",
-                staggerChildren: 0.3,
-                duration: 0.3,
-            }
-        }
-    };
+    const containerVariants = useMemo(() =>
+        StandardAnimations.staggerChildren(prefersReducedMotion, 0.3, 0.1),
+        [prefersReducedMotion]
+    );
 
-    const profileBlockVariants = {
-        hidden: { opacity: 0, y: 50 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                type: "spring",
-                stiffness: 160,
-                damping: 80,
-                duration: 0.8
-            }
-        }
-    };
+    const profileBlockVariants = useMemo(() =>
+        StandardAnimations.springUp(prefersReducedMotion, 50),
+        [prefersReducedMotion]
+    );
 
     return (
         <HeroAnimationProvider timeline={heroTextTimeline}>
-            <section className={"hero-section elementor-section"}>
+            <section
+                className={"hero-section elementor-section"}
+                role={"banner"}
+                aria-label={"Hero section with introduction and profile"}
+            >
                 <div className={"hero-container"}>
                     <div className={"hero-wrapper"}>
                         <div className={"hero-content-wrapper"}>
@@ -99,6 +86,8 @@ const Hero = () => {
             </section>
         </HeroAnimationProvider>
     );
-};
+});
+
+Hero.displayName = "Hero";
 
 export default Hero;

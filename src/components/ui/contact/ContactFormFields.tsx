@@ -5,7 +5,7 @@ import { UseFormRegisterReturn, FieldErrors, UseFormWatch } from "react-hook-for
 import FormInput from "@/components/ui/forms/FormInput";
 import SubmitButton from "@/components/ui/button/SubmitButton";
 
-import { FORM_FIELDS } from "@/data/contactFormConstants";
+import { FORM_FIELDS } from "@/config/contactForm.config";
 import { ContactFormData } from "@/utils/contactFormSchema";
 
 interface ContactFormFieldsProps {

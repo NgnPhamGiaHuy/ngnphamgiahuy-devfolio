@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { API_CONFIG, FORM_MESSAGES } from "@/data/contactFormConstants";
+import { API_CONFIG, FORM_MESSAGES } from "@/config/contactForm.config";
 import { ContactFormData, contactFormSchema } from "@/utils/contactFormSchema";
 
 const useContactForm = () => {
