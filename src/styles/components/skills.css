@@ -1,0 +1,37 @@
+@layer components {
+    .skills-grid {
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+    }
+
+    .skill-card {
+        @apply mb-[70px] p-[20px] relative;
+    }
+
+    .skill-title {
+        @apply mx-[30px]! mb-[20px]! text-[21px] max-md:text-[18px] leading-5;
+    }
+
+    .skill-desc {
+        @apply mx-[30px]! mb-[30px]!;
+    }
+
+    .skill-bars {
+        @apply flex gap-1;
+    }
+
+    .skill-bar {
+        @apply h-[2px] w-4 bg-black rounded;
+    }
+
+    .skill-badge {
+        @apply top-0 right-[30px] absolute;
+    }
+
+    .skill-badge-inner {
+        @apply px-3 py-1 inline-flex items-center text-black bg-primary/10 font-bold rounded-full;
+    }
+
+    .skill-badge-years {
+        @apply text-primary font-medium;
+    }
+}
