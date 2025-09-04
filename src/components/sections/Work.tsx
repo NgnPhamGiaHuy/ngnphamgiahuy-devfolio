@@ -3,13 +3,13 @@
 import React from "react";
 import Link from "next/link";
 
+import { data } from "@/data/data";
+
 import usePortfolioFilter from "@/hooks/usePortfolioFilter";
 import Wrapper from "@/components/sections/wrapper/Wrapper";
 import BackgroundText from "@/components/ui/BackgroundText";
-import PortfolioFilter from "@/components/sections/work/PortfolioFilter";
 import PortfolioGrid from "@/components/sections/work/PortfolioGrid";
-
-import { data } from "@/data/data";
+import PortfolioFilter from "@/components/sections/work/PortfolioFilter";
 
 const Work: React.FC = () => {
     const { portfolios } = data;

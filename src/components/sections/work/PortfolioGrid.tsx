@@ -1,41 +1,41 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import PortfolioCard from "@/components/ui/cards/PortfolioCard";
-
 import { PortfolioGridProps } from "@/types";
+import { StandardAnimations, Duration, Stagger } from "@/config/animation.config";
+
+import PortfolioCard from "@/components/ui/cards/PortfolioCard";
+import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
 const PortfolioGrid: React.FC<PortfolioGridProps> = ({ portfolios }) => {
+    const prefersReducedMotion = usePrefersReducedMotion();
+
+    const itemEnter = StandardAnimations.springUp(prefersReducedMotion, 16);
+    const itemScale = StandardAnimations.scaleIn(prefersReducedMotion, 0.95);
+    const gridVariants = StandardAnimations.staggerChildren(prefersReducedMotion, Stagger.NORMAL);
+
+    const itemVariants = {
+        hidden: { ...(itemEnter.hidden as any), ...(itemScale.hidden as any) },
+        visible: { ...(itemEnter.visible as any), ...(itemScale.visible as any) },
+        exit: { opacity: 0, scale: prefersReducedMotion ? 1 : 0.9, y: prefersReducedMotion ? 0 : -12, transition: { duration: Duration.NORMAL } }
+    } as const;
+
     return (
         <motion.div
             className={"portfolio-grid"}
             layout
-            transition={{
-                duration: 0.6,
-                type: "spring",
-                damping: 25,
-                stiffness: 100,
-                layout: {
-                    duration: 0.6,
-                    type: "spring",
-                    damping: 30,
-                    stiffness: 80
-                }
-            }}
+            initial={"hidden"}
+            animate={"visible"}
+            variants={gridVariants}
+            transition={{ duration: Duration.SLOW }}
         >
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence mode={"popLayout"}>
                 { portfolios.slice(0, 6).map((portfolio, index) => (
                     <motion.div
                         key={portfolio.name}
                         layout
-                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.8, y: -20 }}
-                        transition={{
-                            duration: 0.4,
-                            delay: index * 0.05,
-                            layout: { type: "spring", damping: 20, stiffness: 100 }
-                        }}
+                        variants={itemVariants}
+                        transition={{ duration: Duration.NORMAL, delay: index * Stagger.NORMAL }}
                     >
                         <PortfolioCard portfolio={portfolio} index={index} />
                     </motion.div>

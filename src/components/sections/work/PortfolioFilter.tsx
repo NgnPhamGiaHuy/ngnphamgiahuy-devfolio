@@ -3,14 +3,28 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { PortfolioFilterProps } from "@/types";
+import { StandardAnimations, Duration, Delay, Stagger } from "@/config/animation.config";
+
+import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
 const PortfolioFilter: React.FC<PortfolioFilterProps> = ({ categories, activeCategory, onCategoryChange }) => {
+    const prefersReducedMotion = usePrefersReducedMotion();
+
+    const hoverVariants = StandardAnimations.buttonHover(prefersReducedMotion);
+    const itemVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 12);
+    const containerVariants = StandardAnimations.staggerChildren(prefersReducedMotion, Stagger.NORMAL, Delay.SHORT);
+
+    const buttonVariants = { ...itemVariants, ...hoverVariants } as const;
+
     return (
         <motion.div
             className={"work-filter-container"}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={"hidden"}
+            animate={"visible"}
+            variants={containerVariants}
+            transition={{ duration: Duration.SLOW }}
+            role={"group"}
+            aria-label={"Portfolio category filters"}
         >
             { categories.map((category, index) => (
                 <motion.button
@@ -20,16 +34,12 @@ const PortfolioFilter: React.FC<PortfolioFilterProps> = ({ categories, activeCat
                         "work-filter-button",
                         category === activeCategory && "work-filter-button-active"
                     )}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: 0.4,
-                        delay: 0.3 + index * 0.1,
-                        type: "spring",
-                        stiffness: 300
-                    }}
+                    aria-pressed={category === activeCategory}
+                    aria-label={`Filter projects by ${category}`}
+                    variants={buttonVariants}
+                    whileHover={"hover"}
+                    whileTap={"tap"}
+                    transition={{ duration: Duration.NORMAL, delay: Delay.MEDIUM + index * Stagger.NORMAL }}
                 >
                     <span>{ category }</span>
                 </motion.button>

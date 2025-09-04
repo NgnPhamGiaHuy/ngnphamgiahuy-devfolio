@@ -11,7 +11,7 @@ import SkillCard from "@/components/ui/cards/SkillCard";
 import BackgroundText from "@/components/ui/BackgroundText";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
-const Skills = () => {
+const Skills: React.FC = () => {
     const { skills } = data;
     const prefersReducedMotion = usePrefersReducedMotion();
 
