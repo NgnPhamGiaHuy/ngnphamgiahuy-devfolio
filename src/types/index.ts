@@ -184,6 +184,7 @@ export interface SectionWrapperProps {
     background?: "gradientUp" | "gradientDown" | "none";
     vlinePosition?: "left" | "right";
     hasSectionBodyPadding?: boolean;
+    resetAnimationOnView?: boolean;
     children: React.ReactNode;
 }
 
@@ -196,6 +197,8 @@ export interface AccordionContentProps {
     subheading: string;
     meta: string;
     content: string;
+    panelId?: string;
+    labelledById?: string;
 }
 
 export interface AccordionItemProps {

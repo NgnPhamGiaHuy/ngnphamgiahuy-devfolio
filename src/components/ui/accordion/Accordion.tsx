@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react";
 
 import { AccordionProps } from "@/types";
@@ -12,7 +10,7 @@ const Accordion: React.FC<AccordionProps> = ({ items, label }) => {
             <h5 className={"accordion-label"}>
                 { label }
             </h5>
-            <div className={"accordion-items-container"}>
+            <div className={"accordion-items-container"} role={"list"}>
                 { items.map((item, index) => (
                     <AccordionItem
                         key={index}

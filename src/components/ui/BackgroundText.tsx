@@ -19,19 +19,19 @@ const BackgroundText: React.FC<BackgroundTextProps> = ({ text, top = "", right =
             }
 
             await controls.start({
-                opacity: [0, 0.02],
-                scale: [0.98, 1],
-                y: [20, 0],
-                transition: { duration: 1.2, ease: "easeOut" }
+                opacity: [0, 0.025],
+                scale: [0.985, 1],
+                y: [16, 0],
+                transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as any }
             });
 
-            controls.start({
-                y: [0, -5, 0],
+            await controls.start({
+                y: [0, -6, 0],
                 transition: {
-                    duration: 8,
+                    duration: 10,
                     ease: "easeInOut",
                     repeat: Infinity,
-                    repeatType: "reverse"
+                    repeatType: "mirror"
                 }
             });
         };
@@ -41,7 +41,7 @@ const BackgroundText: React.FC<BackgroundTextProps> = ({ text, top = "", right =
     const positionStyle: React.CSSProperties = { top, right, bottom, left };
 
     return (
-        <div className={"w-full absolute z-1"} style={positionStyle}>
+        <div className={"w-full absolute z-1"} style={positionStyle} aria-hidden={"true"}>
             <div>
                 <motion.div
                     animate={controls}

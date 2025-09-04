@@ -1,25 +1,32 @@
 "use client"
 
 import clsx from "clsx";
-import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-
-import VLineBlock from "@/components/ui/VLineBlock";
-import WrapperHeader from "@/components/sections/wrapper/WrapperHeader";
+import React, { useRef, useState, useEffect } from "react";
 
 import { SectionWrapperProps } from "@/types";
 import { containerVariants, backgroundByName, vlinePositions } from "@/config/sectionWrapper.config";
 
-const Wrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = "", background = "gradientUp", sectionContentMaxWidth = "1300px", hasSectionBodyPadding = true, vlinePosition = "right", children }) => {
+import VLineBlock from "@/components/ui/VLineBlock";
+import WrapperHeader from "@/components/sections/wrapper/WrapperHeader";
+
+const Wrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = "", background = "gradientUp", sectionContentMaxWidth = "1300px", hasSectionBodyPadding = true, vlinePosition = "right", resetAnimationOnView = false, children }) => {
     const sectionRef = useRef(null);
-    const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+    const isInView = useInView(sectionRef, { once: !resetAnimationOnView, amount: 0.2 });
+    const [animationKey, setAnimationKey] = useState(0);
+
+    useEffect(() => {
+        if (resetAnimationOnView && isInView) {
+            setAnimationKey(prev => prev + 1);
+        }
+    }, [isInView, resetAnimationOnView]);
 
     const vlineProps = vlinePositions[vlinePosition];
     const backgroundClass = backgroundByName[background];
 
     return (
         <section ref={sectionRef} className={clsx(backgroundClass, "wrapper-section bg-transparent")}>
-            <motion.div className={"wrapper-section-container"} initial={"hidden"} animate={isInView ? "visible" : "hidden"} variants={containerVariants}>
+            <motion.div key={animationKey} className={"wrapper-section-container"} initial={"hidden"} animate={isInView ? "visible" : "hidden"} variants={containerVariants}>
                 <div className={"wrapper-section-inner"}>
                     <div className={"wrapper-section-content"}>
                         <WrapperHeader title={title} subtitle={subtitle} />

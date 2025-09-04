@@ -7,4 +7,8 @@
     .resume-content-wrapper {
         @apply w-full p-[40px] max-md:p-[20px] max-lg:p-[30px] flex flex-wrap content-start relative;
     }
+
+    .accordion-item-button {
+        @apply w-full text-left block cursor-pointer relative;
+    }
 }
