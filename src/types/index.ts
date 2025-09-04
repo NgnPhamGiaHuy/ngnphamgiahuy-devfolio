@@ -4,6 +4,18 @@ import React, { ReactElement } from "react";
 import { Portfolio } from "@/data/data";
 
 // -----------------------------------------------------------------------------
+// Section Configuration Types
+// -----------------------------------------------------------------------------
+
+/**
+ * Configuration for page sections
+ */
+export interface SectionConfig {
+  id: string;
+  enabled: boolean;
+}
+
+// -----------------------------------------------------------------------------
 // Animation-related Types
 // -----------------------------------------------------------------------------
 
