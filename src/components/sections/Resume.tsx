@@ -3,11 +3,11 @@ import React from "react";
 import { data } from "@/data/data";
 import Accordion from "@/components/ui/accordion/Accordion";
 import BackgroundText from "@/components/ui/BackgroundText";
-import SectionWrapper from "@/components/sections/SectionWrapper";
+import Wrapper from "@/components/sections/wrapper/Wrapper";
 
 const Resume = () => {
     return (
-        <SectionWrapper title={"Resume"} subtitle={"My Story"} background={"gradientDown"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1360px"} vlinePosition={"left"}>
+        <Wrapper title={"Resume"} subtitle={"My Story"} background={"gradientDown"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1360px"} vlinePosition={"left"}>
             <div className={"resume-section-wrapper"}>
                 <div className={"resume-content-wrapper"}>
                     <Accordion
@@ -35,7 +35,7 @@ const Resume = () => {
                 </div>
             </div>
             <BackgroundText text={"History"} />
-        </SectionWrapper>
+        </Wrapper>
     );
 };
 

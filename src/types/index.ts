@@ -328,3 +328,14 @@ export interface SidebarProps {
     isMenuOpen: boolean;
     onMenuItemClick?: () => void;
 }
+
+export interface WrapperHeaderProps {
+    title: string;
+    subtitle: string;
+}
+
+export interface GenericSwiperProps<T> {
+    items: T[];
+    spaceBetween?: number;
+    renderItem: (item: T, index: number) => React.ReactNode;
+}

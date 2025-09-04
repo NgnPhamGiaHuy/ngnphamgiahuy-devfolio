@@ -4,13 +4,13 @@ import { data } from "@/data/data";
 
 import PricingGrid from "@/components/ui/grids/PricingGrid";
 import BackgroundText from "@/components/ui/BackgroundText";
-import SectionWrapper from "@/components/sections/SectionWrapper";
+import Wrapper from "@/components/sections/wrapper/Wrapper";
 
 const Pricing = () => {
     const { pricing } = data;
 
     return (
-        <SectionWrapper title={"Pricing"} subtitle={"My Price Board"} background={"none"} vlinePosition={"left"}>
+        <Wrapper title={"Pricing"} subtitle={"My Price Board"} background={"none"} vlinePosition={"left"}>
             <div className={"items-wrapper"}>
                 <div className={"items-content-wrapper"}>
                     <div className={"w-full text-left"}>
@@ -21,7 +21,7 @@ const Pricing = () => {
                 </div>
             </div>
             <BackgroundText text={"Pricing"} />
-        </SectionWrapper>
+        </Wrapper>
     );
 };
 

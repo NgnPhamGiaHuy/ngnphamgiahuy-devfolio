@@ -6,13 +6,13 @@ import CountUp from "react-countup";
 import { data } from "@/data/data";
 
 import BackgroundText from "@/components/ui/BackgroundText";
-import SectionWrapper from "@/components/sections/SectionWrapper";
+import Wrapper from "@/components/sections/wrapper/Wrapper";
 
 const Skills = () => {
     const { skills } = data;
 
     return (
-        <SectionWrapper title={"Professional Skills"} subtitle={"My Talent"} background={"none"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1320px"} vlinePosition={"left"}>
+        <Wrapper title={"Professional Skills"} subtitle={"My Talent"} background={"none"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1320px"} vlinePosition={"left"}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 { skills.map((item, index) => (
                     <div key={index} className={"mb-[70px] p-[20px] relative"}>
@@ -37,7 +37,7 @@ const Skills = () => {
                 )) }
             </div>
             <BackgroundText text={"Skills"} />
-        </SectionWrapper>
+        </Wrapper>
     );
 };
 

@@ -5,13 +5,13 @@ import { data } from "@/data/data";
 import BackgroundText from "@/components/ui/BackgroundText";
 import ContactItem from "@/components/ui/contact/ContactItem";
 import ContactForm from "@/components/ui/contact/ContactForm";
-import SectionWrapper from "@/components/sections/SectionWrapper";
+import Wrapper from "@/components/sections/wrapper/Wrapper";
 
 const Contact = () => {
     const { contacts } = data;
 
     return (
-        <SectionWrapper title={"Contact Me"} subtitle={"Let's Talk About Ideas"} background={"gradientDown"} sectionContentMaxWidth={"1180px"} vlinePosition={"left"}>
+        <Wrapper title={"Contact Me"} subtitle={"Let's Talk About Ideas"} background={"gradientDown"} sectionContentMaxWidth={"1180px"} vlinePosition={"left"}>
             <div className={"contact-column-left"}>
                 <div className={"contact-column-content"}>
                     <div className={"contact-items-container"}>
@@ -30,7 +30,7 @@ const Contact = () => {
                 </div>
             </div>
             <BackgroundText text={"Contact Me"} />
-        </SectionWrapper>
+        </Wrapper>
     );
 };
 

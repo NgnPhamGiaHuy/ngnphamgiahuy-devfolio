@@ -1,21 +1,36 @@
 "use client"
 
 import React from "react";
+import { motion } from "framer-motion";
 
 import { data } from "@/data/data";
+import { StandardAnimations } from "@/config/animation.config";
 
-import SectionWrapper from "@/components/sections/SectionWrapper";
+import Wrapper from "@/components/sections/wrapper/Wrapper";
+import ContentCard from "@/components/ui/cards/ContentCard";
 import ContentSwiper from "@/components/ui/ContentSwiper";
 import BackgroundText from "@/components/ui/BackgroundText";
-import ContentCard from "@/components/ui/cards/ContentCard";
+import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
 const Services = () => {
     const { services } = data;
 
+    const prefersReducedMotion = usePrefersReducedMotion();
+    const containerVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
+
     return (
-        <SectionWrapper title={"What I Do"} subtitle={"My Services"} background={"gradientDown"} vlinePosition={"right"}>
-            <div className={"items-wrapper"}>
-                <div className={"items-content-wrapper"}>
+        <Wrapper title={"What I Do"} subtitle={"My Services"} background={"gradientDown"} vlinePosition={"right"}>
+            <motion.div
+                className={"items-wrapper"}
+                variants={containerVariants}
+                initial={"hidden"}
+                whileInView={"visible"}
+                viewport={{ once: true, amount: 0.1 }}
+            >
+                <motion.div
+                    className={"items-content-wrapper"}
+                    variants={StandardAnimations.staggerChildren(prefersReducedMotion, 0.1, 0.2)}
+                >
                     <ContentSwiper
                         items={services}
                         renderItem={(item, index) => (
@@ -23,9 +38,9 @@ const Services = () => {
                         )}
                     />
                     <BackgroundText text={"Services"} />
-                </div>
-            </div>
-        </SectionWrapper>
+                </motion.div>
+            </motion.div>
+        </Wrapper>
     );
 };
 

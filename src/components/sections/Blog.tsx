@@ -5,13 +5,13 @@ import { data } from "@/data/data";
 
 import BlogCard from "@/components/ui/cards/BlogCard";
 import BackgroundText from "@/components/ui/BackgroundText";
-import SectionWrapper from "@/components/sections/SectionWrapper";
+import Wrapper from "@/components/sections/wrapper/Wrapper";
 
 const Blog = () => {
     const { blogs } = data;
 
     return (
-        <SectionWrapper title={"Latest Blog"} subtitle={"My Articles and Advice"} background={"gradientUp"} vlinePosition={"right"}>
+        <Wrapper title={"Latest Blog"} subtitle={"My Articles and Advice"} background={"gradientUp"} vlinePosition={"right"}>
             <div className={"blog-wrapper"}>
                 <div className={"blog-inner"}>
                     <div className={"blog-grid"}>
@@ -29,7 +29,7 @@ const Blog = () => {
                 </div>
             </div>
             <BackgroundText text={"Blog"} />
-        </SectionWrapper>
+        </Wrapper>
     );
 };
 

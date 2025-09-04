@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 
 import usePortfolioFilter from "@/hooks/usePortfolioFilter";
-import SectionWrapper from "@/components/sections/SectionWrapper";
+import Wrapper from "@/components/sections/wrapper/Wrapper";
 import BackgroundText from "@/components/ui/BackgroundText";
 import PortfolioFilter from "@/components/sections/work/PortfolioFilter";
 import PortfolioGrid from "@/components/sections/work/PortfolioGrid";
@@ -16,7 +16,7 @@ const Work: React.FC = () => {
     const { categories, activeCategory, filteredPortfolios, handleCategoryChange } = usePortfolioFilter(portfolios);
 
     return (
-        <SectionWrapper title={"Portfolio"} subtitle={"My Cases"} background={"gradientUp"} hasSectionBodyPadding={false} vlinePosition={"right"}>
+        <Wrapper title={"Portfolio"} subtitle={"My Cases"} background={"gradientUp"} hasSectionBodyPadding={false} vlinePosition={"right"}>
             <div className={"work-section-wrapper"}>
                 <div className={"work-content-wrapper"}>
                     <div className={"work-main-container"}>
@@ -35,7 +35,7 @@ const Work: React.FC = () => {
                     <BackgroundText text={"Portfolio"} />
                 </div>
             </div>
-        </SectionWrapper>
+        </Wrapper>
     );
 };
 

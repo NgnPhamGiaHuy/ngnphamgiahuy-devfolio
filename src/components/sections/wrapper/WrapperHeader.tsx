@@ -3,16 +3,11 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
 
-import { AnimationVariants } from "@/types";
+import { AnimationVariants, WrapperHeaderProps } from "@/types";
 
 import AnimatedTextCharacter from "@/components/ui/AnimatedTextCharacter";
 
-interface ServicesHeaderProps {
-    title: string;
-    subtitle: string;
-}
-
-const WrapperHeader : React.FC<ServicesHeaderProps> = ({ title, subtitle }) => {
+const WrapperHeader : React.FC<WrapperHeaderProps> = ({ title, subtitle }) => {
     const firstSubtitleWord = subtitle.split(" ")[0];
     const restSubtitleWords = subtitle.split(" ").slice(1).join(" ");
 

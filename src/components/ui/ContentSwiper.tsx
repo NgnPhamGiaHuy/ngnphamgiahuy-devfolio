@@ -1,21 +1,26 @@
 "use client"
 
-import "swiper/css";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperType } from "swiper";
+import { motion } from "framer-motion";
 import React, { useEffect, useState, useRef } from "react";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import type { Swiper as SwiperType } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, EffectFade, Keyboard, A11y } from "swiper/modules";
 
-interface GenericSwiperProps<T> {
-    items: T[];
-    spaceBetween?: number;
-    renderItem: (item: T, index: number) => React.ReactNode;
-}
+import { GenericSwiperProps } from "@/types";
+import { StandardAnimations } from "@/config/animation.config";
+
+import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
 const ContentSwiper = <T,>({ items, spaceBetween = 40, renderItem }: GenericSwiperProps<T>) => {
+    const prefersReducedMotion = usePrefersReducedMotion();
+    const containerVariants = StandardAnimations.fadeIn(prefersReducedMotion);
+
     const [mounted, setMounted] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const [slidesPerView, setSlidesPerView] = useState(1);
+
     const swiperRef = useRef<SwiperType | null>(null);
 
     const totalSlides = items.length;
@@ -31,17 +36,31 @@ const ContentSwiper = <T,>({ items, spaceBetween = 40, renderItem }: GenericSwip
     };
 
     return (
-        <div className={"swiper-container-outer"}>
+        <motion.div
+            className={"swiper-container-outer"}
+            variants={containerVariants}
+            initial={"hidden"}
+            whileInView={"visible"}
+            viewport={{ once: true, amount: 0.1 }}
+        >
             <div className={"swiper-container"}>
                 { mounted && (
                     <Swiper
                         autoHeight={true}
-                        modules={[Pagination]}
+                        modules={[Pagination, EffectFade, Keyboard, A11y]}
                         spaceBetween={spaceBetween}
                         slidesPerView={1}
                         loop={true}
-                        speed={800}
-                        effect="slide"
+                        speed={prefersReducedMotion ? 400 : 600}
+                        effect={prefersReducedMotion ? "slide" : "slide"}
+                        keyboard={{ enabled: true }}
+                        a11y={{
+                            prevSlideMessage: "Previous slide",
+                            nextSlideMessage: "Next slide",
+                            firstSlideMessage: "This is the first slide",
+                            lastSlideMessage: "This is the last slide",
+                            paginationBulletMessage: "Go to slide {{index}}"
+                        }}
                         onSwiper={(swiper) => {
                             swiperRef.current = swiper;
                             setSlidesPerView(swiper.params.slidesPerView as number);
@@ -75,22 +94,38 @@ const ContentSwiper = <T,>({ items, spaceBetween = 40, renderItem }: GenericSwip
                     </Swiper>
                 ) }
                 { mounted && totalSlides > slidesPerView && (
-                    <div className={"swiper-navigation"}>
-                        {Array.from({ length: totalSlides }).map((_, index) => (
+                    <motion.div
+                        className={"swiper-navigation"}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, duration: 0.5 }}
+                        role={"tablist"}
+                        aria-label={"Carousel pagination"}
+                    >
+                        { Array.from({ length: totalSlides }).map((_, index) => (
                             <span
                                 key={index}
-                                className={`swiper-pagination-dot ${
-                                    index === activeIndex
-                                        ? "swiper-dot-active"
-                                        : "swiper-dot-inactive"
-                                }`}
+                                className={`swiper-pagination-dot ${index === activeIndex
+                                    ? "swiper-dot-active"
+                                    : "swiper-dot-inactive"
+                                    }`}
                                 onClick={() => handlePaginationClick(index)}
+                                role={"tab"}
+                                tabIndex={0}
+                                aria-label={`Go to slide ${index + 1}`}
+                                aria-selected={index === activeIndex}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") {
+                                        e.preventDefault();
+                                        handlePaginationClick(index);
+                                    }
+                                }}
                             />
-                        ))}
-                    </div>
+                        )) }
+                    </motion.div>
                 ) }
             </div>
-        </div>
+        </motion.div>
     );
 };
 
