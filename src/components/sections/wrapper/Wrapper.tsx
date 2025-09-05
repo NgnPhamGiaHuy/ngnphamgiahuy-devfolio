@@ -21,15 +21,15 @@ const Wrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = "", bac
         }
     }, [isInView, resetAnimationOnView]);
 
-    const vlineProps = vlinePositions[vlinePosition];
     const backgroundClass = backgroundByName[background];
+    const vlineProps = vlinePositions[vlinePosition];
 
     return (
         <section ref={sectionRef} className={clsx(backgroundClass, "wrapper-section bg-transparent")}>
             <motion.div key={animationKey} className={"wrapper-section-container"} initial={"hidden"} animate={isInView ? "visible" : "hidden"} variants={containerVariants}>
                 <div className={"wrapper-section-inner"}>
                     <div className={"wrapper-section-content"}>
-                        <WrapperHeader title={title} subtitle={subtitle} />
+                        <WrapperHeader title={title} subtitle={subtitle} isInView={isInView} />
                         <section className={clsx(hasSectionBodyPadding && "max-md:px-[10px] max-lg:px-[20px]", "wrapper-section-body")}>
                             <div className={"wrapper-section-content-container"} style={{ maxWidth: sectionContentMaxWidth }}>
                                 { children }

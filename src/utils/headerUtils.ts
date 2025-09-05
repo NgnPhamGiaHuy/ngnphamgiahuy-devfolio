@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import { HeaderState } from "@/config/header.config";
+import { HeaderState } from "@/types";
 
 export const getHeaderClasses = (headerState: HeaderState): string => {
     const baseClasses = "header";

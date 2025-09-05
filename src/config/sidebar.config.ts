@@ -1,7 +1,7 @@
 /**
  * Sidebar configuration constants
  */
-const SIDEBAR_CONFIG = {
+export const SIDEBAR_CONFIG = {
     /** Menu items displayed in the sidebar */
     MENU_ITEMS: [
         "Home",

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { HeaderState } from "@/config/header.config";
+import { HeaderState } from "@/types";
 
 const useHeaderScroll = () => {
     const lastScrollY = useRef<number>(0);

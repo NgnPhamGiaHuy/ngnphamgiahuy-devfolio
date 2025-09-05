@@ -13,6 +13,7 @@ import { Portfolio } from "@/data/data";
 export interface SectionConfig {
   id: string;
   enabled: boolean;
+  resetAnimationOnView?: boolean;
 }
 
 // -----------------------------------------------------------------------------
@@ -289,6 +290,11 @@ export interface SocialLinksProps {
 // -----------------------------------------------------------------------------
 
 /**
+ * Possible states for the header component
+ */
+export type HeaderState = "absolute" | "fixed" | "animating-in" | "animating-out";
+
+/**
  * Props for the Header component
  */
 export interface HeaderProps {
@@ -347,6 +353,7 @@ export interface SidebarProps {
 export interface WrapperHeaderProps {
     title: string;
     subtitle: string;
+    isInView?: boolean;
 }
 
 export interface GenericSwiperProps<T> {

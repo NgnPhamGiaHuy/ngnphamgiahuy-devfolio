@@ -65,7 +65,7 @@ const HeroProfileBlock: React.FC<HeroProfileBlockProps> = memo(({ className = ""
     }), [prefersReducedMotion]);
 
     const mergedVariants = useMemo(() =>
-            Object.keys(variants).length > 0 ? variants : defaultVariants,
+        Object.keys(variants).length > 0 ? variants : defaultVariants,
         [variants, defaultVariants]
     );
 

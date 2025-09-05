@@ -32,11 +32,15 @@ const buildResumeSections = (): ResumeSectionConfig[] => ([
     }
 ]);
 
-const Resume = () => {
+interface ResumeProps {
+    resetAnimationOnView?: boolean;
+}
+
+const Resume: React.FC<ResumeProps> = ({ resetAnimationOnView }) => {
     const sections = buildResumeSections();
 
     return (
-        <Wrapper title={"Resume"} subtitle={"My Story"} background={"gradientDown"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1360px"} vlinePosition={"left"} resetAnimationOnView={true}>
+        <Wrapper title={"Resume"} subtitle={"My Story"} background={"gradientDown"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1360px"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
             { sections.map((section, idx) => (
                 <div key={idx} className={"resume-section-wrapper"}>
                     <div className={"resume-content-wrapper"}>

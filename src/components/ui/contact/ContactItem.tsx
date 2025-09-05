@@ -2,14 +2,14 @@ import React from "react";
 import Link from "next/link";
 
 import type { ContactItem as ContactItemType } from "@/data/data";
-import { contactTypeConfig, defaultContactConfig } from "@/config/contact.config";
+import { CONTACT_TYPE_CONFIG, DEFAULT_CONTACT_CONFIG } from "@/config/contact.config";
 
 interface ContactItemProps {
     contact: ContactItemType;
 }
 
 const ContactItem: React.FC<ContactItemProps> = ({ contact }) => {
-    const config = contactTypeConfig[contact.type.toLowerCase()] || defaultContactConfig;
+    const config = CONTACT_TYPE_CONFIG[contact.type.toLowerCase()] || DEFAULT_CONTACT_CONFIG;
 
     const displayLabel = config.label || contact.type.charAt(0).toUpperCase() + contact.type.slice(1);
 
@@ -27,7 +27,7 @@ const ContactItem: React.FC<ContactItemProps> = ({ contact }) => {
             </div>
             <div className={"contact-item-value"}>
                 { link ? (
-                    <Link href={link} className={"contact-item-link"}>{contact.value}</Link>
+                    <Link href={link} className={"contact-item-link"}>{ contact.value }</Link>
                 ) : (
                     <span>{ contact.value }</span>
                 ) }
@@ -37,4 +37,3 @@ const ContactItem: React.FC<ContactItemProps> = ({ contact }) => {
 };
 
 export default ContactItem;
-

@@ -2,15 +2,19 @@ import React from "react";
 
 import { data } from "@/data/data";
 
+import Wrapper from "@/components/sections/wrapper/Wrapper";
 import PricingGrid from "@/components/ui/grids/PricingGrid";
 import BackgroundText from "@/components/ui/BackgroundText";
-import Wrapper from "@/components/sections/wrapper/Wrapper";
 
-const Pricing = () => {
+interface PricingProps {
+    resetAnimationOnView?: boolean;
+}
+
+const Pricing: React.FC<PricingProps> = ({ resetAnimationOnView }) => {
     const { pricing } = data;
 
     return (
-        <Wrapper title={"Pricing"} subtitle={"My Price Board"} background={"none"} vlinePosition={"left"}>
+        <Wrapper title={"Pricing"} subtitle={"My Price Board"} background={"none"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"items-wrapper"}>
                 <div className={"items-content-wrapper"}>
                     <div className={"w-full text-left"}>

@@ -12,14 +12,18 @@ import ContentSwiper from "@/components/ui/ContentSwiper";
 import BackgroundText from "@/components/ui/BackgroundText";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
-const Services = () => {
+interface ServicesProps {
+    resetAnimationOnView?: boolean;
+}
+
+const Services: React.FC<ServicesProps> = ({ resetAnimationOnView }) => {
     const { services } = data;
 
     const prefersReducedMotion = usePrefersReducedMotion();
     const containerVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
 
     return (
-        <Wrapper title={"What I Do"} subtitle={"My Services"} background={"gradientDown"} vlinePosition={"right"}>
+        <Wrapper title={"What I Do"} subtitle={"My Services"} background={"gradientDown"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
             <motion.div
                 className={"items-wrapper"}
                 variants={containerVariants}

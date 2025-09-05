@@ -1,10 +1,13 @@
 import React from "react";
-import SocialLinks from "@/components/ui/SocialLinks";
-import { generateSocialLinks } from "@/utils/socialLinks";
-import { data } from "@/data/data";
 
-const Footer = () => {
+import { data } from "@/data/data";
+import { generateSocialLinks } from "@/utils/socialLinks";
+
+import SocialLinks from "@/components/ui/SocialLinks";
+
+const Footer: React.FC = () => {
     const { profile } = data;
+
     const socialLinks = generateSocialLinks(profile.social_links);
 
     return (

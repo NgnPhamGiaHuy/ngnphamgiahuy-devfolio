@@ -7,11 +7,15 @@ import BlogCard from "@/components/ui/cards/BlogCard";
 import BackgroundText from "@/components/ui/BackgroundText";
 import Wrapper from "@/components/sections/wrapper/Wrapper";
 
-const Blog = () => {
+interface BlogProps {
+    resetAnimationOnView?: boolean;
+}
+
+const Blog: React.FC<BlogProps> = ({ resetAnimationOnView }) => {
     const { blogs } = data;
 
     return (
-        <Wrapper title={"Latest Blog"} subtitle={"My Articles and Advice"} background={"gradientUp"} vlinePosition={"right"}>
+        <Wrapper title={"Latest Blog"} subtitle={"My Articles and Advice"} background={"gradientUp"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"blog-wrapper"}>
                 <div className={"blog-inner"}>
                     <div className={"blog-grid"}>

@@ -7,7 +7,7 @@ import { SidebarProps } from "@/types";
 import { generateSocialLinks } from "@/utils/socialLinks";
 
 import SIDEBAR_CONFIG from "@/config/sidebar.config";
-import useSidebarAnimation from "@/hooks/useSidebarAnimation";
+import useSidebarAnimation from "@/hooks/animation/useSidebarAnimation";
 import VLineBlock from "@/components/ui/VLineBlock";
 import SocialLinks from "@/components/ui/SocialLinks";
 import SidebarMenuItem from "@/components/navigation/sidebars/SidebarMenuItem";

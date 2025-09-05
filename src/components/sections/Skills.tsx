@@ -11,7 +11,11 @@ import SkillCard from "@/components/ui/cards/SkillCard";
 import BackgroundText from "@/components/ui/BackgroundText";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
-const Skills: React.FC = () => {
+interface SkillsProps {
+    resetAnimationOnView?: boolean;
+}
+
+const Skills: React.FC<SkillsProps> = ({ resetAnimationOnView }) => {
     const { skills } = data;
     const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -19,7 +23,7 @@ const Skills: React.FC = () => {
     const containerVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
 
     return (
-        <Wrapper title={"Professional Skills"} subtitle={"My Talent"} background={"none"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1320px"} vlinePosition={"left"}>
+        <Wrapper title={"Professional Skills"} subtitle={"My Talent"} background={"none"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1320px"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
             <motion.div
                 className={"skills-grid"}
                 variants={containerVariants}

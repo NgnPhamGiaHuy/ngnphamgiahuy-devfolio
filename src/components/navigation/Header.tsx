@@ -4,7 +4,6 @@ import React, { useRef } from "react";
 
 import { data } from "@/data/data";
 import { HeaderProps } from "@/types";
-
 import { getHeaderClasses } from "@/utils/headerUtils";
 
 import useTheme from "@/hooks/useTheme";

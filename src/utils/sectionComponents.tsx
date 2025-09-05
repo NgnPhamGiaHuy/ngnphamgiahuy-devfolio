@@ -1,4 +1,5 @@
 import React from "react";
+import { SectionConfig } from "@/types";
 
 // Import all section components
 import Hero from "@/components/sections/Hero";
@@ -16,7 +17,7 @@ import Map from "@/components/sections/Map";
  * Map of section IDs to their corresponding React components
  * This allows us to dynamically render sections based on configuration
  */
-export const sectionComponents: Record<string, React.ComponentType> = {
+export const sectionComponents: Record<string, React.ComponentType<any>> = {
     hero: Hero,
     services: Services,
     skills: Skills,
@@ -30,18 +31,20 @@ export const sectionComponents: Record<string, React.ComponentType> = {
 };
 
 /**
- * Renders a section component based on its ID
- * @param sectionId - The ID of the section to render
+ * Renders a section component based on its configuration
+ * @param sectionConfig - The section configuration containing id, enabled, and resetAnimationOnView
  * @returns The rendered section component or null if not found
  */
-export const renderSection = (sectionId: string): React.ReactNode => {
+export const renderSection = (sectionConfig: SectionConfig): React.ReactNode => {
+    const { id: sectionId, resetAnimationOnView } = sectionConfig;
     const SectionComponent = sectionComponents[sectionId];
 
     if (!SectionComponent) {
         console.warn(`Section component with ID "${sectionId}" not found`);
-
         return null;
     }
 
-    return <SectionComponent key={sectionId} />;
+    // Pass resetAnimationOnView as a prop to the section component
+    // The section components will need to be updated to accept and use this prop
+    return <SectionComponent key={sectionId} resetAnimationOnView={resetAnimationOnView} />;
 };

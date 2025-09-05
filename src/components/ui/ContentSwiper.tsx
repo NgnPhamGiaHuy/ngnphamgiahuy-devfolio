@@ -1,11 +1,11 @@
 "use client"
 
-import { motion } from "framer-motion";
-import React, { useEffect, useState, useRef } from "react";
 import "swiper/css";
 import "swiper/css/effect-fade";
+import { motion } from "framer-motion";
 import type { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useEffect, useState, useRef } from "react";
 import { Pagination, EffectFade, Keyboard, A11y } from "swiper/modules";
 
 import { GenericSwiperProps } from "@/types";
@@ -88,7 +88,7 @@ const ContentSwiper = <T,>({ items, spaceBetween = 40, renderItem }: GenericSwip
                     >
                         { items.map((item, index) => (
                             <SwiperSlide key={index}>
-                                {renderItem(item, index)}
+                                { renderItem(item, index) }
                             </SwiperSlide>
                         )) }
                     </Swiper>

@@ -11,12 +11,16 @@ import BackgroundText from "@/components/ui/BackgroundText";
 import PortfolioGrid from "@/components/sections/work/PortfolioGrid";
 import PortfolioFilter from "@/components/sections/work/PortfolioFilter";
 
-const Work: React.FC = () => {
+interface WorkProps {
+    resetAnimationOnView?: boolean;
+}
+
+const Work: React.FC<WorkProps> = ({ resetAnimationOnView }) => {
     const { portfolios } = data;
     const { categories, activeCategory, filteredPortfolios, handleCategoryChange } = usePortfolioFilter(portfolios);
 
     return (
-        <Wrapper title={"Portfolio"} subtitle={"My Cases"} background={"gradientUp"} hasSectionBodyPadding={false} vlinePosition={"right"}>
+        <Wrapper title={"Portfolio"} subtitle={"My Cases"} background={"gradientUp"} hasSectionBodyPadding={false} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"work-section-wrapper"}>
                 <div className={"work-content-wrapper"}>
                     <div className={"work-main-container"}>
