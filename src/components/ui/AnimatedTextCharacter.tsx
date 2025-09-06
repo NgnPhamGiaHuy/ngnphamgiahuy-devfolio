@@ -3,7 +3,7 @@
 import React, { useMemo } from "react";
 import { motion, easeOut } from "framer-motion";
 
-import { AnimatedTextCharacterProps } from "@/types";
+import { AnimatedTextCharacterProps } from "@/types/common.types";
 import { Duration, Stagger } from "@/config/animation.config";
 
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";

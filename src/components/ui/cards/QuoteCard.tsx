@@ -1,6 +1,6 @@
 import React from "react";
 
-import { QuoteCardProps } from "@/types";
+import { QuoteCardProps } from "@/types/quote.types";
 
 const QuoteCard: React.FC<QuoteCardProps> = ({ item }) => {
     return (
@@ -15,14 +15,14 @@ const QuoteCard: React.FC<QuoteCardProps> = ({ item }) => {
                     </div>
                 </div>
                 <div className={"min-h-[110px] opacity-80"}>
-                    <p>{ item.quote }</p>
+                    <p>{item.quote}</p>
                 </div>
                 <div className={"mt-[30px]"}>
                     <h6 className={"m-0! text-[24px] max-md:text-[18px]"}>
-                        <span>{ item.name }</span>
+                        <span>{item.name}</span>
                     </h6>
                     <div>
-                        <span>{ item.position }</span>
+                        <span>{item.position}</span>
                     </div>
                 </div>
                 <div className={"content-card-pattern"}></div>

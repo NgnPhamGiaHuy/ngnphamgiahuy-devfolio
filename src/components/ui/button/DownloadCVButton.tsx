@@ -5,16 +5,14 @@ import React, { memo } from "react";
 import { motion } from "framer-motion";
 
 import { data } from "@/data/data";
-import { DownloadCVButtonProps } from "@/types";
-
 import { StandardAnimations } from "@/config/animation.config";
+
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
-const DownloadCVButton: React.FC<DownloadCVButtonProps> = memo(() => {
+const DownloadCVButton: React.FC = memo(() => {
     const { profile } = data;
     const prefersReducedMotion = usePrefersReducedMotion();
 
-    // Use standardized animation variants from our config
     const containerVariants = StandardAnimations.springUp(prefersReducedMotion, 30);
     const buttonVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
     const buttonHoverVariants = StandardAnimations.buttonHover(prefersReducedMotion);

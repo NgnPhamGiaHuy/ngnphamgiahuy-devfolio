@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AccordionProps } from "@/types";
+import { AccordionProps } from "@/types/accordion.types";
 
 import AccordionItem from "@/components/ui/accordion/AccordionItem";
 
@@ -8,10 +8,10 @@ const Accordion: React.FC<AccordionProps> = ({ items, label }) => {
     return (
         <div className={"accordion-container"}>
             <h5 className={"accordion-label"}>
-                { label }
+                {label}
             </h5>
             <div className={"accordion-items-container"} role={"list"}>
-                { items.map((item, index) => (
+                {items.map((item, index) => (
                     <AccordionItem
                         key={index}
                         heading={item.heading}
@@ -21,7 +21,7 @@ const Accordion: React.FC<AccordionProps> = ({ items, label }) => {
                         index={index}
                         isFirstItem={index === 0}
                     />
-                )) }
+                ))}
             </div>
         </div>
     );

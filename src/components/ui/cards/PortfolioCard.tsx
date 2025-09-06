@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-import { PortfolioCardProps } from "@/types";
+import { PortfolioCardProps } from "@/types/portfolio.types";
 
 const PortfolioCard: React.FC<PortfolioCardProps> = ({ portfolio, index }) => {
     return (
@@ -27,12 +27,12 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ portfolio, index }) => {
                     </div>
                     <div className={"portfolio-card-content"}>
                         <span className={"portfolio-card-category"}>
-                            { portfolio.category }
+                            {portfolio.category}
                         </span>
                         <h5 className={"portfolio-card-title"}>{portfolio.name}</h5>
                         <div className={"portfolio-card-description"}>
                             <p className={"portfolio-card-description-text"}>
-                                { portfolio.description }
+                                {portfolio.description}
                             </p>
                         </div>
                         <span className={"content-card-link"}>

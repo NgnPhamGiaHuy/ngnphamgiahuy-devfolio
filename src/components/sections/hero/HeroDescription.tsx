@@ -4,7 +4,6 @@ import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
 import { data } from "@/data/data";
-import { HeroDescriptionProps } from "@/types";
 import { generateSocialLinks } from "@/utils/socialLinks";
 import { useHeroAnimationContext } from "@/context/HeroAnimationContext";
 
@@ -12,7 +11,7 @@ import SocialLinks from "@/components/ui/SocialLinks";
 import AnimatedTextCharacter from "@/components/ui/AnimatedTextCharacter";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
-const HeroDescription: React.FC<HeroDescriptionProps> = memo(() => {
+const HeroDescription: React.FC = memo(() => {
     const { profile } = data;
     const { timeline } = useHeroAnimationContext();
     const prefersReducedMotion = usePrefersReducedMotion();

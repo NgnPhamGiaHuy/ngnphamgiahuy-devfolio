@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import { motion } from "framer-motion";
 
-import { PortfolioFilterProps } from "@/types";
+import { PortfolioFilterProps } from "@/types/portfolio.types";
 import { StandardAnimations, Duration, Delay, Stagger } from "@/config/animation.config";
 
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
@@ -26,7 +26,7 @@ const PortfolioFilter: React.FC<PortfolioFilterProps> = ({ categories, activeCat
             role={"group"}
             aria-label={"Portfolio category filters"}
         >
-            { categories.map((category, index) => (
+            {categories.map((category, index) => (
                 <motion.button
                     key={index}
                     onClick={() => onCategoryChange(category)}
@@ -41,9 +41,9 @@ const PortfolioFilter: React.FC<PortfolioFilterProps> = ({ categories, activeCat
                     whileTap={"tap"}
                     transition={{ duration: Duration.NORMAL, delay: Delay.MEDIUM + index * Stagger.NORMAL }}
                 >
-                    <span>{ category }</span>
+                    <span>{category}</span>
                 </motion.button>
-            )) }
+            ))}
         </motion.div>
     );
 };

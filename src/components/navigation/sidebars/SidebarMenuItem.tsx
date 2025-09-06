@@ -1,39 +1,35 @@
 import Link from "next/link";
-import React, { useCallback, memo } from "react";
+import React, { memo } from "react";
 
-import { SidebarMenuItemProps } from "@/types";
+import { SidebarMenuItemProps } from "@/types/sidebar.types";
+import { useKeyboardHandler } from "@/utils/keyboardUtils";
 
 const SidebarMenuItem: React.FC<SidebarMenuItemProps> = memo(({ text, index, sidebarEntered, prefersReducedMotion, href = "/", onClick }) => {
-    const itemClasses = `sidebar-menu-item ${sidebarEntered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2" }`;
+    const itemClasses = `sidebar-menu-item ${sidebarEntered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`;
 
     const itemStyle = {
         transitionDelay: prefersReducedMotion ? "0ms" : `${index * 90}ms`,
     };
 
-    const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
-        if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            onClick?.();
-        }
-    }, [onClick]);
+    const handleKeyDown = useKeyboardHandler(() => onClick?.());
 
     const renderMenuItem = () => (
         <span className={"sidebar-menu-text group"}>
-            { text.split("").map((letter, letterIndex) => (
+            {text.split("").map((letter, letterIndex) => (
                 <span
                     key={letterIndex}
                     className={"sidebar-menu-letter"}
                     style={{ transitionDelay: `${letterIndex * 25}ms` }}
                 >
-                    { letter }
+                    {letter}
                 </span>
-            )) }
+            ))}
         </span>
     );
 
     return (
         <li className={itemClasses} style={itemStyle} role={"menuitem"}>
-            { onClick ? (
+            {onClick ? (
                 <button
                     onClick={onClick}
                     onKeyDown={handleKeyDown}
@@ -41,7 +37,7 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = memo(({ text, index, sid
                     aria-label={`Navigate to ${text} section`}
                     tabIndex={sidebarEntered ? 0 : -1}
                 >
-                    { renderMenuItem() }
+                    {renderMenuItem()}
                 </button>
             ) : (
                 <Link
@@ -50,9 +46,9 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = memo(({ text, index, sid
                     aria-label={`Navigate to ${text} section`}
                     tabIndex={sidebarEntered ? 0 : -1}
                 >
-                    { renderMenuItem() }
+                    {renderMenuItem()}
                 </Link>
-            ) }
+            )}
         </li>
     );
 });

@@ -1,15 +1,11 @@
 import clsx from "clsx";
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 
-import { HeaderMenuToggleProps } from "@/types";
+import { useKeyboardHandler } from "@/utils/keyboardUtils";
+import { HeaderMenuToggleProps } from "@/types/header.types";
 
 const HeaderMenuToggle: React.FC<HeaderMenuToggleProps> = memo(({ isMenuOpen, onToggle, className }) => {
-    const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onToggle();
-        }
-    }, [onToggle]);
+    const handleKeyDown = useKeyboardHandler(onToggle);
 
     return (
         <div

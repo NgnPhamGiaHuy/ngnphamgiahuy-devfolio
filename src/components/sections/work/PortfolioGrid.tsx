@@ -1,7 +1,7 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Target } from "framer-motion";
 
-import { PortfolioGridProps } from "@/types";
+import { PortfolioGridProps } from "@/types/portfolio.types";
 import { StandardAnimations, Duration, Stagger } from "@/config/animation.config";
 
 import PortfolioCard from "@/components/ui/cards/PortfolioCard";
@@ -15,8 +15,8 @@ const PortfolioGrid: React.FC<PortfolioGridProps> = ({ portfolios }) => {
     const gridVariants = StandardAnimations.staggerChildren(prefersReducedMotion, Stagger.NORMAL);
 
     const itemVariants = {
-        hidden: { ...(itemEnter.hidden as any), ...(itemScale.hidden as any) },
-        visible: { ...(itemEnter.visible as any), ...(itemScale.visible as any) },
+        hidden: { ...(itemEnter.hidden as Target), ...(itemScale.hidden as Target) },
+        visible: { ...(itemEnter.visible as Target), ...(itemScale.visible as Target) },
         exit: { opacity: 0, scale: prefersReducedMotion ? 1 : 0.9, y: prefersReducedMotion ? 0 : -12, transition: { duration: Duration.NORMAL } }
     } as const;
 
@@ -30,7 +30,7 @@ const PortfolioGrid: React.FC<PortfolioGridProps> = ({ portfolios }) => {
             transition={{ duration: Duration.SLOW }}
         >
             <AnimatePresence mode={"popLayout"}>
-                { portfolios.slice(0, 6).map((portfolio, index) => (
+                {portfolios.slice(0, 6).map((portfolio, index) => (
                     <motion.div
                         key={portfolio.name}
                         layout
@@ -39,7 +39,7 @@ const PortfolioGrid: React.FC<PortfolioGridProps> = ({ portfolios }) => {
                     >
                         <PortfolioCard portfolio={portfolio} index={index} />
                     </motion.div>
-                )) }
+                ))}
             </AnimatePresence>
         </motion.div>
     );

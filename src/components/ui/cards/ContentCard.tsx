@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-import { ContentCardProps } from "@/types";
+import { ContentCardProps } from "@/types/portfolio.types";
 import { StandardAnimations } from "@/config/animation.config";
 
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
@@ -32,18 +32,18 @@ const ContentCard: React.FC<ContentCardProps> = ({ item, index }) => {
             >
                 <motion.div className={"content-card-category"} variants={contentVariants}>
                     <span>
-                        { item.category }
+                        {item.category}
                     </span>
                 </motion.div>
                 <motion.div className={"content-card-icon"} variants={contentVariants}></motion.div>
                 <motion.h5 className={"content-card-title"} variants={contentVariants}>
                     <span>
-                        { item.title }
+                        {item.title}
                     </span>
                 </motion.h5>
                 <motion.div className={"content-card-description"} variants={contentVariants}>
                     <p>
-                        { item.description }
+                        {item.description}
                     </p>
                 </motion.div>
                 <motion.div variants={contentVariants}>

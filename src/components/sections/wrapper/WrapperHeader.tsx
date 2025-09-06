@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 
-import { AnimationVariants, WrapperHeaderProps } from "@/types";
+import { WrapperHeaderProps } from "@/types/common.types";
 
 import AnimatedTextCharacter from "@/components/ui/AnimatedTextCharacter";
 
@@ -19,7 +19,7 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({ title, subtitle, isInView
     const firstSubtitleWord = subtitle.split(" ")[0];
     const restSubtitleWords = subtitle.split(" ").slice(1).join(" ");
 
-    const itemVariants: AnimationVariants = {
+    const itemVariants: Variants = {
         hidden: { opacity: 0, y: 20 },
         visible: {
             opacity: 1,
@@ -54,19 +54,19 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({ title, subtitle, isInView
                                 animate={isInView ? "visible" : "hidden"}
                                 variants={itemVariants}
                             >
-                                { title?.split(" ").map((word, index, array) => (
+                                {title?.split(" ").map((word, index, array) => (
                                     <React.Fragment key={index}>
                                         <motion.span
                                             className={"wrapper-header-title-word"}
                                             variants={spanVariants({ index })}
                                         >
-                                            { word }
+                                            {word}
                                         </motion.span>
-                                        { index !== array.length - 1 && (
+                                        {index !== array.length - 1 && (
                                             <span> </span>
-                                        ) }
+                                        )}
                                     </React.Fragment>
-                                )) }
+                                ))}
                             </motion.h2>
                             <motion.div
                                 key={`subtitle-${animationKey}`}

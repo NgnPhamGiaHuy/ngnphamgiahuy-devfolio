@@ -30,7 +30,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: Readonly<RootLayoutProps>): React.ReactElement {
     return (
         <html lang={"en"}>
-            <body className={`${geistRoboto.variable} ${geistCaveat.variable} ${geistJost.variable} antialiased`}>
+            <body className={`${geistRoboto.variable} ${geistCaveat.variable} ${geistJost.variable} antialiased`} suppressHydrationWarning>
                 {children}
             </body>
         </html>

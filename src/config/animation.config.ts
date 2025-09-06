@@ -1,5 +1,7 @@
-import { AnimationConfig, AnimationVariants } from "@/types";
+import { Variants } from "framer-motion";
 import { easeInOut, easeOut, easeIn, circOut, circInOut, backOut, backInOut } from "framer-motion";
+
+import { AnimationConfig } from "@/types/animation.types";
 
 /**
  * Main animation configuration
@@ -72,7 +74,7 @@ export const Stagger = ANIMATION_CONFIG.STAGGER;
  * Standard animation variants for common UI elements
  */
 export const STANDARD_ANIMATIONS: AnimationConfig = {
-    fadeIn: (prefersReducedMotion = false): AnimationVariants => ({
+    fadeIn: (prefersReducedMotion = false): Variants => ({
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -83,7 +85,7 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
         }
     }),
 
-    fadeInUp: (prefersReducedMotion = false, distance = 20): AnimationVariants => ({
+    fadeInUp: (prefersReducedMotion = false, distance = 20): Variants => ({
         hidden: { opacity: 0, y: prefersReducedMotion ? 0 : distance },
         visible: {
             opacity: 1,
@@ -95,7 +97,7 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
         }
     }),
 
-    fadeInDown: (prefersReducedMotion = false, distance = 20): AnimationVariants => ({
+    fadeInDown: (prefersReducedMotion = false, distance = 20): Variants => ({
         hidden: { opacity: 0, y: prefersReducedMotion ? 0 : -distance },
         visible: {
             opacity: 1,
@@ -107,7 +109,7 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
         }
     }),
 
-    scaleIn: (prefersReducedMotion = false, startScale = 0.9): AnimationVariants => ({
+    scaleIn: (prefersReducedMotion = false, startScale = 0.9): Variants => ({
         hidden: { opacity: 0, scale: prefersReducedMotion ? 1 : startScale },
         visible: {
             opacity: 1,
@@ -119,7 +121,7 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
         }
     }),
 
-    springUp: (prefersReducedMotion = false, distance = 30): AnimationVariants => ({
+    springUp: (prefersReducedMotion = false, distance = 30): Variants => ({
         hidden: { opacity: 0, y: prefersReducedMotion ? 0 : distance },
         visible: {
             opacity: 1,
@@ -133,7 +135,7 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
         }
     }),
 
-    staggerChildren: (prefersReducedMotion = false, staggerTime = ANIMATION_CONFIG.STAGGER.NORMAL, delayTime = ANIMATION_CONFIG.DELAY.NONE): AnimationVariants => ({
+    staggerChildren: (prefersReducedMotion = false, staggerTime = ANIMATION_CONFIG.STAGGER.NORMAL, delayTime = ANIMATION_CONFIG.DELAY.NONE): Variants => ({
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -145,7 +147,7 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
         }
     }),
 
-    buttonHover: (prefersReducedMotion = false): AnimationVariants => ({
+    buttonHover: (prefersReducedMotion = false): Variants => ({
         initial: {},
         hover: {
             scale: prefersReducedMotion ? 1 : 1.05,

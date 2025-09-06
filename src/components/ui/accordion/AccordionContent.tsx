@@ -3,7 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
-import { AccordionContentProps } from "@/types";
+import { AccordionContentProps } from "@/types/accordion.types";
 
 const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, subheading, meta, content, panelId, labelledById }) => {
     const contentRef = useRef<HTMLDivElement>(null);
@@ -34,7 +34,7 @@ const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, subheading,
             opacity: 1,
             filter: "blur(0px)",
             transition: {
-                height: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as any },
+                height: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
                 opacity: { duration: 0.25, delay: 0.12 },
                 filter: { duration: 0.25, delay: 0.12 }
             }
@@ -44,7 +44,7 @@ const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, subheading,
             opacity: 0,
             filter: "blur(1px)",
             transition: {
-                height: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as any },
+                height: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
                 opacity: { duration: 0.2 },
                 filter: { duration: 0.2 }
             }
@@ -64,14 +64,14 @@ const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, subheading,
             aria-labelledby={labelledById}
         >
             <div className={"accordion-content-subheading"}>
-                <span>{ subheading }</span>
+                <span>{subheading}</span>
             </div>
             <div className={"accordion-content-meta"}>
-                <span>{ meta }</span>
+                <span>{meta}</span>
             </div>
             <div className={"accordion-content-description"}>
                 <p>
-                    { content }
+                    {content}
                 </p>
             </div>
         </motion.div>

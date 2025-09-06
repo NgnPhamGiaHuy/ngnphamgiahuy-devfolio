@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import React, { useEffect, useState, useRef } from "react";
 import { Pagination, EffectFade, Keyboard, A11y } from "swiper/modules";
 
-import { GenericSwiperProps } from "@/types";
+import { GenericSwiperProps } from "@/types/common.types";
 import { StandardAnimations } from "@/config/animation.config";
 
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
@@ -44,7 +44,7 @@ const ContentSwiper = <T,>({ items, spaceBetween = 40, renderItem }: GenericSwip
             viewport={{ once: true, amount: 0.1 }}
         >
             <div className={"swiper-container"}>
-                { mounted && (
+                {mounted && (
                     <Swiper
                         autoHeight={true}
                         modules={[Pagination, EffectFade, Keyboard, A11y]}
@@ -86,14 +86,14 @@ const ContentSwiper = <T,>({ items, spaceBetween = 40, renderItem }: GenericSwip
                             },
                         }}
                     >
-                        { items.map((item, index) => (
+                        {items.map((item, index) => (
                             <SwiperSlide key={index}>
-                                { renderItem(item, index) }
+                                {renderItem(item, index)}
                             </SwiperSlide>
-                        )) }
+                        ))}
                     </Swiper>
-                ) }
-                { mounted && totalSlides > slidesPerView && (
+                )}
+                {mounted && totalSlides > slidesPerView && (
                     <motion.div
                         className={"swiper-navigation"}
                         initial={{ opacity: 0, y: 20 }}
@@ -102,7 +102,7 @@ const ContentSwiper = <T,>({ items, spaceBetween = 40, renderItem }: GenericSwip
                         role={"tablist"}
                         aria-label={"Carousel pagination"}
                     >
-                        { Array.from({ length: totalSlides }).map((_, index) => (
+                        {Array.from({ length: totalSlides }).map((_, index) => (
                             <span
                                 key={index}
                                 className={`swiper-pagination-dot ${index === activeIndex
@@ -121,9 +121,9 @@ const ContentSwiper = <T,>({ items, spaceBetween = 40, renderItem }: GenericSwip
                                     }
                                 }}
                             />
-                        )) }
+                        ))}
                     </motion.div>
-                ) }
+                )}
             </div>
         </motion.div>
     );

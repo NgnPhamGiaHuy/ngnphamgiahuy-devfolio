@@ -4,7 +4,7 @@ import clsx from "clsx";
 import React, { useId, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import { AccordionItemProps } from "@/types";
+import { AccordionItemProps } from "@/types/accordion.types";
 
 import AccordionContent from "@/components/ui/accordion/AccordionContent";
 
@@ -29,11 +29,11 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ heading, subheading, meta
                     aria-expanded={isOpen}
                     aria-controls={panelId}
                 >
-                    { heading }
+                    {heading}
                 </button>
             </h6>
             <AnimatePresence>
-                { (isOpen || isFirstItem) && (
+                {(isOpen || isFirstItem) && (
                     <AccordionContent
                         isOpen={isOpen}
                         subheading={subheading}
@@ -42,7 +42,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ heading, subheading, meta
                         panelId={panelId}
                         labelledById={buttonId}
                     />
-                ) }
+                )}
             </AnimatePresence>
         </div>
     );

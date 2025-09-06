@@ -3,7 +3,7 @@
 import React, { memo } from "react";
 
 import { data } from "@/data/data";
-import { SidebarProps } from "@/types";
+import { SidebarProps } from "@/types/sidebar.types";
 import { generateSocialLinks } from "@/utils/socialLinks";
 
 import SIDEBAR_CONFIG from "@/config/sidebar.config";
@@ -27,7 +27,7 @@ const Sidebar: React.FC<SidebarProps> = memo(({ isMenuOpen, onMenuItemClick }) =
                         <div className={"sidebar-column"}>
                             <nav className={"sidebar-menu-container"} aria-label={"Navigation menu"}>
                                 <ul role={"menubar"}>
-                                    { SIDEBAR_CONFIG.MENU_ITEMS.map((item, index) => (
+                                    {SIDEBAR_CONFIG.MENU_ITEMS.map((item, index) => (
                                         <SidebarMenuItem
                                             key={item}
                                             text={item}
@@ -36,7 +36,7 @@ const Sidebar: React.FC<SidebarProps> = memo(({ isMenuOpen, onMenuItemClick }) =
                                             prefersReducedMotion={prefersReducedMotion}
                                             onClick={onMenuItemClick}
                                         />
-                                    )) }
+                                    ))}
                                 </ul>
                             </nav>
                             <SocialLinks

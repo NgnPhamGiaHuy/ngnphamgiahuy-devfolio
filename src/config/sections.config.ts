@@ -1,4 +1,5 @@
-import { SectionConfig } from "@/types";
+import { SectionConfig } from "@/types/section.types";
+
 
 /**
  * Configuration for page sections

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StatCardProps } from "@/types";
+import { StatCardProps } from "@/types/common.types";
 
 const StatCard: React.FC<StatCardProps> = ({ value, label, highlight, className = "", width = "250px", height = "82px", margin = "m-0" }) => {
     const style: React.CSSProperties = { width, height };
@@ -13,20 +13,20 @@ const StatCard: React.FC<StatCardProps> = ({ value, label, highlight, className 
     return (
         <div style={style} className={`${margin} stat-card ${className}`}>
             <span className={"stat-value"}>
-                { value }
-                { highlight && <strong className={"stat-highlight"}>&nbsp;{ highlight }</strong> }
+                {value}
+                {highlight && <strong className={"stat-highlight"}>&nbsp;{highlight}</strong>}
             </span>
             <span className={"stat-label"}>
-                { hasMultipleWords ? (
+                {hasMultipleWords ? (
                     <>
-                        { labelFirstPart } <br />
+                        {labelFirstPart} <br />
                         <strong className={"stat-label-highlight"}>
-                            { labelHighlight }
+                            {labelHighlight}
                         </strong>
                     </>
                 ) : (
                     <strong className={"stat-label-highlight"}>{labelHighlight}</strong>
-                ) }
+                )}
             </span>
         </div>
     );

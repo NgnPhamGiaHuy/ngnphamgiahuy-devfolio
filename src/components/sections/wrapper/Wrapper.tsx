@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { motion, useInView } from "framer-motion";
 import React, { useRef, useState, useEffect } from "react";
 
-import { SectionWrapperProps } from "@/types";
+import { SectionWrapperProps } from "@/types/section.types";
 import { containerVariants, backgroundByName, vlinePositions } from "@/config/sectionWrapper.config";
 
 import VLineBlock from "@/components/ui/VLineBlock";
@@ -32,7 +32,7 @@ const Wrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = "", bac
                         <WrapperHeader title={title} subtitle={subtitle} isInView={isInView} />
                         <section className={clsx(hasSectionBodyPadding && "max-md:px-[10px] max-lg:px-[20px]", "wrapper-section-body")}>
                             <div className={"wrapper-section-content-container"} style={{ maxWidth: sectionContentMaxWidth }}>
-                                { children }
+                                {children}
                                 <VLineBlock {...vlineProps} />
                             </div>
                         </section>

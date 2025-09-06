@@ -3,7 +3,7 @@
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
-import { HeroProfileBlockProps } from "@/types";
+import { HeroProfileBlockProps } from "@/types/hero.types";
 import { DEFAULT_PATTERN_LAYERS, DEFAULT_STATS } from "@/config/hero.config";
 
 import StatCard from "@/components/ui/cards/StatCard";
@@ -92,9 +92,9 @@ const HeroProfileBlock: React.FC<HeroProfileBlockProps> = memo(({ className = ""
                 role={"presentation"}
                 aria-hidden={"true"}
             />
-            { patternLayers.map((layer, index) => (
+            {patternLayers.map((layer, index) => (
                 <HeroLayer key={`layer-${index}`} {...layer} />
-            )) }
+            ))}
             <motion.div
                 className={"hero-stats-container"}
                 variants={statsVariants}
@@ -104,7 +104,7 @@ const HeroProfileBlock: React.FC<HeroProfileBlockProps> = memo(({ className = ""
                 aria-label={"Professional statistics"}
             >
                 <ul role={"list"}>
-                    { stats.map((stat, index) => (
+                    {stats.map((stat, index) => (
                         <motion.li
                             key={`stat-${index}`}
                             variants={statItemVariants}
@@ -117,7 +117,7 @@ const HeroProfileBlock: React.FC<HeroProfileBlockProps> = memo(({ className = ""
                                 highlight={stat.highlight}
                             />
                         </motion.li>
-                    )) }
+                    ))}
                 </ul>
             </motion.div>
         </motion.div>

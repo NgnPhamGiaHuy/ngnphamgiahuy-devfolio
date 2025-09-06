@@ -1,5 +1,6 @@
 import React from "react";
-import { SectionConfig } from "@/types";
+
+import { SectionConfig } from "@/types/section.types";
 
 // Import all section components
 import Hero from "@/components/sections/Hero";

@@ -1,4 +1,4 @@
-import { HeroLayerProps, StatInfo } from "@/types";
+import { HeroLayerProps, StatInfo } from "@/types/hero.types";
 
 /**
  * Configuration for hero section

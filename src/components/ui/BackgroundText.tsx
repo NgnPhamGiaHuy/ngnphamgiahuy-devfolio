@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import { motion, useAnimationControls } from "framer-motion";
 
-import { BackgroundTextProps } from "@/types";
+import { BackgroundTextProps } from "@/types/common.types";
 
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
@@ -22,7 +22,7 @@ const BackgroundText: React.FC<BackgroundTextProps> = ({ text, top = "", right =
                 opacity: [0, 0.025],
                 scale: [0.985, 1],
                 y: [16, 0],
-                transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as any }
+                transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] }
             });
 
             await controls.start({
@@ -49,7 +49,7 @@ const BackgroundText: React.FC<BackgroundTextProps> = ({ text, top = "", right =
                     className={`w-[200%] top-[-50px] -left-1/2 text-[350px] max-md:text-[150px] max-lg:text-[250px] text-[rgba(0,0,0,.02)] text-center font-bold font-['Caveat'] whitespace-nowrap leading-[1px] pointer-events-none relative ${className}`}
                 >
                     <span>
-                        { text }
+                        {text}
                     </span>
                 </motion.div>
             </div>
