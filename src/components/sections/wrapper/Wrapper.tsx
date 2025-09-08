@@ -12,7 +12,7 @@ import WrapperHeader from "@/components/sections/wrapper/WrapperHeader";
 
 const Wrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = "", background = "gradientUp", sectionContentMaxWidth = "1300px", hasSectionBodyPadding = true, vlinePosition = "right", resetAnimationOnView = false, children }) => {
     const sectionRef = useRef(null);
-    const isInView = useInView(sectionRef, { once: !resetAnimationOnView, amount: 0.2 });
+    const isInView = useInView(sectionRef, { once: !resetAnimationOnView, amount: 0.1 });
     const [animationKey, setAnimationKey] = useState(0);
 
     useEffect(() => {

@@ -1,7 +1,5 @@
-/* Generic Card and Items Section Components */
 @layer components {
 
-    /* Generic Content Card Components */
     .content-card {
         @apply w-full h-auto flex items-center justify-center shrink-0 transition-transform transform translate-z-0 backface-hidden box-border relative;
     }
@@ -39,6 +37,6 @@
     }
 
     .content-card-pattern {
-        @apply w-[141px] h-[141px] right-[-24px] bottom-[-24px] bg-[url('/images/pat-1.png')] bg-center bg-no-repeat bg-contain absolute;
+        @apply w-[141px] h-[141px] right-[-24px] bottom-[-24px] bg-[url("/images/pat-1.png")] bg-center bg-no-repeat bg-contain absolute;
     }
 }

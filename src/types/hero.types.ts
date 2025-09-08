@@ -1,10 +1,3 @@
-// -----------------------------------------------------------------------------
-// Hero Section Types
-// -----------------------------------------------------------------------------
-
-/**
- * Props for the HeroLayer component
- */
 export interface HeroLayerProps {
     width?: string;
     height?: string;
@@ -14,9 +7,6 @@ export interface HeroLayerProps {
     left?: string;
 }
 
-/**
- * Props for the HeroProfileBlock component
- */
 export interface HeroProfileBlockProps {
     className?: string;
     profileImage?: string;
@@ -28,9 +18,6 @@ export interface HeroProfileBlockProps {
     transition?: any;
 }
 
-/**
- * Structure for stat information displayed in the hero section
- */
 export interface StatInfo {
     value: string;
     label: string;

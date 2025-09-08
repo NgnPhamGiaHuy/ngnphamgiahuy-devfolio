@@ -3,9 +3,9 @@
 import React, { useMemo, memo } from "react";
 import { motion } from "framer-motion";
 
-import { data } from "@/data/data";
 import { StandardAnimations } from "@/config/animation.config";
 import { HeroAnimationProvider } from "@/context/HeroAnimationContext";
+import { Profile } from "@/types/sanity.types";
 
 import VLineBlock from "@/components/ui/VLineBlock";
 import BackgroundText from "@/components/ui/BackgroundText";
@@ -16,22 +16,30 @@ import HeroProfileBlock from "@/components/sections/hero/HeroProfileBlock";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import useDynamicTextAnimation from "@/hooks/animation/useDynamicTextAnimation";
 
-const Hero: React.FC = memo(() => {
+interface HeroProps {
+    profile?: Profile;
+}
+
+const Hero: React.FC<HeroProps> = memo(({ profile }) => {
     const { createTypingTimeline } = useDynamicTextAnimation();
     const prefersReducedMotion = usePrefersReducedMotion();
 
     const heroTextTimeline = useMemo(() => {
-        const { profile } = data;
+        const profileData = profile || {
+            name: "Your Name",
+            job_title: "Developer",
+            description: "Welcome to my portfolio"
+        };
 
         const textSections = [
             { id: "intro", text: "Hello, my name is" },
-            { id: "name", text: profile.name },
-            { id: "job", text: `I am ${profile.job_title}` },
-            { id: "description", text: profile.description }
+            { id: "name", text: profileData.name },
+            { id: "job", text: `I am ${profileData.job_title}` },
+            { id: "description", text: profileData.description }
         ];
 
         return createTypingTimeline(textSections);
-    }, [createTypingTimeline]);
+    }, [createTypingTimeline, profile]);
 
     const containerVariants = useMemo(() =>
         StandardAnimations.staggerChildren(prefersReducedMotion, 0.3, 0.1),
@@ -61,11 +69,12 @@ const Hero: React.FC = memo(() => {
                                         animate={"visible"}
                                         variants={containerVariants}
                                     >
-                                        <HeroIntro />
-                                        <HeroDescription />
-                                        <DownloadCVButton />
+                                        <HeroIntro profile={profile} />
+                                        <HeroDescription profile={profile} />
+                                        <DownloadCVButton cvLink={profile?.cv_link} />
                                     </motion.div>
                                     <HeroProfileBlock
+                                        profile={profile}
                                         variants={profileBlockVariants}
                                         initial={"hidden"}
                                         animate={"visible"}
@@ -79,7 +88,7 @@ const Hero: React.FC = memo(() => {
                                     />
                                 </div>
                             </div>
-                            <BackgroundText text={"Web Developer"} bottom={"-100px"} />
+                            <BackgroundText text={profile?.job_title || "Web Developer"} bottom={"-100px"} />
                         </div>
                     </div>
                 </div>

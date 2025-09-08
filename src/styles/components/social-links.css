@@ -1,4 +1,3 @@
-/* Social Links Components */
 @layer components {
     .social-links-container {
         @apply relative z-3;

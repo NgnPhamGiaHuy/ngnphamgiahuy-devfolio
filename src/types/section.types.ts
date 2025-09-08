@@ -1,13 +1,5 @@
 import React from "react";
 
-// -----------------------------------------------------------------------------
-// Section Configuration Types
-// -----------------------------------------------------------------------------
-
-
-/**
- * Configuration for page sections
- */
 export interface SectionConfig {
     id: string;
     enabled: boolean;

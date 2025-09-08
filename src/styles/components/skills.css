@@ -20,7 +20,7 @@
     }
 
     .skill-bar {
-        @apply h-[2px] w-4 bg-black rounded;
+        @apply h-[2px] w-4 bg-black rounded relative;
     }
 
     .skill-badge {

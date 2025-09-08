@@ -3,13 +3,7 @@ import { easeInOut, easeOut, easeIn, circOut, circInOut, backOut, backInOut } fr
 
 import { AnimationConfig } from "@/types/animation.types";
 
-/**
- * Main animation configuration
- */
 export const ANIMATION_CONFIG = {
-    /**
-     * Framer Motion easing functions
-     */
     EASING: {
         easeInOut,
         easeOut,
@@ -20,9 +14,6 @@ export const ANIMATION_CONFIG = {
         backInOut
     },
 
-    /**
-     * Standard animation durations in seconds
-     */
     DURATION: {
         FASTEST: 0.15,
         FAST: 0.25,
@@ -31,9 +22,6 @@ export const ANIMATION_CONFIG = {
         SLOWEST: 0.8,
     },
 
-    /**
-     * Standard animation delays in seconds
-     */
     DELAY: {
         NONE: 0,
         SHORT: 0.1,
@@ -42,9 +30,6 @@ export const ANIMATION_CONFIG = {
         LONGEST: 0.5,
     },
 
-    /**
-     * Standard stagger values for sequential animations
-     */
     STAGGER: {
         TIGHT: 0.02,
         NORMAL: 0.05,
@@ -52,9 +37,6 @@ export const ANIMATION_CONFIG = {
         TEXT: 0.015,
     },
 
-    /**
-     * Animation configuration for reduced motion preferences
-     */
     REDUCED_MOTION: {
         duration: 0.15,
         ease: "linear",
@@ -65,14 +47,10 @@ export const ANIMATION_CONFIG = {
     }
 } as const;
 
-// For backward compatibility
 export const Duration = ANIMATION_CONFIG.DURATION;
 export const Delay = ANIMATION_CONFIG.DELAY;
 export const Stagger = ANIMATION_CONFIG.STAGGER;
 
-/**
- * Standard animation variants for common UI elements
- */
 export const STANDARD_ANIMATIONS: AnimationConfig = {
     fadeIn: (prefersReducedMotion = false): Variants => ({
         hidden: { opacity: 0 },
@@ -167,5 +145,4 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
     }),
 };
 
-// For backward compatibility
 export const StandardAnimations = STANDARD_ANIMATIONS;

@@ -1,5 +1,6 @@
 "use client"
 
+import clsx from "clsx";
 import React from "react";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
@@ -16,8 +17,8 @@ const SkillCard: React.FC<SkillCardProps> = ({ item, variants, prefersReducedMot
                 <p>{item.description}</p>
             </div>
             <div className={"skill-bars"} aria-hidden={"true"}>
-                {Array.from({ length: item.experience_years }).map((_, i) => (
-                    <div key={i} className={"skill-bar"}></div>
+                {Array.from({ length: item.experience_years }).map((_, i, arr) => (
+                    <div key={i} className={clsx(i === arr.length - 1 && "h-[4px] top-[-1px] bg-primary!", "skill-bar")}></div>
                 ))}
             </div>
             <div className={"skill-badge"}>

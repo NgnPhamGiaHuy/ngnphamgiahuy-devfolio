@@ -1,8 +1,11 @@
 "use client";
 
+import Image from "next/image";
+import { urlFor } from "@/lib/sanity";
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
+import { Profile } from "@/types/sanity.types";
 import { HeroProfileBlockProps } from "@/types/hero.types";
 import { DEFAULT_PATTERN_LAYERS, DEFAULT_STATS } from "@/config/hero.config";
 
@@ -10,8 +13,34 @@ import StatCard from "@/components/ui/cards/StatCard";
 import HeroLayer from "@/components/sections/hero/HeroLayer";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
-const HeroProfileBlock: React.FC<HeroProfileBlockProps> = memo(({ className = "", profileImage = "/images/profile2.png", patternLayers = DEFAULT_PATTERN_LAYERS, stats = DEFAULT_STATS, variants = {}, initial = "", animate = "", transition = {} }) => {
+interface ExtendedHeroProfileBlockProps extends HeroProfileBlockProps {
+    profile?: Profile;
+}
+
+const HeroProfileBlock: React.FC<ExtendedHeroProfileBlockProps> = memo(({ className = "", profile, patternLayers = DEFAULT_PATTERN_LAYERS, variants = {}, initial = "", animate = "", transition = {} }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
+
+    const profileImageUrl = profile?.profile_image
+        ? urlFor(profile.profile_image).width(600).height(600).url()
+        : "/images/profile2.png";
+
+    const stats = useMemo(() => {
+        if (!profile) return DEFAULT_STATS;
+
+        return [
+            {
+                value: profile.experience_years ? profile.experience_years.toString() : "0",
+                label: "Years of Experience",
+                highlight: "+",
+                margin: "mt-[160px] ml-[100px]"
+            },
+            {
+                value: profile.completed_projects ? profile.completed_projects.toString() : "0",
+                label: "Projects Completed",
+                margin: "mt-[-30px] ml-[520px]"
+            }
+        ];
+    }, [profile]);
 
     const defaultVariants: Variants = useMemo(() => ({
         hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 50 },
@@ -79,14 +108,21 @@ const HeroProfileBlock: React.FC<HeroProfileBlockProps> = memo(({ className = ""
             role={"img"}
             aria-label={"Profile image with professional statistics"}
         >
-            <motion.img
-                src={profileImage}
-                alt={"Professional profile picture"}
-                className={"hero-profile-image"}
+            <motion.div
+                className={"hero-profile-image-container relative h-full w-full"}
                 variants={imageVariants}
                 initial={"hidden"}
                 animate={"visible"}
-            />
+            >
+                <Image
+                    src={profileImageUrl}
+                    alt={profile?.profile_image?.alt || "Professional profile picture"}
+                    width={600}
+                    height={600}
+                    className={"hero-profile-image"}
+                    priority
+                />
+            </motion.div>
             <span
                 className={"avatar-circle"}
                 role={"presentation"}

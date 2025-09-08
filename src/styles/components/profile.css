@@ -1,4 +1,3 @@
-/* Hero Profile Block Components */
 @layer components {
     .hero-profile-container {
         @apply w-[680px] h-[800px] mt-[-390px] min-[1700px]:mt-[-400px] max-lg:ml-[-340px] top-1/2 max-md:top-[680px] max-lg:top-[740px] right-[-20px] max-lg:right-auto min-[1700px]:right-[-50px] max-lg:bottom-auto max-lg:left-1/2 max-md:transform max-md:scale-50 max-lg:scale-90 max-xl:scale-80 max-lg:origin-top absolute z-2;
@@ -9,7 +8,7 @@
     }
 
     .hero-pattern-layer {
-        @apply bg-[url('/images/pat-1.png')] bg-no-repeat bg-contain bg-center absolute;
+        @apply bg-[url("/images/pat-1.png")] bg-no-repeat bg-contain bg-center absolute;
     }
 
     .hero-stats-container {

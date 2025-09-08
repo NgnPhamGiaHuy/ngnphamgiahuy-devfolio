@@ -2,7 +2,6 @@
 
 import React, { useRef } from "react";
 
-import { data } from "@/data/data";
 import { HeaderProps } from "@/types/header.types";
 import { getHeaderClasses } from "@/utils/headerUtils";
 
@@ -14,9 +13,7 @@ import HeaderLogo from "@/components/navigation/headers/HeaderLogo";
 import HeaderThemeToggle from "@/components/navigation/headers/HeaderThemeToggle";
 import HeaderMenuToggle from "@/components/navigation/headers/HeaderMenuToggle";
 
-const Header: React.FC<HeaderProps> = ({ className }) => {
-    const { logo } = data;
-
+const Header: React.FC<HeaderProps> = ({ className, logo = "Portfolio" }) => {
     const headerRef = useRef<HTMLElement>(null);
 
     const { isMenuOpen, toggleMenu, closeMenu } = useMenuState();

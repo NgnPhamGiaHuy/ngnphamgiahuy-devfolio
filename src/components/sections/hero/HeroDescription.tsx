@@ -3,29 +3,34 @@
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
-import { data } from "@/data/data";
 import { generateSocialLinks } from "@/utils/socialLinks";
 import { useHeroAnimationContext } from "@/context/HeroAnimationContext";
+import { Profile } from "@/types/sanity.types";
 
 import SocialLinks from "@/components/ui/SocialLinks";
 import AnimatedTextCharacter from "@/components/ui/AnimatedTextCharacter";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
-const HeroDescription: React.FC = memo(() => {
-    const { profile } = data;
+interface HeroDescriptionProps {
+    profile?: Profile;
+}
+
+const HeroDescription: React.FC<HeroDescriptionProps> = memo(({ profile }) => {
     const { timeline } = useHeroAnimationContext();
     const prefersReducedMotion = usePrefersReducedMotion();
 
-    const descriptionLength = profile.description.length;
+    const description = profile?.description || "Welcome to my portfolio website";
+    const descriptionLength = description.length;
+
     const dynamicStagger = useMemo(() =>
         prefersReducedMotion ? 0 : Math.min(0.3, descriptionLength * 0.001),
         [descriptionLength, prefersReducedMotion]
     );
 
-    const socialLinks = useMemo(() =>
-        generateSocialLinks(profile.social_links),
-        [profile.social_links]
-    );
+    const socialLinks = useMemo(() => {
+        if (!profile?.social_links) return [];
+        return generateSocialLinks(profile.social_links);
+    }, [profile?.social_links]);
 
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
@@ -80,28 +85,30 @@ const HeroDescription: React.FC = memo(() => {
                 aria-label={"Professional description"}
             >
                 <p className={"hero-description-text"}>
-                    { prefersReducedMotion ? (
-                        profile.description
+                    {prefersReducedMotion ? (
+                        description
                     ) : (
                         <AnimatedTextCharacter
-                            text={profile.description}
+                            text={description}
                             baseDelay={timeline.description?.sectionDelay || 0}
                         />
-                    ) }
+                    )}
                 </p>
             </motion.div>
-            <motion.div
-                variants={socialLinksVariants}
-                role={"navigation"}
-                aria-label={"Social media links"}
-            >
-                <SocialLinks
-                    links={socialLinks}
-                    iconSize={"size-6"}
-                    iconMargin={"mr-[15px]"}
-                    containerMargin={"mt-[30px]"}
-                />
-            </motion.div>
+            {socialLinks.length > 0 && (
+                <motion.div
+                    variants={socialLinksVariants}
+                    role={"navigation"}
+                    aria-label={"Social media links"}
+                >
+                    <SocialLinks
+                        links={socialLinks}
+                        iconSize={"size-6"}
+                        iconMargin={"mr-[15px]"}
+                        containerMargin={"mt-[30px]"}
+                    />
+                </motion.div>
+            )}
         </motion.div>
     );
 });

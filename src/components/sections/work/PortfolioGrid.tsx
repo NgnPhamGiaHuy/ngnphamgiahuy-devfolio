@@ -1,13 +1,17 @@
 import React from "react";
 import { motion, AnimatePresence, Target } from "framer-motion";
 
-import { PortfolioGridProps } from "@/types/portfolio.types";
 import { StandardAnimations, Duration, Stagger } from "@/config/animation.config";
 
 import PortfolioCard from "@/components/ui/cards/PortfolioCard";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import { ProjectLike } from "@/types/portfolio.types";
 
-const PortfolioGrid: React.FC<PortfolioGridProps> = ({ portfolios }) => {
+interface PortfolioGridProps {
+    portfolios: ProjectLike[];
+}
+
+const PortfolioGrid: React.FC<PortfolioGridProps> = ({ portfolios = [] }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
     const itemEnter = StandardAnimations.springUp(prefersReducedMotion, 16);
@@ -32,7 +36,7 @@ const PortfolioGrid: React.FC<PortfolioGridProps> = ({ portfolios }) => {
             <AnimatePresence mode={"popLayout"}>
                 {portfolios.slice(0, 6).map((portfolio, index) => (
                     <motion.div
-                        key={portfolio.name}
+                        key={portfolio._id || `portfolio-${index}`}
                         layout
                         variants={itemVariants}
                         transition={{ duration: Duration.NORMAL, delay: index * Stagger.NORMAL }}

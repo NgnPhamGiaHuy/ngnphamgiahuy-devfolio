@@ -1,4 +1,3 @@
-/* Responsive Styles */
 @layer components {
     @media screen and (min-width: 1200px) {
         .header.animate-in {

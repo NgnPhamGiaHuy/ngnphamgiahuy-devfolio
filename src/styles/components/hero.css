@@ -1,4 +1,3 @@
-/* Hero Section Components */
 @layer components {
     .hero-section {
         @apply pb-[180px] max-md:pb-[50px] max-lg:pb-[140px];
@@ -28,12 +27,10 @@
         @apply pt-10 max-md:pt-[120px] max-lg:pt-[140px] max-lg:text-center opacity-100 visible transform translate-x-0 translate-y-0 relative;
     }
 
-    /* Hero Title & Text */
     .hero-title {
         @apply text-[90px] max-md:text-[40px] max-lg:text-[64px] break-words text-white text-shadow-[2px_2px_#000,-2px_2px_#000,2px_-2px_#000,-2px_-2px_#000,5px_5px_0px_rgba(0,0,0,0.2)] font-bold tracking-wider leading-tight uppercase;
     }
 
-    /* Default states for text elements */
     .hero-title span span,
     .hero-subtitle span,
     .hero-subtitle strong span,

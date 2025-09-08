@@ -1,10 +1,4 @@
-/**
- * Configuration for contact form
- */
 export const CONTACT_FORM_CONFIG = {
-    /**
-     * Form validation and status messages
-     */
     MESSAGES: {
         SUCCESS: "Your message has been sent successfully!",
         ERROR: "Failed to send message. Please try again.",
@@ -18,9 +12,6 @@ export const CONTACT_FORM_CONFIG = {
         EMAIL_INVALID: "Please enter a valid email address",
     } as const,
 
-    /**
-     * Form field configurations
-     */
     FIELDS: {
         NAME: {
             id: "name",
@@ -49,9 +40,6 @@ export const CONTACT_FORM_CONFIG = {
         },
     } as const,
 
-    /**
-     * API configuration for form submission
-     */
     API: {
         ENDPOINT: "/api/contact",
         METHOD: "POST",
@@ -62,7 +50,6 @@ export const CONTACT_FORM_CONFIG = {
     } as const
 } as const;
 
-// For backward compatibility
 export const FORM_MESSAGES = CONTACT_FORM_CONFIG.MESSAGES;
 export const FORM_FIELDS = CONTACT_FORM_CONFIG.FIELDS;
 export const API_CONFIG = CONTACT_FORM_CONFIG.API;

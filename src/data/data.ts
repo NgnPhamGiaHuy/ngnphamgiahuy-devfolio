@@ -57,13 +57,13 @@ export interface Testimonial {
 export interface Pricing {
     plan: string;
     price: string;
-    period: string; // e.g. "per month", "per project"
+    period: string;
     description: string;
     features: {
         included: string[];
         not_included: string[];
     };
-    highlight?: boolean; // optional: mark recommended plan
+    highlight?: boolean;
 }
 
 export interface BlogPost {
@@ -75,10 +75,8 @@ export interface BlogPost {
 }
 
 export interface ContactItem {
-    type: string; // e.g. "email", "phone", "location", "office"
+    type: string;
     value: string;
-    // Optional additional properties can be added here as needed
-    // For example: label?: string; or isActive?: boolean;
 }
 
 export interface AppData {

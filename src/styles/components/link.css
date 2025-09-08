@@ -4,7 +4,7 @@
     }
 
     .arrow-link::after {
-        @apply content-['\f061'] ml-[20px] top-[1px] left-0 text-primary font-['Font_Awesome_7_Free'] font-bold transition-[margin] duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] relative;
+        @apply content-["\f061"] ml-[20px] top-[1px] left-0 text-primary font-["Font_Awesome_7_Free"] font-bold transition-[margin] duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] relative;
     }
 
     .arrow-link:hover::after {

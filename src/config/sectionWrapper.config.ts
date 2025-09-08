@@ -1,13 +1,6 @@
-// src/config/sectionWrapper.config.ts
 import { Variants } from "framer-motion";
 
-/**
- * Configuration for section wrapper components
- */
 export const SECTION_WRAPPER_CONFIG = {
-    /**
-     * Animation variants for section container
-     */
     CONTAINER_VARIANTS: {
         hidden: { opacity: 0, y: 50 },
         visible: {
@@ -17,18 +10,12 @@ export const SECTION_WRAPPER_CONFIG = {
         }
     } as Variants,
 
-    /**
-     * Background style options by name
-     */
     BACKGROUNDS: {
         gradientUp: "bg-[linear-gradient(0deg,#fff_0%,#f0ebe3_100%)]",
         gradientDown: "bg-[linear-gradient(rgb(255,255,255)_0%_0%,rgb(240,235,227)_100%)]",
         none: "bg-none",
     } as const,
 
-    /**
-     * VLine position configurations
-     */
     VLINE_POSITIONS: {
         right: {
             top: "-70px",
@@ -49,7 +36,6 @@ export const SECTION_WRAPPER_CONFIG = {
     } as const,
 } as const;
 
-// For backward compatibility
 export const containerVariants = SECTION_WRAPPER_CONFIG.CONTAINER_VARIANTS;
 export const backgroundByName = SECTION_WRAPPER_CONFIG.BACKGROUNDS;
 export const vlinePositions = SECTION_WRAPPER_CONFIG.VLINE_POSITIONS;

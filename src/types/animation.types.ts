@@ -1,12 +1,5 @@
 import { Variants } from "framer-motion";
 
-// -----------------------------------------------------------------------------
-// Animation-related Types
-// -----------------------------------------------------------------------------
-
-/**
- * Standard animation configuration with reusable animation variants
- */
 export interface AnimationConfig {
     fadeIn: (prefersReducedMotion?: boolean) => Variants;
     fadeInUp: (prefersReducedMotion?: boolean, distance?: number) => Variants;

@@ -1,7 +1,5 @@
-/* Contact Section Components */
 @layer components {
 
-    /* Main Contact Layout */
     .contact-column-left {
         @apply w-full md:lg:w-[40%] min-h-[1px] flex relative;
     }
@@ -19,14 +17,13 @@
     }
 
     .contact-background-pattern {
-        @apply w-[240px] h-[240px] bottom-[-32px] left-[-135px] bg-[url('/images/pat-1.png')] bg-center bg-no-repeat bg-contain absolute;
+        @apply w-[240px] h-[240px] bottom-[-32px] left-[-135px] bg-[url("/images/pat-1.png")] bg-center bg-no-repeat bg-contain absolute;
     }
 
     .contact-form-container {
         @apply w-full relative;
     }
 
-    /* Contact Item */
     .contact-item {
         @apply max-md:w-full max-lg:w-1/2 mb-[40px] max-md:mb-[30px] pl-[130px] max-lg:pl-[120px] max-lg:text-[16px] max-lg:align-top max-lg:inline-block block relative;
     }
@@ -36,11 +33,11 @@
     }
 
     .contact-item-icon-wrapper::after {
-        @apply content-[''] w-[40px] h-[2px] mt-[-1px] top-1/2 left-full text-[20px] text-center bg-black leading-[52px] absolute;
+        @apply content-[""] w-[40px] h-[2px] mt-[-1px] top-1/2 left-full text-[20px] text-center bg-black leading-[52px] absolute;
     }
 
     .contact-item-label {
-        @apply py-[10px] text-[30px] max-md:text-[24px] text-black font-['Caveat'] font-bold leading-none;
+        @apply py-[10px] text-[30px] max-md:text-[24px] text-black font-["Caveat"] font-bold leading-none;
     }
 
     .contact-item-value {
@@ -51,7 +48,6 @@
         @apply transition-all duration-350 hover:text-primary;
     }
 
-    /* Contact Form */
     .contact-form-fields {
         @apply mx-[-12px] flex flex-wrap;
     }
@@ -120,7 +116,6 @@
         @apply mt-0 ml-[4px] top-[-1px] align-middle relative;
     }
 
-    /* Status Message */
     .status-message {
         @apply w-full mt-6 p-4 rounded-lg border absolute;
     }
@@ -141,7 +136,6 @@
         @apply h-5 w-5 mr-3;
     }
 
-    /* Submit Button Spinner */
     .submit-spinner {
         @apply animate-spin -ml-1 mr-2 h-4 w-4 text-white;
     }

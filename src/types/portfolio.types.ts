@@ -1,8 +1,6 @@
 import { Portfolio } from "@/data/data";
+import { SanityImage } from "@/types/sanity.types";
 
-// -----------------------------------------------------------------------------
-// Portfolio-related Types
-// -----------------------------------------------------------------------------
 export interface ContentCardProps {
     item: {
         category: string;
@@ -32,3 +30,12 @@ export interface PortfolioFilterProps {
 export interface PortfolioGridProps {
     portfolios: Portfolio[];
 }
+
+export type ProjectLike = {
+    _id?: string;
+    name?: string;
+    category?: string;
+    description?: string;
+    image?: string | SanityImage;
+    link?: string;
+};

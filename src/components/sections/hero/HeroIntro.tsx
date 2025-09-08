@@ -3,20 +3,26 @@
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
-import { data } from "@/data/data";
 import { useHeroAnimationContext } from "@/context/HeroAnimationContext";
+import { Profile } from "@/types/sanity.types";
 
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import AnimatedTextCharacter from "@/components/ui/AnimatedTextCharacter";
 
-const HeroIntro: React.FC = memo(() => {
-    const { profile } = data;
+interface HeroIntroProps {
+    profile?: Profile;
+}
+
+const HeroIntro: React.FC<HeroIntroProps> = memo(({ profile }) => {
     const { timeline } = useHeroAnimationContext();
     const prefersReducedMotion = usePrefersReducedMotion();
 
-    const nameWords = useMemo(() => profile.name.split(" "), [profile.name]);
+    const name = profile?.name || "Your Name";
+    const nameWords = useMemo(() => name.split(" "), [name]);
     const firstName = nameWords[0];
     const restOfName = nameWords.slice(1);
+
+    const jobTitle = profile?.job_title || "Developer";
 
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
@@ -115,7 +121,7 @@ const HeroIntro: React.FC = memo(() => {
                             baseDelay={(timeline.name?.sectionDelay || 0) + 200}
                         />
                     </b>
-                    { restOfName.map((word, wordIndex) => (
+                    {restOfName.map((word, wordIndex) => (
                         <motion.span
                             key={`name-${wordIndex}`}
                             className={"hero-lastname"}
@@ -131,7 +137,7 @@ const HeroIntro: React.FC = memo(() => {
                                 baseDelay={(timeline.name?.sectionDelay || 0) + ((wordIndex + 1) * 400)}
                             />
                         </motion.span>
-                    )) }
+                    ))}
                 </span>
             </motion.h1>
             <motion.div
@@ -154,7 +160,7 @@ const HeroIntro: React.FC = memo(() => {
                     }}
                 >
                     <AnimatedTextCharacter
-                        text={profile.job_title}
+                        text={jobTitle}
                         baseDelay={(timeline.job?.sectionDelay || 0) + 200}
                     />
                 </motion.strong>

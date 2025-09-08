@@ -1,6 +1,4 @@
-/* Animations */
 @layer components {
-    /* Animations now handled by Framer Motion */
 
     @keyframes fadeIn {
         0% {

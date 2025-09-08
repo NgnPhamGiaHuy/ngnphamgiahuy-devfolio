@@ -4,13 +4,15 @@ import Link from "next/link";
 import React, { memo } from "react";
 import { motion } from "framer-motion";
 
-import { data } from "@/data/data";
 import { StandardAnimations } from "@/config/animation.config";
 
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 
-const DownloadCVButton: React.FC = memo(() => {
-    const { profile } = data;
+interface DownloadCVButtonProps {
+    cvLink?: string;
+}
+
+const DownloadCVButton: React.FC<DownloadCVButtonProps> = memo(({ cvLink }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
     const containerVariants = StandardAnimations.springUp(prefersReducedMotion, 30);
@@ -26,7 +28,7 @@ const DownloadCVButton: React.FC = memo(() => {
             role={"group"}
             aria-label={"Action buttons"}
         >
-            <Link href={profile.cv_link || "#"} aria-label={"Download CV"}>
+            <Link href={cvLink || "#"} aria-label={"Download CV"}>
                 <motion.span
                     variants={buttonVariants}
                     className={"primary-button"}

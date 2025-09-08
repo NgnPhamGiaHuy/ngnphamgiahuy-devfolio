@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 
 import { data } from "@/data/data";
+import { Project } from "@/types/sanity.types";
+import type { ProjectLike } from "@/types/portfolio.types";
 
 import usePortfolioFilter from "@/hooks/usePortfolioFilter";
 import Wrapper from "@/components/sections/wrapper/Wrapper";
@@ -13,11 +15,20 @@ import PortfolioFilter from "@/components/sections/work/PortfolioFilter";
 
 interface WorkProps {
     resetAnimationOnView?: boolean;
+    projects?: Project[];
 }
 
-const Work: React.FC<WorkProps> = ({ resetAnimationOnView }) => {
-    const { portfolios } = data;
-    const { categories, activeCategory, filteredPortfolios, handleCategoryChange } = usePortfolioFilter(portfolios);
+const Work: React.FC<WorkProps> = ({ resetAnimationOnView, projects = [] }) => {
+    const projectItems: ProjectLike[] = (projects && projects.length > 0)
+        ? (projects as ProjectLike[])
+        : (data.portfolios as ProjectLike[]);
+
+    const normalizedItems = projectItems.map(p => ({
+        ...p,
+        category: p.category ?? "Uncategorized",
+    }));
+
+    const { categories, activeCategory, filteredPortfolios, handleCategoryChange } = usePortfolioFilter(normalizedItems);
 
     return (
         <Wrapper title={"Portfolio"} subtitle={"My Cases"} background={"gradientUp"} hasSectionBodyPadding={false} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
