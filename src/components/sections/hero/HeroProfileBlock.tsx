@@ -1,17 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity";
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
-import { Profile } from "@/types/sanity.types";
-import { HeroProfileBlockProps } from "@/types/hero.types";
-import { DEFAULT_PATTERN_LAYERS, DEFAULT_STATS } from "@/config/hero.config";
-
-import StatCard from "@/components/ui/cards/StatCard";
-import HeroLayer from "@/components/sections/hero/HeroLayer";
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import { usePrefersReducedMotion } from "@/hooks";
+import { StatCard, HeroLayer } from "@/components";
+import { HeroProfileBlockProps, Profile } from "@/types";
+import { DEFAULT_PATTERN_LAYERS, DEFAULT_STATS } from "@/config";
+import { processImage } from "@/utils";
 
 interface ExtendedHeroProfileBlockProps extends HeroProfileBlockProps {
     profile?: Profile;
@@ -20,9 +17,11 @@ interface ExtendedHeroProfileBlockProps extends HeroProfileBlockProps {
 const HeroProfileBlock: React.FC<ExtendedHeroProfileBlockProps> = memo(({ className = "", profile, patternLayers = DEFAULT_PATTERN_LAYERS, variants = {}, initial = "", animate = "", transition = {} }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
-    const profileImageUrl = profile?.profile_image
-        ? urlFor(profile.profile_image).width(600).height(600).url()
-        : "/images/profile2.png";
+    const { url: profileImageUrl, alt: profileImageAlt } = processImage(
+        profile?.profile_image,
+        { width: 600, height: 600, fallbackImage: "/images/profile2.png" },
+        "Professional profile picture"
+    );
 
     const stats = useMemo(() => {
         if (!profile) return DEFAULT_STATS;
@@ -109,16 +108,16 @@ const HeroProfileBlock: React.FC<ExtendedHeroProfileBlockProps> = memo(({ classN
             aria-label={"Profile image with professional statistics"}
         >
             <motion.div
-                className={"hero-profile-image-container relative h-full w-full"}
+                className={"flex items-center justify-center"}
                 variants={imageVariants}
                 initial={"hidden"}
                 animate={"visible"}
             >
                 <Image
                     src={profileImageUrl}
-                    alt={profile?.profile_image?.alt || "Professional profile picture"}
-                    width={600}
-                    height={600}
+                    alt={profileImageAlt}
+                    width={680}
+                    height={800}
                     className={"hero-profile-image"}
                     priority
                 />

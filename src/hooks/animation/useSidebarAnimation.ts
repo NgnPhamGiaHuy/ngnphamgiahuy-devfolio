@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useState, useEffect, useCallback } from "react";
 
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import { usePrefersReducedMotion } from "@/hooks";
 
 const useSidebarAnimation = (isMenuOpen: boolean) => {
     const prefersReducedMotion = usePrefersReducedMotion();

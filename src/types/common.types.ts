@@ -52,8 +52,3 @@ export interface GenericSwiperProps<T> {
     renderItem: (item: T, index: number) => React.ReactNode;
 }
 
-export interface SkillCardProps {
-    item: { name: string; description: string; experience_years: number };
-    variants?: any;
-    prefersReducedMotion?: boolean;
-}

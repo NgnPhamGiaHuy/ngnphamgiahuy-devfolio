@@ -5,7 +5,7 @@
     }
 
     .content-card-inner {
-        @apply mt-0 px-[30px] py-[35px] bg-white rounded-[18px] opacity-100 transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] overflow-hidden relative;
+        @apply w-full h-full mt-0 px-[30px] py-[35px] bg-white rounded-[18px] opacity-100 transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] overflow-hidden relative;
     }
 
     .content-card-category {
@@ -21,7 +21,7 @@
     }
 
     .content-card-description {
-        @apply min-h-[175px] opacity-80;
+        @apply min-h-[175px] flex-1 opacity-80;
     }
 
     .content-card-link {

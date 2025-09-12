@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { SocialLinksProps } from "@/types/social.types";
+import { SocialLinksProps } from "@/types";
 
 const SocialLinks: React.FC<SocialLinksProps> = ({ links, containerMargin = "m-0", iconSize = "size-5", iconMargin = "m-0", textColor = "text-black", hoverColor = "hover:text-primary", className = "" }) => {
     return (

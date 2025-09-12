@@ -1,19 +1,14 @@
 import React from "react";
 
-import { Pricing } from "@/data/data";
-
-import PricingCard from "@/components/ui/cards/PricingCard";
-
-interface PricingGridProps {
-    pricing: Pricing[];
-}
+import { PricingCard } from "@/components";
+import type { PricingGridProps } from "@/types";
 
 const PricingGrid: React.FC<PricingGridProps> = ({ pricing }) => {
     return (
         <div className={"pricing-grid"}>
-            { pricing.map((item, index) => (
+            {pricing.map((item, index) => (
                 <PricingCard key={index} item={item} />
-            )) }
+            ))}
         </div>
     );
 };

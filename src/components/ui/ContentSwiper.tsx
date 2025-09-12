@@ -8,10 +8,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import React, { useEffect, useState, useRef } from "react";
 import { Pagination, EffectFade, Keyboard, A11y } from "swiper/modules";
 
-import { GenericSwiperProps } from "@/types/common.types";
-import { StandardAnimations } from "@/config/animation.config";
-
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import { GenericSwiperProps } from "@/types";
+import { StandardAnimations } from "@/config";
+import { usePrefersReducedMotion } from "@/hooks";
 
 const ContentSwiper = <T,>({ items, spaceBetween = 40, renderItem }: GenericSwiperProps<T>) => {
     const prefersReducedMotion = usePrefersReducedMotion();

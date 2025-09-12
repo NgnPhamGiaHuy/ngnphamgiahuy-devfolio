@@ -2,10 +2,9 @@
 
 import React from "react";
 
-import useContactForm from "@/hooks/useContactForm";
+import { useContactForm } from "@/hooks";
 
-import StatusMessage from "@/components/ui/StatusMessage";
-import ContactFormFields from "@/components/ui/contact/ContactFormFields";
+import { StatusMessage, ContactFormFields } from "@/components";
 
 const ContactForm: React.FC = () => {
     const { register, handleSubmit, errors, isSubmitting, submitStatus, onSubmit, watch } = useContactForm();

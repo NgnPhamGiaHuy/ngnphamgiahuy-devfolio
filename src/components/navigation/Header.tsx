@@ -2,16 +2,11 @@
 
 import React, { useRef } from "react";
 
-import { HeaderProps } from "@/types/header.types";
-import { getHeaderClasses } from "@/utils/headerUtils";
+import { HeaderProps } from "@/types";
+import { getHeaderClasses } from "@/utils";
 
-import useTheme from "@/hooks/useTheme";
-import useMenuState from "@/hooks/useMenuState";
-import useHeaderScroll from "@/hooks/useHeaderScroll";
-import Sidebar from "@/components/navigation/Sidebar";
-import HeaderLogo from "@/components/navigation/headers/HeaderLogo";
-import HeaderThemeToggle from "@/components/navigation/headers/HeaderThemeToggle";
-import HeaderMenuToggle from "@/components/navigation/headers/HeaderMenuToggle";
+import { useTheme, useMenuState, useHeaderScroll } from "@/hooks";
+import { Sidebar, HeaderLogo, HeaderThemeToggle, HeaderMenuToggle } from "@/components";
 
 const Header: React.FC<HeaderProps> = ({ className, logo = "Portfolio" }) => {
     const headerRef = useRef<HTMLElement>(null);

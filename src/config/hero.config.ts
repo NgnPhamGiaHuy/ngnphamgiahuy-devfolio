@@ -1,4 +1,4 @@
-import { HeroLayerProps, StatInfo } from "@/types/hero.types";
+import { HeroLayerProps, StatInfo } from "@/types";
 
 export const HERO_CONFIG = {
     PATTERN_LAYERS: [

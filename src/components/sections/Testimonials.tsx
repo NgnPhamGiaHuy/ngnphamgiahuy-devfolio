@@ -1,28 +1,25 @@
 "use client"
 
-import React from "react";
+import React, { useMemo } from "react";
 
-import Wrapper from "@/components/sections/wrapper/Wrapper";
-import ContentSwiper from "@/components/ui/ContentSwiper";
-import BackgroundText from "@/components/ui/BackgroundText";
-
-import { data } from "@/data/data";
-
-import QuoteCard from "@/components/ui/cards/QuoteCard";
+import { data } from "@/data";
+import { Testimonial } from "@/types";
+import { Wrapper, ContentSwiper, BackgroundText, QuoteCard } from "@/components";
 
 interface TestimonialsProps {
+    testimonials: Testimonial[];
     resetAnimationOnView?: boolean;
 }
 
-const Testimonials: React.FC<TestimonialsProps> = ({ resetAnimationOnView }) => {
-    const { testimonials } = data;
+const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, resetAnimationOnView }) => {
+    const testimonialsData = useMemo(() => testimonials?.length ? testimonials : data.testimonials, [testimonials]);
 
     return (
         <Wrapper title={"Testimonials"} subtitle={"What Customers Say"} background={"none"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"items-wrapper"}>
                 <div className={"items-content-wrapper"}>
                     <ContentSwiper
-                        items={testimonials}
+                        items={testimonialsData}
                         spaceBetween={40}
                         renderItem={(item, index) => (
                             <QuoteCard key={index} item={item} />

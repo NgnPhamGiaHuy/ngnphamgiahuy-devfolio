@@ -1,17 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
 
-import { data } from "@/data/data";
+import { data } from "@/data";
+import type { PricingSectionProps } from "@/types";
+import { Wrapper, PricingGrid, BackgroundText } from "@/components";
 
-import Wrapper from "@/components/sections/wrapper/Wrapper";
-import PricingGrid from "@/components/ui/grids/PricingGrid";
-import BackgroundText from "@/components/ui/BackgroundText";
-
-interface PricingProps {
-    resetAnimationOnView?: boolean;
-}
-
-const Pricing: React.FC<PricingProps> = ({ resetAnimationOnView }) => {
-    const { pricing } = data;
+const Pricing: React.FC<PricingSectionProps> = ({ pricing, resetAnimationOnView }) => {
+    const pricingData = useMemo(() => pricing?.length ? pricing : data.pricing, [pricing]);
 
     return (
         <Wrapper title={"Pricing"} subtitle={"My Price Board"} background={"none"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
@@ -19,7 +13,7 @@ const Pricing: React.FC<PricingProps> = ({ resetAnimationOnView }) => {
                 <div className={"items-content-wrapper"}>
                     <div className={"w-full text-left"}>
                         <div className={"mx-[-20px] flex flex-wrap"}>
-                            <PricingGrid pricing={pricing} />
+                            <PricingGrid pricing={pricingData} />
                         </div>
                     </div>
                 </div>

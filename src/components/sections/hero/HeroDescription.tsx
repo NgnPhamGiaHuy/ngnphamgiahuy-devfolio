@@ -3,13 +3,11 @@
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
-import { generateSocialLinks } from "@/utils/socialLinks";
-import { useHeroAnimationContext } from "@/context/HeroAnimationContext";
-import { Profile } from "@/types/sanity.types";
-
-import SocialLinks from "@/components/ui/SocialLinks";
-import AnimatedTextCharacter from "@/components/ui/AnimatedTextCharacter";
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import { Profile } from "@/types";
+import { generateSocialLinks } from "@/utils";
+import { usePrefersReducedMotion } from "@/hooks";
+import { useHeroAnimationContext } from "@/context";
+import { SocialLinks, AnimatedTextCharacter } from "@/components";
 
 interface HeroDescriptionProps {
     profile?: Profile;

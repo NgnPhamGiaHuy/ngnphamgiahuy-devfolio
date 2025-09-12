@@ -1,9 +1,11 @@
+"use client";
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { API_CONFIG, FORM_MESSAGES } from "@/config/contactForm.config";
-import { ContactFormData, contactFormSchema } from "@/utils/contactFormSchema";
+import { API_CONFIG, FORM_MESSAGES } from "@/config";
+import { ContactFormData, contactFormSchema } from "@/utils";
 
 const useContactForm = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);

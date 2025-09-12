@@ -1,27 +1,21 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
 
-import { data } from "@/data/data";
+import { data } from "@/data";
+import { BlogPost, BlogSectionProps } from "@/types";
+import { BlogCard, BackgroundText, Wrapper } from "@/components";
 
-import BlogCard from "@/components/ui/cards/BlogCard";
-import BackgroundText from "@/components/ui/BackgroundText";
-import Wrapper from "@/components/sections/wrapper/Wrapper";
-
-interface BlogProps {
-    resetAnimationOnView?: boolean;
-}
-
-const Blog: React.FC<BlogProps> = ({ resetAnimationOnView }) => {
-    const { blogs } = data;
+const Blog: React.FC<BlogSectionProps> = ({ blogs, resetAnimationOnView }) => {
+    const blogsData: BlogPost[] = useMemo(() => blogs?.length ? blogs : data.blogs, [blogs]);
 
     return (
         <Wrapper title={"Latest Blog"} subtitle={"My Articles and Advice"} background={"gradientUp"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"blog-wrapper"}>
                 <div className={"blog-inner"}>
                     <div className={"blog-grid"}>
-                        { blogs.slice(0, 3).map((blog, index) => (
+                        {blogsData.slice(0, 3).map((blog, index) => (
                             <BlogCard key={index} blog={blog} />
-                        )) }
+                        ))}
                     </div>
                     <div className={"blog-cta-container"}>
                         <Link href={"/"}>

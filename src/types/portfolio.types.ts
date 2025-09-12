@@ -1,5 +1,4 @@
-import { Portfolio } from "@/data/data";
-import { SanityImage } from "@/types/sanity.types";
+import { SanityImage } from "@/types";
 
 export interface ContentCardProps {
     item: {
@@ -28,7 +27,7 @@ export interface PortfolioFilterProps {
 }
 
 export interface PortfolioGridProps {
-    portfolios: Portfolio[];
+    portfolios: ProjectLike[];
 }
 
 export type ProjectLike = {

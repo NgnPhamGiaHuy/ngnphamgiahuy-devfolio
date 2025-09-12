@@ -3,11 +3,11 @@
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
-import { useHeroAnimationContext } from "@/context/HeroAnimationContext";
-import { Profile } from "@/types/sanity.types";
+import { useHeroAnimationContext } from "@/context";
+import { Profile } from "@/types";
 
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
-import AnimatedTextCharacter from "@/components/ui/AnimatedTextCharacter";
+import { usePrefersReducedMotion } from "@/hooks";
+import { AnimatedTextCharacter } from "@/components";
 
 interface HeroIntroProps {
     profile?: Profile;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { VLineBlockProps } from "@/types/common.types";
+import { VLineBlockProps } from "@/types";
 
 const VLineBlock: React.FC<VLineBlockProps> = ({ top = "0", right = "0", bottom = "0", left = "0", width = "2px", shadow = "before:shadow-[5px_5px_0_rgb(0_0_0/0.2)] after:shadow-[5px_5px_0_rgb(0_0_0/0.2)]", showPattern = true, className = "" }) => {
     const style: React.CSSProperties = { width, top, right, bottom, left, position: "absolute" };

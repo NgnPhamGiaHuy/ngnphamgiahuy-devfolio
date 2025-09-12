@@ -1,9 +1,9 @@
 import React from "react";
 
-import { data } from "@/data/data";
-import { generateSocialLinks } from "@/utils/socialLinks";
+import { data } from "@/data";
+import { generateSocialLinks } from "@/utils";
 
-import SocialLinks from "@/components/ui/SocialLinks";
+import { SocialLinks } from "@/components";
 
 const Footer: React.FC = () => {
     const { profile } = data;
@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
                 <div className={"max-w-[1300px] mx-auto flex flex-wrap relative"}>
                     <div className={"w-full md:w-1/3 min-h-[1px] relative"}>
                         <div className={"w-full p-[10px] flex flex-wrap items-center content-center relative"}>
-                            <SocialLinks links={socialLinks} iconMargin={"mr-[15px]"} iconSize={"size-[22px]"} className={"w-full max-md:text-center"}/>
+                            <SocialLinks links={socialLinks} iconMargin={"mr-[15px]"} iconSize={"size-[22px]"} className={"w-full max-md:text-center"} />
                         </div>
                     </div>
                     <div className={"w-full md:w-1/3 min-h-[1px] relative"}>

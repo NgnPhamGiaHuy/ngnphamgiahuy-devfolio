@@ -1,17 +1,16 @@
-import { Variants } from "framer-motion";
-import { easeInOut, easeOut, easeIn, circOut, circInOut, backOut, backInOut } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-import { AnimationConfig } from "@/types/animation.types";
+import { AnimationConfig } from "@/types";
 
 export const ANIMATION_CONFIG = {
     EASING: {
-        easeInOut,
-        easeOut,
-        easeIn,
-        circOut,
-        circInOut,
-        backOut,
-        backInOut
+        easeInOut: "easeInOut",
+        easeOut: "easeOut",
+        easeIn: "easeIn",
+        circOut: "circOut",
+        circInOut: "circInOut",
+        backOut: "backOut",
+        backInOut: "backInOut"
     },
 
     DURATION: {

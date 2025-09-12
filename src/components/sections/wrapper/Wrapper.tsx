@@ -4,11 +4,10 @@ import clsx from "clsx";
 import { motion, useInView } from "framer-motion";
 import React, { useRef, useState, useEffect } from "react";
 
-import { SectionWrapperProps } from "@/types/section.types";
-import { containerVariants, backgroundByName, vlinePositions } from "@/config/sectionWrapper.config";
+import { SectionWrapperProps } from "@/types";
+import { containerVariants, backgroundByName, vlinePositions } from "@/config";
 
-import VLineBlock from "@/components/ui/VLineBlock";
-import WrapperHeader from "@/components/sections/wrapper/WrapperHeader";
+import { VLineBlock, WrapperHeader } from "@/components";
 
 const Wrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = "", background = "gradientUp", sectionContentMaxWidth = "1300px", hasSectionBodyPadding = true, vlinePosition = "right", resetAnimationOnView = false, children }) => {
     const sectionRef = useRef(null);

@@ -1,29 +1,22 @@
 "use client"
 
-import React from "react";
 import Link from "next/link";
+import React, { useMemo } from "react";
 
-import { data } from "@/data/data";
-import { Project } from "@/types/sanity.types";
-import type { ProjectLike } from "@/types/portfolio.types";
-
-import usePortfolioFilter from "@/hooks/usePortfolioFilter";
-import Wrapper from "@/components/sections/wrapper/Wrapper";
-import BackgroundText from "@/components/ui/BackgroundText";
-import PortfolioGrid from "@/components/sections/work/PortfolioGrid";
-import PortfolioFilter from "@/components/sections/work/PortfolioFilter";
+import { data } from "@/data";
+import { Project } from "@/types";
+import { usePortfolioFilter } from "@/hooks";
+import { Wrapper, BackgroundText, PortfolioGrid, PortfolioFilter } from "@/components";
 
 interface WorkProps {
-    resetAnimationOnView?: boolean;
     projects?: Project[];
+    resetAnimationOnView?: boolean;
 }
 
-const Work: React.FC<WorkProps> = ({ resetAnimationOnView, projects = [] }) => {
-    const projectItems: ProjectLike[] = (projects && projects.length > 0)
-        ? (projects as ProjectLike[])
-        : (data.portfolios as ProjectLike[]);
+const Portfolios: React.FC<WorkProps> = ({ resetAnimationOnView, projects }) => {
+    const projectsData = useMemo(() => projects?.length ? projects : data.projects ,[projects]);
 
-    const normalizedItems = projectItems.map(p => ({
+    const normalizedItems = projectsData.map(p => ({
         ...p,
         category: p.category ?? "Uncategorized",
     }));
@@ -54,4 +47,4 @@ const Work: React.FC<WorkProps> = ({ resetAnimationOnView, projects = [] }) => {
     );
 };
 
-export default Work;
+export default Portfolios;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { memo } from "react";
 
-import { HeaderLogoProps } from "@/types/header.types";
+import { HeaderLogoProps } from "@/types";
 
 const HeaderLogo: React.FC<HeaderLogoProps> = memo(({ logo, className }) => {
     return (

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -42,8 +44,8 @@ const StatusMessage: React.FC<StatusMessageProps> = ({ submitStatus }) => {
                 transition={{ duration: 0.3 }}
             >
                 <div className={"status-message-content"}>
-                    { icon }
-                    <span>{ submitStatus.message }</span>
+                    {icon}
+                    <span>{submitStatus.message}</span>
                 </div>
             </motion.div>
         </AnimatePresence>

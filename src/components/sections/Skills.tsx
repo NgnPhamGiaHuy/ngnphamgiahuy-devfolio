@@ -1,24 +1,18 @@
 "use client"
 
-import React from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 
-import { data } from "@/data/data";
-import { StandardAnimations } from "@/config/animation.config";
+import { data } from "@/data";
+import { SkillSectionProps } from "@/types";
+import { StandardAnimations } from "@/config";
+import { usePrefersReducedMotion } from "@/hooks";
+import { Wrapper, SkillCard, BackgroundText } from "@/components";
 
-import Wrapper from "@/components/sections/wrapper/Wrapper";
-import SkillCard from "@/components/ui/cards/SkillCard";
-import BackgroundText from "@/components/ui/BackgroundText";
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+const Skills: React.FC<SkillSectionProps> = ({ resetAnimationOnView, skills }) => {
+    const skillsData = useMemo(() => skills?.length ? skills : data.skills, [skills])
 
-interface SkillsProps {
-    resetAnimationOnView?: boolean;
-}
-
-const Skills: React.FC<SkillsProps> = ({ resetAnimationOnView }) => {
-    const { skills } = data;
     const prefersReducedMotion = usePrefersReducedMotion();
-
     const itemVariants = StandardAnimations.springUp(prefersReducedMotion, 30);
     const containerVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
 
@@ -33,9 +27,9 @@ const Skills: React.FC<SkillsProps> = ({ resetAnimationOnView }) => {
                 role={"list"}
                 aria-label={"List of professional skills"}
             >
-                { skills.map((item, index) => (
+                {skillsData.map((item, index) => (
                     <SkillCard key={index} item={item} variants={itemVariants} prefersReducedMotion={prefersReducedMotion} />
-                )) }
+                ))}
             </motion.div>
             <BackgroundText text={"Skills"} />
         </Wrapper>

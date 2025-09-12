@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React, { memo } from "react";
 
-import { SidebarMenuItemProps } from "@/types/sidebar.types";
-import { useKeyboardHandler } from "@/utils/keyboardUtils";
+import { SidebarMenuItemProps } from "@/types";
+import { useKeyboardHandler } from "@/utils";
 
 const SidebarMenuItem: React.FC<SidebarMenuItemProps> = memo(({ text, index, sidebarEntered, prefersReducedMotion, href = "/", onClick }) => {
     const itemClasses = `sidebar-menu-item ${sidebarEntered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`;

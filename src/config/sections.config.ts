@@ -1,4 +1,4 @@
-import { SectionConfig } from "@/types/section.types";
+import { SectionConfig } from "@/types";
 
 export const SECTIONS_CONFIG: SectionConfig[] = [
     {

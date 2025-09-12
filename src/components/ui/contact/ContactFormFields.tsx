@@ -2,11 +2,10 @@ import clsx from "clsx";
 import React from "react";
 import { UseFormRegisterReturn, FieldErrors, UseFormWatch } from "react-hook-form";
 
-import FormInput from "@/components/ui/forms/FormInput";
-import SubmitButton from "@/components/ui/button/SubmitButton";
+import { FormInput, SubmitButton } from "@/components";
 
-import { FORM_FIELDS } from "@/config/contactForm.config";
-import { ContactFormData } from "@/utils/contactFormSchema";
+import { FORM_FIELDS } from "@/config";
+import { ContactFormData } from "@/utils";
 
 interface ContactFormFieldsProps {
     register: (name: keyof ContactFormData) => UseFormRegisterReturn;

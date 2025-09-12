@@ -3,9 +3,9 @@
 import React, { useEffect } from "react";
 import { motion, useAnimationControls } from "framer-motion";
 
-import { BackgroundTextProps } from "@/types/common.types";
+import { BackgroundTextProps } from "@/types";
 
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import { usePrefersReducedMotion } from "@/hooks";
 
 const BackgroundText: React.FC<BackgroundTextProps> = ({ text, top = "", right = "", bottom = "0", left = "0", className = "" }) => {
     const controls = useAnimationControls();

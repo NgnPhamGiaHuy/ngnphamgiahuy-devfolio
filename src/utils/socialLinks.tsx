@@ -1,5 +1,5 @@
 import React from "react";
-import { SocialLink, SocialPlatform, RawSocialLink } from "@/types/social.types";
+import { SocialLink, SocialPlatform, RawSocialLink } from "@/types";
 import { CodeBracketIcon, GlobeAltIcon, UserIcon } from "@heroicons/react/24/outline";
 
 export const getIconForPlatform = (platform: SocialPlatform): React.ComponentType<React.ComponentProps<"svg">> => {

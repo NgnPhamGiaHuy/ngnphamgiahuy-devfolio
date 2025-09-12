@@ -1,50 +1,15 @@
 import React from "react";
-import { Metadata } from "next";
 
-import { renderSection } from "@/utils/sectionComponents";
-import { SECTIONS_CONFIG } from "@/config/sections.config";
+import { renderSection } from "@/utils";
+import { SECTIONS_CONFIG } from "@/config";
 
-import { sanityFetch } from "@/lib/sanity";
-import { homePageDataQuery } from "@/lib/queries";
-import type { HomePageData } from "@/types/cms.types";
-import { SiteSettings, Profile } from "@/types/sanity.types";
+import { sanityFetch } from "@/lib";
+import { homePageDataQuery } from "@/lib";
+import type { HomePageData } from "@/types";
 
-import Header from "@/components/navigation/Header";
-import Footer from "@/components/navigation/Footer";
-import ScrollToTopButton from "@/components/ui/button/ScrollToTopButton";
+import { Header, Footer, ScrollToTopButton } from "@/components";
 
 export const revalidate = 60;
-export async function generateMetadata(): Promise<Metadata> {
-    const data = await sanityFetch<{ profile: Pick<Profile, "metaTitle" | "metaDescription" | "ogImage">, siteSettings: Pick<SiteSettings, "metaTitle" | "metaDescription" | "ogImage"> }>({
-        query: `{
-      "profile": *[_type == "profile"][0] {
-        metaTitle,
-        metaDescription,
-        ogImage
-      },
-      "siteSettings": *[_type == "siteSettings"][0] {
-        metaTitle,
-        metaDescription,
-        ogImage
-      }
-    }`,
-        tags: ["profile", "siteSettings"],
-    });
-
-    const { profile, siteSettings } = data;
-
-    const title = profile?.metaTitle || siteSettings?.metaTitle || "Portfolio";
-    const description = profile?.metaDescription || siteSettings?.metaDescription || "";
-    const ogImageUrl = undefined;
-
-    return {
-        title,
-        description,
-        openGraph: ogImageUrl ? {
-            images: [{ url: ogImageUrl, width: 1200, height: 630 }],
-        } : undefined,
-    };
-}
 
 export default async function Home() {
     const data = await sanityFetch<HomePageData>({

@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 
-import { HeroLayerProps } from "@/types/hero.types";
+import { HeroLayerProps } from "@/types";
 
 const HeroLayer: React.FC<HeroLayerProps> = memo(({ width, height, top, right, bottom, left }) => {
     const style: React.CSSProperties = useMemo(() => ({

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { FORM_MESSAGES } from "@/config/contactForm.config";
+import { FORM_MESSAGES } from "@/config";
 
 export const contactFormSchema = z.object({
     name: z.string().min(1, { message: FORM_MESSAGES.REQUIRED.NAME }),

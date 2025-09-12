@@ -2,15 +2,13 @@
 
 import React, { memo } from "react";
 
-import { data } from "@/data/data";
-import { SidebarProps } from "@/types/sidebar.types";
-import { generateSocialLinks } from "@/utils/socialLinks";
+import { data } from "@/data";
+import { SidebarProps } from "@/types";
+import { generateSocialLinks } from "@/utils";
 
-import SIDEBAR_CONFIG from "@/config/sidebar.config";
-import useSidebarAnimation from "@/hooks/animation/useSidebarAnimation";
-import VLineBlock from "@/components/ui/VLineBlock";
-import SocialLinks from "@/components/ui/SocialLinks";
-import SidebarMenuItem from "@/components/navigation/sidebars/SidebarMenuItem";
+import { SIDEBAR_CONFIG } from "@/config";
+import { useSidebarAnimation } from "@/hooks";
+import { VLineBlock, SocialLinks, SidebarMenuItem } from "@/components";
 
 const Sidebar: React.FC<SidebarProps> = memo(({ isMenuOpen, onMenuItemClick }) => {
     const { profile } = data;

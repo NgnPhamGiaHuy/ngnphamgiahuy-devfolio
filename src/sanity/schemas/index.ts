@@ -1,14 +1,14 @@
-import project from "@/sanity/schemas/project";
-import skill from "@/sanity/schemas/skill";
-import service from "@/sanity/schemas/service";
-import profile from "@/sanity/schemas/profile";
-import experience from "@/sanity/schemas/experience";
-import education from "@/sanity/schemas/education";
-import testimonial from "@/sanity/schemas/testimonial";
-import pricing from "@/sanity/schemas/pricing";
-import blogPost from "@/sanity/schemas/blogPost";
-import contactItem from "@/sanity/schemas/contactItem";
-import siteSettings from "@/sanity/schemas/siteSettings";
+import project from "./project";
+import skill from "./skill";
+import service from "./service";
+import profile from "./profile";
+import experience from "./experience";
+import education from "./education";
+import testimonial from "./testimonial";
+import pricing from "./pricing";
+import blogPost from "./blogPost";
+import contactItem from "./contactItem";
+import siteSettings from "./siteSettings";
 
 export const schemaTypes = [
     project,

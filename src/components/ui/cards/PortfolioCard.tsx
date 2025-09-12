@@ -4,22 +4,21 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { SanityImage } from "@/types/sanity.types";
-import { urlFor } from "@/lib/sanity";
-import { ProjectLike } from "@/types/portfolio.types";
+
+import { Project } from "@/types";
+import { processPortfolioImage } from "@/utils";
 
 interface PortfolioCardProps {
-    portfolio: ProjectLike;
     index: number;
+    portfolio: Project;
 }
 
 const PortfolioCard: React.FC<PortfolioCardProps> = ({ portfolio, index }) => {
-    const resolvedUrl = (portfolio.image && typeof portfolio.image !== "string")
-        ? urlFor(portfolio.image as SanityImage).width(600).height(400).url()
-        : (portfolio.image as string | undefined);
-    const imageUrl: string = resolvedUrl || "/images/profile2.png";
-
-    const imageAlt = (typeof portfolio.image !== "string" && (portfolio.image as SanityImage)?.alt) || portfolio.name || "Portfolio project";
+    const { url: imageUrl, alt: imageAlt } = processPortfolioImage(
+        portfolio.image,
+        portfolio.name || "Untitled Project",
+        { width: 600, height: 400, fallbackImage: "/images/profile2.png" }
+    );
 
     const linkHref = portfolio.link || "#";
 

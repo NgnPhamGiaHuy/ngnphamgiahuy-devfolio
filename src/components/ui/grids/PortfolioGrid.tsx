@@ -1,14 +1,15 @@
+"use client"
+
 import React from "react";
 import { motion, AnimatePresence, Target } from "framer-motion";
 
-import { StandardAnimations, Duration, Stagger } from "@/config/animation.config";
-
-import PortfolioCard from "@/components/ui/cards/PortfolioCard";
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
-import { ProjectLike } from "@/types/portfolio.types";
+import { Project } from "@/types";
+import { PortfolioCard } from "@/components";
+import { usePrefersReducedMotion } from "@/hooks";
+import { StandardAnimations, Duration, Stagger } from "@/config";
 
 interface PortfolioGridProps {
-    portfolios: ProjectLike[];
+    portfolios: Project[];
 }
 
 const PortfolioGrid: React.FC<PortfolioGridProps> = ({ portfolios = [] }) => {

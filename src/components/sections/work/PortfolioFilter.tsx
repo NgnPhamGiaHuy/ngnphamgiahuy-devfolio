@@ -1,11 +1,12 @@
+"use client";
+
 import clsx from "clsx";
 import React from "react";
 import { motion } from "framer-motion";
 
-import { PortfolioFilterProps } from "@/types/portfolio.types";
-import { StandardAnimations, Duration, Delay, Stagger } from "@/config/animation.config";
-
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import { PortfolioFilterProps } from "@/types";
+import { usePrefersReducedMotion } from "@/hooks";
+import { StandardAnimations, Duration, Delay, Stagger } from "@/config";
 
 const PortfolioFilter: React.FC<PortfolioFilterProps> = ({ categories, activeCategory, onCategoryChange }) => {
     const prefersReducedMotion = usePrefersReducedMotion();

@@ -3,10 +3,10 @@
 import React, { useMemo } from "react";
 import { motion, easeOut } from "framer-motion";
 
-import { AnimatedTextCharacterProps } from "@/types/common.types";
-import { Duration, Stagger } from "@/config/animation.config";
+import { AnimatedTextCharacterProps } from "@/types";
+import { Duration, Stagger } from "@/config";
 
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import { usePrefersReducedMotion } from "@/hooks";
 
 const AnimatedTextCharacter: React.FC<AnimatedTextCharacterProps> = ({ text, baseDelay = 0, className = "", containerClassName = "", staggerDelay = 40, duration = Duration.FAST }) => {
     const prefersReducedMotion = usePrefersReducedMotion();

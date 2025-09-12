@@ -1,53 +1,53 @@
-import React from "react";
+import React, { useMemo } from "react";
 
-import { data } from "@/data/data";
+import { data } from "@/data";
+import { Wrapper, Accordion, BackgroundText } from "@/components";
+import { Education, Experience, AccordionFieldMapping } from "@/types";
 
-import Wrapper from "@/components/sections/wrapper/Wrapper";
-import Accordion from "@/components/ui/accordion/Accordion";
-import BackgroundText from "@/components/ui/BackgroundText";
-
-type ResumeSectionConfig = {
-    label: string;
-    items: Array<{ heading: string; subheading: string; meta: string; content: string }>
+const educationFieldMapping: AccordionFieldMapping<Education> = {
+    meta: "year",
+    heading: "institution",
+    subheading: "degree",
+    content: "description"
 };
 
-const buildResumeSections = (): ResumeSectionConfig[] => ([
-    {
-        label: "Educational",
-        items: data.resume.education.map(edu => ({
-            heading: edu.institution,
-            subheading: edu.degree,
-            meta: edu.year,
-            content: edu.description
-        }))
-    },
-    {
-        label: "Experience",
-        items: data.resume.experience.map(exp => ({
-            heading: exp.company,
-            subheading: exp.title,
-            meta: exp.year,
-            content: exp.description
-        }))
-    }
-]);
+const experienceFieldMapping: AccordionFieldMapping<Experience> = {
+    meta: "year",
+    heading: "company",
+    subheading: "title",
+    content: "description"
+};
 
 interface ResumeProps {
+    experience: Experience[];
+    education: Education[];
     resetAnimationOnView?: boolean;
 }
 
-const Resume: React.FC<ResumeProps> = ({ resetAnimationOnView }) => {
-    const sections = buildResumeSections();
+const Resume: React.FC<ResumeProps> = ({ experience, education, resetAnimationOnView }) => {
+    const educationData = useMemo(() => education?.length ? education : data.education, [education]);
+    const experienceData = useMemo(() => experience?.length ? experience : data.experience, [experience]);
 
     return (
         <Wrapper title={"Resume"} subtitle={"My Story"} background={"gradientDown"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1360px"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
-            { sections.map((section, idx) => (
-                <div key={idx} className={"resume-section-wrapper"}>
-                    <div className={"resume-content-wrapper"}>
-                        <Accordion items={section.items} label={section.label} />
-                    </div>
+            <div className={"resume-section-wrapper"}>
+                <div className={"resume-content-wrapper"}>
+                    <Accordion
+                        items={educationData}
+                        label="Educational"
+                        fieldMapping={educationFieldMapping}
+                    />
                 </div>
-            )) }
+            </div>
+            <div className={"resume-section-wrapper"}>
+                <div className={"resume-content-wrapper"}>
+                    <Accordion
+                        items={experienceData}
+                        label="Experience"
+                        fieldMapping={experienceFieldMapping}
+                    />
+                </div>
+            </div>
             <BackgroundText text={"History"} />
         </Wrapper>
     );

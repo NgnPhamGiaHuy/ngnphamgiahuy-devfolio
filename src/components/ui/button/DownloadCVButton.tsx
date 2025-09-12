@@ -4,9 +4,9 @@ import Link from "next/link";
 import React, { memo } from "react";
 import { motion } from "framer-motion";
 
-import { StandardAnimations } from "@/config/animation.config";
+import { StandardAnimations } from "@/config";
 
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import { usePrefersReducedMotion } from "@/hooks";
 
 interface DownloadCVButtonProps {
     cvLink?: string;

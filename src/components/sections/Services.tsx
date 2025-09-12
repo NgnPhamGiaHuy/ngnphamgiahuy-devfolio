@@ -1,23 +1,21 @@
 "use client"
 
-import React from "react";
 import { motion } from "framer-motion";
+import React, { useMemo } from "react";
 
-import { data } from "@/data/data";
-import { StandardAnimations } from "@/config/animation.config";
-
-import Wrapper from "@/components/sections/wrapper/Wrapper";
-import ContentCard from "@/components/ui/cards/ContentCard";
-import ContentSwiper from "@/components/ui/ContentSwiper";
-import BackgroundText from "@/components/ui/BackgroundText";
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import { data } from "@/data";
+import { Service } from "@/types";
+import { StandardAnimations } from "@/config";
+import { usePrefersReducedMotion } from "@/hooks";
+import { Wrapper, ContentCard, ContentSwiper, BackgroundText } from "@/components";
 
 interface ServicesProps {
+    services?: Service[] | null;
     resetAnimationOnView?: boolean;
 }
 
-const Services: React.FC<ServicesProps> = ({ resetAnimationOnView }) => {
-    const { services } = data;
+const Services: React.FC<ServicesProps> = ({ resetAnimationOnView, services }) => {
+    const servicesData = useMemo(() => services?.length ? services : data.services, [services]);
 
     const prefersReducedMotion = usePrefersReducedMotion();
     const containerVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
@@ -36,7 +34,7 @@ const Services: React.FC<ServicesProps> = ({ resetAnimationOnView }) => {
                     variants={StandardAnimations.staggerChildren(prefersReducedMotion, 0.1, 0.2)}
                 >
                     <ContentSwiper
-                        items={services}
+                        items={servicesData}
                         renderItem={(item, index) => (
                             <ContentCard item={item} index={index} />
                         )}

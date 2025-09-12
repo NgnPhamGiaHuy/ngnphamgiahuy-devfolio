@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 
-import { WrapperHeaderProps } from "@/types/common.types";
+import { WrapperHeaderProps } from "@/types";
 
-import AnimatedTextCharacter from "@/components/ui/AnimatedTextCharacter";
+import { AnimatedTextCharacter } from "@/components";
 
 const WrapperHeader: React.FC<WrapperHeaderProps> = ({ title, subtitle, isInView = true }) => {
     const [animationKey, setAnimationKey] = useState(0);

@@ -27,7 +27,7 @@ export interface Project extends SanityDocument, SeoFields {
     name: string;
     category: string;
     description: string;
-    image: SanityImage;
+    image: SanityImage | string;
     link?: string;
     featured?: boolean;
     order?: number;
@@ -35,20 +35,20 @@ export interface Project extends SanityDocument, SeoFields {
 
 export interface Service extends SanityDocument {
     _type: "service";
-    category: string;
-    title: string;
-    description: string;
     icon?: string;
+    title: string;
     order?: number;
+    category: string;
+    description: string;
 }
 
 export interface Skill extends SanityDocument {
     _type: "skill";
     name: string;
-    experience_years: number;
-    description: string;
-    category?: string;
     order?: number;
+    category?: string;
+    description: string;
+    experience_years: number;
 }
 
 export interface Profile extends SanityDocument, SeoFields {
@@ -61,12 +61,12 @@ export interface Profile extends SanityDocument, SeoFields {
     location: string;
     experience_years: number;
     completed_projects: number;
-    profile_image: SanityImage;
+    profile_image: SanityImage | string;
     social_links: Array<{ platform: string; url: string }>;
     cv_link?: string;
 }
 
-export interface ExperienceItem extends SanityDocument {
+export interface Experience extends SanityDocument {
     _type: "experience";
     year: string;
     title: string;
@@ -75,7 +75,7 @@ export interface ExperienceItem extends SanityDocument {
     order?: number;
 }
 
-export interface EducationItem extends SanityDocument {
+export interface Education extends SanityDocument {
     _type: "education";
     year: string;
     degree: string;
@@ -89,7 +89,7 @@ export interface Testimonial extends SanityDocument {
     name: string;
     position: string;
     quote: string;
-    image: SanityImage;
+    image: SanityImage | string;
     order?: number;
 }
 
@@ -112,11 +112,12 @@ export interface BlogPost extends SanityDocument, SeoFields {
     title: string;
     date: string;
     excerpt: string;
+    link: string;
     slug: {
         _type: "slug";
         current: string;
     };
-    image: SanityImage;
+    image: SanityImage | string;
     content?: any[];
     categories?: string[];
 }

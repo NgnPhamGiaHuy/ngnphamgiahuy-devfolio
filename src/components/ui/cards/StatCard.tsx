@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StatCardProps } from "@/types/common.types";
+import { StatCardProps } from "@/types";
 
 const StatCard: React.FC<StatCardProps> = ({ value, label, highlight, className = "", width = "250px", height = "82px", margin = "m-0" }) => {
     const style: React.CSSProperties = { width, height };

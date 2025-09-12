@@ -1,247 +1,192 @@
-export interface Portfolio {
-    name: string;
-    category: string;
-    description: string;
-    image: string;
-    link: string;
-}
+import { MockDataType } from "@/types";
 
-export interface Service {
-    category: string;
-    title: string;
-    description: string;
-}
-
-export interface Skill {
-    name: string;
-    experience_years: number;
-    description: string;
-}
-
-export interface Profile {
-    name: string;
-    title: string;
-    subtitle: string;
-    job_title: string;
-    description: string;
-    location: string;
-    experience_years: number;
-    completed_projects: number;
-    profile_image: string;
-    social_links: Array<{ platform: string; url: string }>;
-    cv_link: string;
-}
-
-export interface Resume {
-    experience: Array<{
-        year: string;
-        title: string;
-        company: string;
-        description: string;
-    }>;
-    education: Array<{
-        year: string;
-        degree: string;
-        institution: string;
-        description: string;
-    }>;
-}
-
-export interface Testimonial {
-    name: string;
-    position: string;
-    quote: string;
-    image: string;
-}
-
-export interface Pricing {
-    plan: string;
-    price: string;
-    period: string;
-    description: string;
-    features: {
-        included: string[];
-        not_included: string[];
-    };
-    highlight?: boolean;
-}
-
-export interface BlogPost {
-    title: string;
-    date: string;
-    excerpt: string;
-    link: string;
-    image: string;
-}
-
-export interface ContactItem {
-    type: string;
-    value: string;
-}
-
-export interface AppData {
-    logo: string;
-    profile: Profile;
-    services: Service[];
-    skills: Skill[];
-    portfolios: Portfolio[];
-    resume: Resume;
-    testimonials: Testimonial[];
-    pricing: Pricing[];
-    blogs: BlogPost[];
-    contacts: ContactItem[];
-}
-
-export const data: AppData = {
+export const data: MockDataType = {
+    blogs: [
+        {
+            title: "Getting Started with Lorem Ipsum",
+            date: "2024-08-01",
+            excerpt: "Learn the fundamentals of lorem ipsum and how to build modern web applications.",
+            link: "#",
+            slug: {
+                _type: "slug",
+                current: "getting-started-with-lorem-ipsum"
+            },
+            image: "https://picsum.photos/600/400?random",
+            categories: ["Lorem", "Ipsum", "Tutorial"],
+            content: [],
+            metaTitle: "Getting Started with Lorem Ipsum - Best Practices",
+            metaDescription: "Comprehensive guide to lorem ipsum with modern patterns and best practices.",
+            _id: "blog-001",
+            _type: "blogPost",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-001",
+        },
+        {
+            title: "Advanced Lorem Patterns",
+            date: "2024-08-15",
+            excerpt: "Explore advanced lorem ipsum patterns and best practices for large-scale applications.",
+            link: "#",
+            slug: {
+                _type: "slug",
+                current: "advanced-lorem-patterns"
+            },
+            image: "https://picsum.photos/600/400?random",
+            categories: ["Lorem", "Patterns", "Best Practices"],
+            content: [],
+            metaTitle: "Advanced Lorem Patterns - Complete Guide",
+            metaDescription: "Discover advanced lorem patterns and how to use them in your projects.",
+            _id: "blog-002",
+            _type: "blogPost",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-002",
+        },
+        {
+            title: "Building Responsive Lorem with Dolor",
+            date: "2024-09-01",
+            excerpt: "Master the art of creating beautiful, responsive lorem ipsum with dolor sit amet.",
+            link: "#",
+            slug: {
+                _type: "slug",
+                current: "building-responsive-lorem-with-dolor"
+            },
+            image: "https://picsum.photos/600/400?random",
+            categories: ["Lorem", "Dolor", "Responsive"],
+            content: [],
+            metaTitle: "Building Responsive Lorem - Complete Guide",
+            metaDescription: "Learn how to build responsive lorem ipsum with practical examples.",
+            _id: "blog-003",
+            _type: "blogPost",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-003",
+        },
+        {
+            title: "State Management in Lorem Applications",
+            date: "2024-09-15",
+            excerpt: "A comprehensive guide to managing state in complex lorem applications using modern tools.",
+            link: "#",
+            slug: {
+                _type: "slug",
+                current: "state-management-in-lorem-applications"
+            },
+            image: "https://picsum.photos/600/400?random",
+            categories: ["Lorem", "State Management", "Applications"],
+            content: [],
+            metaTitle: "State Management in Lorem - Complete Guide",
+            metaDescription: "Learn the essential state management practices for lorem applications.",
+            _id: "blog-004",
+            _type: "blogPost",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-004",
+        },
+    ],
+    contacts: [
+        {
+            type: "email",
+            value: "lorem@example.com",
+            order: 1,
+            _id: "contact-001",
+            _type: "contactItem",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-001",
+        }, {
+            type: "phone",
+            value: "+00 123 456 789",
+            order: 2,
+            _id: "contact-002",
+            _type: "contactItem",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-002",
+        }, {
+            type: "location",
+            value: "Lorem Street, Ipsum City",
+            order: 3,
+            _id: "contact-003",
+            _type: "contactItem",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-003",
+        }, {
+            type: "office",
+            value: "Lorem Company HQ",
+            order: 4,
+            _id: "contact-004",
+            _type: "contactItem",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-004",
+        }
+    ],
+    education: [
+        {
+            _id: "edu-001",
+            _type: "education",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-001",
+            year: "2014 - 2018",
+            degree: "Lorem Ipsum Degree",
+            institution: "Lorem University",
+            description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+            order: 1
+        }, {
+            _id: "edu-002",
+            _type: "education",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-002",
+            year: "2012 - 2014",
+            degree: "Lorem Diploma",
+            institution: "Ipsum High School",
+            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+            order: 2
+        }
+    ],
+    experience: [
+        {
+            _id: "exp-001",
+            _type: "experience",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-001",
+            year: "2020 - Present",
+            title: "Lorem Developer",
+            company: "Lorem Corp",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            order: 1
+        }, {
+            _id: "exp-002",
+            _type: "experience",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-002",
+            year: "2018 - 2020",
+            title: "Lorem Engineer",
+            company: "Ipsum Studio",
+            description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            order: 2
+        }, {
+            _id: "exp-003",
+            _type: "experience",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-003",
+            year: "2016 - 2018",
+            title: "Lorem Specialist",
+            company: "Dolor Inc",
+            description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+            order: 3
+        }
+    ],
     logo: "NgnPham",
-    profile: {
-        name: "Ngn Huy",
-        title: "Lorem Title",
-        subtitle: "Lorem subtitle",
-        job_title: "Web developer",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        location: "Lorem City, Country",
-        experience_years: 12,
-        completed_projects: 330,
-        profile_image: "https://via.placeholder.com/300x300.png?text=Profile+Image",
-        social_links: [
-            { platform: "Facebook", url: "#" },
-            { platform: "GitHub", url: "#" },
-            { platform: "Linkedin", url: "#" }
-        ],
-        cv_link: "#"
-    },
-    services: [
-        {
-            category: "Lorem Category 1",
-            title: "Lorem Service 1",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque aliquam odio et faucibus."
-        },
-        {
-            category: "Lorem Category 2",
-            title: "Lorem Service 2",
-            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
-        },
-        {
-            category: "Lorem Category 3",
-            title: "Lorem Service 3",
-            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laborisam."
-        },
-        {
-            category: "Lorem Category 4",
-            title: "Lorem Service 4",
-            description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit."
-        },
-        {
-            category: "Lorem Category 5",
-            title: "Lorem Service 5",
-            description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-        }
-    ],
-    skills: [
-        { name: "Skill 1", experience_years: 2, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-        { name: "Skill 2", experience_years: 1, description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem." },
-        { name: "Skill 3", experience_years: 6, description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam." },
-        { name: "Skill 4", experience_years: 3, description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut." },
-        { name: "Skill 5", experience_years: 10, description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet." },
-        { name: "Skill 6", experience_years: 2, description: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit." }
-    ],
-    portfolios: [
-        {
-            name: "Lorem Project 1",
-            category: "Category 1",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod temporLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod temporLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.",
-            image: "https://picsum.photos/600/400?random",
-            link: "#"
-        },
-        {
-            name: "Lorem Project 2",
-            category: "Category 2",
-            description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
-            image: "https://picsum.photos/600/400?random",
-            link: "#"
-        },
-        {
-            name: "Lorem Project 3",
-            category: "Category 3",
-            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-            image: "https://picsum.photos/600/400?random",
-            link: "#"
-        },
-        {
-            name: "Lorem Project 4",
-            category: "Category 4",
-            description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            image: "https://picsum.photos/600/400?random",
-            link: "#"
-        },
-        {
-            name: "Lorem Project 5",
-            category: "Category 1",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod temporLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod temporLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.",
-            image: "https://picsum.photos/600/400?random",
-            link: "#"
-        },
-        {
-            name: "Lorem Project 6",
-            category: "Category 2",
-            description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
-            image: "https://picsum.photos/600/400?random",
-            link: "#"
-        },
-        {
-            name: "Lorem Project 7",
-            category: "Category 3",
-            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-            image: "https://picsum.photos/600/400?random",
-            link: "#"
-        },
-        {
-            name: "Lorem Project 8",
-            category: "Category 4",
-            description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            image: "https://picsum.photos/600/400?random",
-            link: "#"
-        }
-    ],
-    resume: {
-        experience: [
-            {
-                year: "2020 - Present",
-                title: "Senior Developer",
-                company: "Lorem Corp",
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            },
-            {
-                year: "2018 - 2020",
-                title: "Frontend Developer",
-                company: "Ipsum Studio",
-                description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            }
-        ],
-        education: [
-            {
-                year: "2014 - 2018",
-                degree: "Bachelor of Information Technology",
-                institution: "Lorem University",
-                description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
-            },
-            {
-                year: "2012 - 2014",
-                degree: "High School Diploma",
-                institution: "Ipsum High School",
-                description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore."
-            }
-        ]
-    },
-    testimonials: [
-        { name: "John Doe", position: "CEO, Company", quote: "Lorem ipsum dolor sit amet.", image: "https://picsum.photos/600/400?random" },
-        { name: "John Doe", position: "CEO, Company", quote: "Lorem ipsum dolor sit amet.", image: "https://picsum.photos/600/400?random" },
-        { name: "John Doe", position: "CEO, Company", quote: "Lorem ipsum dolor sit amet.", image: "https://picsum.photos/600/400?random" },
-    ],
     pricing: [
         {
-            plan: "Basic",
+            plan: "Lorem Basic",
             price: "199",
             period: "per project",
             description: "A starter package for small websites and personal projects.",
@@ -255,10 +200,16 @@ export const data: AppData = {
                     "Custom animations",
                     "Priority support"
                 ]
-            }
+            },
+            order: 1,
+            _id: "pricing-001",
+            _type: "pricing",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-001",
         },
         {
-            plan: "Standard",
+            plan: "Lorem Standard",
             price: "499",
             period: "per project",
             description: "Best for small businesses needing a professional presence.",
@@ -273,10 +224,16 @@ export const data: AppData = {
                     "Dedicated account manager"
                 ]
             },
-            highlight: true
+            highlight: true,
+            order: 2,
+            _id: "pricing-002",
+            _type: "pricing",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-002",
         },
         {
-            plan: "Premium",
+            plan: "Lorem Premium",
             price: "999",
             period: "per project",
             description: "Full-scale solution for businesses that need advanced features.",
@@ -290,19 +247,290 @@ export const data: AppData = {
                     "On-site consulting",
                     "Lifetime updates"
                 ]
-            }
+            },
+            order: 3,
+            _id: "pricing-003",
+            _type: "pricing",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-003",
         }
     ],
-    blogs: [
-        { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://picsum.photos/600/400?random" },
-        { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://picsum.photos/600/400?random" },
-        { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://picsum.photos/600/400?random" },
-        { title: "Lorem blog post", date: "2024-08-01", excerpt: "Lorem ipsum dolor sit amet.", link: "#", image: "https://picsum.photos/600/400?random" },
+    profile: {
+        _id: "profile-001",
+        _type: "profile",
+        _createdAt: "2024-01-01T00:00:00Z",
+        _updatedAt: "2024-01-01T00:00:00Z",
+        _rev: "rev-001",
+        name: "Lorem Ipsum",
+        title: "Lorem Developer",
+        subtitle: "Lorem ipsum dolor sit amet",
+        job_title: "Lorem Engineer",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        location: "Lorem City, Lorem Country",
+        experience_years: 5,
+        completed_projects: 50,
+        profile_image: "/images/profile2.png",
+        social_links: [
+            { platform: "GitHub", url: "#" },
+            { platform: "LinkedIn", url: "#" },
+            { platform: "Twitter", url: "#" }
+        ],
+        cv_link: "#"
+    },
+    projects: [
+        {
+            name: "Lorem Project 1",
+            category: "Lorem Category 1",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+            image: "/images/profile2.png",
+            link: "#",
+            featured: true,
+            order: 1,
+            _id: "project-001",
+            _type: "project",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-001",
+        }, {
+            name: "Lorem Project 2",
+            category: "Lorem Category 2",
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore.",
+            image: "/images/profile2.png",
+            link: "#",
+            featured: true,
+            order: 2,
+            _id: "project-002",
+            _type: "project",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-002",
+        }, {
+            name: "Lorem Project 3",
+            category: "Lorem Category 3",
+            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure.",
+            image: "/images/profile2.png",
+            link: "#",
+            featured: false,
+            order: 3,
+            _id: "project-003",
+            _type: "project",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-003",
+        }, {
+            name: "Lorem Project 4",
+            category: "Lorem Category 4",
+            description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+            image: "/images/profile2.png",
+            link: "#",
+            featured: false,
+            order: 4,
+            _id: "project-004",
+            _type: "project",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-004",
+        }, {
+            name: "Lorem Project 5",
+            category: "Lorem Category 5",
+            description: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore.",
+            image: "/images/profile2.png",
+            link: "#",
+            featured: true,
+            order: 5,
+            _id: "project-005",
+            _type: "project",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-005",
+        }, {
+            name: "Lorem Project 6",
+            category: "Lorem Category 6",
+            description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.",
+            image: "/images/profile2.png",
+            link: "#",
+            featured: false,
+            order: 6,
+            _id: "project-006",
+            _type: "project",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-006",
+        }
     ],
-    contacts: [
-        { type: "email", value: "lorem@example.com" },
-        { type: "phone", value: "+00 123 456 789" },
-        { type: "location", value: "Lorem Street, Ipsum City" },
-        { type: "office", value: "Lorem Company HQ" }
+    services: [
+        {
+            title: "Lorem Service 1",
+            category: "Lorem Category 1",
+            order: 0,
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque aliquam odio et faucibus.",
+            icon: "code",
+            _id: "service-001",
+            _type: "service",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-001"
+        },
+        {
+            title: "Lorem Service 2",
+            category: "Lorem Category 2",
+            order: 1,
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+            icon: "smartphone",
+            _id: "service-002",
+            _type: "service",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-002",
+        },
+        {
+            title: "Lorem Service 3",
+            category: "Lorem Category 3",
+            order: 2,
+            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.",
+            icon: "server",
+            _id: "service-003",
+            _type: "service",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-003",
+        },
+        {
+            title: "Lorem Service 4",
+            category: "Lorem Category 4",
+            order: 3,
+            description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
+            icon: "palette",
+            _id: "service-004",
+            _type: "service",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-004",
+        },
+        {
+            title: "Lorem Service 5",
+            category: "Lorem Category 5",
+            order: 4,
+            description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+            icon: "cloud",
+            _id: "service-005",
+            _type: "service",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-005",
+        }
+    ],
+    skills: [
+        {
+            name: "Lorem Skill 1",
+            experience_years: 5,
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            category: "Lorem Category 1",
+            order: 1,
+            _id: "skill-001",
+            _type: "skill",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-001",
+        },
+        {
+            name: "Lorem Skill 2",
+            experience_years: 4,
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
+            category: "Lorem Category 2",
+            order: 2,
+            _id: "skill-002",
+            _type: "skill",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-002",
+        },
+        {
+            name: "Lorem Skill 3",
+            experience_years: 3,
+            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam.",
+            category: "Lorem Category 3",
+            order: 3,
+            _id: "skill-003",
+            _type: "skill",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-003",
+        },
+        {
+            name: "Lorem Skill 4",
+            experience_years: 3,
+            description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut.",
+            category: "Lorem Category 4",
+            order: 4,
+            _id: "skill-004",
+            _type: "skill",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-004",
+        },
+        {
+            name: "Lorem Skill 5",
+            experience_years: 2,
+            description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.",
+            category: "Lorem Category 5",
+            order: 5,
+            _id: "skill-005",
+            _type: "skill",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-005",
+        },
+        {
+            name: "Lorem Skill 6",
+            experience_years: 2,
+            description: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit.",
+            category: "Lorem Category 6",
+            order: 6,
+            _id: "skill-006",
+            _type: "skill",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-006",
+        }
+    ],
+    testimonials: [
+        {
+            name: "Lorem Ipsum",
+            position: "Lorem Position, Lorem Company",
+            quote: "Lorem ipsum dolor sit amet.",
+            image: "https://picsum.photos/600/400?random",
+            order: 1,
+            _id: "testimonial-001",
+            _type: "testimonial",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-001",
+        },
+        {
+            name: "Dolor Sit",
+            position: "Amet Position, Consectetur Corp",
+            quote: "Sed do eiusmod tempor incididunt ut labore.",
+            image: "https://picsum.photos/600/400?random",
+            order: 2,
+            _id: "testimonial-002",
+            _type: "testimonial",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-002",
+        },
+        {
+            name: "Adipiscing Elit",
+            position: "Sed Position, Do Eiusmod Inc",
+            quote: "Ut enim ad minim veniam, quis nostrud exercitation.",
+            image: "https://picsum.photos/600/400?random",
+            order: 3,
+            _id: "testimonial-003",
+            _type: "testimonial",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-003",
+        },
     ]
 };

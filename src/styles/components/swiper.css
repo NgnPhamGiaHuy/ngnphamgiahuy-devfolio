@@ -11,7 +11,7 @@
     .swiper-wrapper {
         @apply w-full h-auto mb-[50px] flex text-left visible transition-transform transform translate-x-0 translate-y-0 translate-z-[0px] duration-0 box-content relative z-1;
     }
-
+    
     .swiper-navigation {
         @apply w-auto bottom-[10px] left-0 text-center transition-opacity duration-300 transform translate-x-0 translate-y-0 translate-z-0 inline-block relative z-10;
     }

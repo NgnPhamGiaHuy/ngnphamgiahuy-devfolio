@@ -1,6 +1,6 @@
 import React from "react";
 
-const Map = () => {
+const Map: React.FC = () => {
     return (
         <section className={"relative"}>
             <div className={"flex mx-auto relative"}>

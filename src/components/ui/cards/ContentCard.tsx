@@ -4,10 +4,10 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-import { ContentCardProps } from "@/types/portfolio.types";
-import { StandardAnimations } from "@/config/animation.config";
+import { ContentCardProps } from "@/types";
+import { StandardAnimations } from "@/config";
 
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
+import { usePrefersReducedMotion } from "@/hooks";
 
 const ContentCard: React.FC<ContentCardProps> = ({ item, index }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
