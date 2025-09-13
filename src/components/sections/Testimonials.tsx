@@ -4,7 +4,13 @@ import React, { useMemo } from "react";
 
 import { data } from "@/data";
 import { Testimonial } from "@/types";
-import { Wrapper, ContentSwiper, BackgroundText, QuoteCard } from "@/components";
+import { Wrapper, BackgroundText, QuoteCard } from "@/components";
+import dynamic from "next/dynamic";
+
+const ContentSwiper = dynamic(() => import("@/components").then(mod => ({ default: mod.ContentSwiper })), {
+    ssr: false,
+    loading: () => <div className="swiper-container-outer"><div className="swiper-container">Loading...</div></div>
+}) as React.ComponentType<{ items: Testimonial[]; spaceBetween?: number; renderItem: (item: Testimonial, index: number) => React.ReactNode }>;
 
 interface TestimonialsProps {
     testimonials: Testimonial[];

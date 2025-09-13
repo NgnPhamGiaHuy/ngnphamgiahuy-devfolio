@@ -1,4 +1,5 @@
 import React from "react";
+import dynamic from "next/dynamic";
 
 import { renderSection } from "@/utils";
 import { SECTIONS_CONFIG } from "@/config";
@@ -7,7 +8,9 @@ import { sanityFetch } from "@/lib";
 import { homePageDataQuery } from "@/lib";
 import type { HomePageData } from "@/types";
 
-import { Header, Footer, ScrollToTopButton } from "@/components";
+import { Header, Footer } from "@/components";
+
+const ScrollToTopButton = dynamic(() => import("@/components").then(mod => ({ default: mod.ScrollToTopButton })));
 
 export const revalidate = 60;
 

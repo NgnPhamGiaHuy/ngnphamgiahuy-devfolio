@@ -145,7 +145,29 @@ export const data: MockDataType = {
             institution: "Ipsum High School",
             description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
             order: 2
-        }
+        },  {
+            _id: "edu-002",
+            _type: "education",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-002",
+            year: "2012 - 2014",
+            degree: "Lorem Diploma",
+            institution: "Ipsum High School",
+            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+            order: 2
+        },  {
+            _id: "edu-002",
+            _type: "education",
+            _createdAt: "2024-01-01T00:00:00Z",
+            _updatedAt: "2024-01-01T00:00:00Z",
+            _rev: "rev-002",
+            year: "2012 - 2014",
+            degree: "Lorem Diploma",
+            institution: "Ipsum High School",
+            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+            order: 2
+        },
     ],
     experience: [
         {

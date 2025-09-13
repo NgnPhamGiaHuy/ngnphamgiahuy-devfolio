@@ -8,5 +8,4 @@ export interface AnimationConfig {
     springUp: (prefersReducedMotion?: boolean, distance?: number) => Variants;
     staggerChildren: (prefersReducedMotion?: boolean, staggerTime?: number, delayTime?: number) => Variants;
     buttonHover: (prefersReducedMotion?: boolean) => Variants;
-    [key: string]: (...args: any[]) => Variants;
 }

@@ -7,7 +7,13 @@ import { data } from "@/data";
 import { Service } from "@/types";
 import { StandardAnimations } from "@/config";
 import { usePrefersReducedMotion } from "@/hooks";
-import { Wrapper, ContentCard, ContentSwiper, BackgroundText } from "@/components";
+import { Wrapper, ContentCard, BackgroundText } from "@/components";
+import dynamic from "next/dynamic";
+
+const ContentSwiper = dynamic(() => import("@/components").then(mod => ({ default: mod.ContentSwiper })), {
+    ssr: false,
+    loading: () => <div className="swiper-container-outer"><div className="swiper-container">Loading...</div></div>
+}) as React.ComponentType<{ items: Service[]; spaceBetween?: number; renderItem: (item: Service, index: number) => React.ReactNode }>;
 
 interface ServicesProps {
     services?: Service[] | null;

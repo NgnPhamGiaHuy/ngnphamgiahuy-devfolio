@@ -93,7 +93,7 @@ const HeroProfileBlock: React.FC<ExtendedHeroProfileBlockProps> = memo(({ classN
     }), [prefersReducedMotion]);
 
     const mergedVariants = useMemo(() =>
-        Object.keys(variants).length > 0 ? variants : defaultVariants,
+        variants && typeof variants === 'object' && Object.keys(variants).length > 0 ? variants as Variants : defaultVariants,
         [variants, defaultVariants]
     );
 
@@ -101,9 +101,9 @@ const HeroProfileBlock: React.FC<ExtendedHeroProfileBlockProps> = memo(({ classN
         <motion.div
             className={`hero-profile-container ${className}`}
             variants={mergedVariants}
-            initial={initial === "" ? "hidden" : initial}
-            animate={animate === "" ? "visible" : animate}
-            transition={transition}
+            initial={initial === "" ? "hidden" : (initial as any)}
+            animate={animate === "" ? "visible" : (animate as any)}
+            transition={transition as any}
             role={"img"}
             aria-label={"Profile image with professional statistics"}
         >
