@@ -10,11 +10,5 @@ export { default as Skills } from "./Skills";
 export { default as Testimonials } from "./Testimonials";
 export { default as Portfolios } from "./Portfolios";
 
-// Re-export hero components
-export { HeroDescription, HeroIntro, HeroLayer, HeroProfileBlock } from "./hero/index";
-
-// Re-export work components
-export { PortfolioFilter } from "./work/index";
-
 // Re-export wrapper components
 export { Wrapper, WrapperHeader } from "./wrapper/index";

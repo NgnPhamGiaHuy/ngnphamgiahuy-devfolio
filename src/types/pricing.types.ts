@@ -7,8 +7,3 @@ export interface PricingCardProps {
 export interface PricingGridProps {
     pricing: Pricing[];
 }
-
-export interface PricingSectionProps {
-    pricing: Pricing[];
-    resetAnimationOnView?: boolean;
-}

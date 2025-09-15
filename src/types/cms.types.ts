@@ -1,4 +1,4 @@
-import { BlogPost, ContactItem, Education, Experience, Pricing, Profile, Project, Service, SiteSettings, Skill, Testimonial } from "./sanity.types";
+import type { BlogPost, ContactItem, Education, Experience, Pricing, Profile, Project, Service, SiteSettings, Skill, Testimonial } from "./sanity.types";
 
 export interface HomePageData {
     profile?: Profile | null;

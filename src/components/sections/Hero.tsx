@@ -3,33 +3,28 @@
 import { motion } from "framer-motion";
 import React, { useMemo, memo } from "react";
 
-import { data } from "@/data"
-import { Profile } from "@/types";
-import { StandardAnimations } from "@/config";
+import type { HeroSectionProps } from "@/types";
+
 import { HeroAnimationProvider } from "@/context";
+import { StandardAnimations, vlinePositions } from "@/config";
 import { usePrefersReducedMotion, useDynamicTextAnimation } from "@/hooks";
-import { VLineBlock, BackgroundText, HeroIntro, DownloadCVButton, HeroDescription, HeroProfileBlock } from "@/components";
+import { VerticalRule, BackdropText, DownloadResumeButton } from "@/components";
+import { PersonalIntro, BioSection, ProfileVisual } from "@/components/sections/profile";
 
-interface HeroProps {
-    profile?: Profile;
-}
-
-const Hero: React.FC<HeroProps> = memo(({ profile }) => {
+const Hero: React.FC<HeroSectionProps> = memo(({ profile }) => {
     const { createTypingTimeline } = useDynamicTextAnimation();
     const prefersReducedMotion = usePrefersReducedMotion();
-
-    const profileData = useMemo(() => profile || data.profile, [profile]);
 
     const heroTextTimeline = useMemo(() => {
         const textSections = [
             { id: "intro", text: "Hello, my name is" },
-            { id: "name", text: profileData.name },
-            { id: "job", text: `I am ${profileData.job_title}` },
-            { id: "description", text: profileData.description }
+            { id: "name", text: profile.name },
+            { id: "job", text: `I am ${profile.job_title}` },
+            { id: "description", text: profile.description }
         ];
 
         return createTypingTimeline(textSections);
-    }, [createTypingTimeline, profileData]);
+    }, [createTypingTimeline, profile]);
 
     const containerVariants = useMemo(() =>
         StandardAnimations.staggerChildren(prefersReducedMotion, 0.3, 0.1),
@@ -59,26 +54,20 @@ const Hero: React.FC<HeroProps> = memo(({ profile }) => {
                                         animate={"visible"}
                                         variants={containerVariants}
                                     >
-                                        <HeroIntro profile={profileData} />
-                                        <HeroDescription profile={profileData} />
-                                        <DownloadCVButton cvLink={profileData.cv_link} />
+                                        <PersonalIntro profile={profile} />
+                                        <BioSection profile={profile} />
+                                        <DownloadResumeButton cvLink={profile.cv_link} />
                                     </motion.div>
-                                    <HeroProfileBlock
-                                        profile={profileData}
+                                    <ProfileVisual
+                                        profile={profile}
                                         variants={profileBlockVariants}
                                         initial={"hidden"}
                                         animate={"visible"}
                                     />
-                                    <VLineBlock
-                                        top={"-70px"}
-                                        bottom={"-70px"}
-                                        left={"-100px"}
-                                        shadow={"before:shadow-[5px_-5px_0_rgb(0_0_0/0.2)] after:shadow-[5px_-5px_0_rgb(0_0_0/0.2)]"}
-                                        className={"rotate-180 transform -scale-x-100"}
-                                    />
+                                    <VerticalRule {...vlinePositions["left"]} />
                                 </div>
                             </div>
-                            <BackgroundText text={profileData.job_title} bottom={"-100px"} />
+                            <BackdropText text={profile.job_title} bottom={"-100px"} />
                         </div>
                     </div>
                 </div>

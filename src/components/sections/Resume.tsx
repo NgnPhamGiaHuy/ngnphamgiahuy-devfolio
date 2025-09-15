@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
+import React from "react";
 
-import { data } from "@/data";
-import { Wrapper, Accordion, BackgroundText } from "@/components";
-import { Education, Experience, AccordionFieldMapping } from "@/types";
+import type { Education, Experience, AccordionFieldMapping, ResumeSectionProps } from "@/types";
+
+import { Wrapper, Accordion, BackdropText } from "@/components";
 
 const educationFieldMapping: AccordionFieldMapping<Education> = {
     meta: "year",
@@ -18,22 +18,13 @@ const experienceFieldMapping: AccordionFieldMapping<Experience> = {
     content: "description"
 };
 
-interface ResumeProps {
-    experience: Experience[];
-    education: Education[];
-    resetAnimationOnView?: boolean;
-}
-
-const Resume: React.FC<ResumeProps> = ({ experience, education, resetAnimationOnView }) => {
-    const educationData = useMemo(() => education?.length ? education : data.education, [education]);
-    const experienceData = useMemo(() => experience?.length ? experience : data.experience, [experience]);
-
+const Resume: React.FC<ResumeSectionProps> = ({ experience, education, resetAnimationOnView }) => {
     return (
         <Wrapper title={"Resume"} subtitle={"My Story"} background={"gradientDown"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1360px"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"resume-section-wrapper"}>
                 <div className={"resume-content-wrapper"}>
                     <Accordion
-                        items={educationData}
+                        items={education}
                         label="Educational"
                         fieldMapping={educationFieldMapping}
                     />
@@ -42,13 +33,13 @@ const Resume: React.FC<ResumeProps> = ({ experience, education, resetAnimationOn
             <div className={"resume-section-wrapper"}>
                 <div className={"resume-content-wrapper"}>
                     <Accordion
-                        items={experienceData}
+                        items={experience}
                         label="Experience"
                         fieldMapping={experienceFieldMapping}
                     />
                 </div>
             </div>
-            <BackgroundText text={"History"} />
+            <BackdropText text={"History"} />
         </Wrapper>
     );
 };

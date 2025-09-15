@@ -1,27 +1,21 @@
 "use client"
 
+import React from "react";
 import Link from "next/link";
-import React, { useMemo } from "react";
 
-import { data } from "@/data";
-import { Project } from "@/types";
-import { usePortfolioFilter } from "@/hooks";
-import { Wrapper, BackgroundText, PortfolioGrid, PortfolioFilter } from "@/components";
+import type { PortfoliosSectionProps } from "@/types";
 
-interface WorkProps {
-    projects?: Project[];
-    resetAnimationOnView?: boolean;
-}
+import { useCategoryFilter } from "@/hooks";
+import { Wrapper, BackdropText } from "@/components";
+import { ProjectGrid, ProjectCategoryFilter } from "@/components/features/projects";
 
-const Portfolios: React.FC<WorkProps> = ({ resetAnimationOnView, projects }) => {
-    const projectsData = useMemo(() => projects?.length ? projects : data.projects ,[projects]);
-
-    const normalizedItems = projectsData.map(p => ({
+const Portfolios: React.FC<PortfoliosSectionProps> = ({ projects, resetAnimationOnView }) => {
+    const normalizedItems = projects.map(p => ({
         ...p,
         category: p.category ?? "Uncategorized",
     }));
 
-    const { categories, activeCategory, filteredPortfolios, handleCategoryChange } = usePortfolioFilter(normalizedItems);
+    const { categories, activeCategory, filteredPortfolios, handleCategoryChange } = useCategoryFilter(normalizedItems);
 
     return (
         <Wrapper title={"Portfolio"} subtitle={"My Cases"} background={"gradientUp"} hasSectionBodyPadding={false} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
@@ -29,8 +23,8 @@ const Portfolios: React.FC<WorkProps> = ({ resetAnimationOnView, projects }) => 
                 <div className={"work-content-wrapper"}>
                     <div className={"work-main-container"}>
                         <div className={"work-inner-container"}>
-                            <PortfolioFilter categories={categories} activeCategory={activeCategory} onCategoryChange={handleCategoryChange} />
-                            <PortfolioGrid portfolios={filteredPortfolios} />
+                            <ProjectCategoryFilter categories={categories} activeCategory={activeCategory} onCategoryChange={handleCategoryChange} />
+                            <ProjectGrid portfolios={filteredPortfolios} />
                             <div className={"mt-[70px] max-lg:mt-[50px] text-center relative z-2"}>
                                 <Link href={"/"}>
                                     <span className={"primary-button"}>
@@ -40,7 +34,7 @@ const Portfolios: React.FC<WorkProps> = ({ resetAnimationOnView, projects }) => 
                             </div>
                         </div>
                     </div>
-                    <BackgroundText text={"Portfolio"} />
+                    <BackdropText text={"Portfolio"} />
                 </div>
             </div>
         </Wrapper>

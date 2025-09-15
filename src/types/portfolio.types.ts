@@ -1,4 +1,4 @@
-import { SanityImage } from "@/types";
+import { Project } from "./sanity.types";
 
 export interface ContentCardProps {
     item: {
@@ -9,32 +9,12 @@ export interface ContentCardProps {
     index: number;
 }
 
-export interface PortfolioCardProps {
-    portfolio: {
-        name: string;
-        category: string;
-        description: string;
-        image: string;
-        link: string;
-    };
-    index: number;
+export interface PortfolioGridProps {
+    portfolios: Project[];
 }
 
-export interface PortfolioFilterProps {
+export interface CategoryFilterProps {
     categories: string[];
     activeCategory: string;
     onCategoryChange: (category: string) => void;
 }
-
-export interface PortfolioGridProps {
-    portfolios: ProjectLike[];
-}
-
-export type ProjectLike = {
-    _id?: string;
-    name?: string;
-    category?: string;
-    description?: string;
-    image?: string | SanityImage;
-    link?: string;
-};

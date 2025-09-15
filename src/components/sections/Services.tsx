@@ -1,28 +1,22 @@
 "use client"
 
+import React from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import React, { useMemo } from "react";
 
-import { data } from "@/data";
-import { Service } from "@/types";
+import type { Service, ServicesSectionProps } from "@/types";
+
 import { StandardAnimations } from "@/config";
 import { usePrefersReducedMotion } from "@/hooks";
-import { Wrapper, ContentCard, BackgroundText } from "@/components";
-import dynamic from "next/dynamic";
+import { Wrapper, BackdropText } from "@/components";
+import { ServiceCard } from "@/components/features/services";
 
-const ContentSwiper = dynamic(() => import("@/components").then(mod => ({ default: mod.ContentSwiper })), {
+const ContentCarousel = dynamic(() => import("@/components").then(mod => ({ default: mod.ContentCarousel })), {
     ssr: false,
     loading: () => <div className="swiper-container-outer"><div className="swiper-container">Loading...</div></div>
 }) as React.ComponentType<{ items: Service[]; spaceBetween?: number; renderItem: (item: Service, index: number) => React.ReactNode }>;
 
-interface ServicesProps {
-    services?: Service[] | null;
-    resetAnimationOnView?: boolean;
-}
-
-const Services: React.FC<ServicesProps> = ({ resetAnimationOnView, services }) => {
-    const servicesData = useMemo(() => services?.length ? services : data.services, [services]);
-
+const Services: React.FC<ServicesSectionProps> = ({ services, resetAnimationOnView }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
     const containerVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
 
@@ -39,13 +33,13 @@ const Services: React.FC<ServicesProps> = ({ resetAnimationOnView, services }) =
                     className={"items-content-wrapper"}
                     variants={StandardAnimations.staggerChildren(prefersReducedMotion, 0.1, 0.2)}
                 >
-                    <ContentSwiper
-                        items={servicesData}
+                    <ContentCarousel
+                        items={services}
                         renderItem={(item, index) => (
-                            <ContentCard item={item} index={index} />
+                            <ServiceCard item={item} index={index} />
                         )}
                     />
-                    <BackgroundText text={"Services"} />
+                    <BackdropText text={"Services"} />
                 </motion.div>
             </motion.div>
         </Wrapper>

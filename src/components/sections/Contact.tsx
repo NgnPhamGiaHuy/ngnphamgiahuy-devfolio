@@ -1,18 +1,16 @@
-import React, { useMemo } from "react";
+import React from "react";
 
-import { data } from "@/data";
 import type { ContactSectionProps } from "@/types";
-import { Wrapper, BackgroundText, ContactItem, ContactForm } from "@/components";
+
+import { Wrapper, BackdropText, ContactItem, ContactForm } from "@/components";
 
 const Contact: React.FC<ContactSectionProps> = ({ contacts, resetAnimationOnView }) => {
-    const contactsData = useMemo(() => contacts?.length ? contacts : data.contacts, [contacts]);
-
     return (
         <Wrapper title={"Contact Me"} subtitle={"Let's Talk About Ideas"} background={"gradientDown"} sectionContentMaxWidth={"1180px"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"contact-column-left"}>
                 <div className={"contact-column-content"}>
                     <div className={"contact-items-container"}>
-                        {contactsData.map((contact, index) => (
+                        {contacts.map((contact, index) => (
                             <ContactItem key={index} contact={contact} />
                         ))}
                     </div>
@@ -26,7 +24,7 @@ const Contact: React.FC<ContactSectionProps> = ({ contacts, resetAnimationOnView
                     </div>
                 </div>
             </div>
-            <BackgroundText text={"Contact Me"} />
+            <BackdropText text={"Contact Me"} />
         </Wrapper>
     );
 };

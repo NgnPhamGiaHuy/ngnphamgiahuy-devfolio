@@ -20,7 +20,7 @@ const HeroAnimationContext = createContext<HeroAnimationContextValue>({
 export const HeroAnimationProvider: React.FC<{ children: ReactNode; timeline: HeroTextTimeline }> = ({ children, timeline }) => {
     return (
         <HeroAnimationContext.Provider value={{ timeline }}>
-            { children }
+            {children}
         </HeroAnimationContext.Provider>
     );
 };

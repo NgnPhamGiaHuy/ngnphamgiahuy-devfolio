@@ -16,27 +16,27 @@
         @apply mx-[-20px] max-lg:mx-auto relative z-2;
     }
 
-    .work-filter-container {
+    .category-filter-container {
         @apply mb-[30px] text-center transform translate-x-0 translate-y-0 z-2 relative;
     }
 
-    .work-filter-button {
+    .category-filter-button {
         @apply mx-[20px] max-md:mx-[10px] mb-[20px] max-md:mb-[10px] inline-block align-top text-[13px] text-black font-bold uppercase tracking-wider cursor-pointer outline-none transition duration-700 ease-[cubic-bezier(.3,0,.3,1)] relative;
     }
 
-    .work-filter-button::before {
+    .category-filter-button::before {
         @apply content-[""] max-w-[60%] w-[40px] h-[2px] left-0 bottom-[-10px] bg-primary absolute;
         transform: scaleX(0);
         transform-origin: left;
         transition: transform 0.3s cubic-bezier(.3,0,.3,1);
     }
 
-    .work-filter-button-active {
+    .category-filter-button-active {
         @apply text-primary;
     }
 
-    .work-filter-button:hover::before,
-    .work-filter-button-active::before {
+    .category-filter-button:hover::before,
+    .category-filter-button-active::before {
         transform: scaleX(1);
     }
 

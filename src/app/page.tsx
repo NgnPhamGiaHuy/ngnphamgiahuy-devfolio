@@ -8,7 +8,7 @@ import { sanityFetch } from "@/lib";
 import { homePageDataQuery } from "@/lib";
 import type { HomePageData } from "@/types";
 
-import { Header, Footer } from "@/components";
+import { SiteHeader, SiteFooter } from "@/components";
 
 const ScrollToTopButton = dynamic(() => import("@/components").then(mod => ({ default: mod.ScrollToTopButton })));
 
@@ -25,11 +25,11 @@ export default async function Home() {
 
     return (
         <div className={"min-h-[50vh] overflow-hidden relative"}>
-            <Header logo={data.siteSettings?.logo} />
+            <SiteHeader logo={data.siteSettings?.logo} />
             <div className={"wrapper"}>
-                {enabledSections.map(section => renderSection(section, data))}
+                {enabledSections.map(section => renderSection(section))}
             </div>
-            <Footer />
+            <SiteFooter />
             <ScrollToTopButton />
         </div>
     );

@@ -1,4 +1,4 @@
-export interface HeroLayerProps {
+export interface DecorativeLayerProps {
     width?: string;
     height?: string;
     top?: string;
@@ -7,10 +7,10 @@ export interface HeroLayerProps {
     left?: string;
 }
 
-export interface HeroProfileBlockProps {
+export interface ProfileVisualProps {
     className?: string;
     profileImage?: string;
-    patternLayers?: HeroLayerProps[];
+    patternLayers?: DecorativeLayerProps[];
     stats?: StatInfo[];
     variants?: any;
     initial?: boolean | string | Record<string, any>;

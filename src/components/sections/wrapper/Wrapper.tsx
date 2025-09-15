@@ -7,7 +7,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { SectionWrapperProps } from "@/types";
 import { containerVariants, backgroundByName, vlinePositions } from "@/config";
 
-import { VLineBlock, WrapperHeader } from "@/components";
+import { VerticalRule, WrapperHeader } from "@/components";
 
 const Wrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = "", background = "gradientUp", sectionContentMaxWidth = "1300px", hasSectionBodyPadding = true, vlinePosition = "right", resetAnimationOnView = false, children }) => {
     const sectionRef = useRef(null);
@@ -32,7 +32,7 @@ const Wrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = "", bac
                         <section className={clsx(hasSectionBodyPadding && "max-md:px-[10px] max-lg:px-[20px]", "wrapper-section-body")}>
                             <div className={"wrapper-section-content-container"} style={{ maxWidth: sectionContentMaxWidth }}>
                                 {children}
-                                <VLineBlock {...vlineProps} />
+                                <VerticalRule {...vlineProps} />
                             </div>
                         </section>
                     </div>

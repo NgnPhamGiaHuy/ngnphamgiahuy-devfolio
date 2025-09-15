@@ -5,3 +5,16 @@ export { resolveImageUrl, getImageAlt, processImage, processPortfolioImage } fro
 export { useKeyboardHandler } from "./keyboardUtils";
 export { sectionComponents, renderSection } from "./sectionComponents";
 export { generateSocialLinks, getIconForPlatform } from "./socialLinks";
+export { 
+  getSectionData,
+  normalizeProfileData,
+  normalizeServicesData,
+  normalizeSkillsData,
+  normalizeProjectsData,
+  normalizeExperienceData,
+  normalizeEducationData,
+  normalizeTestimonialsData,
+  normalizePricingData,
+  normalizeBlogsData,
+  normalizeContactsData
+} from "./sectionDataHelpers";

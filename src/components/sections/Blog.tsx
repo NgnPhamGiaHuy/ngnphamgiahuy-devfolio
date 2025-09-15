@@ -1,20 +1,18 @@
-import React, { useMemo } from "react";
+import React from "react";
 import Link from "next/link";
 
-import { data } from "@/data";
-import { BlogPost, BlogSectionProps } from "@/types";
-import { BlogCard, BackgroundText, Wrapper } from "@/components";
+import type { BlogSectionProps } from "@/types";
+
+import { BlogPreview, BackdropText, Wrapper } from "@/components";
 
 const Blog: React.FC<BlogSectionProps> = ({ blogs, resetAnimationOnView }) => {
-    const blogsData: BlogPost[] = useMemo(() => blogs?.length ? blogs : data.blogs, [blogs]);
-
     return (
         <Wrapper title={"Latest Blog"} subtitle={"My Articles and Advice"} background={"gradientUp"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"blog-wrapper"}>
                 <div className={"blog-inner"}>
                     <div className={"blog-grid"}>
-                        {blogsData.slice(0, 3).map((blog, index) => (
-                            <BlogCard key={index} blog={blog} />
+                        {blogs.slice(0, 3).map((blog, index) => (
+                            <BlogPreview key={index} blog={blog} />
                         ))}
                     </div>
                     <div className={"blog-cta-container"}>
@@ -26,7 +24,7 @@ const Blog: React.FC<BlogSectionProps> = ({ blogs, resetAnimationOnView }) => {
                     </div>
                 </div>
             </div>
-            <BackgroundText text={"Blog"} />
+            <BackdropText text={"Blog"} />
         </Wrapper>
     );
 };

@@ -29,7 +29,7 @@ const ScrollToTopButton: React.FC = () => {
 
     return (
         <AnimatePresence>
-            { isVisible && (
+            {isVisible && (
                 <motion.button
                     initial={{ opacity: 0, scale: 0, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -62,7 +62,7 @@ const ScrollToTopButton: React.FC = () => {
                         <ChevronUpIcon className={"w-6 h-6"} />
                     </motion.div>
                 </motion.button>
-            ) }
+            )}
         </AnimatePresence>
     );
 };

@@ -1,17 +1,15 @@
 "use client"
 
-import React, { useMemo } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
-import { data } from "@/data";
-import { SkillSectionProps } from "@/types";
+import type { SkillsSectionProps } from "@/types";
+
 import { StandardAnimations } from "@/config";
 import { usePrefersReducedMotion } from "@/hooks";
-import { Wrapper, SkillCard, BackgroundText } from "@/components";
+import { Wrapper, SkillCard, BackdropText } from "@/components";
 
-const Skills: React.FC<SkillSectionProps> = ({ resetAnimationOnView, skills }) => {
-    const skillsData = useMemo(() => skills?.length ? skills : data.skills, [skills])
-
+const Skills: React.FC<SkillsSectionProps> = ({ skills, resetAnimationOnView }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
     const itemVariants = StandardAnimations.springUp(prefersReducedMotion, 30);
     const containerVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
@@ -27,11 +25,11 @@ const Skills: React.FC<SkillSectionProps> = ({ resetAnimationOnView, skills }) =
                 role={"list"}
                 aria-label={"List of professional skills"}
             >
-                {skillsData.map((item, index) => (
+                {skills.map((item, index) => (
                     <SkillCard key={index} item={item} variants={itemVariants} prefersReducedMotion={prefersReducedMotion} />
                 ))}
             </motion.div>
-            <BackgroundText text={"Skills"} />
+            <BackdropText text={"Skills"} />
         </Wrapper>
     );
 };

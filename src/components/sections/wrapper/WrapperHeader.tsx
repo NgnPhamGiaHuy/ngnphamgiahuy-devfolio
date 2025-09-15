@@ -5,7 +5,7 @@ import { motion, Variants } from "framer-motion";
 
 import { WrapperHeaderProps } from "@/types";
 
-import { AnimatedTextCharacter } from "@/components";
+import { AnimatedText } from "@/components";
 
 const WrapperHeader: React.FC<WrapperHeaderProps> = ({ title, subtitle, isInView = true }) => {
     const [animationKey, setAnimationKey] = useState(0);
@@ -75,7 +75,7 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({ title, subtitle, isInView
                                 animate={isInView ? "visible" : "hidden"}
                                 variants={itemVariants}
                             >
-                                <AnimatedTextCharacter
+                                <AnimatedText
                                     text={firstSubtitleWord}
                                     baseDelay={0}
                                     key={`first-word-${animationKey}`}
@@ -87,7 +87,7 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({ title, subtitle, isInView
                                     transition={{ delay: 0.2 }}
                                     key={`rest-words-container-${animationKey}`}
                                 >
-                                    <AnimatedTextCharacter
+                                    <AnimatedText
                                         text={restSubtitleWords}
                                         baseDelay={1200}
                                         key={`rest-words-${animationKey}`}
