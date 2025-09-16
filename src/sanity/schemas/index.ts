@@ -11,15 +11,15 @@ import contactItem from "./contactItem";
 import siteSettings from "./siteSettings";
 
 export const schemaTypes = [
-    project,
-    skill,
-    service,
-    profile,
-    experience,
-    education,
-    testimonial,
-    pricing,
     blogPost,
     contactItem,
+    education,
+    experience,
+    pricing,
+    profile,
+    project,
+    service,
     siteSettings,
+    skill,
+    testimonial,
 ];

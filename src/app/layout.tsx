@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto, Caveat, Jost } from "next/font/google";
 
 import "./globals.css";
+import { generateHomePageMetadata } from "@/lib/metadata";
 
 const geistRoboto = Roboto({
     variable: "--font-geist-roboto",
@@ -16,12 +17,9 @@ const geistCaveat = Caveat({
 const geistJost = Jost({
     variable: "--font-geist-jost",
     subsets: ["latin"]
-})
+});
 
-export const metadata: Metadata = {
-    title: "NgnPhamGiaHuy Devfolio",
-    description: "Developed by NgnPhamGiaHuy",
-};
+export const metadata: Metadata = await generateHomePageMetadata();
 
 interface RootLayoutProps {
     children: React.ReactNode;
