@@ -1,9 +1,8 @@
 import React from "react";
 
 import { data } from "@/data";
-import { generateSocialLinks } from "@/utils";
-
 import { SocialLinks } from "@/components";
+import { generateSocialLinks } from "@/utils";
 
 const SiteFooter: React.FC = () => {
     const { profile } = data;

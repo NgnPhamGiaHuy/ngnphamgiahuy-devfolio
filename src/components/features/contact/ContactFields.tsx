@@ -1,18 +1,10 @@
 import clsx from "clsx";
 import React from "react";
-import { UseFormRegisterReturn, FieldErrors, UseFormWatch } from "react-hook-form";
 
-import { FormInput, SubmitButton } from "@/components";
+import type { ContactFieldsProps } from "@/types";
 
 import { FORM_FIELDS } from "@/config";
-import { ContactFormData } from "@/utils";
-
-interface ContactFieldsProps {
-    register: (name: keyof ContactFormData) => UseFormRegisterReturn;
-    errors: FieldErrors<ContactFormData>;
-    isSubmitting: boolean;
-    watch: UseFormWatch<ContactFormData>;
-}
+import { FormInput, SubmitButton } from "@/components";
 
 const ContactFields: React.FC<ContactFieldsProps> = ({ register, isSubmitting, errors, watch }) => {
     const termsAccepted = watch("termsAccepted");

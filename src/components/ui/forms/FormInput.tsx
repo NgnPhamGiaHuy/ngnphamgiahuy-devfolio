@@ -2,20 +2,8 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { UseFormRegisterReturn } from "react-hook-form";
 
-interface FormInputProps {
-    id: string;
-    label: string;
-    placeholder?: string;
-    type?: string;
-    isTextArea?: boolean;
-    cols?: number;
-    rows?: number;
-    error?: string;
-    registration: UseFormRegisterReturn;
-    className?: string;
-}
+import type { FormInputProps } from "@/types";
 
 const FormInput: React.FC<FormInputProps> = ({ id, label, placeholder = "", type = "text", isTextArea = false, cols = 40, rows = 10, error, registration, className = "" }) => {
     return (

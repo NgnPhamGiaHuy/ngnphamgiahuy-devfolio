@@ -2,9 +2,10 @@ import React from "react";
 import Link from "next/link";
 
 import type { ContactItemProps } from "@/types";
+
 import { CONTACT_TYPE_CONFIG, DEFAULT_CONTACT_CONFIG } from "@/config";
 
-const ContactItem: React.FC<ContactItemProps> = ({ contact }) => {
+const ContactMethodCard: React.FC<ContactItemProps> = ({ contact }) => {
     const config = CONTACT_TYPE_CONFIG[contact.type.toLowerCase()] || DEFAULT_CONTACT_CONFIG;
 
     const displayLabel = config.label || contact.type.charAt(0).toUpperCase() + contact.type.slice(1);
@@ -32,6 +33,6 @@ const ContactItem: React.FC<ContactItemProps> = ({ contact }) => {
     );
 };
 
-export default ContactItem;
+export default ContactMethodCard;
 
 

@@ -1,6 +1,7 @@
 import React from "react";
 
-import { AccordionProps } from "@/types";
+import type { AccordionProps } from "@/types";
+
 import { AccordionItem } from "@/components";
 
 const Accordion = <T,>({ items, label, fieldMapping }: AccordionProps<T>) => {

@@ -3,7 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
-import { AccordionContentProps } from "@/types";
+import type { AccordionContentProps } from "@/types";
 
 const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, subheading, meta, content, panelId, labelledById }) => {
     const contentRef = useRef<HTMLDivElement>(null);

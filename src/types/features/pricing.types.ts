@@ -1,4 +1,4 @@
-import type { Pricing } from "./sanity.types";
+import type { Pricing } from "../sanity.types";
 
 export interface PricingCardProps {
     item: Pricing;

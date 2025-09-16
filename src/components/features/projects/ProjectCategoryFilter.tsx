@@ -4,11 +4,12 @@ import clsx from "clsx";
 import React from "react";
 import { motion } from "framer-motion";
 
-import { CategoryFilterProps } from "@/types";
+import type { ProjectCategoryFilterProps } from "@/types";
+
 import { usePrefersReducedMotion } from "@/hooks";
 import { StandardAnimations, Duration, Delay, Stagger } from "@/config";
 
-const ProjectCategoryFilter: React.FC<CategoryFilterProps> = ({ categories, activeCategory, onCategoryChange }) => {
+const ProjectCategoryFilter: React.FC<ProjectCategoryFilterProps> = ({ categories, activeCategory, onCategoryChange }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
     const hoverVariants = StandardAnimations.buttonHover(prefersReducedMotion);

@@ -3,12 +3,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface FormStatusProps {
-    submitStatus: {
-        type: "success" | "error";
-        message: string;
-    } | null;
-}
+import type { FormStatusProps } from "@/types";
 
 const FormStatus: React.FC<FormStatusProps> = ({ submitStatus }) => {
     if (!submitStatus) return null;

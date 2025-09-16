@@ -1,8 +1,8 @@
 import React from "react";
 
-import { VLineBlockProps } from "@/types";
+import { VerticalRuleProps } from "@/types";
 
-const VerticalRule: React.FC<VLineBlockProps> = ({ top = "0", right = "0", bottom = "0", left = "0", width = "2px", shadow = "before:shadow-[5px_5px_0_rgb(0_0_0/0.2)] after:shadow-[5px_5px_0_rgb(0_0_0/0.2)]", showPattern = true, className = "" }) => {
+const VerticalRule: React.FC<VerticalRuleProps> = ({ top = "0", right = "0", bottom = "0", left = "0", width = "2px", shadow = "before:shadow-[5px_5px_0_rgb(0_0_0/0.2)] after:shadow-[5px_5px_0_rgb(0_0_0/0.2)]", showPattern = true, className = "" }) => {
     const style: React.CSSProperties = { width, top, right, bottom, left, position: "absolute" };
 
     return (

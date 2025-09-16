@@ -2,14 +2,13 @@
 
 import React, { useRef } from "react";
 
-import { HeaderProps } from "@/types";
+import type { SiteHeaderProps } from "@/types";
+
 import { getHeaderClasses } from "@/utils";
-
 import { useTheme, useMenuState, useHeaderScroll } from "@/hooks";
-import { Sidebar } from "@/components/ui";
-import { BrandLink, ThemeToggle, MenuToggle } from "@/components/ui";
+import { BrandLink, ThemeToggle, MenuToggle, Sidebar } from "@/components";
 
-const SiteHeader: React.FC<HeaderProps> = ({ className, logo = "Portfolio" }) => {
+const SiteHeader: React.FC<SiteHeaderProps> = ({ className, logo = "Portfolio" }) => {
     const headerRef = useRef<HTMLElement>(null);
 
     const { isMenuOpen, toggleMenu, closeMenu } = useMenuState();

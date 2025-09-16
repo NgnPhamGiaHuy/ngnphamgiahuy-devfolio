@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 
-import { WrapperHeaderProps } from "@/types";
+import type { WrapperHeaderProps } from "@/types";
 
 import { AnimatedText } from "@/components";
 

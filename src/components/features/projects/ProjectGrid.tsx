@@ -3,12 +3,13 @@
 import React from "react";
 import { motion, AnimatePresence, Target } from "framer-motion";
 
-import { ProjectCard } from "@/components/features/projects";
-import { PortfolioGridProps } from "@/types";
+import type { ProjectGridProps } from "@/types";
+
 import { usePrefersReducedMotion } from "@/hooks";
+import { ProjectCard } from "@/components/features/projects";
 import { StandardAnimations, Duration, Stagger } from "@/config";
 
-const ProjectGrid: React.FC<PortfolioGridProps> = ({ portfolios = [] }) => {
+const ProjectGrid: React.FC<ProjectGridProps> = ({ portfolios = [] }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
     const itemEnter = StandardAnimations.springUp(prefersReducedMotion, 16);

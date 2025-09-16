@@ -4,13 +4,10 @@ import Link from "next/link";
 import React, { memo } from "react";
 import { motion } from "framer-motion";
 
+import type { DownloadResumeButtonProps } from "@/types";
+
 import { StandardAnimations } from "@/config";
-
 import { usePrefersReducedMotion } from "@/hooks";
-
-interface DownloadResumeButtonProps {
-    cvLink?: string;
-}
 
 const DownloadResumeButton: React.FC<DownloadResumeButtonProps> = memo(({ cvLink }) => {
     const prefersReducedMotion = usePrefersReducedMotion();

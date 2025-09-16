@@ -3,9 +3,10 @@
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
-import { HeroSectionProps } from "@/types";
-import { usePrefersReducedMotion } from "@/hooks";
+import type { HeroSectionProps } from "@/types";
+
 import { AnimatedText } from "@/components";
+import { usePrefersReducedMotion } from "@/hooks";
 import { useHeroAnimationContext } from "@/context";
 
 const PersonalIntro: React.FC<HeroSectionProps> = memo(({ profile }) => {

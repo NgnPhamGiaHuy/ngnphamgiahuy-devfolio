@@ -1,10 +1,11 @@
 import clsx from "clsx";
 import React, { memo } from "react";
 
-import { useKeyboardHandler } from "@/utils/keyboardUtils";
-import { HeaderMenuToggleProps } from "@/types";
+import type { MenuToggleProps } from "@/types";
 
-const MenuToggle: React.FC<HeaderMenuToggleProps> = memo(({ isMenuOpen, onToggle, className }) => {
+import { useKeyboardHandler } from "@/utils/keyboardUtils";
+
+const MenuToggle: React.FC<MenuToggleProps> = memo(({ isMenuOpen, onToggle, className }) => {
     const handleKeyDown = useKeyboardHandler(onToggle);
 
     return (

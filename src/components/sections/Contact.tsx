@@ -2,7 +2,7 @@ import React from "react";
 
 import type { ContactSectionProps } from "@/types";
 
-import { Wrapper, BackdropText, ContactItem, ContactForm } from "@/components";
+import { Wrapper, BackdropText, ContactMethodCard, ContactForm } from "@/components";
 
 const Contact: React.FC<ContactSectionProps> = ({ contacts, resetAnimationOnView }) => {
     return (
@@ -11,7 +11,7 @@ const Contact: React.FC<ContactSectionProps> = ({ contacts, resetAnimationOnView
                 <div className={"contact-column-content"}>
                     <div className={"contact-items-container"}>
                         {contacts.map((contact, index) => (
-                            <ContactItem key={index} contact={contact} />
+                            <ContactMethodCard key={index} contact={contact} />
                         ))}
                     </div>
                 </div>

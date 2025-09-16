@@ -8,7 +8,7 @@ export { SiteHeader, SiteFooter } from "./ui/layout";
 export { Blog, Contact, Hero, Map, Pricing, Resume, Services, Skills, Testimonials, Portfolios, Wrapper, WrapperHeader } from "./sections";
 
 // Re-export UI components
-export { AnimatedText, BackdropText, ContentCarousel, SocialLinks, FormStatus, VerticalRule, Accordion, AccordionContent, AccordionItem, DownloadResumeButton, ScrollToTopButton, SubmitButton, FormInput, ArrowLink, BrandLink, MenuToggle, ThemeToggle, NavItem, } from "./ui";
+export { AnimatedText, BackdropText, ContentCarousel, SocialLinks, FormStatus, VerticalRule, Accordion, AccordionContent, AccordionItem, DownloadResumeButton, ScrollToTopButton, SubmitButton, FormInput, ArrowLink, BrandLink, MenuToggle, ThemeToggle, NavItem, Sidebar } from "./ui";
 
 // Re-export feature components
 export { BlogPreview } from "./features/blog";
@@ -17,7 +17,7 @@ export { PlanCard, PlanGrid } from "./features/pricing";
 export { TestimonialCard } from "./features/testimonials";
 export { SkillCard } from "./features/skills";
 export { MetricCard } from "./features/metrics";
-export { ContactForm, ContactFields, ContactItem } from "./features/contact";
+export { ContactForm, ContactFields, ContactMethodCard } from "./features/contact";
 export { ServiceCard } from "./features/services";
 
 // Re-export section components

@@ -4,7 +4,8 @@ import clsx from "clsx";
 import React, { useId, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import { AccordionItemProps } from "@/types";
+import type { AccordionItemProps } from "@/types";
+
 import { AccordionContent } from "@/components";
 
 const AccordionItem: React.FC<AccordionItemProps> = ({ heading, subheading, meta, content, index, isFirstItem = false }) => {

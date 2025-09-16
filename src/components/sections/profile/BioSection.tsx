@@ -3,7 +3,8 @@
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
-import { HeroSectionProps } from "@/types";
+import type { HeroSectionProps } from "@/types";
+
 import { generateSocialLinks } from "@/utils";
 import { usePrefersReducedMotion } from "@/hooks";
 import { useHeroAnimationContext } from "@/context";

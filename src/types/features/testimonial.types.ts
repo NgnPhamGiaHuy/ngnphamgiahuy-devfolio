@@ -1,5 +1,5 @@
 import { Testimonial } from "../sanity.types";
 
-export interface QuoteCardProps {
+export interface TestimonialCardProps {
     item: Testimonial;
 }

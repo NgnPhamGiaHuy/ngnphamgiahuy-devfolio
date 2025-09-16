@@ -3,10 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { processImage } from "@/utils";
-import { BlogCardProps } from "@/types";
+import { BlogPreviewProps } from "@/types";
 import { ArrowLink } from "@/components";
 
-const BlogPreview: React.FC<BlogCardProps> = ({ blog }) => {
+const BlogPreview: React.FC<BlogPreviewProps> = ({ blog }) => {
     const { url: imageUrl, alt: imageAlt } = processImage(
         blog.image,
         { width: 400, height: 250, fallbackImage: "/images/profile2.png" },

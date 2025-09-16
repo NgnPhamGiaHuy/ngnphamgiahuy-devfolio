@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 
-import { DecorativeLayerProps } from "@/types";
+import type { DecorativeLayerProps } from "@/types";
 
 const DecorativeLayer: React.FC<DecorativeLayerProps> = memo(({ width, height, top, right, bottom, left }) => {
     const style: React.CSSProperties = useMemo(() => ({

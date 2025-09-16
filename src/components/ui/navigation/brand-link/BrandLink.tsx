@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React, { memo } from "react";
 
-import { HeaderLogoProps } from "@/types";
+import type { BrandLinkProps } from "@/types";
 
-const BrandLink: React.FC<HeaderLogoProps> = memo(({ logo, className }) => {
+const BrandLink: React.FC<BrandLinkProps> = memo(({ logo, className }) => {
     return (
         <div className={`header-content ${className || ""}`}>
             <Link href={"/src/public"}>

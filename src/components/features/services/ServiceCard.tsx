@@ -4,12 +4,12 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-import { ContentCardProps } from "@/types";
-import { StandardAnimations } from "@/config";
+import type { ServiceCardProps } from "@/types";
 
+import { StandardAnimations } from "@/config";
 import { usePrefersReducedMotion } from "@/hooks";
 
-const ServiceCard: React.FC<ContentCardProps> = ({ item, index }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ item, index }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
     const cardVariants = StandardAnimations.scaleIn(prefersReducedMotion, 0.95);

@@ -5,7 +5,7 @@ import React from "react";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
 
-import { SkillCardProps } from "@/types";
+import type { SkillCardProps } from "@/types";
 
 const SkillCard: React.FC<SkillCardProps> = ({ item, variants, prefersReducedMotion }) => {
     return (

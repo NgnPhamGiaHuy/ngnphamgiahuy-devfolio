@@ -1,10 +1,11 @@
 import React, { memo } from "react";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
-import { HeaderThemeToggleProps } from "@/types";
+import type { ThemeToggleProps } from "@/types";
+
 import { useKeyboardHandler } from "@/utils/keyboardUtils";
 
-const ThemeToggle: React.FC<HeaderThemeToggleProps> = memo(({ isDarkMode, onToggle, className }) => {
+const ThemeToggle: React.FC<ThemeToggleProps> = memo(({ isDarkMode, onToggle, className }) => {
     const handleKeyDown = useKeyboardHandler(onToggle);
 
     return (

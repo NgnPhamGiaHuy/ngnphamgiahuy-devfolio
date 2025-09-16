@@ -4,12 +4,12 @@ import clsx from "clsx";
 import { motion, useInView } from "framer-motion";
 import React, { useRef, useState, useEffect } from "react";
 
-import { SectionWrapperProps } from "@/types";
-import { containerVariants, backgroundByName, vlinePositions } from "@/config";
+import type { WrapperProps } from "@/types";
 
 import { VerticalRule, WrapperHeader } from "@/components";
+import { containerVariants, backgroundByName, vlinePositions } from "@/config";
 
-const Wrapper: React.FC<SectionWrapperProps> = ({ title = "", subtitle = "", background = "gradientUp", sectionContentMaxWidth = "1300px", hasSectionBodyPadding = true, vlinePosition = "right", resetAnimationOnView = false, children }) => {
+const Wrapper: React.FC<WrapperProps> = ({ title = "", subtitle = "", background = "gradientUp", sectionContentMaxWidth = "1300px", hasSectionBodyPadding = true, vlinePosition = "right", resetAnimationOnView = false, children }) => {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: !resetAnimationOnView, amount: 0.1 });
     const [animationKey, setAnimationKey] = useState(0);

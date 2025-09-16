@@ -3,12 +3,12 @@
 import React, { useMemo } from "react";
 import { motion, easeOut } from "framer-motion";
 
-import { AnimatedTextCharacterProps } from "@/types";
-import { Duration, Stagger } from "@/config";
+import type { AnimatedTextProps } from "@/types";
 
+import { Duration, Stagger } from "@/config";
 import { usePrefersReducedMotion } from "@/hooks";
 
-const AnimatedText: React.FC<AnimatedTextCharacterProps> = ({ text, baseDelay = 0, className = "", containerClassName = "", staggerDelay = 40, duration = Duration.FAST }) => {
+const AnimatedText: React.FC<AnimatedTextProps> = ({ text, baseDelay = 0, className = "", containerClassName = "", staggerDelay = 40, duration = Duration.FAST }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
     const shouldAnimateWords = useMemo(() => text.length > 50, [text]);

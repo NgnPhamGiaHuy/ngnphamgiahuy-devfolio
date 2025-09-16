@@ -5,13 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import { Project } from "@/types";
-import { processPortfolioImage } from "@/utils";
+import type { ProjectCardProps } from "@/types";
 
-interface ProjectCardProps {
-    index: number;
-    portfolio: Project;
-}
+import { processPortfolioImage } from "@/utils";
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
     const { url: imageUrl, alt: imageAlt } = processPortfolioImage(

@@ -2,14 +2,13 @@
 
 import React, { memo } from "react";
 
-import { data } from "@/data";
-import { SidebarProps } from "@/types";
-import { generateSocialLinks } from "@/utils";
+import type { SidebarProps } from "@/types";
 
+import { data } from "@/data";
 import { SIDEBAR_CONFIG } from "@/config";
+import { generateSocialLinks } from "@/utils";
 import { useSidebarAnimation } from "@/hooks";
-import { VerticalRule, SocialLinks } from "@/components";
-import { NavItem } from "@/components/ui";
+import { VerticalRule, SocialLinks, NavItem } from "@/components";
 
 const Sidebar: React.FC<SidebarProps> = memo(({ isMenuOpen, onMenuItemClick }) => {
     const { profile } = data;

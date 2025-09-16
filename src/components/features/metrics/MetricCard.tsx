@@ -1,8 +1,8 @@
 import React from "react";
 
-import { StatCardProps } from "@/types";
+import type { MetricCardProps } from "@/types";
 
-const MetricCard: React.FC<StatCardProps> = ({ value, label, highlight, className = "", width = "250px", height = "82px", margin = "m-0" }) => {
+const MetricCard: React.FC<MetricCardProps> = ({ value, label, highlight, className = "", width = "250px", height = "82px", margin = "m-0" }) => {
     const style: React.CSSProperties = { width, height };
 
     const labelWords = label.split(" ");

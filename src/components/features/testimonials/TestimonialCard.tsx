@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-import { QuoteCardProps } from "@/types";
+import { TestimonialCardProps } from "@/types";
 import { processImage } from "@/utils";
 
-const TestimonialCard: React.FC<QuoteCardProps> = ({ item }) => {
+const TestimonialCard: React.FC<TestimonialCardProps> = ({ item }) => {
     const { url: imageUrl, alt: imageAlt } = processImage(
         item.image,
         { width: 600, height: 400, fallbackImage: "/images/profile2.png" },

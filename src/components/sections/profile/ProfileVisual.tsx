@@ -4,10 +4,11 @@ import Image from "next/image";
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
+import type { ProfileVisualProps, Profile } from "@/types";
+
 import { processImage } from "@/utils";
 import { usePrefersReducedMotion } from "@/hooks";
 import { MetricCard, DecorativeLayer } from "@/components";
-import { ProfileVisualProps, Profile } from "@/types";
 import { DEFAULT_PATTERN_LAYERS, DEFAULT_STATS } from "@/config";
 
 interface ExtendedProfileVisualProps extends ProfileVisualProps {

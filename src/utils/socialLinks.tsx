@@ -1,6 +1,7 @@
 import React from "react";
-import { SocialLink, SocialPlatform, RawSocialLink } from "@/types";
 import { CodeBracketIcon, GlobeAltIcon, UserIcon } from "@heroicons/react/24/outline";
+
+import { SocialLink, SocialPlatform, RawSocialLink } from "@/types";
 
 export const getIconForPlatform = (platform: SocialPlatform): React.ComponentType<React.ComponentProps<"svg">> => {
     switch (platform.toLowerCase()) {
