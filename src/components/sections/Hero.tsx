@@ -8,8 +8,7 @@ import type { HeroSectionProps } from "@/types";
 import { HeroAnimationProvider } from "@/context";
 import { StandardAnimations, vlinePositions } from "@/config";
 import { usePrefersReducedMotion, useDynamicTextAnimation } from "@/hooks";
-import { VerticalRule, BackdropText, DownloadResumeButton } from "@/components";
-import { PersonalIntro, BioSection, ProfileVisual } from "@/components/sections/profile";
+import { VerticalRule, BackdropText, BioSection, DownloadResumeButton, PersonalIntro, ProfileVisual } from "@/components";
 
 const Hero: React.FC<HeroSectionProps> = memo(({ profile }) => {
     const { createTypingTimeline } = useDynamicTextAnimation();

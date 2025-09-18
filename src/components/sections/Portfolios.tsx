@@ -6,8 +6,7 @@ import Link from "next/link";
 import type { PortfoliosSectionProps } from "@/types";
 
 import { useCategoryFilter } from "@/hooks";
-import { Wrapper, BackdropText } from "@/components";
-import { ProjectGrid, ProjectCategoryFilter } from "@/components/features/projects";
+import { BackdropText, ProjectGrid, ProjectCategoryFilter, Wrapper } from "@/components";
 
 const Portfolios: React.FC<PortfoliosSectionProps> = ({ projects, resetAnimationOnView }) => {
     const normalizedItems = projects.map(p => ({

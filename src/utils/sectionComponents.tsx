@@ -2,7 +2,7 @@ import React from "react";
 
 import { getSectionData } from "./sectionDataHelpers";
 import { SectionConfig, MockDataType } from "@/types";
-import { Hero, Services, Skills, Portfolios, Resume, Testimonials, Pricing, Blog, Contact, Map } from "@/components";
+import { Hero, Services, Skills, Portfolios, Resume, Testimonials, Pricing, Blog, Contact, Map } from "@/components/sections";
 
 export const sectionComponents: Record<string, React.ComponentType<any>> = {
     hero: Hero,
