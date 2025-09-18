@@ -28,7 +28,7 @@
     }
 
     .header-toggle-theme {
-        @apply mr-10 w-8 h-8 flex items-center justify-center align-middle text-dark cursor-pointer transition-all relative;
+        @apply mr-10 w-8 h-8 flex items-center justify-center align-middle cursor-pointer text-inverse transition-all relative;
     }
 
     .header-toggle-menu {
@@ -36,7 +36,7 @@
     }
 
     .header-menu-bar {
-        @apply left-0 w-full h-[2px] bg-black block transition-all duration-500 absolute;
+        @apply left-0 w-full h-[2px] bg-inverse block transition-all duration-500 absolute;
     }
 
     .header-menu-top {

@@ -20,7 +20,7 @@
     }
 
     .blog-card {
-        @apply p-[30px] flex flex-col bg-white rounded-[18px] overflow-hidden relative;
+        @apply p-[30px] flex flex-col bg-card-inverse rounded-[18px] overflow-hidden relative;
     }
 
     .blog-card-content-wrapper {
@@ -40,11 +40,11 @@
     }
 
     .blog-card-date {
-        @apply mt-[15px] text-[13px] text-black font-medium uppercase tracking-wider;
+        @apply mt-[15px] text-[13px] text-inverse! font-medium uppercase tracking-wider;
     }
 
     .blog-card-title {
-        @apply text-[24px];
+        @apply text-[24px] text-inverse!;
     }
 
     .blog-card-excerpt {

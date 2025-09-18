@@ -29,7 +29,7 @@
     }
 
     .contact-item-icon-wrapper {
-        @apply w-[56px] h-[56px] top-0 left-0 flex items-center justify-center text-[20px] text-center bg-white shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] border-2 border-solid border-black rounded-full leading-[52px] absolute;
+        @apply w-[56px] h-[56px] top-0 left-0 flex items-center justify-center text-[20px] text-center bg-card-inverse shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] border-2 border-solid border-border-inverse rounded-full leading-[52px] absolute;
     }
 
     .contact-item-icon-wrapper::after {
@@ -37,7 +37,7 @@
     }
 
     .contact-item-label {
-        @apply py-[10px] text-[30px] max-md:text-[24px] text-black font-["Caveat"] font-bold leading-none;
+        @apply py-[10px] text-[30px] max-md:text-[24px] text-inverse font-["Caveat"] font-bold leading-none;
     }
 
     .contact-item-value {
@@ -73,7 +73,7 @@
     }
 
     .form-input {
-        @apply w-full h-[60px] mt-[10px] px-[30px] text-[16px] text-black font-normal bg-white border-2 border-solid border-black rounded-[30px] outline-none resize-none block relative;
+        @apply w-full h-[60px] mt-[10px] px-[30px] text-[16px] text-inverse font-normal bg-card-inverse border-2 border-solid border-border-inverse rounded-[30px] outline-none resize-none block relative;
     }
 
     .form-input-error {
@@ -81,7 +81,7 @@
     }
 
     .form-textarea {
-        @apply w-full h-[140px] mt-[10px] px-[30px] py-[20px] text-[16px] text-black font-normal bg-white border-2 border-solid border-black rounded-[30px] outline-none resize-none block relative;
+        @apply w-full h-[140px] mt-[10px] px-[30px] py-[20px] text-[16px] text-inverse font-normal bg-card-inverse border-2 border-solid border-border-inverse rounded-[30px] outline-none resize-none block relative;
     }
 
     .form-textarea-error {
@@ -109,7 +109,7 @@
     }
 
     .form-terms-text {
-        @apply text-[16px] text-right font-normal tracking-wider;
+        @apply text-[16px] text-right text-inverse! font-normal tracking-wider;
     }
 
     .form-terms-checkbox {

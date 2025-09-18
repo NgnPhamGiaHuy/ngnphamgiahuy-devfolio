@@ -1,0 +1,5 @@
+@layer components {
+    .flex-container {
+        @apply w-full flex flex-wrap items-center justify-center content-center relative;
+    }
+}

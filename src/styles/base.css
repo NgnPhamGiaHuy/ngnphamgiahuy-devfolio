@@ -27,6 +27,12 @@
     --color-info: #0dcaf0;
     --color-warning: #ffc107;
     --color-danger: #dc3545;
+
+    --color-inverse: #000;
+    --color-card-inverse: #fff;
+    --color-border-inverse: #000;
+
+    --shadow-offset-md: 5px 5px rgb(0 0 0 / 0.2);
 }
 
 @theme inline {
@@ -40,7 +46,22 @@
     :root {
         --background: #222831;
         --foreground: #eaeaea;
+        --color-inverse: #fff;
+        --color-card-inverse: #1d222a;
+        --color-border-inverse: #a3a5a7;
+
+        --shadow-offset-md: 5px 5px rgba(255, 255, 255, .1);
     }
+}
+
+[data-theme="dark"] {
+    --background: #222831;
+    --foreground: #eaeaea;
+    --color-inverse: #fff;
+    --color-card-inverse: #1d222a;
+    --color-border-inverse: #a3a5a7;
+
+    --shadow-offset-md: 5px 5px rgba(255, 255, 255, .1);
 }
 
 body {

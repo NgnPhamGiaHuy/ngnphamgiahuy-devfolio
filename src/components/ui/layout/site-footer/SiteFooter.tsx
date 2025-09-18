@@ -14,12 +14,12 @@ const SiteFooter: React.FC = () => {
             <section className={"py-[60px] relative"}>
                 <div className={"max-w-[1300px] mx-auto flex flex-wrap relative"}>
                     <div className={"w-full md:w-1/3 min-h-[1px] relative"}>
-                        <div className={"w-full p-[10px] flex flex-wrap items-center content-center relative"}>
+                        <div className={"p-[10px] flex-container"}>
                             <SocialLinks links={socialLinks} iconMargin={"mr-[15px]"} iconSize={"size-[22px]"} className={"w-full max-md:text-center"} />
                         </div>
                     </div>
                     <div className={"w-full md:w-1/3 min-h-[1px] relative"}>
-                        <div className={"w-full p-[10px] flex flex-wrap items-center content-center justify-center relative"}>
+                        <div className={"p-[10px] flex-container"}>
                             <div className={"w-full text-center relative"}>
                                 <div className={"text-[13px] font-bold uppercase tracking-wider relative"}>
                                     <p>
@@ -34,7 +34,7 @@ const SiteFooter: React.FC = () => {
                         </div>
                     </div>
                     <div className={"w-full md:w-1/3 min-h-[1px] relative"}>
-                        <div className={"w-full p-[10px] flex flex-wrap items-center content-center justify-center relative"}>
+                        <div className={"p-[10px] flex-container"}>
                             <div className={"w-full text-center relative"}>
                                 <div className={"text-[13px] font-bold uppercase tracking-wider relative"}>
                                     <p>

@@ -21,7 +21,7 @@
     }
 
     .category-filter-button {
-        @apply mx-[20px] max-md:mx-[10px] mb-[20px] max-md:mb-[10px] inline-block align-top text-[13px] text-black font-bold uppercase tracking-wider cursor-pointer outline-none transition duration-700 ease-[cubic-bezier(.3,0,.3,1)] relative;
+        @apply mx-[20px] max-md:mx-[10px] mb-[20px] max-md:mb-[10px] inline-block align-top text-[13px] text-inverse font-bold uppercase tracking-wider cursor-pointer outline-none transition duration-700 ease-[cubic-bezier(.3,0,.3,1)] relative;
     }
 
     .category-filter-button::before {
@@ -58,7 +58,7 @@
     }
 
     .portfolio-card {
-        @apply p-[30px] bg-white rounded-[20px] overflow-hidden relative;
+        @apply p-[30px] bg-card-inverse rounded-[20px] overflow-hidden relative;
     }
 
     .portfolio-card-image-container {
@@ -78,11 +78,11 @@
     }
 
     .portfolio-card-title {
-        @apply m-0 text-[24px];
+        @apply m-0! text-[24px]! text-inverse!;
     }
 
     .portfolio-card-description {
-        @apply min-h-[125px] mt-[15px] text-black;
+        @apply min-h-[125px] mt-[15px] text-inverse;
     }
 
     .portfolio-card-description-text {

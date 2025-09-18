@@ -1,7 +1,9 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Roboto, Caveat, Jost } from "next/font/google";
 
 import "./globals.css";
+import { ThemeProvider } from "@/components";
 import { generateHomePageMetadata } from "@/lib/metadata";
 
 const geistRoboto = Roboto({
@@ -27,9 +29,11 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: Readonly<RootLayoutProps>): React.ReactElement {
     return (
-        <html lang={"en"}>
+        <html lang={"en"} suppressHydrationWarning>
             <body className={`${geistRoboto.variable} ${geistCaveat.variable} ${geistJost.variable} antialiased`} suppressHydrationWarning>
-                {children}
+                <ThemeProvider>
+                    {children}
+                </ThemeProvider>
             </body>
         </html>
     );

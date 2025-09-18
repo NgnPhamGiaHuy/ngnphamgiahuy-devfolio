@@ -8,6 +8,6 @@
     }
 
     .accordion-item-button {
-        @apply w-full text-left block cursor-pointer relative;
+        @apply w-full text-left text-inverse! block cursor-pointer relative;
     }
 }

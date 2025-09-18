@@ -8,7 +8,7 @@
     }
 
     .skill-title {
-        @apply mx-[30px]! mb-[20px]! text-[21px] max-md:text-[18px] leading-5;
+        @apply mx-[30px]! mb-[20px]! text-[21px] max-md:text-[18px] text-inverse! leading-5;
     }
 
     .skill-desc {
@@ -20,7 +20,7 @@
     }
 
     .skill-bar {
-        @apply h-[2px] w-4 bg-black rounded relative;
+        @apply h-[2px] w-4 bg-inverse rounded relative;
     }
 
     .skill-badge {
@@ -28,7 +28,7 @@
     }
 
     .skill-badge-inner {
-        @apply px-3 py-1 inline-flex items-center text-black bg-primary/10 font-bold rounded-full;
+        @apply px-3 py-1 inline-flex items-center text-inverse bg-primary/10 font-bold rounded-full;
     }
 
     .skill-badge-years {

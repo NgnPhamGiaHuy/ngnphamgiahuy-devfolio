@@ -5,11 +5,11 @@
     }
 
     .content-card-inner {
-        @apply w-full h-full mt-0 px-[30px] py-[35px] bg-white rounded-[18px] opacity-100 transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] overflow-hidden relative;
+        @apply w-full h-full mt-0 px-[30px] py-[35px] bg-card-inverse rounded-[18px] opacity-100 transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] overflow-hidden relative;
     }
 
     .content-card-category {
-        @apply text-[13px] text-black text-left font-bold tracking-wider uppercase;
+        @apply text-[13px] text-inverse! text-left font-bold tracking-wider uppercase;
     }
 
     .content-card-icon {
@@ -17,7 +17,7 @@
     }
 
     .content-card-title {
-        @apply mb-[15px] text-[24px] text-black font-bold leading-snug;
+        @apply mb-[15px]! text-[24px]! text-inverse! font-bold leading-snug;
     }
 
     .content-card-description {
@@ -25,7 +25,7 @@
     }
 
     .content-card-link {
-        @apply h-[22px] text-[16px] text-black font-bold align-top leading-[22px] transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] relative;
+        @apply h-[22px] text-[16px] text-inverse font-bold align-top leading-[22px] transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] relative;
     }
 
     .content-card-link::after {
@@ -37,6 +37,6 @@
     }
 
     .content-card-pattern {
-        @apply w-[141px] h-[141px] right-[-24px] bottom-[-24px] bg-[url("/images/pat-1.png")] bg-center bg-no-repeat bg-contain absolute;
+        @apply w-[141px] h-[141px] right-[-24px] bottom-[-24px] bg-[url("/images/pat-1.png")] dark:invert bg-center bg-no-repeat bg-contain absolute;
     }
 }

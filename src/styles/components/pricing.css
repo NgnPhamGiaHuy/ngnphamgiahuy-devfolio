@@ -8,11 +8,11 @@
     }
 
     .pricing-card {
-        @apply py-[30px] px-[35px] rounded-[18px] bg-white border-2 border-solid overflow-hidden relative;
+        @apply py-[30px] px-[35px] rounded-[18px] bg-card-inverse border-2 border-solid overflow-hidden relative;
     }
 
     .pricing-card-highlighted {
-        @apply border-black;
+        @apply border-border-inverse;
     }
 
     .pricing-card-standard {
@@ -20,11 +20,11 @@
     }
 
     .pricing-card-badge {
-        @apply h-[26px] px-[15px] top-[-12px] right-[60px] text-[13px] text-white font-bold border-2 border-solid border-black bg-primary shadow-[5px_5px_0px_0px_rgba(0,0,0,.2)] rounded-[26px] absolute uppercase tracking-wider leading-[22px] z-2;
+        @apply h-[26px] px-[15px] top-[-12px] right-[60px] text-[13px] text-white font-bold border-2 border-solid border-border-inverse bg-primary shadow-[5px_5px_0px_0px_rgba(0,0,0,.2)] rounded-[26px] absolute uppercase tracking-wider leading-[22px] z-2;
     }
 
     .pricing-card-plan {
-        @apply text-[13px] text-black font-bold uppercase tracking-wider;
+        @apply text-[13px] text-inverse font-bold uppercase tracking-wider;
     }
 
     .pricing-card-icon-placeholder {
@@ -32,7 +32,7 @@
     }
 
     .pricing-card-price {
-        @apply mb-[20px] text-[30px] text-black font-bold leading-none;
+        @apply mb-[20px] text-[30px] text-inverse font-bold leading-none;
     }
 
     .pricing-card-price-currency {

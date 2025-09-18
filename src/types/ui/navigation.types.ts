@@ -19,7 +19,5 @@ export interface NavItemProps {
 }
 
 export interface ThemeToggleProps {
-    isDarkMode: boolean;
-    onToggle: () => void;
     className?: string;
 }

@@ -8,7 +8,7 @@
     }
 
     .hero-pattern-layer {
-        @apply bg-[url("/images/pat-1.png")] bg-no-repeat bg-contain bg-center absolute;
+        @apply bg-[url("/images/pat-1.png")] bg-no-repeat bg-contain bg-center dark:invert absolute;
     }
 
     .hero-stats-container {

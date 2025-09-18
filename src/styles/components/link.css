@@ -1,6 +1,6 @@
 @layer components {
     .arrow-link {
-        @apply h-[22px] text-[16px] text-black font-bold transition duration-700 ease-[cubic-bezier(0.3,0,0.3,1)] align-top leading-[22px] inline-block relative;
+        @apply h-[22px] text-[16px] text-inverse font-bold transition duration-700 ease-[cubic-bezier(0.3,0,0.3,1)] align-top leading-[22px] inline-block relative;
     }
 
     .arrow-link::after {

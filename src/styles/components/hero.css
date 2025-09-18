@@ -39,7 +39,7 @@
     }
 
     .hero-subtitle {
-        @apply text-[15px] max-md:text-[13px] text-black font-bold tracking-wider uppercase;
+        @apply text-[15px] max-md:text-[13px] text-inverse font-bold tracking-wider uppercase;
     }
 
     .hero-description {

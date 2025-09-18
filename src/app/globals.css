@@ -1,11 +1,14 @@
 @import "tailwindcss";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @import "../styles/base.css";
+@import "../styles/common.css";
 
 @import "../styles/components/layout.css";
 @import "../styles/components/header.css";
 @import "../styles/components/sidebar.css";
+@import "../styles/components/logo.css";
 @import "../styles/components/hero.css";
 @import "../styles/components/hero-intro.css";
 @import "../styles/components/cards.css";

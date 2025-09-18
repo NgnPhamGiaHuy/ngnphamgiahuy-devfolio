@@ -1,11 +1,11 @@
 @layer components {
     .sidebar-container {
-        @apply max-md:w-full w-[512px] h-screen top-0 fixed z-2;
-        @apply before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-white before:transform before:skew-y-0;
+        @apply max-md:w-full w-[512px] h-screen top-0 fixed before:bg-white dark:before:bg-[#31363c] z-2;
         transition: all 0.8s cubic-bezier(0.25,0.1,0.25,1.0);
     }
 
     .sidebar-container::before {
+        @apply content-[""] absolute top-0 left-0 w-full h-full transform skew-y-0;
         transition: transform 0.8s cubic-bezier(0.25,0.1,0.25,1.0);
     }
 
@@ -58,7 +58,7 @@
     }
 
     .sidebar-menu-text {
-        @apply text-2xl text-black font-bold leading-none tracking-wider align-top uppercase relative cursor-pointer;
+        @apply text-2xl text-inverse font-bold leading-none tracking-wider align-top uppercase relative cursor-pointer;
         transition: all 0.2s ease-in-out;
     }
 

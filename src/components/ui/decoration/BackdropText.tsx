@@ -46,7 +46,7 @@ const BackdropText: React.FC<BackdropTextProps> = ({ text, top = "", right = "",
                 <motion.div
                     animate={controls}
                     initial={{ opacity: 0, scale: 0.98, y: 20 }}
-                    className={`w-[200%] top-[-50px] -left-1/2 text-[350px] max-md:text-[150px] max-lg:text-[250px] text-[rgba(0,0,0,.02)] text-center font-bold font-["Caveat"] whitespace-nowrap leading-[1px] pointer-events-none relative ${className}`}
+                    className={`w-[200%] top-[-50px] -left-1/2 text-[350px] max-md:text-[150px] max-lg:text-[250px] text-center font-bold font-["Caveat"] whitespace-nowrap leading-[1px] pointer-events-none relative ${className}`}
                 >
                     <span>
                         {text}

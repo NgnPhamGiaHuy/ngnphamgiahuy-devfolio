@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { SocialLinksProps } from "@/types";
 
-const SocialLinks: React.FC<SocialLinksProps> = ({ links, containerMargin = "m-0", iconSize = "size-5", iconMargin = "m-0", textColor = "text-black", hoverColor = "hover:text-primary", className = "" }) => {
+const SocialLinks: React.FC<SocialLinksProps> = ({ links, containerMargin = "m-0", iconSize = "size-5", iconMargin = "m-0", textColor = "text-inverse", hoverColor = "hover:text-primary", className = "" }) => {
     return (
         <div className={`${containerMargin} social-links-container ${className}`}>
             {links.map((link, index) => (

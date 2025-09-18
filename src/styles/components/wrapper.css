@@ -44,11 +44,11 @@
     }
 
     .wrapper-header-title {
-        @apply mt-0 mb-[10px]! text-[44px] max-md:text-[26px] max-lg:text-[34px] text-black font-bold uppercase tracking-wider break-words leading-snug;
+        @apply mt-0 mb-[10px]! text-[44px] max-md:text-[26px] max-lg:text-[34px] text-inverse font-bold uppercase tracking-wider break-words leading-snug;
     }
 
     .wrapper-header-title-word {
-        @apply text-[44px] max-md:text-[26px] max-lg:text-[34px] text-black;
+        @apply text-[44px] max-md:text-[26px] max-lg:text-[34px] text-inverse;
     }
 
     .wrapper-header-subtitle {
@@ -56,7 +56,7 @@
     }
 
     .wrapper-header-subtitle-text {
-        @apply ml-[10px] text-[30px] max-lg:text-[24px] text-black font-bold font-["Caveat"] tracking-normal normal-case;
+        @apply ml-[10px] text-[30px] max-lg:text-[24px] text-inverse font-bold font-["Caveat"] tracking-normal normal-case;
     }
 
     .wrapper-section-body {

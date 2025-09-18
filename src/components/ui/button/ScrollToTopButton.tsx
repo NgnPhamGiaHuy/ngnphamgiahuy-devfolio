@@ -48,7 +48,7 @@ const ScrollToTopButton: React.FC = () => {
                         transition: { duration: 0.1 }
                     }}
                     onClick={scrollToTop}
-                    className={"p-3 bottom-8 right-8 text-black bg-white/80 border-2 border-solid border-primary  rounded-full shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] fixed cursor-pointer z-50"}
+                    className={"p-3 bottom-8 right-8 text-inverse bg-card-inverse/80 border-2 border-solid border-primary  rounded-full shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] fixed cursor-pointer z-50"}
                     aria-label={"Scroll to top"}
                 >
                     <motion.div

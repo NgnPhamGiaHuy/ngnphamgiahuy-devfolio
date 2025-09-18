@@ -3,6 +3,7 @@
 export { SiteHeader, SiteFooter } from "./ui/layout";
 
 // Re-export navigation components are included below via ./ui
+export { ThemeProvider } from "./providers";
 
 // Re-export section components
 export { Blog, Contact, Hero, Map, Pricing, Resume, Services, Skills, Testimonials, Portfolios, Wrapper, WrapperHeader } from "./sections";

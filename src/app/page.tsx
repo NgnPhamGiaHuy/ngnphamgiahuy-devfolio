@@ -1,12 +1,12 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-import { renderSection } from "@/utils";
-import { SECTIONS_CONFIG } from "@/config";
+import type { HomePageData } from "@/types";
 
 import { sanityFetch } from "@/lib";
+import { renderSection } from "@/utils";
 import { homePageDataQuery } from "@/lib";
-import type { HomePageData } from "@/types";
+import { SECTIONS_CONFIG } from "@/config";
 
 import { SiteHeader, SiteFooter } from "@/components";
 

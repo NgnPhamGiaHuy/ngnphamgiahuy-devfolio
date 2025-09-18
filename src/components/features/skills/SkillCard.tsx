@@ -23,7 +23,8 @@ const SkillCard: React.FC<SkillCardProps> = ({ item, variants, prefersReducedMot
             </div>
             <div className={"skill-badge"}>
                 <span className={"skill-badge-inner"}>
-                    <CountUp end={item.experience_years} duration={prefersReducedMotion ? 0 : 1.2} enableScrollSpy={true} scrollSpyOnce={true} />+ &nbsp;
+                    <CountUp end={item.experience_years} duration={prefersReducedMotion ? 0 : 1.2} enableScrollSpy={true} scrollSpyOnce={true} />
+                    <strong className={"text-primary"}>+</strong>&nbsp;
                     <span className={"skill-badge-years"}>Years</span>
                 </span>
             </div>

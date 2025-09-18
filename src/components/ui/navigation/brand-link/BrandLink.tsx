@@ -5,9 +5,9 @@ import type { BrandLinkProps } from "@/types";
 
 const BrandLink: React.FC<BrandLinkProps> = memo(({ logo, className }) => {
     return (
-        <div className={`header-content ${className || ""}`}>
+        <div className={`flex-container ${className || ""}`}>
             <Link href={"/src/public"}>
-                <span className={"header-logo"}>{logo}</span>
+                <span className={"logo"}>{logo}</span>
             </Link>
         </div>
     );

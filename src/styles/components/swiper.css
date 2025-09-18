@@ -17,15 +17,15 @@
     }
 
     .swiper-navigation::before {
-        @apply content-[""] w-full h-[2px] top-1/2 left-0 bg-black block absolute;
+        @apply content-[""] w-full h-[2px] top-1/2 left-0 bg-inverse block absolute;
     }
 
     .swiper-dot-active {
-        @apply w-[13px] h-[13px] top-[2px] bg-primary border-2 border-solid border-black rounded-[50%] opacity-100 inline-block cursor-pointer relative;
+        @apply w-[13px] h-[13px] top-[2px] bg-primary border-2 border-solid border-inverse rounded-[50%] opacity-100 inline-block cursor-pointer relative;
     }
 
     .swiper-dot-inactive {
-        @apply w-[8px] h-[8px] top-0 bg-white border-2 border-solid border-black rounded-[50%] opacity-100 inline-block cursor-pointer relative;
+        @apply w-[8px] h-[8px] top-0 bg-card-inverse border-2 border-solid border-inverse rounded-[50%] opacity-100 inline-block cursor-pointer relative;
     }
 
     .swiper-pagination-dot {

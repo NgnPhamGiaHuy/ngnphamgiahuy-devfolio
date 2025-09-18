@@ -1,6 +1,6 @@
 @layer components {
     .stat-card {
-        @apply px-[20px] flex items-center text-black border-2 border-solid border-black bg-white rounded-[82px] shadow-[5px_5px_rgba(0,0,0,.2)];
+        @apply px-[20px] flex items-center text-inverse border-2 border-solid border-border-inverse bg-card-inverse rounded-[82px] shadow-[var(--shadow-offset-md)];
     }
 
     .stat-value {

@@ -4,7 +4,7 @@
     }
 
     .accordion-label {
-        @apply m-0! pb-[30px] text-[24px] text-center border-b-2 border-solid border-black leading-none block relative;
+        @apply m-0! pb-[30px] text-[24px] text-center text-inverse! border-b-2 border-solid border-border-inverse leading-none block relative;
     }
 
     .accordion-items-container {
@@ -12,11 +12,11 @@
     }
 
     .accordion-item {
-        @apply border-b-2 border-solid border-black relative;
+        @apply border-b-2 border-solid border-border-inverse relative;
     }
 
     .accordion-item-subsequent {
-        @apply border-b-2 border-r-2 border-solid border-black relative;
+        @apply border-b-2 border-r-2 border-solid border-border-inverse relative;
     }
 
     .accordion-item-header {
@@ -24,15 +24,19 @@
     }
 
     .accordion-item-header::after {
-        @apply absolute w-[48px] h-[48px] right-[-24px] bottom-[-24px] leading-[40px] shadow-[5px_5px_rgb(0_0_0/20%)] text-[30px] text-center font-normal z-2 rounded-[50%] border-2 border-solid border-black transition duration-1200 ease-[cubic-bezier(.3,0,.3,1)];
+        @apply absolute w-[48px] h-[48px] right-[-24px] bottom-[-24px] leading-[40px] shadow-[var(--shadow-offset-md)] text-[30px] text-center font-normal z-2 rounded-[50%] border-2 border-solid border-border-inverse transition duration-1200 ease-[cubic-bezier(.3,0,.3,1)];
+    }
+
+    .accordion-item-header-open {
+        @apply  after:bg-[rgb(240,235,227)] dark:after:bg-[#222831]
     }
 
     .accordion-item-header-open::after {
-        @apply content-["-"] bg-[rgb(240,235,227)];
+        @apply content-["-"] text-inverse;
     }
 
     .accordion-item-header-closed::after {
-        @apply content-["+"] bg-white;
+        @apply content-["+"] text-inverse bg-card-inverse;
     }
 
     .accordion-content {
@@ -40,11 +44,11 @@
     }
 
     .accordion-content-subheading {
-        @apply w-[70%] max-md:w-full float-left max-md:float-none text-[28px] max-md:text-[24px] text-black font-bold font-["Caveat"] leading-[40px];
+        @apply w-[70%] max-md:w-full float-left max-md:float-none text-[28px] max-md:text-[24px] text-inverse font-bold font-["Caveat"] leading-[40px];
     }
 
     .accordion-content-meta {
-        @apply float-right max-md:float-none text-[13px] text-black font-bold uppercase tracking-wider max-md:leading-snug leading-[46px];
+        @apply float-right max-md:float-none text-[13px] text-inverse font-bold uppercase tracking-wider max-md:leading-snug leading-[46px];
     }
 
     .accordion-content-description {

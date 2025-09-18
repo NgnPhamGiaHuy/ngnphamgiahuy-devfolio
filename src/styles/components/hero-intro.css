@@ -16,6 +16,6 @@
     }
 
     .hero-job-title {
-        @apply ml-[10px] text-[30px] text-black font-bold font-["Caveat"] tracking-normal normal-case;
+        @apply ml-[10px] text-[30px] text-inverse font-bold font-["Caveat"] tracking-normal normal-case;
     }
 }
