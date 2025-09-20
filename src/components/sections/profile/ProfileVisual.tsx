@@ -100,7 +100,7 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = memo(({ className = 
 
     return (
         <motion.div
-            className={`hero-profile-container ${className}`}
+            className={`profile-visual-container ${className}`}
             variants={mergedVariants}
             initial={initial === "" ? "hidden" : (initial as any)}
             animate={animate === "" ? "visible" : (animate as any)}
@@ -119,12 +119,12 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = memo(({ className = 
                     alt={profileImageAlt}
                     width={680}
                     height={800}
-                    className={"hero-profile-image"}
+                    className={"profile-visual-image"}
                     priority
                 />
             </motion.div>
             <span
-                className={"avatar-circle"}
+                className={"profile-visual-avatar-circle"}
                 role={"presentation"}
                 aria-hidden={"true"}
             />
@@ -132,7 +132,7 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = memo(({ className = 
                 <DecorativeLayer key={`layer-${index}`} {...layer} />
             ))}
             <motion.div
-                className={"hero-stats-container"}
+                className={"profile-visual-stats-container"}
                 variants={statsVariants}
                 initial={"hidden"}
                 animate={"visible"}

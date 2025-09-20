@@ -24,8 +24,8 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
     return (
         <NextThemeProvider
-            attribute="data-theme"
-            defaultTheme="system"
+            attribute={"data-theme"}
+            defaultTheme={"system"}
             enableSystem
             disableTransitionOnChange
         >

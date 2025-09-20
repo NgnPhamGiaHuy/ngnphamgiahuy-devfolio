@@ -25,7 +25,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ heading, subheading, meta
                 <button
                     id={buttonId}
                     type={"button"}
-                    className={"accordion-item-button"}
+                    className={"w-full text-left text-inverse! block cursor-pointer relative"}
                     aria-expanded={isOpen}
                     aria-controls={panelId}
                 >

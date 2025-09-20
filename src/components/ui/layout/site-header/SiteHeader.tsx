@@ -17,12 +17,12 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ className, logo = "Portfolio" }
     return (
         <header ref={headerRef} className={`${getHeaderClasses(headerState)} ${className || ""}`} onAnimationEnd={handleAnimationEnd}>
             <section className={"relative"}>
-                <div className={"header-container"}>
-                    <div className={"header-side"}>
+                <div className={"flex-container"}>
+                    <div className={"flex-base"}>
                         <BrandLink logo={logo} />
                     </div>
-                    <div className={"header-side"}>
-                        <div className={"flex-container"}>
+                    <div className={"flex-base"}>
+                        <div className={"flex-wrapper"}>
                             <ThemeToggle />
                             <MenuToggle isMenuOpen={isMenuOpen} onToggle={toggleMenu} />
                             <Sidebar isMenuOpen={isMenuOpen} onMenuItemClick={closeMenu} />

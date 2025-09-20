@@ -38,15 +38,15 @@ const Hero: React.FC<HeroSectionProps> = memo(({ profile }) => {
     return (
         <HeroAnimationProvider timeline={heroTextTimeline}>
             <section
-                className={"hero-section elementor-section"}
+                className={"hero-section hero-elementor-section"}
                 role={"banner"}
                 aria-label={"Hero section with introduction and profile"}
             >
-                <div className={"hero-container"}>
-                    <div className={"hero-wrapper"}>
-                        <div className={"hero-content-wrapper"}>
-                            <div className={"hero-main-content"}>
-                                <div className={"hero-content-inner"}>
+                <div className={"min-h-screen max-lg:min-h-0 items-center container-1300"}>
+                    <div className={"flex-full"}>
+                        <div className={"p-[10px] flex-wrap-center"}>
+                            <div className={"w-full mb-5 relative"}>
+                                <div className={"relative z-2"}>
                                     <motion.div
                                         className={"hero-content-container"}
                                         initial={"hidden"}

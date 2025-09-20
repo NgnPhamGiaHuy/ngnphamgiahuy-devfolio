@@ -15,16 +15,16 @@ const ContactMethodCard: React.FC<ContactItemProps> = ({ contact }) => {
     const Icon = config.icon;
 
     return (
-        <div className={"contact-item"}>
-            <div className={"contact-item-icon-wrapper"}>
+        <div className={"contact-method-card"}>
+            <div className={"contact-method-card-icon-wrapper"}>
                 <Icon className={"size-5"} />
             </div>
-            <div className={"contact-item-label"}>
+            <div className={"contact-method-card-label"}>
                 <span>{displayLabel}</span>
             </div>
-            <div className={"contact-item-value"}>
+            <div className={"opacity-80"}>
                 {link ? (
-                    <Link href={link} className={"contact-item-link"}>{contact.value}</Link>
+                    <Link href={link} className={"contact-method-card-link"}>{contact.value}</Link>
                 ) : (
                     <span>{contact.value}</span>
                 )}

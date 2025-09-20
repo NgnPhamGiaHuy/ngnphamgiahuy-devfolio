@@ -6,9 +6,9 @@ const VerticalRule: React.FC<VerticalRuleProps> = ({ top = "0", right = "0", bot
     const style: React.CSSProperties = { width, top, right, bottom, left, position: "absolute" };
 
     return (
-        <div className={`vline-block ${shadow} ${className}`} style={style}>
+        <div className={`vertical-rule ${shadow} ${className}`} style={style}>
             {showPattern && (
-                <span className={"vline-pattern"}></span>
+                <span className={"vertical-rule-pattern"}></span>
             )}
         </div>
     );

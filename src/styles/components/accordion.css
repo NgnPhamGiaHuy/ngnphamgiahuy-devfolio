@@ -1,8 +1,5 @@
 @layer components {
-    .accordion-container {
-        @apply w-full;
-    }
-
+    /* Accordion container */
     .accordion-label {
         @apply m-0! pb-[30px] text-[24px] text-center text-inverse! border-b-2 border-solid border-border-inverse leading-none block relative;
     }
@@ -11,6 +8,7 @@
         @apply max-md:mb-[40px] relative z-2;
     }
 
+    /* Accordion items */
     .accordion-item {
         @apply border-b-2 border-solid border-border-inverse relative;
     }
@@ -19,6 +17,7 @@
         @apply border-b-2 border-r-2 border-solid border-border-inverse relative;
     }
 
+    /* Accordion headers */
     .accordion-item-header {
         @apply p-[30px]! max-md:py-[25px]! max-md:pr-[50px]! max-md:pl-[20px]! text-[21px] max-md:text-[18px] cursor-pointer;
     }
@@ -28,7 +27,7 @@
     }
 
     .accordion-item-header-open {
-        @apply  after:bg-[rgb(240,235,227)] dark:after:bg-[#222831]
+        @apply after:bg-[rgb(240,235,227)] dark:after:bg-[#222831];
     }
 
     .accordion-item-header-open::after {
@@ -39,6 +38,7 @@
         @apply content-["+"] text-inverse bg-card-inverse;
     }
 
+    /* Accordion content */
     .accordion-content {
         @apply pr-[50px] pl-[30px] max-md:px-[20px] box-border overflow-hidden relative;
     }

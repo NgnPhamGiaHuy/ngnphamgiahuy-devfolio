@@ -78,7 +78,7 @@ const PersonalIntro: React.FC<HeroSectionProps> = memo(({ profile }) => {
 
     return (
         <motion.div
-            className={"hero-intro-container"}
+            className={"personal-intro-container"}
             variants={containerVariants}
             initial={"hidden"}
             animate={"visible"}
@@ -86,7 +86,7 @@ const PersonalIntro: React.FC<HeroSectionProps> = memo(({ profile }) => {
             aria-label={"Personal introduction"}
         >
             <motion.div
-                className={"hero-subtitle"}
+                className={"personal-intro-subtitle"}
                 variants={itemVariants}
                 role={"text"}
                 aria-label={"Greeting message"}
@@ -105,13 +105,13 @@ const PersonalIntro: React.FC<HeroSectionProps> = memo(({ profile }) => {
                 </span>
             </motion.div>
             <motion.h1
-                className={"hero-name-wrapper hero-title"}
+                className={"personal-intro-title"}
                 variants={nameVariants}
                 role={"heading"}
                 aria-level={1}
             >
                 <span>
-                    <b className={"hero-firstname"}>
+                    <b className={"personal-intro-firstname"}>
                         <AnimatedText
                             text={firstName}
                             baseDelay={(timeline.name?.sectionDelay || 0) + 200}
@@ -120,7 +120,7 @@ const PersonalIntro: React.FC<HeroSectionProps> = memo(({ profile }) => {
                     {restOfName.map((word, wordIndex) => (
                         <motion.span
                             key={`name-${wordIndex}`}
-                            className={"hero-lastname"}
+                            className={"personal-intro-lastname"}
                             variants={nameWordVariants}
                             initial={"hidden"}
                             animate={"visible"}
@@ -137,7 +137,7 @@ const PersonalIntro: React.FC<HeroSectionProps> = memo(({ profile }) => {
                 </span>
             </motion.h1>
             <motion.div
-                className={"hero-subtitle"}
+                className={"personal-intro-subtitle"}
                 variants={itemVariants}
                 role={"text"}
                 aria-label={"Job title introduction"}
@@ -147,7 +147,7 @@ const PersonalIntro: React.FC<HeroSectionProps> = memo(({ profile }) => {
                     baseDelay={timeline.job?.sectionDelay || 0}
                 />
                 <motion.strong
-                    className={"hero-job-title"}
+                    className={"personal-intro-job-title"}
                     variants={jobTitleVariants}
                     initial={"hidden"}
                     animate={"visible"}

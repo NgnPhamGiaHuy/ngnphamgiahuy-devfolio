@@ -24,7 +24,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ portfolios = [] }) => {
 
     return (
         <motion.div
-            className={"portfolio-grid"}
+            className={"project-grid"}
             layout
             initial={"hidden"}
             animate={"visible"}

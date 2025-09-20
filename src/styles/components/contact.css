@@ -1,121 +1,92 @@
 @layer components {
-
-    .contact-column-left {
-        @apply w-full md:lg:w-[40%] min-h-[1px] flex relative;
-    }
-
-    .contact-column-right {
-        @apply w-full md:lg:w-[60%] min-h-[1px] flex relative;
-    }
-
-    .contact-column-content {
-        @apply w-full p-[10px] flex flex-wrap content-start relative;
-    }
-
-    .contact-items-container {
-        @apply w-full relative z-2;
-    }
-
-    .contact-background-pattern {
-        @apply w-[240px] h-[240px] bottom-[-32px] left-[-135px] bg-[url("/images/pat-1.png")] bg-center bg-no-repeat bg-contain absolute;
-    }
-
-    .contact-form-container {
-        @apply w-full relative;
-    }
-
-    .contact-item {
+    /* ContactMethodCard component */
+    .contact-method-card {
         @apply max-md:w-full max-lg:w-1/2 mb-[40px] max-md:mb-[30px] pl-[130px] max-lg:pl-[120px] max-lg:text-[16px] max-lg:align-top max-lg:inline-block block relative;
     }
 
-    .contact-item-icon-wrapper {
-        @apply w-[56px] h-[56px] top-0 left-0 flex items-center justify-center text-[20px] text-center bg-card-inverse shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] border-2 border-solid border-border-inverse rounded-full leading-[52px] absolute;
+    .contact-method-card-icon-wrapper {
+        @apply size-[56px] top-0 left-0 flex items-center justify-center text-[20px] text-center bg-card-inverse shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] border-2 border-solid border-border-inverse rounded-full leading-[52px] absolute;
     }
 
-    .contact-item-icon-wrapper::after {
+    .contact-method-card-icon-wrapper::after {
         @apply content-[""] w-[40px] h-[2px] mt-[-1px] top-1/2 left-full text-[20px] text-center bg-black leading-[52px] absolute;
     }
 
-    .contact-item-label {
+    .contact-method-card-label {
         @apply py-[10px] text-[30px] max-md:text-[24px] text-inverse font-["Caveat"] font-bold leading-none;
     }
 
-    .contact-item-value {
-        @apply opacity-80;
-    }
-
-    .contact-item-link {
+    .contact-method-card-link {
         @apply transition-all duration-350 hover:text-primary;
     }
 
-    .contact-form-fields {
+    /* ContactFields component */
+    .contact-fields {
         @apply mx-[-12px] flex flex-wrap;
     }
 
+    .contact-fields-input-wrapper-half {
+        @apply md:flex-none! md:basis-auto! md:w-1/2!;
+    }
+
+    .contact-fields-footer {
+        @apply max-w-full w-full px-[12px] flex items-center max-md:items-end justify-end max-md:flex-col md:flex-[0_0_auto] text-right;
+    }
+
+    .contact-fields-terms-container {
+        @apply mr-[30px] inline-block leading-[56px];
+    }
+
+    .contact-fields-terms-label-wrapper {
+        @apply ml-[1em] inline-block relative;
+    }
+
+    .contact-fields-terms-label {
+        @apply p-0 indent-[30px] cursor-pointer transition-colors duration-200;
+    }
+
+    .contact-fields-terms-text {
+        @apply text-[16px] text-right text-inverse! font-normal tracking-wider;
+    }
+
+    .contact-fields-terms-checkbox {
+        @apply mt-0 ml-[4px] top-[-1px] align-middle relative;
+    }
+
+    /* FormInput component */
     .form-input-wrapper {
         @apply max-w-full w-full px-[12px] shrink-0 relative;
     }
 
-    .form-input-wrapper-half {
-        @apply md:flex-none md:basis-auto md:w-1/2;
-    }
-
-    .form-field-container {
+    .form-input-field-container {
         @apply mb-[30px] max-md:mb-[25px] relative;
     }
 
-    .form-label {
+    .form-input-label {
         @apply p-0 text-[14px] indent-[30px] font-bold tracking-wider uppercase block;
     }
 
-    .form-required {
-        @apply text-primary;
-    }
-
-    .form-input {
+    .form-input-field {
         @apply w-full h-[60px] mt-[10px] px-[30px] text-[16px] text-inverse font-normal bg-card-inverse border-2 border-solid border-border-inverse rounded-[30px] outline-none resize-none block relative;
     }
 
-    .form-input-error {
+    .form-input-field-error {
         @apply border-red-400 focus:ring-red-200 focus:border-red-400;
     }
 
-    .form-textarea {
+    .form-input-textarea {
         @apply w-full h-[140px] mt-[10px] px-[30px] py-[20px] text-[16px] text-inverse font-normal bg-card-inverse border-2 border-solid border-border-inverse rounded-[30px] outline-none resize-none block relative;
     }
 
-    .form-textarea-error {
+    .form-input-textarea-error {
         @apply border-red-400 focus:ring-red-200 focus:border-red-400;
     }
 
-    .form-error-message {
+    .form-input-error-message {
         @apply w-full text-[14px] text-right pr-[24px] text-red-500 absolute;
     }
 
-    .form-footer {
-        @apply max-w-full w-full px-[12px] flex items-center max-md:items-end justify-end max-md:flex-col md:flex-[0_0_auto] text-right;
-    }
-
-    .form-terms-container {
-        @apply mr-[30px] inline-block leading-[56px];
-    }
-
-    .form-terms-label-wrapper {
-        @apply ml-[1em] inline-block relative;
-    }
-
-    .form-terms-label {
-        @apply p-0 indent-[30px] cursor-pointer transition-colors duration-200;
-    }
-
-    .form-terms-text {
-        @apply text-[16px] text-right text-inverse! font-normal tracking-wider;
-    }
-
-    .form-terms-checkbox {
-        @apply mt-0 ml-[4px] top-[-1px] align-middle relative;
-    }
-
+    /* Status messages */
     .status-message {
         @apply w-full mt-6 p-4 rounded-lg border absolute;
     }
@@ -126,25 +97,5 @@
 
     .status-message-error {
         @apply bg-red-50 text-red-800 border-red-200;
-    }
-
-    .status-message-content {
-        @apply flex items-center justify-start;
-    }
-
-    .status-message-icon {
-        @apply h-5 w-5 mr-3;
-    }
-
-    .submit-spinner {
-        @apply animate-spin -ml-1 mr-2 h-4 w-4 text-white;
-    }
-
-    .submit-spinner-circle {
-        @apply opacity-25;
-    }
-
-    .submit-spinner-path {
-        @apply opacity-75;
     }
 }

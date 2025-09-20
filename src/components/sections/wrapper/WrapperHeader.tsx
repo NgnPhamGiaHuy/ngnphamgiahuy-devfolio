@@ -42,11 +42,11 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({ title, subtitle, isInView
     }
 
     return (
-        <section className={"wrapper-header-section"}>
-            <div className={"wrapper-header-container"}>
-                <div className={"wrapper-header-outer"}>
-                    <div className={"wrapper-header-content-wrapper"}>
-                        <div className={"wrapper-header-content"}>
+        <section className={"wrapper-header"}>
+            <div className={"container-1300"}>
+                <div className={"flex-full"}>
+                    <div className={"p-[10px] flex-wrap-start"}>
+                        <div className={"w-full text-center relative"}>
                             <motion.h2
                                 key={`title-${animationKey}`}
                                 className={"wrapper-header-title"}

@@ -18,48 +18,44 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ item, index }) => {
     return (
         <motion.div
             key={index}
-            className={"content-card"}
+            className={"card"}
             variants={cardVariants}
             initial={"hidden"}
             whileInView={"visible"}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: index * 0.1 }}
         >
-            <motion.div
-                className={"content-card-inner"}
-                whileHover={{ y: -5 }}
-                transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
-            >
-                <motion.div className={"content-card-category"} variants={contentVariants}>
+            <div className={"card-inner"}>
+                <motion.div className={"card-category"} variants={contentVariants}>
                     <span>
                         {item.category}
                     </span>
                 </motion.div>
-                <motion.div className={"content-card-icon"} variants={contentVariants}></motion.div>
-                <motion.h5 className={"content-card-title"} variants={contentVariants}>
+                <motion.div className={"card-icon"} variants={contentVariants}></motion.div>
+                <motion.h5 className={"card-title"} variants={contentVariants}>
                     <span>
                         {item.title}
                     </span>
                 </motion.h5>
-                <motion.div className={"content-card-description"} variants={contentVariants}>
+                <motion.div className={"card-description"} variants={contentVariants}>
                     <p>
                         {item.description}
                     </p>
                 </motion.div>
                 <motion.div variants={contentVariants}>
                     <Link href={"/src/public"}>
-                        <span className={"content-card-link"}>
+                        <span className={"card-link"}>
                             More information
                         </span>
                     </Link>
                 </motion.div>
                 <motion.div
-                    className={"content-card-pattern"}
+                    className={"card-pattern"}
                     initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
                     transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
                 ></motion.div>
-            </motion.div>
+            </div>
         </motion.div>
     );
 };

@@ -16,7 +16,7 @@ const ContactFields: React.FC<ContactFieldsProps> = ({ register, isSubmitting, e
     };
 
     return (
-        <div className={"contact-form-fields"}>
+        <div className={"contact-fields"}>
             <FormInput
                 id={FORM_FIELDS.NAME.id}
                 label={FORM_FIELDS.NAME.label}
@@ -24,7 +24,7 @@ const ContactFields: React.FC<ContactFieldsProps> = ({ register, isSubmitting, e
                 type={FORM_FIELDS.NAME.type}
                 registration={register("name")}
                 error={errors.name?.message}
-                className={"form-input-wrapper-half"}
+                className={"contact-fields-input-wrapper-half"}
             />
             <FormInput
                 id={FORM_FIELDS.EMAIL.id}
@@ -33,7 +33,7 @@ const ContactFields: React.FC<ContactFieldsProps> = ({ register, isSubmitting, e
                 type={FORM_FIELDS.EMAIL.type}
                 registration={register("email")}
                 error={errors.email?.message}
-                className={"form-input-wrapper-half"}
+                className={"contact-fields-input-wrapper-half"}
             />
             <FormInput
                 id={FORM_FIELDS.SUBJECT.id}
@@ -52,24 +52,24 @@ const ContactFields: React.FC<ContactFieldsProps> = ({ register, isSubmitting, e
                 registration={register("message")}
                 error={errors.message?.message}
             />
-            <div className={"form-footer"}>
-                <div className={"form-terms-container"}>
+            <div className={"contact-fields-footer"}>
+                <div className={"contact-fields-terms-container"}>
                     <span className={"relative"}>
-                        <span className={"form-terms-label-wrapper"}>
+                        <span className={"contact-fields-terms-label-wrapper"}>
                             <label
                                 htmlFor={"termsAccepted"}
                                 className={clsx(
                                     getLabelColor(),
-                                    "form-terms-label"
+                                    "contact-fields-terms-label"
                                 )}
                             >
-                                <span className={"form-terms-text"}>
+                                <span className={"contact-fields-terms-text"}>
                                     Accept the terms and conditions
                                 </span>
                                 <input
                                     type={"checkbox"}
                                     id={"termsAccepted"}
-                                    className={"form-terms-checkbox"}
+                                    className={"contact-fields-terms-checkbox"}
                                     {...register("termsAccepted")}
                                 />
                             </label>

@@ -20,24 +20,24 @@ const ThemeToggle: React.FC<ThemeToggleProps> = memo(({ className }) => {
 
     if (!mounted) {
         return (
-            <div className={`header-toggle-theme ${className || ""}`} role={"button"} tabIndex={0} aria-label={"Theme toggle"}>
-                <div className={"w-7 h-7"} />
+            <div className={`mr-10 size-8 flex-center align-middle cursor-pointer text-inverse transition-all relative ${className || ""}`} role={"button"} tabIndex={0} aria-label={"Theme toggle"}>
+                <div className={"size-7"} />
             </div>
         );
     }
 
     return (
         <div
-            className={`header-toggle-theme ${className || ""}`}
+            className={`mr-10 size-8 flex-center align-middle cursor-pointer text-inverse transition-all relative ${className || ""}`}
             onClick={handleToggle}
             role={"button"}
             tabIndex={0}
             aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
         >
             {resolvedTheme === "dark" ? (
-                <SunIcon className={"w-7 h-7"} />
+                <SunIcon className={"size-7"} />
             ) : (
-                <MoonIcon className={"w-7 h-7"} />
+                <MoonIcon className={"size-7"} />
             )}
         </div>
     );

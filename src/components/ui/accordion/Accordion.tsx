@@ -6,7 +6,7 @@ import { AccordionItem } from "@/components";
 
 const Accordion = <T,>({ items, label, fieldMapping }: AccordionProps<T>) => {
     return (
-        <div className={"accordion-container"}>
+        <div className={"w-full"}>
             <h5 className={"accordion-label"}>
                 {label}
             </h5>

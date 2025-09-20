@@ -12,16 +12,16 @@ const SiteFooter: React.FC = () => {
     return (
         <footer className={"m-0 p-0 max-lg:px-[30px] border-t border-solid border-white/10"}>
             <section className={"py-[60px] relative"}>
-                <div className={"max-w-[1300px] mx-auto flex flex-wrap relative"}>
-                    <div className={"w-full md:w-1/3 min-h-[1px] relative"}>
-                        <div className={"p-[10px] flex-container"}>
+                <div className={"container-1300"}>
+                    <div className={"flex-third"}>
+                        <div className={"p-[10px] flex-wrapper"}>
                             <SocialLinks links={socialLinks} iconMargin={"mr-[15px]"} iconSize={"size-[22px]"} className={"w-full max-md:text-center"} />
                         </div>
                     </div>
-                    <div className={"w-full md:w-1/3 min-h-[1px] relative"}>
-                        <div className={"p-[10px] flex-container"}>
+                    <div className={"flex-third"}>
+                        <div className={"p-[10px] flex-wrapper"}>
                             <div className={"w-full text-center relative"}>
-                                <div className={"text-[13px] font-bold uppercase tracking-wider relative"}>
+                                <div className={"caption-text"}>
                                     <p>
                                         © 2025&nbsp;
                                         <strong className={"text-primary"}>
@@ -33,10 +33,10 @@ const SiteFooter: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={"w-full md:w-1/3 min-h-[1px] relative"}>
-                        <div className={"p-[10px] flex-container"}>
+                    <div className={"flex-third"}>
+                        <div className={"p-[10px] flex-wrapper"}>
                             <div className={"w-full text-center relative"}>
-                                <div className={"text-[13px] font-bold uppercase tracking-wider relative"}>
+                                <div className={"caption-text"}>
                                     <p>
                                         Developed by&nbsp;
                                         <strong className={"text-primary"}>

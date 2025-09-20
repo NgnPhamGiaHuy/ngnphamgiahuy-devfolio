@@ -67,7 +67,7 @@ const BioSection: React.FC<HeroSectionProps> = memo(({ profile }) => {
 
     return (
         <motion.div
-            className={"hero-description"}
+            className={"max-w-[520px] max-xl:max-w-[400px] max-lg:mx-auto py-[40px] text-[18px]"}
             variants={containerVariants}
             initial={"hidden"}
             animate={"visible"}
@@ -79,7 +79,7 @@ const BioSection: React.FC<HeroSectionProps> = memo(({ profile }) => {
                 role={"text"}
                 aria-label={"Professional description"}
             >
-                <p className={"hero-description-text"}>
+                <p className={"opacity-80"}>
                     {prefersReducedMotion ? (
                         description
                     ) : (

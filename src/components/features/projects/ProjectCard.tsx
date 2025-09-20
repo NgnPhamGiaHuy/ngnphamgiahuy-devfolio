@@ -24,7 +24,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
 
     return (
         <motion.div
-            className={"portfolio-item"}
+            className={"project-card-item"}
             layout
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -36,36 +36,36 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
             }}
         >
             <motion.div
-                className={"portfolio-card"}
+                className={"project-card"}
                 whileHover={{ y: -5, boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
                 transition={{ type: "spring", stiffness: 300 }}
             >
                 <Link href={linkHref}>
-                    <div className={"portfolio-card-image-container"}>
+                    <div className={"project-card-image-container"}>
                         <Image
                             src={imageUrl}
                             alt={imageAlt}
-                            className={"portfolio-card-image"}
+                            className={"project-card-image"}
                             width={600}
                             height={400}
                         />
                     </div>
-                    <div className={"portfolio-card-content"}>
-                        <span className={"portfolio-card-category"}>
+                    <div className={"pt-[30px] bottom-0 relative"}>
+                        <span className={"project-card-category"}>
                             {projectCategory}
                         </span>
-                        <h5 className={"portfolio-card-title"}>{projectName}</h5>
-                        <div className={"portfolio-card-description"}>
-                            <p className={"portfolio-card-description-text"}>
+                        <h5 className={"project-card-title"}>{projectName}</h5>
+                        <div className={"project-card-description"}>
+                            <p className={"project-card-description-text"}>
                                 {projectDescription}
                             </p>
                         </div>
-                        <span className={"content-card-link"}>
+                        <span className={"card-link"}>
                             See project
                         </span>
                     </div>
                     <motion.div
-                        className={"content-card-pattern bottom-[-36px]"}
+                        className={"bottom-[-36px] card-pattern"}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}

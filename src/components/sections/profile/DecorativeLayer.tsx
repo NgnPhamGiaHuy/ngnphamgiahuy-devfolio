@@ -9,7 +9,7 @@ const DecorativeLayer: React.FC<DecorativeLayerProps> = memo(({ width, height, t
 
     return (
         <span
-            className={"hero-pattern-layer"}
+            className={"pat-background"}
             style={style}
             role={"presentation"}
             aria-hidden={"true"}

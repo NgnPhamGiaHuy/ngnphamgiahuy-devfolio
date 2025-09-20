@@ -3,19 +3,19 @@ import { MockDataType } from "@/types";
 export const data: MockDataType = {
     blogs: [
         {
-            title: "Getting Started with Lorem Ipsum",
+            title: "Lorem ipsum dolor sit amet consectetur",
             date: "2024-08-01",
-            excerpt: "Learn the fundamentals of lorem ipsum and how to build modern web applications.",
+            excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             link: "#",
             slug: {
                 _type: "slug",
-                current: "getting-started-with-lorem-ipsum"
+                current: "lorem-ipsum-dolor-sit-amet-consectetur"
             },
             image: "https://picsum.photos/600/400?random",
-            categories: ["Lorem", "Ipsum", "Tutorial"],
+            categories: ["Lorem", "Ipsum", "Dolor"],
             content: [],
-            metaTitle: "Getting Started with Lorem Ipsum - Best Practices",
-            metaDescription: "Comprehensive guide to lorem ipsum with modern patterns and best practices.",
+            metaTitle: "Lorem ipsum dolor sit amet consectetur - Complete Guide",
+            metaDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
             _id: "blog-001",
             _type: "blogPost",
             _createdAt: "2024-01-01T00:00:00Z",
@@ -23,19 +23,19 @@ export const data: MockDataType = {
             _rev: "rev-001",
         },
         {
-            title: "Advanced Lorem Patterns",
+            title: "Sed ut perspiciatis unde omnis iste natus",
             date: "2024-08-15",
-            excerpt: "Explore advanced lorem ipsum patterns and best practices for large-scale applications.",
+            excerpt: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             link: "#",
             slug: {
                 _type: "slug",
-                current: "advanced-lorem-patterns"
+                current: "sed-ut-perspiciatis-unde-omnis-iste-natus"
             },
             image: "https://picsum.photos/600/400?random",
-            categories: ["Lorem", "Patterns", "Best Practices"],
+            categories: ["Sed", "Ut", "Perspiciatis"],
             content: [],
-            metaTitle: "Advanced Lorem Patterns - Complete Guide",
-            metaDescription: "Discover advanced lorem patterns and how to use them in your projects.",
+            metaTitle: "Sed ut perspiciatis unde omnis iste natus - Best Practices",
+            metaDescription: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
             _id: "blog-002",
             _type: "blogPost",
             _createdAt: "2024-01-01T00:00:00Z",
@@ -43,19 +43,19 @@ export const data: MockDataType = {
             _rev: "rev-002",
         },
         {
-            title: "Building Responsive Lorem with Dolor",
+            title: "Ut enim ad minima veniam quis nostrum",
             date: "2024-09-01",
-            excerpt: "Master the art of creating beautiful, responsive lorem ipsum with dolor sit amet.",
+            excerpt: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             link: "#",
             slug: {
                 _type: "slug",
-                current: "building-responsive-lorem-with-dolor"
+                current: "ut-enim-ad-minima-veniam-quis-nostrum"
             },
             image: "https://picsum.photos/600/400?random",
-            categories: ["Lorem", "Dolor", "Responsive"],
+            categories: ["Ut", "Enim", "Minima"],
             content: [],
-            metaTitle: "Building Responsive Lorem - Complete Guide",
-            metaDescription: "Learn how to build responsive lorem ipsum with practical examples.",
+            metaTitle: "Ut enim ad minima veniam quis nostrum - Complete Guide",
+            metaDescription: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.",
             _id: "blog-003",
             _type: "blogPost",
             _createdAt: "2024-01-01T00:00:00Z",
@@ -63,19 +63,19 @@ export const data: MockDataType = {
             _rev: "rev-003",
         },
         {
-            title: "State Management in Lorem Applications",
+            title: "Nemo enim ipsam voluptatem quia voluptas",
             date: "2024-09-15",
-            excerpt: "A comprehensive guide to managing state in complex lorem applications using modern tools.",
+            excerpt: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
             link: "#",
             slug: {
                 _type: "slug",
-                current: "state-management-in-lorem-applications"
+                current: "nemo-enim-ipsam-voluptatem-quia-voluptas"
             },
             image: "https://picsum.photos/600/400?random",
-            categories: ["Lorem", "State Management", "Applications"],
+            categories: ["Nemo", "Enim", "Voluptatem"],
             content: [],
-            metaTitle: "State Management in Lorem - Complete Guide",
-            metaDescription: "Learn the essential state management practices for lorem applications.",
+            metaTitle: "Nemo enim ipsam voluptatem quia voluptas - Complete Guide",
+            metaDescription: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
             _id: "blog-004",
             _type: "blogPost",
             _createdAt: "2024-01-01T00:00:00Z",
@@ -86,7 +86,7 @@ export const data: MockDataType = {
     contacts: [
         {
             type: "email",
-            value: "lorem@example.com",
+            value: "lorem@ipsum.com",
             order: 1,
             _id: "contact-001",
             _type: "contactItem",
@@ -95,7 +95,7 @@ export const data: MockDataType = {
             _rev: "rev-001",
         }, {
             type: "phone",
-            value: "+00 123 456 789",
+            value: "+1 234 567 890",
             order: 2,
             _id: "contact-002",
             _type: "contactItem",
@@ -104,7 +104,7 @@ export const data: MockDataType = {
             _rev: "rev-002",
         }, {
             type: "location",
-            value: "Lorem Street, Ipsum City",
+            value: "Lorem Ipsum Street, Dolor City",
             order: 3,
             _id: "contact-003",
             _type: "contactItem",
@@ -113,7 +113,7 @@ export const data: MockDataType = {
             _rev: "rev-003",
         }, {
             type: "office",
-            value: "Lorem Company HQ",
+            value: "Lorem Ipsum Corporation",
             order: 4,
             _id: "contact-004",
             _type: "contactItem",
@@ -130,9 +130,9 @@ export const data: MockDataType = {
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-001",
             year: "2014 - 2018",
-            degree: "Lorem Ipsum Degree",
-            institution: "Lorem University",
-            description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+            degree: "Lorem Ipsum Dolor Sit Amet",
+            institution: "Lorem Ipsum University",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             order: 1
         }, {
             _id: "edu-002",
@@ -141,32 +141,32 @@ export const data: MockDataType = {
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-002",
             year: "2012 - 2014",
-            degree: "Lorem Diploma",
-            institution: "Ipsum High School",
-            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+            degree: "Sed Ut Perspiciatis Diploma",
+            institution: "Ut Enim Minima School",
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
             order: 2
         },  {
-            _id: "edu-002",
+            _id: "edu-003",
             _type: "education",
             _createdAt: "2024-01-01T00:00:00Z",
             _updatedAt: "2024-01-01T00:00:00Z",
-            _rev: "rev-002",
-            year: "2012 - 2014",
-            degree: "Lorem Diploma",
-            institution: "Ipsum High School",
-            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-            order: 2
+            _rev: "rev-003",
+            year: "2010 - 2012",
+            degree: "Nemo Enim Ipsam Certificate",
+            institution: "Quia Voluptas Institute",
+            description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
+            order: 3
         },  {
-            _id: "edu-002",
+            _id: "edu-004",
             _type: "education",
             _createdAt: "2024-01-01T00:00:00Z",
             _updatedAt: "2024-01-01T00:00:00Z",
-            _rev: "rev-002",
-            year: "2012 - 2014",
-            degree: "Lorem Diploma",
-            institution: "Ipsum High School",
-            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-            order: 2
+            _rev: "rev-004",
+            year: "2008 - 2010",
+            degree: "Neque Porro Quisquam Foundation",
+            institution: "Dolorem Ipsum Academy",
+            description: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+            order: 4
         },
     ],
     experience: [
@@ -177,9 +177,9 @@ export const data: MockDataType = {
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-001",
             year: "2020 - Present",
-            title: "Lorem Developer",
-            company: "Lorem Corp",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            title: "Lorem Ipsum Developer",
+            company: "Dolor Sit Amet Corp",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             order: 1
         }, {
             _id: "exp-002",
@@ -188,9 +188,9 @@ export const data: MockDataType = {
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-002",
             year: "2018 - 2020",
-            title: "Lorem Engineer",
-            company: "Ipsum Studio",
-            description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            title: "Sed Ut Perspiciatis Engineer",
+            company: "Unde Omnis Studio",
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
             order: 2
         }, {
             _id: "exp-003",
@@ -199,28 +199,28 @@ export const data: MockDataType = {
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-003",
             year: "2016 - 2018",
-            title: "Lorem Specialist",
-            company: "Dolor Inc",
-            description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+            title: "Ut Enim Minima Specialist",
+            company: "Veniam Quis Inc",
+            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.",
             order: 3
         }
     ],
     logo: "NgnPham",
     pricing: [
         {
-            plan: "Lorem Basic",
+            plan: "Lorem Ipsum Basic",
             price: "199",
             period: "per project",
-            description: "A starter package for small websites and personal projects.",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             features: {
                 included: [
-                    "Up to 3 pages",
-                    "Responsive design",
-                    "Basic SEO setup"
+                    "Lorem ipsum dolor sit amet",
+                    "Consectetur adipiscing elit",
+                    "Sed do eiusmod tempor"
                 ],
                 not_included: [
-                    "Custom animations",
-                    "Priority support"
+                    "Ut enim ad minim veniam",
+                    "Quis nostrud exercitation"
                 ]
             },
             order: 1,
@@ -231,19 +231,19 @@ export const data: MockDataType = {
             _rev: "rev-001",
         },
         {
-            plan: "Lorem Standard",
+            plan: "Sed Ut Perspiciatis Standard",
             price: "499",
             period: "per project",
-            description: "Best for small businesses needing a professional presence.",
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
             features: {
                 included: [
-                    "Up to 10 pages",
-                    "Custom design",
-                    "1 month free support"
+                    "Totam rem aperiam eaque",
+                    "Ipsa quae ab illo inventore",
+                    "Veritatis et quasi architecto"
                 ],
                 not_included: [
-                    "Unlimited revisions",
-                    "Dedicated account manager"
+                    "Beatae vitae dicta sunt",
+                    "Explicabo nemo enim ipsam"
                 ]
             },
             highlight: true,
@@ -255,19 +255,19 @@ export const data: MockDataType = {
             _rev: "rev-002",
         },
         {
-            plan: "Lorem Premium",
+            plan: "Ut Enim Minima Premium",
             price: "999",
             period: "per project",
-            description: "Full-scale solution for businesses that need advanced features.",
+            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.",
             features: {
                 included: [
-                    "Unlimited pages",
-                    "Custom animations",
-                    "6 months premium support"
+                    "Quis autem vel eum iure",
+                    "Reprehenderit qui in ea voluptate",
+                    "Velit esse quam nihil molestiae"
                 ],
                 not_included: [
-                    "On-site consulting",
-                    "Lifetime updates"
+                    "Consequatur aut perferendis",
+                    "Doloribus asperiores repellat"
                 ]
             },
             order: 3,
@@ -284,12 +284,12 @@ export const data: MockDataType = {
         _createdAt: "2024-01-01T00:00:00Z",
         _updatedAt: "2024-01-01T00:00:00Z",
         _rev: "rev-001",
-        name: "Lorem Ipsum",
-        title: "Lorem Developer",
-        subtitle: "Lorem ipsum dolor sit amet",
-        job_title: "Lorem Engineer",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        location: "Lorem City, Lorem Country",
+        name: "Lorem Ipsum Dolor",
+        title: "Sed Ut Perspiciatis Developer",
+        subtitle: "Unde omnis iste natus error sit voluptatem",
+        job_title: "Ut Enim Minima Engineer",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        location: "Lorem Ipsum City, Dolor Sit Country",
         experience_years: 5,
         completed_projects: 50,
         profile_image: "/images/profile2.png",
@@ -302,9 +302,9 @@ export const data: MockDataType = {
     },
     projects: [
         {
-            name: "Lorem Project 1",
-            category: "Lorem Category 1",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+            name: "Lorem Ipsum Dolor Sit",
+            category: "Amet Consectetur Adipiscing",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             image: "/images/profile2.png",
             link: "#",
             featured: true,
@@ -315,9 +315,9 @@ export const data: MockDataType = {
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-001",
         }, {
-            name: "Lorem Project 2",
-            category: "Lorem Category 2",
-            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore.",
+            name: "Sed Ut Perspiciatis Unde",
+            category: "Omnis Iste Natus Error",
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
             image: "/images/profile2.png",
             link: "#",
             featured: true,
@@ -328,9 +328,9 @@ export const data: MockDataType = {
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-002",
         }, {
-            name: "Lorem Project 3",
-            category: "Lorem Category 3",
-            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure.",
+            name: "Ut Enim Ad Minima",
+            category: "Veniam Quis Nostrum",
+            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
             image: "/images/profile2.png",
             link: "#",
             featured: false,
@@ -341,9 +341,9 @@ export const data: MockDataType = {
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-003",
         }, {
-            name: "Lorem Project 4",
-            category: "Lorem Category 4",
-            description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+            name: "Nemo Enim Ipsam Voluptatem",
+            category: "Quia Voluptas Sit Aspernatur",
+            description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.",
             image: "/images/profile2.png",
             link: "#",
             featured: false,
@@ -354,9 +354,9 @@ export const data: MockDataType = {
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-004",
         }, {
-            name: "Lorem Project 5",
-            category: "Lorem Category 5",
-            description: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore.",
+            name: "Neque Porro Quisquam Est",
+            category: "Qui Dolorem Ipsum Quia",
+            description: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
             image: "/images/profile2.png",
             link: "#",
             featured: true,
@@ -367,9 +367,9 @@ export const data: MockDataType = {
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-005",
         }, {
-            name: "Lorem Project 6",
-            category: "Lorem Category 6",
-            description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.",
+            name: "At Vero Eos Et Accusamus",
+            category: "Iusto Odio Dignissimos",
+            description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
             image: "/images/profile2.png",
             link: "#",
             featured: false,
@@ -383,10 +383,10 @@ export const data: MockDataType = {
     ],
     services: [
         {
-            title: "Lorem Service 1",
-            category: "Lorem Category 1",
+            title: "Lorem Ipsum Dolor Sit",
+            category: "Amet Consectetur Adipiscing",
             order: 0,
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque aliquam odio et faucibus.",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
             icon: "code",
             _id: "service-001",
             _type: "service",
@@ -395,10 +395,10 @@ export const data: MockDataType = {
             _rev: "rev-001"
         },
         {
-            title: "Lorem Service 2",
-            category: "Lorem Category 2",
+            title: "Sed Ut Perspiciatis Unde",
+            category: "Omnis Iste Natus Error",
             order: 1,
-            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.",
             icon: "smartphone",
             _id: "service-002",
             _type: "service",
@@ -407,10 +407,10 @@ export const data: MockDataType = {
             _rev: "rev-002",
         },
         {
-            title: "Lorem Service 3",
-            category: "Lorem Category 3",
+            title: "Ut Enim Ad Minima",
+            category: "Veniam Quis Nostrum",
             order: 2,
-            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.",
+            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate.",
             icon: "server",
             _id: "service-003",
             _type: "service",
@@ -419,10 +419,10 @@ export const data: MockDataType = {
             _rev: "rev-003",
         },
         {
-            title: "Lorem Service 4",
-            category: "Lorem Category 4",
+            title: "Nemo Enim Ipsam Voluptatem",
+            category: "Quia Voluptas Sit Aspernatur",
             order: 3,
-            description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
+            description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est.",
             icon: "palette",
             _id: "service-004",
             _type: "service",
@@ -431,10 +431,10 @@ export const data: MockDataType = {
             _rev: "rev-004",
         },
         {
-            title: "Lorem Service 5",
-            category: "Lorem Category 5",
+            title: "Neque Porro Quisquam Est",
+            category: "Qui Dolorem Ipsum Quia",
             order: 4,
-            description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+            description: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat.",
             icon: "cloud",
             _id: "service-005",
             _type: "service",
@@ -445,10 +445,10 @@ export const data: MockDataType = {
     ],
     skills: [
         {
-            name: "Lorem Skill 1",
+            name: "Lorem Ipsum Dolor",
             experience_years: 5,
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            category: "Lorem Category 1",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            category: "Amet Consectetur Adipiscing",
             order: 1,
             _id: "skill-001",
             _type: "skill",
@@ -457,10 +457,10 @@ export const data: MockDataType = {
             _rev: "rev-001",
         },
         {
-            name: "Lorem Skill 2",
+            name: "Sed Ut Perspiciatis",
             experience_years: 4,
-            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
-            category: "Lorem Category 2",
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore.",
+            category: "Omnis Iste Natus Error",
             order: 2,
             _id: "skill-002",
             _type: "skill",
@@ -469,10 +469,10 @@ export const data: MockDataType = {
             _rev: "rev-002",
         },
         {
-            name: "Lorem Skill 3",
+            name: "Ut Enim Ad Minima",
             experience_years: 3,
-            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam.",
-            category: "Lorem Category 3",
+            description: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.",
+            category: "Veniam Quis Nostrum",
             order: 3,
             _id: "skill-003",
             _type: "skill",
@@ -481,10 +481,10 @@ export const data: MockDataType = {
             _rev: "rev-003",
         },
         {
-            name: "Lorem Skill 4",
+            name: "Nemo Enim Ipsam",
             experience_years: 3,
-            description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut.",
-            category: "Lorem Category 4",
+            description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem.",
+            category: "Quia Voluptas Sit Aspernatur",
             order: 4,
             _id: "skill-004",
             _type: "skill",
@@ -493,10 +493,10 @@ export const data: MockDataType = {
             _rev: "rev-004",
         },
         {
-            name: "Lorem Skill 5",
+            name: "Neque Porro Quisquam",
             experience_years: 2,
-            description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.",
-            category: "Lorem Category 5",
+            description: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.",
+            category: "Qui Dolorem Ipsum Quia",
             order: 5,
             _id: "skill-005",
             _type: "skill",
@@ -505,10 +505,10 @@ export const data: MockDataType = {
             _rev: "rev-005",
         },
         {
-            name: "Lorem Skill 6",
+            name: "At Vero Eos Et",
             experience_years: 2,
-            description: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit.",
-            category: "Lorem Category 6",
+            description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.",
+            category: "Iusto Odio Dignissimos",
             order: 6,
             _id: "skill-006",
             _type: "skill",
@@ -519,9 +519,9 @@ export const data: MockDataType = {
     ],
     testimonials: [
         {
-            name: "Lorem Ipsum",
-            position: "Lorem Position, Lorem Company",
-            quote: "Lorem ipsum dolor sit amet.",
+            name: "Lorem Ipsum Dolor",
+            position: "Sit Amet Position, Consectetur Adipiscing Corp",
+            quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             image: "https://picsum.photos/600/400?random",
             order: 1,
             _id: "testimonial-001",
@@ -531,9 +531,9 @@ export const data: MockDataType = {
             _rev: "rev-001",
         },
         {
-            name: "Dolor Sit",
-            position: "Amet Position, Consectetur Corp",
-            quote: "Sed do eiusmod tempor incididunt ut labore.",
+            name: "Sed Ut Perspiciatis",
+            position: "Unde Omnis Position, Iste Natus Corp",
+            quote: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore.",
             image: "https://picsum.photos/600/400?random",
             order: 2,
             _id: "testimonial-002",
@@ -543,9 +543,9 @@ export const data: MockDataType = {
             _rev: "rev-002",
         },
         {
-            name: "Adipiscing Elit",
-            position: "Sed Position, Do Eiusmod Inc",
-            quote: "Ut enim ad minim veniam, quis nostrud exercitation.",
+            name: "Ut Enim Ad Minima",
+            position: "Veniam Quis Position, Nostrum Exercitation Inc",
+            quote: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.",
             image: "https://picsum.photos/600/400?random",
             order: 3,
             _id: "testimonial-003",

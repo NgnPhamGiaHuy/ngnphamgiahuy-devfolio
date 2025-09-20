@@ -37,13 +37,13 @@ const ContentCarousel = <T,>({ items, spaceBetween = 40, renderItem }: ContentCa
 
     return (
         <motion.div
-            className={"swiper-container-outer"}
+            className={"swiper-carousel-outer"}
             variants={containerVariants}
             initial={"hidden"}
             whileInView={"visible"}
             viewport={{ once: true, amount: 0.1 }}
         >
-            <div className={"swiper-container"}>
+            <div className={"swiper-carousel"}>
                 {mounted && (
                     <Swiper
                         autoHeight={true}
@@ -95,7 +95,7 @@ const ContentCarousel = <T,>({ items, spaceBetween = 40, renderItem }: ContentCa
                 )}
                 {mounted && totalSlides > slidesPerView && (
                     <motion.div
-                        className={"swiper-navigation"}
+                        className={"swiper-carousel-navigation"}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5, duration: 0.5 }}
@@ -105,9 +105,9 @@ const ContentCarousel = <T,>({ items, spaceBetween = 40, renderItem }: ContentCa
                         {Array.from({ length: totalSlides }).map((_, index) => (
                             <span
                                 key={index}
-                                className={`swiper-pagination-dot ${index === activeIndex
-                                    ? "swiper-dot-active"
-                                    : "swiper-dot-inactive"
+                                className={`swiper-carousel-pagination-dot ${index === activeIndex
+                                    ? "swiper-carousel-dot-active"
+                                    : "swiper-carousel-dot-inactive"
                                     }`}
                                 onClick={() => handlePaginationClick(index)}
                                 role={"tab"}

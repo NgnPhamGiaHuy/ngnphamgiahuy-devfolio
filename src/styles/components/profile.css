@@ -1,21 +1,17 @@
 @layer components {
-    .hero-profile-container {
+    .profile-visual-container {
         @apply w-[680px] h-[800px] mt-[-390px] min-[1700px]:mt-[-400px] max-lg:ml-[-340px] top-1/2 max-md:top-[680px] max-lg:top-[740px] right-[-20px] max-lg:right-auto min-[1700px]:right-[-50px] max-lg:bottom-auto max-lg:left-1/2 max-md:transform max-md:scale-50 max-lg:scale-90 max-xl:scale-80 max-lg:origin-top absolute z-2;
     }
 
-    .hero-profile-image {
+    .profile-visual-image {
         @apply w-full h-full top-0 left-0 object-cover border-none rounded-full absolute z-10;
     }
 
-    .hero-pattern-layer {
-        @apply bg-[url("/images/pat-1.png")] bg-no-repeat bg-contain bg-center dark:invert absolute;
-    }
-
-    .hero-stats-container {
+    .profile-visual-stats-container {
         @apply top-[420px] left-[-125px] absolute z-12;
     }
 
-    .avatar-circle {
-        @apply w-[680px] h-[680px] bottom-0 left-0 bg-primary rounded-full absolute z-2;
+    .profile-visual-avatar-circle {
+        @apply size-[680px] bottom-0 left-0 bg-primary rounded-full absolute z-2;
     }
 }

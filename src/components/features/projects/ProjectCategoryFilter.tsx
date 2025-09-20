@@ -20,7 +20,7 @@ const ProjectCategoryFilter: React.FC<ProjectCategoryFilterProps> = ({ categorie
 
     return (
         <motion.div
-            className={"category-filter-container"}
+            className={"project-category-filter-container"}
             initial={"hidden"}
             animate={"visible"}
             variants={containerVariants}
@@ -33,8 +33,8 @@ const ProjectCategoryFilter: React.FC<ProjectCategoryFilterProps> = ({ categorie
                     key={index}
                     onClick={() => onCategoryChange(category)}
                     className={clsx(
-                        "category-filter-button",
-                        category === activeCategory && "category-filter-button-active"
+                        "project-category-filter-button",
+                        category === activeCategory && "text-primary before:scale-x-100"
                     )}
                     aria-pressed={category === activeCategory}
                     aria-label={`Filter projects by ${category}`}

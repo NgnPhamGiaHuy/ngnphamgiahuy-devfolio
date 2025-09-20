@@ -1,0 +1,18 @@
+@layer components {
+    /* VerticalRule component */
+    .vertical-rule {
+        @apply bg-border-inverse pointer-events-none absolute z-3;
+    }
+
+    .vertical-rule::before {
+        @apply absolute content-[""] size-[30px] top-[-15px] left-[-15px] bg-card-inverse border-2 border-solid border-border-inverse rounded-full z-1;
+    }
+
+    .vertical-rule::after {
+        @apply absolute content-[""] size-[30px] bottom-[-15px] left-[-15px] bg-card-inverse border-2 border-solid border-border-inverse rounded-full z-1;
+    }
+
+    .vertical-rule-pattern {
+        @apply size-[226px] top-[-188px] bottom-auto left-[-168px] bg-[url("/images/pat-1.png")] bg-no-repeat bg-contain dark:invert block absolute;
+    }
+}

@@ -1,46 +1,12 @@
 @layer components {
-    .items-wrapper {
-        @apply w-full min-h-[1px] flex relative;
-    }
-
-    .items-content-wrapper {
-        @apply w-full p-[10px] flex flex-wrap content-start relative;
-    }
-
-    .wrapper-section {
+    /* Wrapper component */
+    .wrapper {
         @apply pt-[20px] max-md:pt-[50px] max-lg:pt-0 pb-[210px] max-md:pb-[20px] max-lg:pb-[120px] relative;
     }
 
-    .wrapper-section-container {
-        @apply mx-auto flex max-lg:flex-wrap relative;
-    }
-
-    .wrapper-section-inner {
-        @apply w-full min-h-[1px] flex relative;
-    }
-
-    .wrapper-section-content {
-        @apply w-full flex flex-wrap content-start relative;
-    }
-
-    .wrapper-header-section {
+    /* WrapperHeader component */
+    .wrapper-header {
         @apply w-full mt-0 max-lg:mt-0 mb-[60px] max-lg:mb-[30px] max-md:p-0 relative;
-    }
-
-    .wrapper-header-container {
-        @apply max-w-[1300px] mx-auto flex max-lg:flex-wrap relative;
-    }
-
-    .wrapper-header-outer {
-        @apply w-full min-h-[1px] flex relative;
-    }
-
-    .wrapper-header-content-wrapper {
-        @apply w-full p-[10px] flex flex-wrap content-start relative;
-    }
-
-    .wrapper-header-content {
-        @apply w-full text-center relative;
     }
 
     .wrapper-header-title {
@@ -57,13 +23,5 @@
 
     .wrapper-header-subtitle-text {
         @apply ml-[10px] text-[30px] max-lg:text-[24px] text-inverse font-bold font-["Caveat"] tracking-normal normal-case;
-    }
-
-    .wrapper-section-body {
-        @apply w-full relative;
-    }
-
-    .wrapper-section-content-container {
-        @apply mx-auto flex max-lg:flex-wrap relative;
     }
 }

@@ -11,21 +11,21 @@ const MetricCard: React.FC<MetricCardProps> = ({ value, label, highlight, classN
     const labelHighlight = hasMultipleWords ? labelWords.slice(-1)[0] : label;
 
     return (
-        <div style={style} className={`${margin} stat-card ${className}`}>
-            <span className={"stat-value"}>
+        <div style={style} className={`${margin} px-[20px] text-inverse bg-card-inverse rounded-[82px] shadow-[var(--shadow-offset-md)] flex-center border-2-inverse ${className}`}>
+            <span className={"w-1/2 text-[37px] text-center font-bold leading-5 uppercase block"}>
                 {value}
-                {highlight && <strong className={"stat-highlight"}>&nbsp;{highlight}</strong>}
+                {highlight && <strong className={"top-[-4px] text-primary font-bold relative"}>&nbsp;{highlight}</strong>}
             </span>
-            <span className={"stat-label"}>
+            <span className={"w-1/2 text-[13px] text-left font-bold tracking-wider leading-5 uppercase block"}>
                 {hasMultipleWords ? (
                     <>
                         {labelFirstPart} <br />
-                        <strong className={"stat-label-highlight"}>
+                        <strong className={"text-primary font-bold relative"}>
                             {labelHighlight}
                         </strong>
                     </>
                 ) : (
-                    <strong className={"stat-label-highlight"}>{labelHighlight}</strong>
+                    <strong className={"text-primary font-bold relative"}>{labelHighlight}</strong>
                 )}
             </span>
         </div>

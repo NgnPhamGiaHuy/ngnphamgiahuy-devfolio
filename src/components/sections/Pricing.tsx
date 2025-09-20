@@ -7,8 +7,8 @@ import { Wrapper, PlanGrid, BackdropText } from "@/components";
 const Pricing: React.FC<PricingSectionProps> = ({ pricing, resetAnimationOnView }) => {
     return (
         <Wrapper title={"Pricing"} subtitle={"My Price Board"} background={"none"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
-            <div className={"items-wrapper"}>
-                <div className={"items-content-wrapper"}>
+            <div className={"flex-full"}>
+                <div className={"p-[10px] flex-wrap-start"}>
                     <div className={"w-full text-left"}>
                         <div className={"mx-[-20px] flex flex-wrap"}>
                             <PlanGrid pricing={pricing} />

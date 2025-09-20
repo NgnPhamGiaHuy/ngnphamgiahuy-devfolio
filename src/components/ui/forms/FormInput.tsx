@@ -8,10 +8,10 @@ import type { FormInputProps } from "@/types";
 const FormInput: React.FC<FormInputProps> = ({ id, label, placeholder = "", type = "text", isTextArea = false, cols = 40, rows = 10, error, registration, className = "" }) => {
     return (
         <div className={`form-input-wrapper ${className}`}>
-            <div className={"form-field-container"}>
-                <label htmlFor={id} className={"form-label"}>
+            <div className={"form-input-field-container"}>
+                <label htmlFor={id} className={"form-input-label"}>
                     {label}&nbsp;
-                    <b className={"form-required"}>*</b>
+                    <b className={"text-primary"}>*</b>
                     <span className={"relative"}>
                         {isTextArea ? (
                             <textarea
@@ -19,7 +19,7 @@ const FormInput: React.FC<FormInputProps> = ({ id, label, placeholder = "", type
                                 cols={cols}
                                 rows={rows}
                                 placeholder={placeholder}
-                                className={`form-textarea ${error ? "form-textarea-error" : ""}`}
+                                className={`form-input-textarea ${error ? "form-input-textarea-error" : ""}`}
                                 {...registration}
                                 aria-invalid={error ? "true" : "false"}
                                 aria-describedby={error ? `${id}-error` : undefined}
@@ -31,7 +31,7 @@ const FormInput: React.FC<FormInputProps> = ({ id, label, placeholder = "", type
                                 size={40}
                                 maxLength={400}
                                 placeholder={placeholder}
-                                className={`form-input ${error ? "form-input-error" : ""}`}
+                                className={`form-input-field ${error ? "form-input-field-error" : ""}`}
                                 {...registration}
                                 aria-invalid={error ? "true" : "false"}
                                 aria-describedby={error ? `${id}-error` : undefined}
@@ -43,7 +43,7 @@ const FormInput: React.FC<FormInputProps> = ({ id, label, placeholder = "", type
                     {error && (
                         <motion.p
                             id={`${id}-error`}
-                            className={"form-error-message"}
+                            className={"form-input-error-message"}
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}

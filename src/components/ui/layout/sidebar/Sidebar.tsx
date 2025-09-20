@@ -15,7 +15,7 @@ const Sidebar: React.FC<SidebarProps> = memo(({ isMenuOpen, onMenuItemClick }) =
     const { sidebarEntered, handleTransitionEnd, prefersReducedMotion } = useSidebarAnimation(isMenuOpen);
     const socialLinks = generateSocialLinks(profile.social_links);
 
-    const sidebarClasses = `sidebar-container ${isMenuOpen ? "sidebar-visible" : "sidebar-hidden"}`;
+    const sidebarClasses = `sidebar ${isMenuOpen ? "sidebar-visible" : "sidebar-hidden"}`;
 
     return (
         <div className={sidebarClasses} onTransitionEnd={handleTransitionEnd} role={"navigation"} aria-label={"Main navigation menu"}>

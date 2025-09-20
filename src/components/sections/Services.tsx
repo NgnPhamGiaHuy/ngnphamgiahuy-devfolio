@@ -13,7 +13,7 @@ import { ServiceCard } from "@/components/features/services";
 
 const ContentCarousel = dynamic(() => import("@/components").then(mod => ({ default: mod.ContentCarousel })), {
     ssr: false,
-    loading: () => <div className="swiper-container-outer"><div className="swiper-container">Loading...</div></div>
+    loading: () => <div className="swiper-carousel-outer"><div className="swiper-carousel">Loading...</div></div>
 }) as React.ComponentType<{ items: Service[]; spaceBetween?: number; renderItem: (item: Service, index: number) => React.ReactNode }>;
 
 const Services: React.FC<ServicesSectionProps> = ({ services, resetAnimationOnView }) => {
@@ -23,14 +23,14 @@ const Services: React.FC<ServicesSectionProps> = ({ services, resetAnimationOnVi
     return (
         <Wrapper title={"What I Do"} subtitle={"My Services"} background={"gradientDown"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
             <motion.div
-                className={"items-wrapper"}
+                className={"flex-full"}
                 variants={containerVariants}
                 initial={"hidden"}
                 whileInView={"visible"}
                 viewport={{ once: true, amount: 0.1 }}
             >
                 <motion.div
-                    className={"items-content-wrapper"}
+                    className={"p-[10px] flex-wrap-start"}
                     variants={StandardAnimations.staggerChildren(prefersReducedMotion, 0.1, 0.2)}
                 >
                     <ContentCarousel

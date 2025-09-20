@@ -1,9 +1,0 @@
-@layer components {
-    .wrapper {
-        @apply relative;
-    }
-
-    .elementor-section {
-        @apply bg-transparent bg-[image:linear-gradient(0deg,#fff_0%,#f0ebe3_100%)] dark:bg-[image:linear-gradient(0deg,#31363c_0%,#222831_100%)] relative;
-    }
-}

@@ -10,7 +10,7 @@ const MenuToggle: React.FC<MenuToggleProps> = memo(({ isMenuOpen, onToggle, clas
 
     return (
         <div
-            className={`header-toggle-menu ${className || ""}`}
+            className={`w-[28px] h-[30px] top-0 right-0 relative z-3 cursor-pointer ${className || ""}`}
             onClick={onToggle}
             role={"button"}
             tabIndex={0}
@@ -20,14 +20,14 @@ const MenuToggle: React.FC<MenuToggleProps> = memo(({ isMenuOpen, onToggle, clas
         >
             <span
                 className={clsx(
-                    "header-menu-bar",
-                    isMenuOpen ? "header-menu-top-active" : "header-menu-top"
+                    "w-full h-[2px] left-0 bg-inverse transition-all duration-500 block absolute",
+                    isMenuOpen ? "top-[14px] -rotate-45" : "top-[8px]"
                 )}
             />
             <span
                 className={clsx(
-                    "header-menu-bar",
-                    isMenuOpen ? "header-menu-bottom-active" : "header-menu-bottom"
+                    "w-full h-[2px] left-0 bg-inverse transition-all duration-500 block absolute",
+                    isMenuOpen ? "top-[14px] rotate-45" : "bottom-[8px]"
                 )}
             />
         </div>

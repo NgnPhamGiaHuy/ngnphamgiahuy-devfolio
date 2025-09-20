@@ -1,52 +1,45 @@
 @layer components {
+    /* Hero section */
     .hero-section {
         @apply pb-[180px] max-md:pb-[50px] max-lg:pb-[140px];
-    }
-
-    .hero-container {
-        @apply max-w-[1300px] min-h-screen max-lg:min-h-0 mx-auto flex max-lg:flex-wrap items-center relative;
-    }
-
-    .hero-wrapper {
-        @apply w-full min-h-[1px] flex relative;
-    }
-
-    .hero-content-wrapper {
-        @apply w-full p-[10px] flex flex-wrap items-center content-center;
-    }
-
-    .hero-main-content {
-        @apply w-full mb-5 relative;
-    }
-
-    .hero-content-inner {
-        @apply relative z-2;
     }
 
     .hero-content-container {
         @apply pt-10 max-md:pt-[120px] max-lg:pt-[140px] max-lg:text-center opacity-100 visible transform translate-x-0 translate-y-0 relative;
     }
 
-    .hero-title {
-        @apply text-[90px] max-md:text-[40px] max-lg:text-[64px] break-words text-white text-shadow-[2px_2px_#000,-2px_2px_#000,2px_-2px_#000,-2px_-2px_#000,5px_5px_0px_rgba(0,0,0,0.2)] font-bold tracking-wider leading-tight uppercase;
+    .hero-elementor-section {
+        @apply bg-transparent bg-[image:linear-gradient(0deg,#fff_0%,#f0ebe3_100%)] dark:bg-[image:linear-gradient(0deg,#31363c_0%,#222831_100%)] relative;
     }
 
-    .hero-title span span,
-    .hero-subtitle span,
-    .hero-subtitle strong span,
-    .hero-description-text span {
+    /* PersonalIntro component */
+    .personal-intro-container {
+        @apply max-w-[640px] max-lg:max-w-full max-xl:max-w-[420px] max-md:min-h-[160px] max-md:mb-[420px] max-lg:mb-[760px] z-3;
+    }
+
+    .personal-intro-title {
+        @apply mt-[15px] text-[90px] max-md:text-[40px] max-lg:text-[64px] break-words text-white text-shadow-[2px_2px_#000,-2px_2px_#000,2px_-2px_#000,-2px_-2px_#000,5px_5px_0px_rgba(0,0,0,0.2)] font-bold tracking-wider leading-tight uppercase;
+    }
+
+    .personal-intro-title span span,
+    .personal-intro-subtitle span,
+    .personal-intro-subtitle strong span {
         opacity: 1;
     }
 
-    .hero-subtitle {
-        @apply text-[15px] max-md:text-[13px] text-inverse font-bold tracking-wider uppercase;
+    .personal-intro-subtitle {
+        @apply text-[15px]! max-md:text-[13px] text-inverse font-bold tracking-wider uppercase;
     }
 
-    .hero-description {
-        @apply max-w-[520px] max-xl:max-w-[400px] max-lg:mx-auto py-[40px] text-[18px];
+    .personal-intro-firstname {
+        @apply text-primary transition-colors duration-300 ease-in-out;
     }
 
-    .hero-description-text {
-        @apply opacity-80;
+    .personal-intro-lastname {
+        @apply text-white ml-3;
+    }
+
+    .personal-intro-job-title {
+        @apply ml-[10px] text-[30px] text-inverse font-bold font-["Caveat"] tracking-normal normal-case;
     }
 }

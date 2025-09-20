@@ -8,14 +8,14 @@ import { BlogPreview, BackdropText, Wrapper } from "@/components";
 const Blog: React.FC<BlogSectionProps> = ({ blogs, resetAnimationOnView }) => {
     return (
         <Wrapper title={"Latest Blog"} subtitle={"My Articles and Advice"} background={"gradientUp"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
-            <div className={"blog-wrapper"}>
-                <div className={"blog-inner"}>
-                    <div className={"blog-grid"}>
+            <div className={"flex-wrap-start"}>
+                <div className={"w-full relative"}>
+                    <div className={"mt-[-40px] grid-responsive relative"}>
                         {blogs.slice(0, 3).map((blog, index) => (
                             <BlogPreview key={index} blog={blog} />
                         ))}
                     </div>
-                    <div className={"blog-cta-container"}>
+                    <div className={"mt-[70px] max-lg:mt-[50px] text-center relative z-2"}>
                         <Link href={"/"}>
                             <span className={"primary-button"}>
                                 View Blog

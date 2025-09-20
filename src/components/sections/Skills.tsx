@@ -17,7 +17,7 @@ const Skills: React.FC<SkillsSectionProps> = ({ skills, resetAnimationOnView }) 
     return (
         <Wrapper title={"Professional Skills"} subtitle={"My Talent"} background={"none"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1320px"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
             <motion.div
-                className={"skills-grid"}
+                className={"grid-responsive"}
                 variants={containerVariants}
                 initial={"hidden"}
                 whileInView={"visible"}

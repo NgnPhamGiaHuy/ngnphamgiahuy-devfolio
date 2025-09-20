@@ -1,42 +1,89 @@
 @layer components {
-
-    .content-card {
+    /* ServiceCard component */
+    .card {
         @apply w-full h-auto flex items-center justify-center shrink-0 transition-transform transform translate-z-0 backface-hidden box-border relative;
     }
 
-    .content-card-inner {
+    .card-inner {
         @apply w-full h-full mt-0 px-[30px] py-[35px] bg-card-inverse rounded-[18px] opacity-100 transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] overflow-hidden relative;
     }
 
-    .content-card-category {
+    .card-category {
         @apply text-[13px] text-inverse! text-left font-bold tracking-wider uppercase;
     }
 
-    .content-card-icon {
+    .card-icon {
         @apply mt-[15px] min-h-[50px] text-[41px] text-primary leading-none;
     }
 
-    .content-card-title {
+    .card-title {
         @apply mb-[15px]! text-[24px]! text-inverse! font-bold leading-snug;
     }
 
-    .content-card-description {
+    .card-description {
         @apply min-h-[175px] flex-1 opacity-80;
     }
 
-    .content-card-link {
+    .card-link {
         @apply h-[22px] text-[16px] text-inverse font-bold align-top leading-[22px] transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] relative;
     }
 
-    .content-card-link::after {
+    .card-link::after {
         @apply content-["\f061"] ml-[15px] top-[1px] text-primary font-["Font_Awesome_7_Free"] font-black transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] transform translate-x-0 absolute;
     }
 
-    .content-card-link:hover::after {
+    .card-link:hover::after {
         @apply transform translate-x-2;
     }
 
-    .content-card-pattern {
-        @apply w-[141px] h-[141px] right-[-24px] bottom-[-24px] bg-[url("/images/pat-1.png")] dark:invert bg-center bg-no-repeat bg-contain absolute;
+    .card-pattern {
+        @apply size-[141px] right-[-24px] bottom-[-24px] bg-[url("/images/pat-1.png")] dark:invert bg-center bg-no-repeat bg-contain absolute;
+    }
+
+    /* ProjectCard component */
+    .project-card-item {
+        @apply max-w-full pt-[40px] max-md:pt-[30px] px-[20px] max-md:px-[10px] flex-none basis-full overflow-hidden;
+        will-change: transform,opacity;
+    }
+
+    .project-card {
+        @apply p-[30px] bg-card-inverse rounded-[20px] overflow-hidden relative;
+    }
+
+    .project-card-image-container {
+        @apply rounded-[18px] overflow-hidden leading-none relative;
+    }
+
+    .project-card-image {
+        @apply max-w-full w-full h-[240px] object-cover border-none shadow-none rounded-[18px];
+    }
+
+    .project-card-category {
+        @apply mb-[5px] text-[13px] text-primary font-bold tracking-wider uppercase block;
+    }
+
+    .project-card-title {
+        @apply m-0! text-[24px]! text-inverse!;
+    }
+
+    .project-card-description {
+        @apply min-h-[125px] mt-[15px] text-inverse;
+    }
+
+    .project-card-description-text {
+        @apply my-[30px] max-md:my-[20px] line-clamp-3;
+    }
+
+    /* PlanCard component */
+    .plan-card-wrapper {
+        @apply max-w-full w-full px-[20px] mb-[40px] max-md:mb-[30px] shrink-0 relative;
+    }
+
+    .plan-card {
+        @apply py-[30px] px-[35px] rounded-[18px] bg-card-inverse border-2 border-solid overflow-hidden relative;
+    }
+
+    .plan-card-badge {
+        @apply h-[26px] px-[15px] top-[-12px] right-[60px] text-[13px] text-white font-bold border-2 border-solid border-border-inverse bg-primary shadow-[5px_5px_0px_0px_rgba(0,0,0,.2)] rounded-[26px] absolute uppercase tracking-wider leading-[22px] z-2;
     }
 }

@@ -26,7 +26,7 @@ export default async function Home() {
     return (
         <div className={"min-h-[50vh] overflow-hidden relative"}>
             <SiteHeader logo={data.siteSettings?.logo} />
-            <div className={"wrapper"}>
+            <div className={"relative"}>
                 {enabledSections.map(section => renderSection(section))}
             </div>
             <SiteFooter />

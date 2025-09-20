@@ -24,13 +24,13 @@ const Wrapper: React.FC<WrapperProps> = ({ title = "", subtitle = "", background
     const vlineProps = vlinePositions[vlinePosition];
 
     return (
-        <section ref={sectionRef} className={clsx(backgroundClass, "wrapper-section bg-transparent")}>
-            <motion.div key={animationKey} className={"wrapper-section-container"} initial={"hidden"} animate={isInView ? "visible" : "hidden"} variants={containerVariants}>
-                <div className={"wrapper-section-inner"}>
-                    <div className={"wrapper-section-content"}>
+        <section ref={sectionRef} className={clsx(backgroundClass, "wrapper bg-transparent")}>
+            <motion.div key={animationKey} className={"container-full"} initial={"hidden"} animate={isInView ? "visible" : "hidden"} variants={containerVariants}>
+                <div className={"flex-full"}>
+                    <div className={"flex-wrap-start"}>
                         <WrapperHeader title={title} subtitle={subtitle} isInView={isInView} />
-                        <section className={clsx(hasSectionBodyPadding && "max-md:px-[10px] max-lg:px-[20px]", "wrapper-section-body")}>
-                            <div className={"wrapper-section-content-container"} style={{ maxWidth: sectionContentMaxWidth }}>
+                        <section className={clsx(hasSectionBodyPadding && "max-md:px-[10px] max-lg:px-[20px]", "w-full relative")}>
+                            <div className={"container-full"} style={{ maxWidth: sectionContentMaxWidth }}>
                                 {children}
                                 <VerticalRule {...vlineProps} />
                             </div>
