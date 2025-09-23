@@ -8,10 +8,10 @@ import { getHeaderClasses } from "@/utils";
 import { useMenuState, useHeaderScroll } from "@/hooks";
 import { BrandLink, ThemeToggle, MenuToggle, Sidebar } from "@/components";
 
-const SiteHeader: React.FC<SiteHeaderProps> = ({ className, logo = "Portfolio" }) => {
+const SiteHeader: React.FC<SiteHeaderProps> = ({ profile, className, logo = "Portfolio" }) => {
     const headerRef = useRef<HTMLElement>(null);
 
-    const { isMenuOpen, toggleMenu, closeMenu } = useMenuState();
+    const { isMenuOpen, toggleMenu } = useMenuState();
     const { headerState, handleAnimationEnd } = useHeaderScroll();
 
     return (
@@ -25,7 +25,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ className, logo = "Portfolio" }
                         <div className={"flex-wrapper"}>
                             <ThemeToggle />
                             <MenuToggle isMenuOpen={isMenuOpen} onToggle={toggleMenu} />
-                            <Sidebar isMenuOpen={isMenuOpen} onMenuItemClick={closeMenu} />
+                            <Sidebar profile={profile} isMenuOpen={isMenuOpen} />
                         </div>
                     </div>
                 </div>

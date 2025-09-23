@@ -3,7 +3,7 @@ export const SIDEBAR_CONFIG = {
         "Home",
         "Services", 
         "Skills",
-        "Works",
+        "Portfolios",
         "Resume",
         "Testimonials",
         "Pricing",

@@ -9,13 +9,13 @@ import { StandardAnimations } from "@/config";
 import { usePrefersReducedMotion } from "@/hooks";
 import { Wrapper, SkillCard, BackdropText } from "@/components";
 
-const Skills: React.FC<SkillsSectionProps> = ({ skills, resetAnimationOnView }) => {
+const Skills: React.FC<SkillsSectionProps> = ({ id, skills, resetAnimationOnView }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
     const itemVariants = StandardAnimations.springUp(prefersReducedMotion, 30);
     const containerVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
 
     return (
-        <Wrapper title={"Professional Skills"} subtitle={"My Talent"} background={"none"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1320px"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
+        <Wrapper id={id} title={"Professional Skills"} subtitle={"My Talent"} background={"none"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1320px"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
             <motion.div
                 className={"grid-responsive"}
                 variants={containerVariants}

@@ -76,27 +76,33 @@ export default {
                     type: "object",
                     fields: [
                         {
-                            name: "platform",
-                            title: "Platform",
-                            type: "string",
-                            options: {
-                                list: [
-                                    { title: "Facebook", value: "Facebook" },
-                                    { title: "Twitter", value: "Twitter" },
-                                    { title: "Instagram", value: "Instagram" },
-                                    { title: "LinkedIn", value: "Linkedin" },
-                                    { title: "GitHub", value: "GitHub" },
-                                    { title: "YouTube", value: "YouTube" },
-                                    { title: "Dribbble", value: "Dribbble" },
-                                    { title: "Behance", value: "Behance" },
-                                    { title: "Medium", value: "Medium" },
-                                ],
-                            },
-                        },
-                        {
                             name: "url",
                             title: "URL",
                             type: "url",
+                            validation: (Rule: Rule) => Rule.required(),
+                        },
+                        {
+                            name: "platform",
+                            title: "Platform",
+                            type: "string",
+                        },
+                        {
+                            name: "icon",
+                            title: "Icon Image",
+                            type: "image",
+                            options: { hotspot: true },
+                            fields: [
+                                {
+                                    name: "alt",
+                                    title: "Alternative Text",
+                                    type: "string",
+                                },
+                                {
+                                    name: "caption",
+                                    title: "Caption",
+                                    type: "string",
+                                },
+                            ],
                             validation: (Rule: Rule) => Rule.required(),
                         },
                     ],
@@ -111,9 +117,13 @@ export default {
         },
         {
             name: "cv_link",
-            title: "CV/Resume Download Link",
-            type: "url",
-            description: "Link to downloadable CV/Resume file",
+            title: "CV/Resume File",
+            type: "file",
+            description: "Upload your CV/Resume as a PDF",
+            options: {
+                accept: "application/pdf"
+            },
+            validation: (Rule: Rule) => Rule.required()
         },
         {
             name: "metaTitle",

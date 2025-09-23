@@ -21,7 +21,6 @@ export async function sanityFetch<T>({ query, params = {}, tags = [], }: {
     tags?: string[];
 }): Promise<T> {
     return sanityClient.fetch<T>(query, params, {
-        cache: "force-cache",
-        next: { tags },
+        next: { revalidate: 60, tags },
     });
 }

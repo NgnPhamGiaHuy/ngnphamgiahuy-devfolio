@@ -3,13 +3,17 @@
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
-import type { HeroSectionProps } from "@/types";
+import type { Profile } from "@/types";
 
 import { AnimatedText } from "@/components";
 import { usePrefersReducedMotion } from "@/hooks";
 import { useHeroAnimationContext } from "@/context";
 
-const PersonalIntro: React.FC<HeroSectionProps> = memo(({ profile }) => {
+interface PersonalIntroProps {
+    profile: Profile;
+}
+
+const PersonalIntro: React.FC<PersonalIntroProps> = memo(({ profile }) => {
     const { timeline } = useHeroAnimationContext();
     const prefersReducedMotion = usePrefersReducedMotion();
 

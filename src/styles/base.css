@@ -1,15 +1,29 @@
 :root {
     --background: #f0ebe3;
     --foreground: #262626;
+    color-scheme: light dark;
 }
 
 @theme {
+    /* Burnt monochromatic palette */
+    --color-burnt-900: #9D3314;
+    /* darkest */
+    --color-burnt-800: #C54119;
+    --color-burnt-700: #E45328;
+    --color-burnt-600: #E97451;
+    /* Burnt Sienna (brand) */
+    --color-burnt-500: #EE957A;
+    --color-burnt-400: #F3B5A2;
+    --color-burnt-300: #F8D6CB;
+    /* lightest */
+
     --color-white: #fff;
     --color-light: #f8f9fa;
     --color-dark: #212529;
     --color-gray: #6c757d;
     --color-gray-dark: #343a40;
 
+    /* legacy hues (kept for compatibility; avoid for brand) */
     --color-blue: #0d6efd;
     --color-indigo: #6610f2;
     --color-purple: #6f42c1;
@@ -21,12 +35,13 @@
     --color-teal: #20c997;
     --color-cyan: #0dcaf0;
 
-    --color-primary: #198754;
-    --color-secondary: #6c757d;
-    --color-success: #198754;
-    --color-info: #0dcaf0;
-    --color-warning: #ffc107;
-    --color-danger: #dc3545;
+    /* semantic colors mapped to Burnt palette */
+    --color-primary: var(--color-burnt-600);
+    --color-secondary: var(--color-burnt-400);
+    --color-success: var(--color-burnt-700);
+    --color-info: var(--color-burnt-500);
+    --color-warning: var(--color-burnt-700);
+    --color-danger: var(--color-burnt-800);
 
     --color-inverse: #000;
     --color-card-inverse: #fff;
@@ -40,14 +55,28 @@
     --color-foreground: var(--foreground);
     --font-sans: var(--font-geist-jost);
     --font-mono: var(--font-geist-mono);
+    /* surface tokens */
+    --surface-1: var(--background);
+    --surface-2: var(--color-card-inverse);
+    --surface-3: color-mix(in oklab, var(--surface-2) 85%, black);
 }
 
 [data-theme="dark"] {
-    --background: #222831;
-    --foreground: #eaeaea;
+    --background: #1b1d1f;
+    /* deep charcoal for warmth */
+    --foreground: #ececec;
     --color-inverse: #fff;
-    --color-card-inverse: #1d222a;
-    --color-border-inverse: #a3a5a7;
+    --color-card-inverse: #202326;
+    --color-border-inverse: #a6a8aa;
+
+    /* elevate primary on dark for contrast */
+    --color-primary: var(--color-burnt-500);
+    --color-secondary: var(--color-burnt-300);
+
+    /* surface tokens */
+    --surface-1: #1b1d1f;
+    --surface-2: #202326;
+    --surface-3: color-mix(in oklab, var(--surface-2) 85%, white);
 
     --shadow-offset-md: 5px 5px rgba(255, 255, 255, .1);
 }
@@ -58,15 +87,33 @@ body {
     font-family: var(--font-geist-jost), sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(h1, h2, h3, h4, h5, h6) {
     font-family: var(--font-geist-jost), sans-serif;
-    color: black;
+    color: var(--foreground);
     font-weight: 700;
     line-height: 1.3;
     margin: 0 0 15px;
+}
+
+/* Accessible selection color */
+::selection {
+    background: var(--color-burnt-600);
+    color: #fff;
+}
+
+/* Global focus-visible ring */
+:where(a, button, input, textarea, select):focus-visible {
+    outline: 2px solid var(--color-burnt-700);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

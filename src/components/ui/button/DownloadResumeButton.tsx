@@ -25,7 +25,11 @@ const DownloadResumeButton: React.FC<DownloadResumeButtonProps> = memo(({ cvLink
             role={"group"}
             aria-label={"Action buttons"}
         >
-            <Link href={cvLink || "#"} aria-label={"Download Resume"}>
+            <Link
+                href={cvLink || "#"}
+                aria-label={"Download Resume"}
+                {...(cvLink ? { download: true, target: "_blank", rel: "noopener noreferrer" } as const : {})}
+            >
                 <motion.span
                     variants={buttonVariants}
                     className={"primary-button"}

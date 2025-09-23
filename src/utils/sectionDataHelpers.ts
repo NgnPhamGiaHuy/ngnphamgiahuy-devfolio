@@ -72,7 +72,7 @@ export const getSectionData = (sectionId: string, props: any, fallbackData?: Moc
                 skills: normalizeSkillsData(props.skills, fallbackData)
             };
 
-        case "work":
+        case "portfolios":
             return {
                 projects: normalizeProjectsData(props.projects, fallbackData)
             };

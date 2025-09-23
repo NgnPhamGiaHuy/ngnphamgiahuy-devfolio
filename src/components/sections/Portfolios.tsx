@@ -8,7 +8,7 @@ import type { PortfoliosSectionProps } from "@/types";
 import { useCategoryFilter } from "@/hooks";
 import { BackdropText, ProjectGrid, ProjectCategoryFilter, Wrapper } from "@/components";
 
-const Portfolios: React.FC<PortfoliosSectionProps> = ({ projects, resetAnimationOnView }) => {
+const Portfolios: React.FC<PortfoliosSectionProps> = ({ id, projects, resetAnimationOnView }) => {
     const normalizedItems = projects.map(p => ({
         ...p,
         category: p.category ?? "Uncategorized",
@@ -17,7 +17,7 @@ const Portfolios: React.FC<PortfoliosSectionProps> = ({ projects, resetAnimation
     const { categories, activeCategory, filteredPortfolios, handleCategoryChange } = useCategoryFilter(normalizedItems);
 
     return (
-        <Wrapper title={"Portfolio"} subtitle={"My Cases"} background={"gradientUp"} hasSectionBodyPadding={false} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
+        <Wrapper id={id} title={"Portfolio"} subtitle={"My Cases"} background={"gradientUp"} hasSectionBodyPadding={false} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"flex-full"}>
                 <div className={"p-[10px] flex-wrap-start"}>
                     <div className={"w-full mb-[20px] relative"}>

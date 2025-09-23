@@ -18,7 +18,7 @@
     }
 
     .personal-intro-title {
-        @apply mt-[15px] text-[90px] max-md:text-[40px] max-lg:text-[64px] break-words text-white text-shadow-[2px_2px_#000,-2px_2px_#000,2px_-2px_#000,-2px_-2px_#000,5px_5px_0px_rgba(0,0,0,0.2)] font-bold tracking-wider leading-tight uppercase;
+        @apply mt-[15px] text-[82px] max-md:text-[40px] max-lg:text-[64px] break-words text-white text-shadow-[2px_2px_#000,-2px_2px_#000,2px_-2px_#000,-2px_-2px_#000,5px_5px_0px_rgba(0,0,0,0.2)] font-bold tracking-wider leading-tight uppercase;
     }
 
     .personal-intro-title span span,

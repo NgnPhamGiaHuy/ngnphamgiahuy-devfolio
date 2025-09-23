@@ -117,7 +117,7 @@ export const generateHomePageMetadata = async (): Promise<Metadata> => {
 export const generateBlogPostMetadata = async (slug: string): Promise<Metadata> => {
     try {
         const blogPost = await sanityFetch<BlogPost | null>({
-            query: `*[_type == "blogPost" && slug.current == "${slug}"][0] {
+            query: `*[_type == "blogPost" && slug.current == $slug][0] {
                 _id,
                 title,
                 slug,
@@ -138,6 +138,7 @@ export const generateBlogPostMetadata = async (slug: string): Promise<Metadata> 
                     caption
                 }
             }`,
+            params: { slug },
             tags: ["blogPost"],
         });
 

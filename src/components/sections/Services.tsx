@@ -16,12 +16,12 @@ const ContentCarousel = dynamic(() => import("@/components").then(mod => ({ defa
     loading: () => <div className="swiper-carousel-outer"><div className="swiper-carousel">Loading...</div></div>
 }) as React.ComponentType<{ items: Service[]; spaceBetween?: number; renderItem: (item: Service, index: number) => React.ReactNode }>;
 
-const Services: React.FC<ServicesSectionProps> = ({ services, resetAnimationOnView }) => {
+const Services: React.FC<ServicesSectionProps> = ({ id, services, resetAnimationOnView }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
     const containerVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
 
     return (
-        <Wrapper title={"What I Do"} subtitle={"My Services"} background={"gradientDown"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
+        <Wrapper id={id} title={"What I Do"} subtitle={"My Services"} background={"gradientDown"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
             <motion.div
                 className={"flex-full"}
                 variants={containerVariants}

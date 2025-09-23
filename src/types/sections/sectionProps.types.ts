@@ -1,6 +1,7 @@
 import { Profile, Service, Skill, Project, Experience, Education, Testimonial, Pricing, BlogPost, ContactItem } from "../sanity.types";
 
 export interface BaseSectionProps {
+    id: string;
     resetAnimationOnView?: boolean;
 }
 

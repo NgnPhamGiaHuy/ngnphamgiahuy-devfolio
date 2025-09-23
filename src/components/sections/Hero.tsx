@@ -10,7 +10,7 @@ import { StandardAnimations, vlinePositions } from "@/config";
 import { usePrefersReducedMotion, useDynamicTextAnimation } from "@/hooks";
 import { VerticalRule, BackdropText, BioSection, DownloadResumeButton, PersonalIntro, ProfileVisual } from "@/components";
 
-const Hero: React.FC<HeroSectionProps> = memo(({ profile }) => {
+const Hero: React.FC<HeroSectionProps> = memo(({ id, profile }) => {
     const { createTypingTimeline } = useDynamicTextAnimation();
     const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -37,7 +37,7 @@ const Hero: React.FC<HeroSectionProps> = memo(({ profile }) => {
 
     return (
         <HeroAnimationProvider timeline={heroTextTimeline}>
-            <section
+            <section id={id}
                 className={"hero-section hero-elementor-section"}
                 role={"banner"}
                 aria-label={"Hero section with introduction and profile"}

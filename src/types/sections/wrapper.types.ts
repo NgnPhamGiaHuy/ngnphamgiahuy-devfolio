@@ -7,6 +7,7 @@ export interface WrapperHeaderProps {
 }
 
 export interface WrapperProps {
+    id: string;
     title: string;
     subtitle: string;
     sectionContentMaxWidth?: string;

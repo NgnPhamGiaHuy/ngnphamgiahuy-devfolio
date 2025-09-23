@@ -62,8 +62,8 @@ export interface Profile extends SanityDocument, SeoFields {
     experience_years: number;
     completed_projects: number;
     profile_image: SanityImage | string;
-    social_links: Array<{ platform: string; url: string }>;
-    cv_link?: string;
+    social_links: Array<{ platform: string; url: string; icon: SanityImage | string }>;
+    cv_link?: string; // Resolved URL from file asset
 }
 
 export interface Experience extends SanityDocument {

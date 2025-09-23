@@ -1,10 +1,12 @@
 import * as React from "react";
 
-import { SocialLink } from "@/types";
 import { UseFormRegisterReturn } from "react-hook-form";
 
+import type { Profile } from "../sanity.types";
+import type { SocialLink } from "../social.types";
+
+export type { BrandLinkProps, MenuToggleProps, NavItemProps, ThemeToggleProps } from "./navigation.types";
 export type { AccordionItemProps, AccordionContentProps, AccordionProps, AccordionFieldMapping, AccordionItemData } from "./accordion.types";
-export type { BrandLinkProps, MenuToggleProps, NavItemProps, ThemeToggleProps } from "./navigation.types"
 
 export interface ArrowLinkProps {
     href: string;
@@ -60,10 +62,11 @@ export interface FormStatusProps {
 }
 
 export interface SidebarProps {
+    profile: Profile;
     isMenuOpen: boolean;
-    onMenuItemClick?: () => void;
 }
 export interface SiteHeaderProps {
+    profile: Profile;
     logo?: string;
     className?: string;
 }

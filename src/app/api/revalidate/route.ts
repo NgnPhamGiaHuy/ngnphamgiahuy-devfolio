@@ -1,6 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
 
+export async function GET(request: NextRequest) {
+    try {
+        const secret = request.headers.get("x-webhook-secret");
+        const expectedSecret = process.env.WEBHOOK_SECRET;
+
+        if (expectedSecret && secret !== expectedSecret) {
+            return NextResponse.json({ ok: false, message: "Invalid webhook secret" }, { status: 401 });
+        }
+
+        return NextResponse.json({ ok: true, message: "Revalidate endpoint healthy", now: Date.now() });
+    } catch (err) {
+        return NextResponse.json({ ok: false, message: "Health check failed" }, { status: 500 });
+    }
+}
+
 export async function POST(request: NextRequest) {
     try {
         const secret = request.headers.get("x-webhook-secret");

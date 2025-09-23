@@ -7,7 +7,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ links, containerMargin = "m-0
     return (
         <div className={`${containerMargin} relative z-3 ${className}`}>
             {links.map((link, index) => (
-                <Link key={index} href={link.href}>
+                <Link key={index} href={link.href} target={"_blank"}>
                     <span aria-label={link.ariaLabel} className={`${iconMargin} ${textColor} ${hoverColor} align-top leading-none transition-all duration-300 inline-block relative`}>
                         {link.icon({ className: iconSize })}
                     </span>

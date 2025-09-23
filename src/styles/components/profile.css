@@ -4,7 +4,7 @@
     }
 
     .profile-visual-image {
-        @apply w-full h-full top-0 left-0 object-cover border-none rounded-full absolute z-10;
+        @apply w-full h-full top-0 left-0 object-bottom object-contain border-none rounded-full absolute z-10;
     }
 
     .profile-visual-stats-container {

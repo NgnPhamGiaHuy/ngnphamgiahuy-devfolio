@@ -20,7 +20,7 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = memo(({ className = 
 
     const { url: profileImageUrl, alt: profileImageAlt } = processImage(
         profile?.profile_image,
-        { width: 600, height: 600, fallbackImage: "/images/profile2.png" },
+        { width: 680, height: 800, fallbackImage: "/images/profile2.png" },
         "Professional profile picture"
     );
 

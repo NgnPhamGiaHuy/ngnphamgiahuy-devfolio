@@ -294,9 +294,9 @@ export const data: MockDataType = {
         completed_projects: 50,
         profile_image: "/images/profile2.png",
         social_links: [
-            { platform: "GitHub", url: "#" },
-            { platform: "LinkedIn", url: "#" },
-            { platform: "Twitter", url: "#" }
+            { platform: "GitHub", url: "https://github.com/", icon: "/icons/github.svg" },
+            { platform: "Twitter", url: "https://x.com/", icon: "/icons/x.svg" },
+            { platform: "LinkedIn", url: "https://www.linkedin.com/", icon: "/icons/linkedin.svg" },
         ],
         cv_link: "#"
     },

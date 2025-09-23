@@ -3,14 +3,18 @@
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
-import type { HeroSectionProps } from "@/types";
+import type { Profile } from "@/types";
 
 import { generateSocialLinks } from "@/utils";
 import { usePrefersReducedMotion } from "@/hooks";
 import { useHeroAnimationContext } from "@/context";
 import { SocialLinks, AnimatedText } from "@/components";
 
-const BioSection: React.FC<HeroSectionProps> = memo(({ profile }) => {
+interface BioSectionProps {
+    profile: Profile;
+}
+
+const BioSection: React.FC<BioSectionProps> = memo(({ profile }) => {
     const { timeline } = useHeroAnimationContext();
     const prefersReducedMotion = usePrefersReducedMotion();
 

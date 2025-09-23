@@ -9,7 +9,7 @@ import type { WrapperProps } from "@/types";
 import { VerticalRule, WrapperHeader } from "@/components";
 import { containerVariants, backgroundByName, vlinePositions } from "@/config";
 
-const Wrapper: React.FC<WrapperProps> = ({ title = "", subtitle = "", background = "gradientUp", sectionContentMaxWidth = "1300px", hasSectionBodyPadding = true, vlinePosition = "right", resetAnimationOnView = false, children }) => {
+const Wrapper: React.FC<WrapperProps> = ({ id, title = "", subtitle = "", background = "gradientUp", sectionContentMaxWidth = "1300px", hasSectionBodyPadding = true, vlinePosition = "right", resetAnimationOnView = false, children }) => {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: !resetAnimationOnView, amount: 0.1 });
     const [animationKey, setAnimationKey] = useState(0);
@@ -24,7 +24,7 @@ const Wrapper: React.FC<WrapperProps> = ({ title = "", subtitle = "", background
     const vlineProps = vlinePositions[vlinePosition];
 
     return (
-        <section ref={sectionRef} className={clsx(backgroundClass, "wrapper bg-transparent")}>
+        <section id={id} ref={sectionRef} className={clsx(backgroundClass, "wrapper bg-transparent")}>
             <motion.div key={animationKey} className={"container-full"} initial={"hidden"} animate={isInView ? "visible" : "hidden"} variants={containerVariants}>
                 <div className={"flex-full"}>
                     <div className={"flex-wrap-start"}>

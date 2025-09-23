@@ -8,7 +8,7 @@ export const sectionComponents: Record<string, React.ComponentType<any>> = {
     hero: Hero,
     services: Services,
     skills: Skills,
-    work: Portfolios,
+    portfolios: Portfolios,
     resume: Resume,
     testimonials: Testimonials,
     pricing: Pricing,
@@ -17,11 +17,12 @@ export const sectionComponents: Record<string, React.ComponentType<any>> = {
     map: Map,
 };
 
-export const renderSection = (
-    sectionConfig: SectionConfig,
-    data?: MockDataType,
-    sectionProps?: any
-): React.ReactNode => {
+type RenderSectionOptions = {
+    sectionProps?: any;
+    fallbackData?: MockDataType;
+};
+
+export const renderSection = (sectionConfig: SectionConfig, options?: RenderSectionOptions): React.ReactNode => {
     const { id: sectionId, resetAnimationOnView } = sectionConfig;
     const SectionComponent = sectionComponents[sectionId];
 
@@ -30,12 +31,13 @@ export const renderSection = (
         return null;
     }
 
-    const propsToUse = sectionProps || data || {};
+    const propsToUse = options?.sectionProps || options?.fallbackData || {};
 
-    const normalizedData = getSectionData(sectionId, propsToUse, data);
-
+    const normalizedData = getSectionData(sectionId, propsToUse, options?.fallbackData);
+    console.log(sectionId)
     return (
         <SectionComponent
+            id={sectionId}
             key={sectionId}
             resetAnimationOnView={resetAnimationOnView}
             {...normalizedData}

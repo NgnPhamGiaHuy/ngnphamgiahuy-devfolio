@@ -16,7 +16,7 @@ export const SECTIONS_CONFIG: SectionConfig[] = [
         resetAnimationOnView: false,
     },
     {
-        id: "work",
+        id: "portfolios",
         enabled: true,
         resetAnimationOnView: false,
     },

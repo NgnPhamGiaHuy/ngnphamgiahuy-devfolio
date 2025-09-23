@@ -4,15 +4,14 @@ import React, { memo } from "react";
 
 import type { SidebarProps } from "@/types";
 
-import { data } from "@/data";
 import { SIDEBAR_CONFIG } from "@/config";
 import { generateSocialLinks } from "@/utils";
 import { useSidebarAnimation } from "@/hooks";
 import { VerticalRule, SocialLinks, NavItem } from "@/components";
 
-const Sidebar: React.FC<SidebarProps> = memo(({ isMenuOpen, onMenuItemClick }) => {
-    const { profile } = data;
+const Sidebar: React.FC<SidebarProps> = memo(({ profile, isMenuOpen }) => {
     const { sidebarEntered, handleTransitionEnd, prefersReducedMotion } = useSidebarAnimation(isMenuOpen);
+
     const socialLinks = generateSocialLinks(profile.social_links);
 
     const sidebarClasses = `sidebar ${isMenuOpen ? "sidebar-visible" : "sidebar-hidden"}`;
@@ -32,7 +31,6 @@ const Sidebar: React.FC<SidebarProps> = memo(({ isMenuOpen, onMenuItemClick }) =
                                             index={index}
                                             sidebarEntered={sidebarEntered}
                                             prefersReducedMotion={prefersReducedMotion}
-                                            onClick={onMenuItemClick}
                                         />
                                     ))}
                                 </ul>

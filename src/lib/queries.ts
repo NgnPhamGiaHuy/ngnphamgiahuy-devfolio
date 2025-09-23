@@ -14,10 +14,15 @@ export const profileQuery = `*[_type == "profile"][0] {
         caption
     },
     social_links[] {
+        url,
         platform,
-        url
+        icon {
+            asset,
+            alt,
+            caption
+        }
     },
-    cv_link,
+    "cv_link": cv_link.asset->url,
     metaTitle,
     metaDescription,
     ogImage {

@@ -3,16 +3,16 @@ import React, { memo } from "react";
 
 import type { NavItemProps } from "@/types";
 
-import { useKeyboardHandler } from "@/utils";
+import { SIDEBAR_CONFIG } from "@/config";
 
-const NavItem: React.FC<NavItemProps> = memo(({ text, index, sidebarEntered, prefersReducedMotion, href = "/", onClick }) => {
+const NavItem: React.FC<NavItemProps> = memo(({ text, index, sidebarEntered, prefersReducedMotion }) => {
     const itemClasses = `nav-item ${sidebarEntered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`;
 
     const itemStyle = {
-        transitionDelay: prefersReducedMotion ? "0ms" : `${index * 90}ms`,
-    };
+        transitionDelay: prefersReducedMotion ? "0ms" : `${index * SIDEBAR_CONFIG.ANIMATION.ITEM_STAGGER_DELAY}ms`,
+    } as React.CSSProperties;
 
-    const handleKeyDown = useKeyboardHandler(() => onClick?.());
+    const href = `#${text.toLowerCase()}`;
 
     const renderMenuItem = () => (
         <span className={"nav-item-text group"}>
@@ -20,7 +20,7 @@ const NavItem: React.FC<NavItemProps> = memo(({ text, index, sidebarEntered, pre
                 <span
                     key={letterIndex}
                     className={"nav-item-letter"}
-                    style={{ transitionDelay: `${letterIndex * 25}ms` }}
+                    style={{ transitionDelay: `${letterIndex * SIDEBAR_CONFIG.ANIMATION.LETTER_STAGGER_DELAY}ms` }}
                 >
                     {letter}
                 </span>
@@ -30,26 +30,14 @@ const NavItem: React.FC<NavItemProps> = memo(({ text, index, sidebarEntered, pre
 
     return (
         <li className={itemClasses} style={itemStyle} role={"menuitem"}>
-            {onClick ? (
-                <button
-                    onClick={onClick}
-                    onKeyDown={handleKeyDown}
-                    className={"w-full text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"}
-                    aria-label={`Navigate to ${text} section`}
-                    tabIndex={sidebarEntered ? 0 : -1}
-                >
-                    {renderMenuItem()}
-                </button>
-            ) : (
-                <Link
-                    href={href}
-                    className={"focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"}
-                    aria-label={`Navigate to ${text} section`}
-                    tabIndex={sidebarEntered ? 0 : -1}
-                >
-                    {renderMenuItem()}
-                </Link>
-            )}
+            <Link
+                href={href}
+                className={"focus:outline-none"}
+                aria-label={`Navigate to ${text} section`}
+                tabIndex={sidebarEntered ? 0 : -1}
+            >
+                {renderMenuItem()}
+            </Link>
         </li>
     );
 });
