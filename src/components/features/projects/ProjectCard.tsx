@@ -13,7 +13,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
     const { url: imageUrl, alt: imageAlt } = processPortfolioImage(
         portfolio.image,
         portfolio.name || "Untitled Project",
-        { width: 600, height: 400, fallbackImage: "/images/profile2.png" }
+        { fallbackImage: "/images/profile2.png" }
     );
 
     const linkHref = portfolio.link || "#";
@@ -40,7 +40,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
                 whileHover={{ y: -5, boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
                 transition={{ type: "spring", stiffness: 300 }}
             >
-                <Link href={linkHref}>
+                <Link href={linkHref} target={"_blank"}>
                     <div className={"project-card-image-container"}>
                         <Image
                             src={imageUrl}

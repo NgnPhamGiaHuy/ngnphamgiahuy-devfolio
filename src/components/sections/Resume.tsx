@@ -20,7 +20,7 @@ const experienceFieldMapping: AccordionFieldMapping<Experience> = {
 
 const Resume: React.FC<ResumeSectionProps> = ({ id, experience, education, resetAnimationOnView }) => {
     return (
-        <Wrapper id={id} title={"Resume"} subtitle={"My Story"} background={"gradientDown"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1360px"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
+        <Wrapper id={id} title={"Resume"} subtitle={"My Story"} backgroundVariant={"gradientDown"} hasBodyPadding={false} contentMaxWidth={"1360px"} verticalRulePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"flex-half"}>
                 <div className={"p-[40px] max-md:p-[20px] max-lg:p-[30px] flex-wrap-start"}>
                     <Accordion

@@ -7,6 +7,7 @@ export interface BaseSectionProps {
 
 export interface HeroSectionProps extends BaseSectionProps {
     profile: Profile;
+    projects: Project[];
 }
 
 export interface ServicesSectionProps extends BaseSectionProps {
@@ -19,6 +20,9 @@ export interface SkillsSectionProps extends BaseSectionProps {
 
 export interface PortfoliosSectionProps extends BaseSectionProps {
     projects: Project[];
+    maxItems?: number;
+    hideSeeMore?: boolean;
+    backgroundVariant?: "gradientUp" | "gradientDown" | "none";
 }
 
 export interface ResumeSectionProps extends BaseSectionProps {

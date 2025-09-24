@@ -13,9 +13,9 @@ const Skills: React.FC<SkillsSectionProps> = ({ id, skills, resetAnimationOnView
     const containerVariants = StandardAnimations.fadeInUp(15);
 
     return (
-        <Wrapper id={id} title={"Professional Skills"} subtitle={"My Talent"} background={"none"} hasSectionBodyPadding={false} sectionContentMaxWidth={"1320px"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
+        <Wrapper id={id} title={"Professional Skills"} subtitle={"My Talent"} backgroundVariant={"none"} hasBodyPadding={false} contentMaxWidth={"1320px"} verticalRulePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
             <motion.div
-                className={"grid-responsive"}
+                className={"max-md:p-[20px] max-lg:p-[30px] p-[20px] grid-responsive"}
                 variants={containerVariants}
                 initial={"hidden"}
                 whileInView={"visible"}

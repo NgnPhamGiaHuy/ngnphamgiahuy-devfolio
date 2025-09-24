@@ -44,7 +44,7 @@
     }
 
     .accordion-content-subheading {
-        @apply w-[70%] max-md:w-full float-left max-md:float-none text-[28px] max-md:text-[24px] text-inverse font-bold font-["Caveat"] leading-[40px];
+        @apply max-md:w-full float-left max-md:float-none text-[28px] max-md:text-[24px] text-inverse font-bold font-["Caveat"] leading-[40px];
     }
 
     .accordion-content-meta {

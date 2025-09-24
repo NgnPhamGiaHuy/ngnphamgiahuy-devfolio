@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { memo, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 
-import type { ProfileVisualProps, Profile } from "@/types";
+import type { ProfileVisualProps, Profile, Project } from "@/types";
 
 import { processImage } from "@/utils";
 import { MetricCard, DecorativeLayer } from "@/components";
@@ -12,9 +12,10 @@ import { DEFAULT_PATTERN_LAYERS, DEFAULT_STATS, HeroAnimationsConfig } from "@/c
 
 interface ExtendedProfileVisualProps extends ProfileVisualProps {
     profile?: Profile;
+    projects?: Project[];
 }
 
-const ProfileVisual: React.FC<ExtendedProfileVisualProps> = memo(({ className = "", profile, patternLayers = DEFAULT_PATTERN_LAYERS, variants = {}, initial = "", animate = "", transition = {} }) => {
+const ProfileVisual: React.FC<ExtendedProfileVisualProps> = memo(({ className = "", profile, projects = [], patternLayers = DEFAULT_PATTERN_LAYERS, variants = {}, initial = "", animate = "", transition = {} }) => {
     const { url: profileImageUrl, alt: profileImageAlt } = processImage(
         profile?.profile_image,
         { width: 680, height: 800, fallbackImage: "/images/profile2.png" },
@@ -22,7 +23,16 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = memo(({ className = 
     );
 
     const stats = useMemo(() => {
-        if (!profile) return DEFAULT_STATS;
+        // If no profile provided, but we have projects, still compute projects metric dynamically
+        if (!profile) {
+            if (Array.isArray(projects)) {
+                return [
+                    DEFAULT_STATS[0],
+                    { value: projects.length.toString(), label: "Projects Completed", margin: "mt-[-30px] ml-[520px]" }
+                ];
+            }
+            return DEFAULT_STATS;
+        }
 
         return [
             {
@@ -32,12 +42,12 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = memo(({ className = 
                 margin: "mt-[160px] ml-[100px]"
             },
             {
-                value: profile.completed_projects ? profile.completed_projects.toString() : "0",
+                value: Array.isArray(projects) ? projects.length.toString() : "0",
                 label: "Projects Completed",
                 margin: "mt-[-30px] ml-[520px]"
             }
         ];
-    }, [profile]);
+    }, [profile, projects]);
 
     const defaultVariants = useMemo(() => HeroAnimationsConfig.profileVisual.default, []);
     const imageVariants = useMemo(() => HeroAnimationsConfig.profileVisual.image, []);

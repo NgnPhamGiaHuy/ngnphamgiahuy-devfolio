@@ -6,7 +6,7 @@ import { Wrapper, BackdropText, ContactMethodCard, ContactForm } from "@/compone
 
 const Contact: React.FC<ContactSectionProps> = ({ id, contacts, resetAnimationOnView }) => {
     return (
-        <Wrapper id={id} title={"Contact Me"} subtitle={"Let's Talk About Ideas"} background={"gradientDown"} sectionContentMaxWidth={"1180px"} vlinePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
+        <Wrapper id={id} title={"Contact Me"} subtitle={"Let's Talk About Ideas"} backgroundVariant={"gradientDown"} contentMaxWidth={"1180px"} verticalRulePosition={"left"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"flex-2-5"}>
                 <div className={"p-[10px] flex-wrap-start"}>
                     <div className={"w-full relative z-2"}>

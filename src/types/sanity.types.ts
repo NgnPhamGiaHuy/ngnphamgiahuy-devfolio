@@ -60,7 +60,6 @@ export interface Profile extends SanityDocument, SeoFields {
     description: string;
     location: string;
     experience_years: number;
-    completed_projects: number;
     profile_image: SanityImage | string;
     social_links: Array<{ platform: string; url: string; icon: SanityImage | string }>;
     cv_link?: string; // Resolved URL from file asset

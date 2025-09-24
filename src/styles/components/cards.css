@@ -55,7 +55,7 @@
     }
 
     .project-card-image {
-        @apply max-w-full w-full h-[240px] object-cover border-none shadow-none rounded-[18px];
+        @apply max-w-full w-full h-[240px] object-contain border-none shadow-none rounded-[18px];
     }
 
     .project-card-category {

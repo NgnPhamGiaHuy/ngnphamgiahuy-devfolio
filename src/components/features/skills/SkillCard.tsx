@@ -9,7 +9,7 @@ import type { SkillCardProps } from "@/types";
 
 const SkillCard: React.FC<SkillCardProps> = ({ item, variants }) => {
     return (
-        <motion.div className={"mb-[70px] p-[20px] relative"} variants={variants} role={"listitem"}>
+        <motion.div className={"mb-[70px] relative"} variants={variants} role={"listitem"}>
             <h6 className={"mx-[30px]! mb-[20px]! text-[21px] max-md:text-[18px] text-inverse! leading-5"}>
                 {item.name}
             </h6>
@@ -21,7 +21,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ item, variants }) => {
                     <div key={i} className={clsx(i === arr.length - 1 && "h-[4px] top-[-1px] bg-primary!", "h-[2px] w-4 bg-inverse rounded relative")}></div>
                 ))}
             </div>
-            <div className={"top-0 right-[30px] absolute"}>
+            <div className={"top-[-2px] right-[30px] absolute"}>
                 <span className={"px-3 py-1 inline-flex items-center text-inverse bg-primary/10 font-bold rounded-full"}>
                     <CountUp end={item.experience_years} duration={1.2} enableScrollSpy={true} scrollSpyOnce={true} />
                     <strong className={"text-primary"}>+</strong>&nbsp;

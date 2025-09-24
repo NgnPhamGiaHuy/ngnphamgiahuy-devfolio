@@ -6,6 +6,7 @@ export interface ProjectCardProps {
 }
 
 export interface ProjectGridProps {
+    maxItems?: number;
     portfolios: Project[];
 }
 

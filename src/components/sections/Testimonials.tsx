@@ -14,7 +14,7 @@ const ContentCarousel = dynamic(() => import("@/components").then(mod => ({ defa
 
 const Testimonials: React.FC<TestimonialsSectionProps> = ({ id, testimonials, resetAnimationOnView }) => {
     return (
-        <Wrapper id={id} title={"Testimonials"} subtitle={"What Customers Say"} background={"none"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
+        <Wrapper id={id} title={"Testimonials"} subtitle={"What Customers Say"} backgroundVariant={"none"} verticalRulePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
             <div className={"flex-full"}>
                 <div className={"p-[10px] flex-wrap-start"}>
                     <ContentCarousel

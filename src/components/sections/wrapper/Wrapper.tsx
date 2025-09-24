@@ -9,7 +9,7 @@ import type { WrapperProps } from "@/types";
 import { VerticalRule, WrapperHeader } from "@/components";
 import { containerVariants, backgroundByName, vlinePositions } from "@/config";
 
-const Wrapper: React.FC<WrapperProps> = ({ id, title = "", subtitle = "", background = "gradientUp", sectionContentMaxWidth = "1300px", hasSectionBodyPadding = true, vlinePosition = "right", resetAnimationOnView = false, children }) => {
+const Wrapper: React.FC<WrapperProps> = ({ id, title = "", subtitle = "", backgroundVariant = "gradientUp", contentMaxWidth = "1300px", hasBodyPadding = true, verticalRulePosition = "right", resetAnimationOnView = false, children }) => {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: !resetAnimationOnView, amount: 0.1 });
     const [animationKey, setAnimationKey] = useState(0);
@@ -20,8 +20,8 @@ const Wrapper: React.FC<WrapperProps> = ({ id, title = "", subtitle = "", backgr
         }
     }, [isInView, resetAnimationOnView]);
 
-    const backgroundClass = backgroundByName[background];
-    const vlineProps = vlinePositions[vlinePosition];
+    const backgroundClass = backgroundByName[backgroundVariant];
+    const vlineProps = vlinePositions[verticalRulePosition];
 
     return (
         <section id={id} ref={sectionRef} className={clsx(backgroundClass, "wrapper bg-transparent")}>
@@ -29,8 +29,8 @@ const Wrapper: React.FC<WrapperProps> = ({ id, title = "", subtitle = "", backgr
                 <div className={"flex-full"}>
                     <div className={"flex-wrap-start"}>
                         <WrapperHeader title={title} subtitle={subtitle} isInView={isInView} />
-                        <section className={clsx(hasSectionBodyPadding && "max-md:px-[10px] max-lg:px-[20px]", "w-full relative")}>
-                            <div className={"container-full"} style={{ maxWidth: sectionContentMaxWidth }}>
+                        <section className={clsx(hasBodyPadding && "max-md:px-[10px] max-lg:px-[20px]", "w-full relative")}>
+                            <div className={"container-full"} style={{ maxWidth: contentMaxWidth }}>
                                 {children}
                                 <VerticalRule {...vlineProps} />
                             </div>

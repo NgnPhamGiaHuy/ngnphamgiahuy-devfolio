@@ -16,14 +16,6 @@ export default {
             title: "Category",
             type: "string",
             validation: (Rule: Rule) => Rule.required(),
-            options: {
-                list: [
-                    { title: "Category 1", value: "Category 1" },
-                    { title: "Category 2", value: "Category 2" },
-                    { title: "Category 3", value: "Category 3" },
-                    { title: "Category 4", value: "Category 4" },
-                ],
-            },
         },
         {
             name: "description",

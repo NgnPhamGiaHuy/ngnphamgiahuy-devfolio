@@ -46,12 +46,6 @@ export default {
             validation: (Rule: Rule) => Rule.required().min(0),
         },
         {
-            name: "completed_projects",
-            title: "Completed Projects",
-            type: "number",
-            validation: (Rule: Rule) => Rule.required().min(0),
-        },
-        {
             name: "profile_image",
             title: "Profile Image",
             type: "image",

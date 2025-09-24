@@ -10,7 +10,7 @@ import { useDynamicTextAnimation } from "@/hooks";
 import { HeroAnimationsConfig, vlinePositions } from "@/config";
 import { VerticalRule, BackdropText, BioSection, DownloadResumeButton, PersonalIntro, ProfileVisual } from "@/components";
 
-const Hero: React.FC<HeroSectionProps> = memo(({ id, profile }) => {
+const Hero: React.FC<HeroSectionProps> = memo(({ id, profile, projects }) => {
     const { createTypingTimeline } = useDynamicTextAnimation();
 
     const containerVariants = useMemo(() => HeroAnimationsConfig.container, []);
@@ -50,6 +50,7 @@ const Hero: React.FC<HeroSectionProps> = memo(({ id, profile }) => {
                                     </motion.div>
                                     <ProfileVisual
                                         profile={profile}
+                                        projects={projects}
                                         variants={profileBlockVariants}
                                         initial={"hidden"}
                                         animate={"visible"}

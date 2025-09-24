@@ -8,7 +8,7 @@ import type { ProjectGridProps } from "@/types";
 import { ProjectCard } from "@/components/features/projects";
 import { StandardAnimations, Duration, Stagger } from "@/config";
 
-const ProjectGrid: React.FC<ProjectGridProps> = ({ portfolios = [] }) => {
+const ProjectGrid: React.FC<ProjectGridProps> = ({ maxItems, portfolios = [] }) => {
     const itemEnter = StandardAnimations.springUp(16);
     const itemScale = StandardAnimations.scaleIn(0.95);
     const gridVariants = StandardAnimations.staggerChildren(Stagger.NORMAL);
@@ -18,6 +18,8 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ portfolios = [] }) => {
         visible: { ...(itemEnter.visible as Target), ...(itemScale.visible as Target) },
         exit: { opacity: 0, scale: 0.9, y: -12, transition: { duration: Duration.NORMAL } }
     } as const;
+
+    const displayedPortfolios = maxItems ? portfolios.slice(0, maxItems) : portfolios;
 
     return (
         <motion.div
@@ -29,7 +31,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ portfolios = [] }) => {
             transition={{ duration: Duration.SLOW }}
         >
             <AnimatePresence mode={"popLayout"}>
-                {portfolios.slice(0, 6).map((portfolio, index) => (
+                {displayedPortfolios.map((portfolio, index) => (
                     <motion.div
                         key={portfolio._id || `portfolio-${index}`}
                         layout

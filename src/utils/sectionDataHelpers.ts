@@ -59,7 +59,8 @@ export const getSectionData = (sectionId: string, props: any, fallbackData?: Moc
     switch (sectionId) {
         case "hero":
             return {
-                profile: normalizeProfileData(props.profile, fallbackData)
+                profile: normalizeProfileData(props.profile, fallbackData),
+                projects: normalizeProjectsData(props.projects, fallbackData)
             };
 
         case "services":
@@ -74,6 +75,7 @@ export const getSectionData = (sectionId: string, props: any, fallbackData?: Moc
 
         case "portfolios":
             return {
+                maxItems: 6,
                 projects: normalizeProjectsData(props.projects, fallbackData)
             };
 

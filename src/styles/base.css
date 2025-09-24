@@ -62,7 +62,7 @@
 }
 
 [data-theme="dark"] {
-    --background: #1b1d1f;
+    --background: #222831;
     /* deep charcoal for warmth */
     --foreground: #ececec;
     --color-inverse: #fff;

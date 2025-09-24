@@ -7,7 +7,6 @@ export const profileQuery = `*[_type == "profile"][0] {
     description,
     location,
     experience_years,
-    completed_projects,
     profile_image {
         asset,
         alt,

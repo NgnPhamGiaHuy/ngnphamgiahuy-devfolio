@@ -4,9 +4,7 @@ import { ImageConfig, SanityImage } from "@/types";
 /**
  * Default configuration for image processing
  */
-const DEFAULT_CONFIG: Required<Omit<ImageConfig, 'fallbackImage'>> = {
-    width: 600,
-    height: 400,
+const DEFAULT_CONFIG: Pick<Required<ImageConfig>, 'fallbackAlt'> = {
     fallbackAlt: "Image"
 };
 
@@ -20,7 +18,7 @@ export const resolveImageUrl = (
     image: SanityImage | string | undefined,
     config: ImageConfig
 ): string => {
-    const { width, height, fallbackImage } = { ...DEFAULT_CONFIG, ...config };
+    const { fallbackImage } = { ...DEFAULT_CONFIG, ...config };
 
     if (!image) {
         return fallbackImage || "";
@@ -29,10 +27,7 @@ export const resolveImageUrl = (
     if (typeof image === "string") {
         return image;
     }
-
     return urlFor(image as SanityImage)
-        .width(width)
-        .height(height)
         .url();
 };
 
@@ -88,5 +83,6 @@ export const processPortfolioImage = (
     config: ImageConfig
 ): { url: string; alt: string } => {
     const fallbackAlt = `${projectName} project`;
+
     return processImage(image, config, fallbackAlt);
 };

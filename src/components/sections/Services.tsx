@@ -19,7 +19,7 @@ const Services: React.FC<ServicesSectionProps> = ({ id, services, resetAnimation
     const containerVariants = StandardAnimations.fadeInUp(15);
 
     return (
-        <Wrapper id={id} title={"What I Do"} subtitle={"My Services"} background={"gradientDown"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
+        <Wrapper id={id} title={"What I Do"} subtitle={"My Services"} backgroundVariant={"gradientDown"} verticalRulePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
             <motion.div
                 className={"flex-full"}
                 variants={containerVariants}
