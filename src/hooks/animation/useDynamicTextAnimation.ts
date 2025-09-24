@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 const useDynamicTextAnimation = () => {
     const TYPING_SPEED = 60;

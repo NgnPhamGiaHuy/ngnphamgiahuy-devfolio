@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { motion } from "framer-motion";
 import React, { useMemo, memo } from "react";
@@ -6,14 +6,15 @@ import React, { useMemo, memo } from "react";
 import type { HeroSectionProps } from "@/types";
 
 import { HeroAnimationProvider } from "@/context";
-import { StandardAnimations, vlinePositions } from "@/config";
-import { usePrefersReducedMotion, useDynamicTextAnimation } from "@/hooks";
+import { useDynamicTextAnimation } from "@/hooks";
+import { HeroAnimationsConfig, vlinePositions } from "@/config";
 import { VerticalRule, BackdropText, BioSection, DownloadResumeButton, PersonalIntro, ProfileVisual } from "@/components";
 
 const Hero: React.FC<HeroSectionProps> = memo(({ id, profile }) => {
     const { createTypingTimeline } = useDynamicTextAnimation();
-    const prefersReducedMotion = usePrefersReducedMotion();
 
+    const containerVariants = useMemo(() => HeroAnimationsConfig.container, []);
+    const profileBlockVariants = useMemo(() => HeroAnimationsConfig.profileBlock, []);
     const heroTextTimeline = useMemo(() => {
         const textSections = [
             { id: "intro", text: "Hello, my name is" },
@@ -24,16 +25,6 @@ const Hero: React.FC<HeroSectionProps> = memo(({ id, profile }) => {
 
         return createTypingTimeline(textSections);
     }, [createTypingTimeline, profile]);
-
-    const containerVariants = useMemo(() =>
-        StandardAnimations.staggerChildren(prefersReducedMotion, 0.3, 0.1),
-        [prefersReducedMotion]
-    );
-
-    const profileBlockVariants = useMemo(() =>
-        StandardAnimations.springUp(prefersReducedMotion, 50),
-        [prefersReducedMotion]
-    );
 
     return (
         <HeroAnimationProvider timeline={heroTextTimeline}>

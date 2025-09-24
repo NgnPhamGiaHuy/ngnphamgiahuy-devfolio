@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import Link from "next/link";
 import React, { memo } from "react";
@@ -6,15 +6,12 @@ import { motion } from "framer-motion";
 
 import type { DownloadResumeButtonProps } from "@/types";
 
-import { StandardAnimations } from "@/config";
-import { usePrefersReducedMotion } from "@/hooks";
+import { HeroAnimationsConfig } from "@/config";
 
 const DownloadResumeButton: React.FC<DownloadResumeButtonProps> = memo(({ cvLink }) => {
-    const prefersReducedMotion = usePrefersReducedMotion();
-
-    const containerVariants = StandardAnimations.springUp(prefersReducedMotion, 30);
-    const buttonVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
-    const buttonHoverVariants = StandardAnimations.buttonHover(prefersReducedMotion);
+    const containerVariants = HeroAnimationsConfig.downloadResume.container;
+    const buttonVariants = HeroAnimationsConfig.downloadResume.button;
+    const buttonHoverVariants = HeroAnimationsConfig.downloadResume.hover;
 
     return (
         <motion.div
@@ -33,8 +30,8 @@ const DownloadResumeButton: React.FC<DownloadResumeButtonProps> = memo(({ cvLink
                 <motion.span
                     variants={buttonVariants}
                     className={"primary-button"}
-                    whileHover={prefersReducedMotion ? undefined : "hover"}
-                    whileTap={prefersReducedMotion ? undefined : "tap"}
+                    whileHover={"hover"}
+                    whileTap={"tap"}
                     initial={"initial"}
                     animate={"visible"}
                     {...buttonHoverVariants}
@@ -46,8 +43,8 @@ const DownloadResumeButton: React.FC<DownloadResumeButtonProps> = memo(({ cvLink
                 <motion.span
                     variants={buttonVariants}
                     className={"my-skill"}
-                    whileHover={prefersReducedMotion ? undefined : "hover"}
-                    whileTap={prefersReducedMotion ? undefined : "tap"}
+                    whileHover={"hover"}
+                    whileTap={"tap"}
                     initial={"initial"}
                     animate={"visible"}
                     {...buttonHoverVariants}

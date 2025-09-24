@@ -7,13 +7,10 @@ import { motion } from "framer-motion";
 import type { ServiceCardProps } from "@/types";
 
 import { StandardAnimations } from "@/config";
-import { usePrefersReducedMotion } from "@/hooks";
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ item, index }) => {
-    const prefersReducedMotion = usePrefersReducedMotion();
-
-    const cardVariants = StandardAnimations.scaleIn(prefersReducedMotion, 0.95);
-    const contentVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 10);
+    const cardVariants = StandardAnimations.scaleIn(0.95);
+    const contentVariants = StandardAnimations.fadeInUp(10);
 
     return (
         <motion.div

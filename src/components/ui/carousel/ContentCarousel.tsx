@@ -11,11 +11,9 @@ import { Pagination, EffectFade, Keyboard, A11y } from "swiper/modules";
 import type { ContentCarouselProps } from "@/types";
 
 import { StandardAnimations } from "@/config";
-import { usePrefersReducedMotion } from "@/hooks";
 
 const ContentCarousel = <T,>({ items, spaceBetween = 40, renderItem }: ContentCarouselProps<T>) => {
-    const prefersReducedMotion = usePrefersReducedMotion();
-    const containerVariants = StandardAnimations.fadeIn(prefersReducedMotion);
+    const containerVariants = StandardAnimations.fadeIn();
 
     const [mounted, setMounted] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -51,8 +49,8 @@ const ContentCarousel = <T,>({ items, spaceBetween = 40, renderItem }: ContentCa
                         spaceBetween={spaceBetween}
                         slidesPerView={1}
                         loop={true}
-                        speed={prefersReducedMotion ? 400 : 600}
-                        effect={prefersReducedMotion ? "slide" : "slide"}
+                        speed={600}
+                        effect={"slide"}
                         keyboard={{ enabled: true }}
                         a11y={{
                             prevSlideMessage: "Previous slide",

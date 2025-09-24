@@ -51,93 +51,92 @@ export const Delay = ANIMATION_CONFIG.DELAY;
 export const Stagger = ANIMATION_CONFIG.STAGGER;
 
 export const STANDARD_ANIMATIONS: AnimationConfig = {
-    fadeIn: (prefersReducedMotion = false): Variants => ({
+    fadeIn: (): Variants => ({
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                duration: prefersReducedMotion ? ANIMATION_CONFIG.REDUCED_MOTION.duration : ANIMATION_CONFIG.DURATION.NORMAL,
-                ease: prefersReducedMotion ? "linear" : ANIMATION_CONFIG.EASING.easeOut,
+                duration: ANIMATION_CONFIG.DURATION.NORMAL,
+                ease: ANIMATION_CONFIG.EASING.easeOut,
             }
         }
     }),
 
-    fadeInUp: (prefersReducedMotion = false, distance = 20): Variants => ({
-        hidden: { opacity: 0, y: prefersReducedMotion ? 0 : distance },
+    fadeInUp: (distance = 20): Variants => ({
+        hidden: { opacity: 0, y: distance },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
-                duration: prefersReducedMotion ? ANIMATION_CONFIG.REDUCED_MOTION.duration : ANIMATION_CONFIG.DURATION.NORMAL,
-                ease: prefersReducedMotion ? "linear" : ANIMATION_CONFIG.EASING.easeOut,
+                duration: ANIMATION_CONFIG.DURATION.NORMAL,
+                ease: ANIMATION_CONFIG.EASING.easeOut,
             }
         }
     }),
 
-    fadeInDown: (prefersReducedMotion = false, distance = 20): Variants => ({
-        hidden: { opacity: 0, y: prefersReducedMotion ? 0 : -distance },
+    fadeInDown: (distance = 20): Variants => ({
+        hidden: { opacity: 0, y: -distance },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
-                duration: prefersReducedMotion ? ANIMATION_CONFIG.REDUCED_MOTION.duration : ANIMATION_CONFIG.DURATION.NORMAL,
-                ease: prefersReducedMotion ? "linear" : ANIMATION_CONFIG.EASING.easeOut,
+                duration: ANIMATION_CONFIG.DURATION.NORMAL,
+                ease: ANIMATION_CONFIG.EASING.easeOut,
             }
         }
     }),
 
-    scaleIn: (prefersReducedMotion = false, startScale = 0.9): Variants => ({
-        hidden: { opacity: 0, scale: prefersReducedMotion ? 1 : startScale },
+    scaleIn: (startScale = 0.9): Variants => ({
+        hidden: { opacity: 0, scale: startScale },
         visible: {
             opacity: 1,
             scale: 1,
             transition: {
-                duration: prefersReducedMotion ? ANIMATION_CONFIG.REDUCED_MOTION.duration : ANIMATION_CONFIG.DURATION.NORMAL,
-                ease: prefersReducedMotion ? "linear" : ANIMATION_CONFIG.EASING.easeOut,
+                duration: ANIMATION_CONFIG.DURATION.NORMAL,
+                ease: ANIMATION_CONFIG.EASING.easeOut,
             }
         }
     }),
 
-    springUp: (prefersReducedMotion = false, distance = 30): Variants => ({
-        hidden: { opacity: 0, y: prefersReducedMotion ? 0 : distance },
+    springUp: (distance = 30): Variants => ({
+        hidden: { opacity: 0, y: distance },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
-                type: prefersReducedMotion ? "tween" : "spring",
+                type: "spring",
                 stiffness: 400,
                 damping: 25,
-                duration: prefersReducedMotion ? ANIMATION_CONFIG.REDUCED_MOTION.duration : undefined,
             }
         }
     }),
 
-    staggerChildren: (prefersReducedMotion = false, staggerTime = ANIMATION_CONFIG.STAGGER.NORMAL, delayTime = ANIMATION_CONFIG.DELAY.NONE): Variants => ({
+    staggerChildren: (staggerTime = ANIMATION_CONFIG.STAGGER.NORMAL, delayTime = ANIMATION_CONFIG.DELAY.NONE): Variants => ({
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: prefersReducedMotion ? 0 : staggerTime,
-                delayChildren: prefersReducedMotion ? 0 : delayTime,
-                duration: prefersReducedMotion ? ANIMATION_CONFIG.REDUCED_MOTION.duration : ANIMATION_CONFIG.DURATION.FAST,
+                staggerChildren: staggerTime,
+                delayChildren: delayTime,
+                duration: ANIMATION_CONFIG.DURATION.FAST,
             }
         }
     }),
 
-    buttonHover: (prefersReducedMotion = false): Variants => ({
+    buttonHover: (): Variants => ({
         initial: {},
         hover: {
-            scale: prefersReducedMotion ? 1 : 1.05,
-            y: prefersReducedMotion ? 0 : -2,
+            scale: 1.05,
+            y: -2,
             transition: {
-                duration: prefersReducedMotion ? 0 : ANIMATION_CONFIG.DURATION.FAST,
+                duration: ANIMATION_CONFIG.DURATION.FAST,
                 ease: ANIMATION_CONFIG.EASING.easeInOut,
             }
         },
         tap: {
-            scale: prefersReducedMotion ? 1 : 0.98,
+            scale: 0.98,
             transition: {
-                duration: prefersReducedMotion ? 0 : ANIMATION_CONFIG.DURATION.FASTEST,
+                duration: ANIMATION_CONFIG.DURATION.FASTEST,
                 ease: ANIMATION_CONFIG.EASING.easeInOut,
             }
         }

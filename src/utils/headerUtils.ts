@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import { HeaderState } from "@/types";
+export type HeaderState = "absolute" | "fixed" | "animating-in" | "animating-out";
 
 export const getHeaderClasses = (headerState: HeaderState): string => {
     const baseClasses = "header";

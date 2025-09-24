@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React, { memo } from "react";
 
@@ -10,7 +10,7 @@ import { useSidebarAnimation } from "@/hooks";
 import { VerticalRule, SocialLinks, NavItem } from "@/components";
 
 const Sidebar: React.FC<SidebarProps> = memo(({ profile, isMenuOpen }) => {
-    const { sidebarEntered, handleTransitionEnd, prefersReducedMotion } = useSidebarAnimation(isMenuOpen);
+    const { sidebarEntered, handleTransitionEnd } = useSidebarAnimation(isMenuOpen);
 
     const socialLinks = generateSocialLinks(profile.social_links);
 
@@ -30,7 +30,6 @@ const Sidebar: React.FC<SidebarProps> = memo(({ profile, isMenuOpen }) => {
                                             text={item}
                                             index={index}
                                             sidebarEntered={sidebarEntered}
-                                            prefersReducedMotion={prefersReducedMotion}
                                         />
                                     ))}
                                 </ul>

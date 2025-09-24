@@ -13,7 +13,6 @@ export interface NavItemProps {
     text: string;
     index: number;
     sidebarEntered: boolean;
-    prefersReducedMotion: boolean;
 }
 
 export interface ThemeToggleProps {

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import clsx from "clsx";
 import React from "react";
@@ -6,15 +6,12 @@ import { motion } from "framer-motion";
 
 import type { ProjectCategoryFilterProps } from "@/types";
 
-import { usePrefersReducedMotion } from "@/hooks";
 import { StandardAnimations, Duration, Delay, Stagger } from "@/config";
 
 const ProjectCategoryFilter: React.FC<ProjectCategoryFilterProps> = ({ categories, activeCategory, onCategoryChange }) => {
-    const prefersReducedMotion = usePrefersReducedMotion();
-
-    const hoverVariants = StandardAnimations.buttonHover(prefersReducedMotion);
-    const itemVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 12);
-    const containerVariants = StandardAnimations.staggerChildren(prefersReducedMotion, Stagger.NORMAL, Delay.SHORT);
+    const hoverVariants = StandardAnimations.buttonHover();
+    const itemVariants = StandardAnimations.fadeInUp(12);
+    const containerVariants = StandardAnimations.staggerChildren(Stagger.NORMAL, Delay.SHORT);
 
     const buttonVariants = { ...itemVariants, ...hoverVariants } as const;
 

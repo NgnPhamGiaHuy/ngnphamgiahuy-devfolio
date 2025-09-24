@@ -5,21 +5,18 @@ import { motion, AnimatePresence, Target } from "framer-motion";
 
 import type { ProjectGridProps } from "@/types";
 
-import { usePrefersReducedMotion } from "@/hooks";
 import { ProjectCard } from "@/components/features/projects";
 import { StandardAnimations, Duration, Stagger } from "@/config";
 
 const ProjectGrid: React.FC<ProjectGridProps> = ({ portfolios = [] }) => {
-    const prefersReducedMotion = usePrefersReducedMotion();
-
-    const itemEnter = StandardAnimations.springUp(prefersReducedMotion, 16);
-    const itemScale = StandardAnimations.scaleIn(prefersReducedMotion, 0.95);
-    const gridVariants = StandardAnimations.staggerChildren(prefersReducedMotion, Stagger.NORMAL);
+    const itemEnter = StandardAnimations.springUp(16);
+    const itemScale = StandardAnimations.scaleIn(0.95);
+    const gridVariants = StandardAnimations.staggerChildren(Stagger.NORMAL);
 
     const itemVariants = {
         hidden: { ...(itemEnter.hidden as Target), ...(itemScale.hidden as Target) },
         visible: { ...(itemEnter.visible as Target), ...(itemScale.visible as Target) },
-        exit: { opacity: 0, scale: prefersReducedMotion ? 1 : 0.9, y: prefersReducedMotion ? 0 : -12, transition: { duration: Duration.NORMAL } }
+        exit: { opacity: 0, scale: 0.9, y: -12, transition: { duration: Duration.NORMAL } }
     } as const;
 
     return (

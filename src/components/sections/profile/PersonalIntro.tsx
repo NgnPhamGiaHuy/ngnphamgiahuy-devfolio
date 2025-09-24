@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
+import { motion } from "framer-motion";
 import React, { memo, useMemo } from "react";
-import { motion, Variants } from "framer-motion";
 
 import type { Profile } from "@/types";
 
+import { HeroAnimationsConfig } from "@/config";
 import { AnimatedText } from "@/components";
-import { usePrefersReducedMotion } from "@/hooks";
 import { useHeroAnimationContext } from "@/context";
 
 interface PersonalIntroProps {
@@ -15,7 +15,6 @@ interface PersonalIntroProps {
 
 const PersonalIntro: React.FC<PersonalIntroProps> = memo(({ profile }) => {
     const { timeline } = useHeroAnimationContext();
-    const prefersReducedMotion = usePrefersReducedMotion();
 
     const name = profile?.name || "Your Name";
     const nameWords = useMemo(() => name.split(" "), [name]);
@@ -24,61 +23,11 @@ const PersonalIntro: React.FC<PersonalIntroProps> = memo(({ profile }) => {
 
     const jobTitle = profile?.job_title || "Developer";
 
-    const containerVariants: Variants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: prefersReducedMotion ? 0 : 0.2,
-                duration: prefersReducedMotion ? 0.1 : 0.3
-            }
-        }
-    };
-
-    const itemVariants: Variants = {
-        hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: prefersReducedMotion ? 0.1 : 0.75,
-                ease: prefersReducedMotion ? "easeOut" : "easeInOut"
-            }
-        }
-    };
-
-    const nameVariants: Variants = {
-        hidden: { opacity: 1 },
-        visible: {
-            opacity: 1,
-            transition: {
-                duration: prefersReducedMotion ? 0.1 : 0.5,
-                delayChildren: prefersReducedMotion ? 0 : 0.2
-            }
-        }
-    };
-
-    const nameWordVariants: Variants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                duration: prefersReducedMotion ? 0.1 : 0.3,
-                ease: "easeOut"
-            }
-        }
-    };
-
-    const jobTitleVariants: Variants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                duration: prefersReducedMotion ? 0.1 : 0.4,
-                ease: "easeOut"
-            }
-        }
-    };
+    const containerVariants = useMemo(() => HeroAnimationsConfig.personalIntro.container, []);
+    const itemVariants = useMemo(() => HeroAnimationsConfig.personalIntro.item, []);
+    const nameVariants = useMemo(() => HeroAnimationsConfig.personalIntro.name, []);
+    const nameWordVariants = useMemo(() => HeroAnimationsConfig.personalIntro.nameWord, []);
+    const jobTitleVariants = useMemo(() => HeroAnimationsConfig.personalIntro.jobTitle, []);
 
     return (
         <motion.div
@@ -129,7 +78,7 @@ const PersonalIntro: React.FC<PersonalIntroProps> = memo(({ profile }) => {
                             initial={"hidden"}
                             animate={"visible"}
                             transition={{
-                                delay: prefersReducedMotion ? 0 : ((timeline.name?.sectionDelay || 0) / 1000) + 0.3 + (wordIndex * 0.2)
+                                delay: ((timeline.name?.sectionDelay || 0) / 1000) + 0.3 + (wordIndex * 0.2)
                             }}
                         >
                             <AnimatedText
@@ -156,7 +105,7 @@ const PersonalIntro: React.FC<PersonalIntroProps> = memo(({ profile }) => {
                     initial={"hidden"}
                     animate={"visible"}
                     transition={{
-                        delay: prefersReducedMotion ? 0 : ((timeline.job?.sectionDelay || 0) / 1000) + 0.2
+                        delay: ((timeline.job?.sectionDelay || 0) / 1000) + 0.2
                     }}
                 >
                     <AnimatedText

@@ -9,7 +9,7 @@ import { Wrapper, BackdropText, TestimonialCard } from "@/components";
 
 const ContentCarousel = dynamic(() => import("@/components").then(mod => ({ default: mod.ContentCarousel })), {
     ssr: false,
-    loading: () => <div className="swiper-carousel-outer"><div className="swiper-carousel">Loading...</div></div>
+    loading: () => <div className={"swiper-carousel-outer"}><div className={"swiper-carousel"}>Loading...</div></div>
 }) as React.ComponentType<{ items: Testimonial[]; spaceBetween?: number; renderItem: (item: Testimonial, index: number) => React.ReactNode }>;
 
 const Testimonials: React.FC<TestimonialsSectionProps> = ({ id, testimonials, resetAnimationOnView }) => {

@@ -1,11 +1,8 @@
-"use client";
+"use client"
 
 import React, { useState, useEffect, useCallback } from "react";
 
-import { usePrefersReducedMotion } from "@/hooks";
-
 const useSidebarAnimation = (isMenuOpen: boolean) => {
-    const prefersReducedMotion = usePrefersReducedMotion();
     const [sidebarEntered, setSidebarEntered] = useState<boolean>(false);
 
     const handleTransitionEnd = useCallback((event: React.TransitionEvent<HTMLDivElement>) => {
@@ -17,8 +14,6 @@ const useSidebarAnimation = (isMenuOpen: boolean) => {
     useEffect(() => {
         if (!isMenuOpen) {
             setSidebarEntered(false);
-        } else if (prefersReducedMotion) {
-            setSidebarEntered(true);
         } else {
             const timer = setTimeout(() => {
                 if (isMenuOpen) {
@@ -28,9 +23,9 @@ const useSidebarAnimation = (isMenuOpen: boolean) => {
 
             return () => clearTimeout(timer);
         }
-    }, [isMenuOpen, prefersReducedMotion]);
+    }, [isMenuOpen]);
 
-    return { sidebarEntered, handleTransitionEnd, prefersReducedMotion };
+    return { sidebarEntered, handleTransitionEnd };
 };
 
 export default useSidebarAnimation;

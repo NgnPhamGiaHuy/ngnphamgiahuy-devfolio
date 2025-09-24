@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import Image from "next/image";
 import React, { memo, useMemo } from "react";
@@ -7,17 +7,14 @@ import { motion, Variants } from "framer-motion";
 import type { ProfileVisualProps, Profile } from "@/types";
 
 import { processImage } from "@/utils";
-import { usePrefersReducedMotion } from "@/hooks";
 import { MetricCard, DecorativeLayer } from "@/components";
-import { DEFAULT_PATTERN_LAYERS, DEFAULT_STATS } from "@/config";
+import { DEFAULT_PATTERN_LAYERS, DEFAULT_STATS, HeroAnimationsConfig } from "@/config";
 
 interface ExtendedProfileVisualProps extends ProfileVisualProps {
     profile?: Profile;
 }
 
 const ProfileVisual: React.FC<ExtendedProfileVisualProps> = memo(({ className = "", profile, patternLayers = DEFAULT_PATTERN_LAYERS, variants = {}, initial = "", animate = "", transition = {} }) => {
-    const prefersReducedMotion = usePrefersReducedMotion();
-
     const { url: profileImageUrl, alt: profileImageAlt } = processImage(
         profile?.profile_image,
         { width: 680, height: 800, fallbackImage: "/images/profile2.png" },
@@ -42,56 +39,10 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = memo(({ className = 
         ];
     }, [profile]);
 
-    const defaultVariants: Variants = useMemo(() => ({
-        hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 50 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                type: prefersReducedMotion ? "tween" : "spring",
-                stiffness: prefersReducedMotion ? 0 : 160,
-                damping: prefersReducedMotion ? 0 : 80,
-                duration: prefersReducedMotion ? 0.2 : 0.8
-            }
-        }
-    }), [prefersReducedMotion]);
-
-    const imageVariants: Variants = useMemo(() => ({
-        hidden: { opacity: 0, scale: prefersReducedMotion ? 1 : 0.8 },
-        visible: {
-            opacity: 1,
-            scale: 1,
-            transition: {
-                delay: prefersReducedMotion ? 0 : 0.2,
-                duration: prefersReducedMotion ? 0.1 : 0.6,
-                ease: "easeOut"
-            }
-        }
-    }), [prefersReducedMotion]);
-
-    const statsVariants: Variants = useMemo(() => ({
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                delayChildren: prefersReducedMotion ? 0 : 0.4,
-                staggerChildren: prefersReducedMotion ? 0 : 0.1,
-                duration: prefersReducedMotion ? 0.1 : 0.3
-            }
-        }
-    }), [prefersReducedMotion]);
-
-    const statItemVariants: Variants = useMemo(() => ({
-        hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: prefersReducedMotion ? 0.1 : 0.4,
-                ease: "easeOut"
-            }
-        }
-    }), [prefersReducedMotion]);
+    const defaultVariants = useMemo(() => HeroAnimationsConfig.profileVisual.default, []);
+    const imageVariants = useMemo(() => HeroAnimationsConfig.profileVisual.image, []);
+    const statsVariants = useMemo(() => HeroAnimationsConfig.profileVisual.stats, []);
+    const statItemVariants = useMemo(() => HeroAnimationsConfig.profileVisual.statItem, []);
 
     const mergedVariants = useMemo(() =>
         variants && typeof variants === 'object' && Object.keys(variants).length > 0 ? variants as Variants : defaultVariants,
@@ -109,7 +60,7 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = memo(({ className = 
             aria-label={"Profile image with professional statistics"}
         >
             <motion.div
-                className={"flex items-center justify-center"}
+                className={"w-full h-full flex items-center justify-center relative z-10"}
                 variants={imageVariants}
                 initial={"hidden"}
                 animate={"visible"}

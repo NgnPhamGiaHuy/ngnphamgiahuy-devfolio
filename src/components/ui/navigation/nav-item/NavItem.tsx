@@ -5,11 +5,11 @@ import type { NavItemProps } from "@/types";
 
 import { SIDEBAR_CONFIG } from "@/config";
 
-const NavItem: React.FC<NavItemProps> = memo(({ text, index, sidebarEntered, prefersReducedMotion }) => {
+const NavItem: React.FC<NavItemProps> = memo(({ text, index, sidebarEntered }) => {
     const itemClasses = `nav-item ${sidebarEntered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`;
 
     const itemStyle = {
-        transitionDelay: prefersReducedMotion ? "0ms" : `${index * SIDEBAR_CONFIG.ANIMATION.ITEM_STAGGER_DELAY}ms`,
+        transitionDelay: `${index * SIDEBAR_CONFIG.ANIMATION.ITEM_STAGGER_DELAY}ms`,
     } as React.CSSProperties;
 
     const href = `#${text.toLowerCase()}`;

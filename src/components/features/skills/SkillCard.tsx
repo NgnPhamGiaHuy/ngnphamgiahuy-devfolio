@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 import type { SkillCardProps } from "@/types";
 
-const SkillCard: React.FC<SkillCardProps> = ({ item, variants, prefersReducedMotion }) => {
+const SkillCard: React.FC<SkillCardProps> = ({ item, variants }) => {
     return (
         <motion.div className={"mb-[70px] p-[20px] relative"} variants={variants} role={"listitem"}>
             <h6 className={"mx-[30px]! mb-[20px]! text-[21px] max-md:text-[18px] text-inverse! leading-5"}>
@@ -23,7 +23,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ item, variants, prefersReducedMot
             </div>
             <div className={"top-0 right-[30px] absolute"}>
                 <span className={"px-3 py-1 inline-flex items-center text-inverse bg-primary/10 font-bold rounded-full"}>
-                    <CountUp end={item.experience_years} duration={prefersReducedMotion ? 0 : 1.2} enableScrollSpy={true} scrollSpyOnce={true} />
+                    <CountUp end={item.experience_years} duration={1.2} enableScrollSpy={true} scrollSpyOnce={true} />
                     <strong className={"text-primary"}>+</strong>&nbsp;
                     <span className={"text-primary font-medium"}>Years</span>
                 </span>

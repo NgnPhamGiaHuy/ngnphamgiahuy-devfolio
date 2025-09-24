@@ -1,34 +1,19 @@
-"use client";
+"use client"
 
 import React, { useMemo } from "react";
-import { motion, easeOut } from "framer-motion";
+import { motion } from "framer-motion";
 
 import type { AnimatedTextProps } from "@/types";
 
-import { Duration, Stagger } from "@/config";
-import { usePrefersReducedMotion } from "@/hooks";
+import { Duration, HeroAnimationsConfig } from "@/config";
 
 const AnimatedText: React.FC<AnimatedTextProps> = ({ text, baseDelay = 0, className = "", containerClassName = "", staggerDelay = 40, duration = Duration.FAST }) => {
-    const prefersReducedMotion = usePrefersReducedMotion();
-
     const shouldAnimateWords = useMemo(() => text.length > 50, [text]);
-
-    if (prefersReducedMotion) {
-        return <span className={containerClassName}>{text}</span>;
-    }
 
     if (shouldAnimateWords) {
         const words = text.split(" ");
 
-        const containerVariants = {
-            hidden: {},
-            visible: {
-                transition: {
-                    staggerChildren: Stagger.NORMAL,
-                    delayChildren: baseDelay / 1000
-                }
-            }
-        };
+        const containerVariants = HeroAnimationsConfig.animatedText.createWordContainer(baseDelay);
 
         return (
             <motion.span
@@ -41,16 +26,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, baseDelay = 0, classN
                     <React.Fragment key={`word-${index}`}>
                         <motion.span
                             className={className}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{
-                                opacity: 1,
-                                y: 0
-                            }}
-                            transition={{
-                                delay: (baseDelay + (index * staggerDelay * 2)) / 1000,
-                                duration,
-                                ease: easeOut
-                            }}
+                            {...HeroAnimationsConfig.animatedText.wordItem(baseDelay, index, staggerDelay, duration)}
                         >
                             {word}
                         </motion.span>
@@ -61,15 +37,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, baseDelay = 0, classN
         );
     }
 
-    const containerVariants = {
-        hidden: {},
-        visible: {
-            transition: {
-                staggerChildren: Stagger.TEXT,
-                delayChildren: baseDelay / 1000
-            }
-        }
-    };
+    const containerVariants = HeroAnimationsConfig.animatedText.createCharContainer(baseDelay);
 
     return (
         <motion.span
@@ -82,16 +50,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, baseDelay = 0, classN
                 <motion.span
                     key={`${char}-${index}`}
                     className={className}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{
-                        opacity: 1,
-                        y: 0
-                    }}
-                    transition={{
-                        delay: (baseDelay + (index * staggerDelay)) / 1000,
-                        duration,
-                        ease: easeOut
-                    }}
+                    {...HeroAnimationsConfig.animatedText.charItem(baseDelay, index, staggerDelay, duration)}
                 >
                     {char}
                 </motion.span>

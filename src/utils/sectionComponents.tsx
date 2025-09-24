@@ -34,7 +34,7 @@ export const renderSection = (sectionConfig: SectionConfig, options?: RenderSect
     const propsToUse = options?.sectionProps || options?.fallbackData || {};
 
     const normalizedData = getSectionData(sectionId, propsToUse, options?.fallbackData);
-    console.log(sectionId)
+
     return (
         <SectionComponent
             id={sectionId}

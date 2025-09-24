@@ -7,18 +7,16 @@ import { motion } from "framer-motion";
 import type { Service, ServicesSectionProps } from "@/types";
 
 import { StandardAnimations } from "@/config";
-import { usePrefersReducedMotion } from "@/hooks";
 import { Wrapper, BackdropText } from "@/components";
 import { ServiceCard } from "@/components/features/services";
 
 const ContentCarousel = dynamic(() => import("@/components").then(mod => ({ default: mod.ContentCarousel })), {
     ssr: false,
-    loading: () => <div className="swiper-carousel-outer"><div className="swiper-carousel">Loading...</div></div>
+    loading: () => <div className={"swiper-carousel-outer"}><div className={"swiper-carousel"}>Loading...</div></div>
 }) as React.ComponentType<{ items: Service[]; spaceBetween?: number; renderItem: (item: Service, index: number) => React.ReactNode }>;
 
 const Services: React.FC<ServicesSectionProps> = ({ id, services, resetAnimationOnView }) => {
-    const prefersReducedMotion = usePrefersReducedMotion();
-    const containerVariants = StandardAnimations.fadeInUp(prefersReducedMotion, 15);
+    const containerVariants = StandardAnimations.fadeInUp(15);
 
     return (
         <Wrapper id={id} title={"What I Do"} subtitle={"My Services"} background={"gradientDown"} vlinePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
@@ -31,7 +29,7 @@ const Services: React.FC<ServicesSectionProps> = ({ id, services, resetAnimation
             >
                 <motion.div
                     className={"p-[10px] flex-wrap-start"}
-                    variants={StandardAnimations.staggerChildren(prefersReducedMotion, 0.1, 0.2)}
+                    variants={StandardAnimations.staggerChildren(0.1, 0.2)}
                 >
                     <ContentCarousel
                         items={services}

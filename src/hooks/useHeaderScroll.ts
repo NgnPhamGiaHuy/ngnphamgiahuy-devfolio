@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { HeaderState } from "@/types";
+import { HeaderState } from "@/utils";
 
 const useHeaderScroll = () => {
     const lastScrollY = useRef<number>(0);
