@@ -10,7 +10,7 @@ export const ANIMATION_CONFIG = {
         circOut: "circOut",
         circInOut: "circInOut",
         backOut: "backOut",
-        backInOut: "backInOut"
+        backInOut: "backInOut",
     },
 
     DURATION: {
@@ -43,7 +43,7 @@ export const ANIMATION_CONFIG = {
         delay: 0,
         type: "tween",
         distance: 0,
-    }
+    },
 } as const;
 
 export const Duration = ANIMATION_CONFIG.DURATION;
@@ -58,8 +58,8 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
             transition: {
                 duration: ANIMATION_CONFIG.DURATION.NORMAL,
                 ease: ANIMATION_CONFIG.EASING.easeOut,
-            }
-        }
+            },
+        },
     }),
 
     fadeInUp: (distance = 20): Variants => ({
@@ -70,8 +70,8 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
             transition: {
                 duration: ANIMATION_CONFIG.DURATION.NORMAL,
                 ease: ANIMATION_CONFIG.EASING.easeOut,
-            }
-        }
+            },
+        },
     }),
 
     fadeInDown: (distance = 20): Variants => ({
@@ -82,8 +82,8 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
             transition: {
                 duration: ANIMATION_CONFIG.DURATION.NORMAL,
                 ease: ANIMATION_CONFIG.EASING.easeOut,
-            }
-        }
+            },
+        },
     }),
 
     scaleIn: (startScale = 0.9): Variants => ({
@@ -94,8 +94,8 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
             transition: {
                 duration: ANIMATION_CONFIG.DURATION.NORMAL,
                 ease: ANIMATION_CONFIG.EASING.easeOut,
-            }
-        }
+            },
+        },
     }),
 
     springUp: (distance = 30): Variants => ({
@@ -107,11 +107,14 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
                 type: "spring",
                 stiffness: 400,
                 damping: 25,
-            }
-        }
+            },
+        },
     }),
 
-    staggerChildren: (staggerTime = ANIMATION_CONFIG.STAGGER.NORMAL, delayTime = ANIMATION_CONFIG.DELAY.NONE): Variants => ({
+    staggerChildren: (
+        staggerTime = ANIMATION_CONFIG.STAGGER.NORMAL,
+        delayTime = ANIMATION_CONFIG.DELAY.NONE
+    ): Variants => ({
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -119,8 +122,8 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
                 staggerChildren: staggerTime,
                 delayChildren: delayTime,
                 duration: ANIMATION_CONFIG.DURATION.FAST,
-            }
-        }
+            },
+        },
     }),
 
     buttonHover: (): Variants => ({
@@ -131,15 +134,15 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
             transition: {
                 duration: ANIMATION_CONFIG.DURATION.FAST,
                 ease: ANIMATION_CONFIG.EASING.easeInOut,
-            }
+            },
         },
         tap: {
             scale: 0.98,
             transition: {
                 duration: ANIMATION_CONFIG.DURATION.FASTEST,
                 ease: ANIMATION_CONFIG.EASING.easeInOut,
-            }
-        }
+            },
+        },
     }),
 };
 

@@ -1,19 +1,10 @@
 import { urlFor } from "@/lib";
 import { ImageConfig, SanityImage } from "@/types";
 
-/**
- * Default configuration for image processing
- */
-const DEFAULT_CONFIG: Pick<Required<ImageConfig>, 'fallbackAlt'> = {
-    fallbackAlt: "Image"
+const DEFAULT_CONFIG: Pick<Required<ImageConfig>, "fallbackAlt"> = {
+    fallbackAlt: "Image",
 };
 
-/**
- * Processes a Sanity image or string URL and returns a resolved image URL
- * @param image - Sanity image object or string URL
- * @param config - Configuration for image processing (fallbackImage is required)
- * @returns Resolved image URL
- */
 export const resolveImageUrl = (
     image: SanityImage | string | undefined,
     config: ImageConfig
@@ -27,16 +18,9 @@ export const resolveImageUrl = (
     if (typeof image === "string") {
         return image;
     }
-    return urlFor(image as SanityImage)
-        .url();
+    return urlFor(image as SanityImage).url();
 };
 
-/**
- * Extracts alt text from a Sanity image or provides a fallback
- * @param image - Sanity image object or string URL
- * @param fallbackText - Fallback text to use if no alt text is available
- * @returns Alt text for the image
- */
 export const getImageAlt = (
     image: SanityImage | string | undefined,
     fallbackText: string = DEFAULT_CONFIG.fallbackAlt
@@ -52,13 +36,6 @@ export const getImageAlt = (
     return (image as SanityImage)?.alt || fallbackText;
 };
 
-/**
- * Processes both image URL and alt text in one function call
- * @param image - Sanity image object or string URL
- * @param config - Configuration for image processing (fallbackImage is required)
- * @param fallbackAlt - Fallback alt text
- * @returns Object containing both URL and alt text
- */
 export const processImage = (
     image: SanityImage | string | undefined,
     config: ImageConfig,
@@ -70,13 +47,6 @@ export const processImage = (
     return { url, alt };
 };
 
-/**
- * Convenience function specifically for portfolio/project images
- * @param image - Sanity image object or string URL
- * @param projectName - Name of the project for fallback alt text
- * @param config - Configuration for image processing (fallbackImage is required)
- * @returns Object containing both URL and alt text
- */
 export const processPortfolioImage = (
     image: SanityImage | string | undefined,
     projectName: string,

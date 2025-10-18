@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useTheme } from "next-themes";
 import React, { memo, useEffect, useState } from "react";
@@ -20,7 +20,12 @@ const ThemeToggle: React.FC<ThemeToggleProps> = memo(({ className }) => {
 
     if (!mounted) {
         return (
-            <div className={`mr-10 size-8 flex-center align-middle cursor-pointer text-inverse transition-all relative ${className || ""}`} role={"button"} tabIndex={0} aria-label={"Theme toggle"}>
+            <div
+                className={`mr-10 size-8 flex-center align-middle cursor-pointer text-inverse transition-all relative ${className || ""}`}
+                role={"button"}
+                tabIndex={0}
+                aria-label={"Theme toggle"}
+            >
                 <div className={"size-7"} />
             </div>
         );
@@ -46,5 +51,3 @@ const ThemeToggle: React.FC<ThemeToggleProps> = memo(({ className }) => {
 ThemeToggle.displayName = "ThemeToggle";
 
 export default ThemeToggle;
-
-

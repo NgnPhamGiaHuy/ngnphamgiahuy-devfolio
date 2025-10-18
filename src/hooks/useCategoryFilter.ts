@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useMemo, useState } from "react";
 
@@ -6,9 +6,13 @@ type PortfolioItem = {
     category: string;
 };
 
-const useCategoryFilter = <T extends PortfolioItem>(portfolioItems: T[] = []) => {
+const useCategoryFilter = <T extends PortfolioItem>(
+    portfolioItems: T[] = []
+) => {
     const categories = useMemo(() => {
-        const unique = Array.from(new Set(portfolioItems.map(p => p.category)));
+        const unique = Array.from(
+            new Set(portfolioItems.map((p) => p.category))
+        );
         return ["All", ...unique];
     }, [portfolioItems]);
 
@@ -16,14 +20,19 @@ const useCategoryFilter = <T extends PortfolioItem>(portfolioItems: T[] = []) =>
 
     const filteredPortfolios = useMemo(() => {
         if (activeCategory === "All") return portfolioItems;
-        return portfolioItems.filter(p => p.category === activeCategory);
+        return portfolioItems.filter((p) => p.category === activeCategory);
     }, [activeCategory, portfolioItems]);
 
     const handleCategoryChange = (category: string) => {
         setActiveCategory(category);
     };
 
-    return { categories, activeCategory, filteredPortfolios, handleCategoryChange };
+    return {
+        categories,
+        activeCategory,
+        filteredPortfolios,
+        handleCategoryChange,
+    };
 };
 
 export default useCategoryFilter;

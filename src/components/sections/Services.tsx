@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import dynamic from "next/dynamic";
@@ -10,16 +10,41 @@ import { StandardAnimations } from "@/config";
 import { Wrapper, BackdropText } from "@/components";
 import { ServiceCard } from "@/components/features/services";
 
-const ContentCarousel = dynamic(() => import("@/components").then(mod => ({ default: mod.ContentCarousel })), {
-    ssr: false,
-    loading: () => <div className={"swiper-carousel-outer"}><div className={"swiper-carousel"}>Loading...</div></div>
-}) as React.ComponentType<{ items: Service[]; spaceBetween?: number; renderItem: (item: Service, index: number) => React.ReactNode }>;
+const ContentCarousel = dynamic(
+    () =>
+        import("@/components").then((mod) => ({
+            default: mod.ContentCarousel,
+        })),
+    {
+        ssr: false,
+        loading: () => (
+            <div className={"swiper-carousel-outer"}>
+                <div className={"swiper-carousel"}>Loading...</div>
+            </div>
+        ),
+    }
+) as React.ComponentType<{
+    items: Service[];
+    spaceBetween?: number;
+    renderItem: (item: Service, index: number) => React.ReactNode;
+}>;
 
-const Services: React.FC<ServicesSectionProps> = ({ id, services, resetAnimationOnView }) => {
+const Services: React.FC<ServicesSectionProps> = ({
+    id,
+    services,
+    resetAnimationOnView,
+}) => {
     const containerVariants = StandardAnimations.fadeInUp(15);
 
     return (
-        <Wrapper id={id} title={"What I Do"} subtitle={"My Services"} backgroundVariant={"gradientDown"} verticalRulePosition={"right"} resetAnimationOnView={resetAnimationOnView}>
+        <Wrapper
+            id={id}
+            title={"What I Do"}
+            subtitle={"My Services"}
+            backgroundVariant={"gradientDown"}
+            verticalRulePosition={"right"}
+            resetAnimationOnView={resetAnimationOnView}
+        >
             <motion.div
                 className={"flex-full"}
                 variants={containerVariants}

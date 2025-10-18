@@ -1,11 +1,25 @@
 import React from "react";
 
+import type { SectionConfig, MockDataType } from "@/types";
+
 import { getSectionData } from "./sectionDataHelpers";
-import { SectionConfig, MockDataType } from "@/types";
-import { Hero, Services, Skills, Portfolios, Resume, Testimonials, Pricing, Blog, Contact, Map } from "@/components/sections";
+import {
+    Hero,
+    Certificates,
+    Services,
+    Skills,
+    Portfolios,
+    Resume,
+    Testimonials,
+    Pricing,
+    Blog,
+    Contact,
+    Map,
+} from "@/components/sections";
 
 export const sectionComponents: Record<string, React.ComponentType<any>> = {
     hero: Hero,
+    certificates: Certificates,
     services: Services,
     skills: Skills,
     portfolios: Portfolios,
@@ -22,7 +36,10 @@ type RenderSectionOptions = {
     fallbackData?: MockDataType;
 };
 
-export const renderSection = (sectionConfig: SectionConfig, options?: RenderSectionOptions): React.ReactNode => {
+export const renderSection = (
+    sectionConfig: SectionConfig,
+    options?: RenderSectionOptions
+): React.ReactNode => {
     const { id: sectionId, resetAnimationOnView } = sectionConfig;
     const SectionComponent = sectionComponents[sectionId];
 
@@ -33,7 +50,11 @@ export const renderSection = (sectionConfig: SectionConfig, options?: RenderSect
 
     const propsToUse = options?.sectionProps || options?.fallbackData || {};
 
-    const normalizedData = getSectionData(sectionId, propsToUse, options?.fallbackData);
+    const normalizedData = getSectionData(
+        sectionId,
+        propsToUse,
+        options?.fallbackData
+    );
 
     return (
         <SectionComponent

@@ -1,4 +1,16 @@
-import type { BlogPost, ContactItem, Education, Experience, Pricing, Profile, Project, Service, Skill, Testimonial } from "./sanity.types";
+import type {
+    BlogPost,
+    ContactItem,
+    Education,
+    Experience,
+    Pricing,
+    Profile,
+    Project,
+    Service,
+    Skill,
+    Testimonial,
+    Certificate,
+} from "./sanity.types";
 
 export interface MockDataType {
     logo: string;
@@ -12,4 +24,5 @@ export interface MockDataType {
     pricing: Pricing[];
     blogs: BlogPost[];
     contacts: ContactItem[];
+    certificates: Certificate[];
 }

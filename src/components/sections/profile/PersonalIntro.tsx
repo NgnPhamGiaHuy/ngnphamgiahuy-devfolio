@@ -1,19 +1,15 @@
-"use client"
+"use client";
 
 import { motion } from "framer-motion";
 import React, { memo, useMemo } from "react";
 
 import type { Profile } from "@/types";
 
-import { HeroAnimationsConfig } from "@/config";
 import { AnimatedText } from "@/components";
+import { HeroAnimationsConfig } from "@/config";
 import { useHeroAnimationContext } from "@/context";
 
-interface PersonalIntroProps {
-    profile: Profile;
-}
-
-const PersonalIntro: React.FC<PersonalIntroProps> = memo(({ profile }) => {
+const PersonalIntro = memo(({ profile }: { profile: Profile }) => {
     const { timeline } = useHeroAnimationContext();
 
     const name = profile?.name || "Your Name";
@@ -23,11 +19,26 @@ const PersonalIntro: React.FC<PersonalIntroProps> = memo(({ profile }) => {
 
     const jobTitle = profile?.job_title || "Developer";
 
-    const containerVariants = useMemo(() => HeroAnimationsConfig.personalIntro.container, []);
-    const itemVariants = useMemo(() => HeroAnimationsConfig.personalIntro.item, []);
-    const nameVariants = useMemo(() => HeroAnimationsConfig.personalIntro.name, []);
-    const nameWordVariants = useMemo(() => HeroAnimationsConfig.personalIntro.nameWord, []);
-    const jobTitleVariants = useMemo(() => HeroAnimationsConfig.personalIntro.jobTitle, []);
+    const containerVariants = useMemo(
+        () => HeroAnimationsConfig.personalIntro.container,
+        []
+    );
+    const itemVariants = useMemo(
+        () => HeroAnimationsConfig.personalIntro.item,
+        []
+    );
+    const nameVariants = useMemo(
+        () => HeroAnimationsConfig.personalIntro.name,
+        []
+    );
+    const nameWordVariants = useMemo(
+        () => HeroAnimationsConfig.personalIntro.nameWord,
+        []
+    );
+    const jobTitleVariants = useMemo(
+        () => HeroAnimationsConfig.personalIntro.jobTitle,
+        []
+    );
 
     return (
         <motion.div
@@ -52,7 +63,9 @@ const PersonalIntro: React.FC<PersonalIntroProps> = memo(({ profile }) => {
                     <b className={"text-primary"}>
                         <AnimatedText
                             text={"my name is"}
-                            baseDelay={(timeline.intro?.sectionDelay || 0) + 450}
+                            baseDelay={
+                                (timeline.intro?.sectionDelay || 0) + 450
+                            }
                         />
                     </b>
                 </span>
@@ -78,12 +91,18 @@ const PersonalIntro: React.FC<PersonalIntroProps> = memo(({ profile }) => {
                             initial={"hidden"}
                             animate={"visible"}
                             transition={{
-                                delay: ((timeline.name?.sectionDelay || 0) / 1000) + 0.3 + (wordIndex * 0.2)
+                                delay:
+                                    (timeline.name?.sectionDelay || 0) / 1000 +
+                                    0.3 +
+                                    wordIndex * 0.2,
                             }}
                         >
                             <AnimatedText
                                 text={word}
-                                baseDelay={(timeline.name?.sectionDelay || 0) + ((wordIndex + 1) * 400)}
+                                baseDelay={
+                                    (timeline.name?.sectionDelay || 0) +
+                                    (wordIndex + 1) * 400
+                                }
                             />
                         </motion.span>
                     ))}
@@ -105,7 +124,7 @@ const PersonalIntro: React.FC<PersonalIntroProps> = memo(({ profile }) => {
                     initial={"hidden"}
                     animate={"visible"}
                     transition={{
-                        delay: ((timeline.job?.sectionDelay || 0) / 1000) + 0.2
+                        delay: (timeline.job?.sectionDelay || 0) / 1000 + 0.2,
                     }}
                 >
                     <AnimatedText

@@ -6,13 +6,19 @@ export const SECTION_WRAPPER_CONFIG = {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, when: "beforeChildren", staggerChildren: 0.2 }
-        }
+            transition: {
+                duration: 0.6,
+                when: "beforeChildren",
+                staggerChildren: 0.2,
+            },
+        },
     } as Variants,
 
     BACKGROUNDS: {
-        gradientUp: "bg-[image:linear-gradient(0deg,#fff_0%,#f0ebe3_100%)] dark:bg-[image:linear-gradient(0deg,#31363c_0%,#222831_100%)]",
-        gradientDown: "bg-[image:linear-gradient(rgb(255,255,255)_0%_0%,rgb(240,235,227)_100%)] dark:bg-[image:linear-gradient(180deg,#31363c_0%,#222831_100%)]",
+        gradientUp:
+            "bg-[image:linear-gradient(0deg,#fff_0%,#f0ebe3_100%)] dark:bg-[image:linear-gradient(0deg,#31363c_0%,#222831_100%)]",
+        gradientDown:
+            "bg-[image:linear-gradient(rgb(255,255,255)_0%_0%,rgb(240,235,227)_100%)] dark:bg-[image:linear-gradient(180deg,#31363c_0%,#222831_100%)]",
         none: "bg-[image:linear-gradient(180deg,#f0ebe3_0%,#f0ebe3_100%)] dark:bg-[image:linear-gradient(180deg,#222831_0%,#222831_100%)]",
     } as const,
 

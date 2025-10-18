@@ -7,12 +7,22 @@ export async function GET(request: NextRequest) {
         const expectedSecret = process.env.WEBHOOK_SECRET;
 
         if (expectedSecret && secret !== expectedSecret) {
-            return NextResponse.json({ ok: false, message: "Invalid webhook secret" }, { status: 401 });
+            return NextResponse.json(
+                { ok: false, message: "Invalid webhook secret" },
+                { status: 401 }
+            );
         }
 
-        return NextResponse.json({ ok: true, message: "Revalidate endpoint healthy", now: Date.now() });
+        return NextResponse.json({
+            ok: true,
+            message: "Revalidate endpoint healthy",
+            now: Date.now(),
+        });
     } catch (err) {
-        return NextResponse.json({ ok: false, message: "Health check failed" }, { status: 500 });
+        return NextResponse.json(
+            { ok: false, message: "Health check failed" },
+            { status: 500 }
+        );
     }
 }
 
@@ -52,12 +62,15 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({
             revalidated: true,
             message: `Revalidated ${_type} content`,
-            now: Date.now()
+            now: Date.now(),
         });
     } catch (err) {
         console.error("Revalidation error:", err);
         return NextResponse.json(
-            { message: "Error revalidating content", error: (err as Error).message },
+            {
+                message: "Error revalidating content",
+                error: (err as Error).message,
+            },
             { status: 500 }
         );
     }

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
@@ -7,12 +7,16 @@ import type { WrapperHeaderProps } from "@/types";
 
 import { AnimatedText } from "@/components";
 
-const WrapperHeader: React.FC<WrapperHeaderProps> = ({ title, subtitle, isInView = true }) => {
+const WrapperHeader: React.FC<WrapperHeaderProps> = ({
+    title,
+    subtitle,
+    isInView = true,
+}) => {
     const [animationKey, setAnimationKey] = useState(0);
 
     useEffect(() => {
         if (isInView) {
-            setAnimationKey(prev => prev + 1);
+            setAnimationKey((prev) => prev + 1);
         }
     }, [isInView]);
 
@@ -24,8 +28,8 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({ title, subtitle, isInView
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.25 }
-        }
+            transition: { duration: 0.25 },
+        },
     };
 
     const spanVariants = ({ index }: { index: number }): Variants => {
@@ -34,12 +38,12 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({ title, subtitle, isInView
             visible: {
                 opacity: 1,
                 y: 0,
-                transition: { delay: index * 0.25 }
-            }
-        }
+                transition: { delay: index * 0.25 },
+            },
+        };
 
         return variants;
-    }
+    };
 
     return (
         <section className={"wrapper-header"}>
@@ -57,7 +61,9 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({ title, subtitle, isInView
                                 {title?.split(" ").map((word, index, array) => (
                                     <React.Fragment key={index}>
                                         <motion.span
-                                            className={"wrapper-header-title-word"}
+                                            className={
+                                                "wrapper-header-title-word"
+                                            }
                                             variants={spanVariants({ index })}
                                         >
                                             {word}

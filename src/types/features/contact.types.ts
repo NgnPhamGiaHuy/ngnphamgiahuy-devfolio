@@ -1,4 +1,8 @@
-import { FieldErrors, UseFormRegisterReturn, UseFormWatch } from "react-hook-form";
+import {
+    FieldErrors,
+    UseFormRegisterReturn,
+    UseFormWatch,
+} from "react-hook-form";
 
 import { ContactItem } from "../sanity.types";
 import { ContactFormData } from "@/utils";

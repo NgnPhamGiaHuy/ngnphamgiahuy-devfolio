@@ -7,16 +7,14 @@ import { AccordionItem } from "@/components";
 const Accordion = <T,>({ items, label, fieldMapping }: AccordionProps<T>) => {
     return (
         <div className={"w-full"}>
-            <h5 className={"accordion-label"}>
-                {label}
-            </h5>
+            <h5 className={"accordion-label"}>{label}</h5>
             <div className={"accordion-items-container"} role={"list"}>
                 {items.map((item, index) => {
                     const mappedItem = {
                         heading: String(item[fieldMapping.heading]),
                         subheading: String(item[fieldMapping.subheading]),
                         meta: String(item[fieldMapping.meta]),
-                        content: String(item[fieldMapping.content])
+                        content: String(item[fieldMapping.content]),
                     };
 
                     return (

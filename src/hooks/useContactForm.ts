@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -14,7 +14,13 @@ const useContactForm = () => {
         message: string;
     } | null>(null);
 
-    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm<ContactFormData>({
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset,
+        watch,
+    } = useForm<ContactFormData>({
         resolver: zodResolver(contactFormSchema),
         defaultValues: {
             name: "",
@@ -30,7 +36,9 @@ const useContactForm = () => {
         setSubmitStatus(null);
 
         try {
-            await new Promise((resolve) => setTimeout(resolve, API_CONFIG.TIMEOUT));
+            await new Promise((resolve) =>
+                setTimeout(resolve, API_CONFIG.TIMEOUT)
+            );
 
             console.log("Form data to submit:", data);
 
@@ -51,7 +59,15 @@ const useContactForm = () => {
         }
     };
 
-    return { register, handleSubmit, errors, isSubmitting, submitStatus, onSubmit, watch };
+    return {
+        register,
+        handleSubmit,
+        errors,
+        isSubmitting,
+        submitStatus,
+        onSubmit,
+        watch,
+    };
 };
 
 export default useContactForm;

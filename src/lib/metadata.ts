@@ -7,7 +7,10 @@ import { urlFor } from "./sanity";
 import { sanityFetch } from "./sanity";
 import { profileQuery, siteSettingsQuery } from "./queries";
 
-const resolveImageUrl = (image: unknown, baseUrl: string): string | undefined => {
+const resolveImageUrl = (
+    image: unknown,
+    baseUrl: string
+): string | undefined => {
     if (!image) return undefined;
     if (typeof image === "string") {
         if (image.startsWith("http")) return image;
@@ -15,16 +18,15 @@ const resolveImageUrl = (image: unknown, baseUrl: string): string | undefined =>
         return undefined;
     }
     try {
-        // Assume Sanity image object
-        return urlFor(image as any).width(1200).height(630).url();
+        return urlFor(image as any)
+            .width(1200)
+            .height(630)
+            .url();
     } catch {
         return undefined;
     }
 };
 
-/**
- * Generate metadata for the homepage using Sanity profile data
- */
 export const generateHomePageMetadata = async (): Promise<Metadata> => {
     try {
         const [profile, siteSettings] = await Promise.all([
@@ -38,15 +40,27 @@ export const generateHomePageMetadata = async (): Promise<Metadata> => {
             }),
         ]);
 
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+        const baseUrl =
+            process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
         const effectiveProfile = profile ?? (mockData as any)?.profile ?? null;
 
-        const title = effectiveProfile?.metaTitle || siteSettings?.metaTitle || (effectiveProfile ? `${effectiveProfile.name} - ${effectiveProfile.job_title}` : "NgnPhamGiaHuy Devfolio");
-        const description = effectiveProfile?.metaDescription || siteSettings?.metaDescription || effectiveProfile?.description || "";
+        const title =
+            effectiveProfile?.metaTitle ||
+            siteSettings?.metaTitle ||
+            (effectiveProfile
+                ? `${effectiveProfile.name} - ${effectiveProfile.job_title}`
+                : "NgnPhamGiaHuy Devfolio");
+        const description =
+            effectiveProfile?.metaDescription ||
+            siteSettings?.metaDescription ||
+            effectiveProfile?.description ||
+            "";
 
         const ogImage = effectiveProfile?.ogImage || siteSettings?.ogImage;
-        const ogImageUrl = resolveImageUrl(ogImage, baseUrl) || resolveImageUrl(effectiveProfile?.profile_image, baseUrl);
+        const ogImageUrl =
+            resolveImageUrl(ogImage, baseUrl) ||
+            resolveImageUrl(effectiveProfile?.profile_image, baseUrl);
 
         return {
             title,
@@ -58,9 +72,13 @@ export const generateHomePageMetadata = async (): Promise<Metadata> => {
                 "portfolio",
                 "developer",
                 "software engineer",
-                ...(effectiveProfile?.location ? [effectiveProfile.location] : []),
+                ...(effectiveProfile?.location
+                    ? [effectiveProfile.location]
+                    : []),
             ],
-            authors: effectiveProfile?.name ? [{ name: effectiveProfile.name }] : undefined,
+            authors: effectiveProfile?.name
+                ? [{ name: effectiveProfile.name }]
+                : undefined,
             creator: effectiveProfile?.name,
             publisher: effectiveProfile?.name,
             openGraph: {
@@ -69,22 +87,35 @@ export const generateHomePageMetadata = async (): Promise<Metadata> => {
                 url: baseUrl,
                 title,
                 description,
-                siteName: effectiveProfile?.name ? `${effectiveProfile.name} Portfolio` : undefined,
-                images: ogImageUrl ? [
-                    {
-                        url: ogImageUrl,
-                        width: 1200,
-                        height: 630,
-                        alt: (typeof ogImage === "object" && ogImage && "alt" in (ogImage as any)) ? (ogImage as any).alt : (effectiveProfile ? `${effectiveProfile.name} - ${effectiveProfile.job_title}` : title),
-                    }
-                ] : [],
+                siteName: effectiveProfile?.name
+                    ? `${effectiveProfile.name} Portfolio`
+                    : undefined,
+                images: ogImageUrl
+                    ? [
+                          {
+                              url: ogImageUrl,
+                              width: 1200,
+                              height: 630,
+                              alt:
+                                  typeof ogImage === "object" &&
+                                  ogImage &&
+                                  "alt" in (ogImage as any)
+                                      ? (ogImage as any).alt
+                                      : effectiveProfile
+                                        ? `${effectiveProfile.name} - ${effectiveProfile.job_title}`
+                                        : title,
+                          },
+                      ]
+                    : [],
             },
             twitter: {
                 card: "summary_large_image",
                 title,
                 description,
                 images: ogImageUrl ? [ogImageUrl] : [],
-                creator: effectiveProfile?.social_links?.find((link: any) => link.platform === "Twitter")?.url,
+                creator: effectiveProfile?.social_links?.find(
+                    (link: any) => link.platform === "Twitter"
+                )?.url,
             },
             robots: {
                 index: true,
@@ -111,10 +142,9 @@ export const generateHomePageMetadata = async (): Promise<Metadata> => {
     }
 };
 
-/**
- * Generate metadata for blog posts
- */
-export const generateBlogPostMetadata = async (slug: string): Promise<Metadata> => {
+export const generateBlogPostMetadata = async (
+    slug: string
+): Promise<Metadata> => {
     try {
         const blogPost = await sanityFetch<BlogPost | null>({
             query: `*[_type == "blogPost" && slug.current == $slug][0] {
@@ -142,7 +172,10 @@ export const generateBlogPostMetadata = async (slug: string): Promise<Metadata> 
             tags: ["blogPost"],
         });
 
-        const fallbackBlog = (mockData as any)?.blogs?.find((b: any) => b?.slug?.current === slug) ?? null;
+        const fallbackBlog =
+            (mockData as any)?.blogs?.find(
+                (b: any) => b?.slug?.current === slug
+            ) ?? null;
         const effectivePost = blogPost ?? fallbackBlog;
 
         if (!effectivePost) {
@@ -152,17 +185,20 @@ export const generateBlogPostMetadata = async (slug: string): Promise<Metadata> 
             };
         }
 
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+        const baseUrl =
+            process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
         const postUrl = `${baseUrl}/blog/${slug}`;
-        
+
         const title = effectivePost.metaTitle || effectivePost.title;
-        const description = effectivePost.metaDescription || effectivePost.excerpt;
-        
+        const description =
+            effectivePost.metaDescription || effectivePost.excerpt;
+
         const ogImage = effectivePost.ogImage || effectivePost.image;
         const ogImageUrl = resolveImageUrl(ogImage, baseUrl);
-        const ogAlt = (ogImage && typeof ogImage === "object" && "alt" in ogImage)
-            ? (ogImage as any).alt || effectivePost.title
-            : effectivePost.title;
+        const ogAlt =
+            ogImage && typeof ogImage === "object" && "alt" in ogImage
+                ? (ogImage as any).alt || effectivePost.title
+                : effectivePost.title;
 
         return {
             title,
@@ -182,14 +218,16 @@ export const generateBlogPostMetadata = async (slug: string): Promise<Metadata> 
                 description,
                 siteName: "NgnPhamGiaHuy Devfolio",
                 publishedTime: effectivePost.date,
-                images: ogImageUrl ? [
-                    {
-                        url: ogImageUrl,
-                        width: 1200,
-                        height: 630,
-                        alt: ogAlt,
-                    }
-                ] : [],
+                images: ogImageUrl
+                    ? [
+                          {
+                              url: ogImageUrl,
+                              width: 1200,
+                              height: 630,
+                              alt: ogAlt,
+                          },
+                      ]
+                    : [],
             },
             twitter: {
                 card: "summary_large_image",

@@ -47,11 +47,9 @@ export const CONTACT_FORM_CONFIG = {
             "Content-Type": "application/json",
         },
         TIMEOUT: 1500,
-    } as const
+    } as const,
 } as const;
 
 export const FORM_MESSAGES = CONTACT_FORM_CONFIG.MESSAGES;
 export const FORM_FIELDS = CONTACT_FORM_CONFIG.FIELDS;
 export const API_CONFIG = CONTACT_FORM_CONFIG.API;
-
-

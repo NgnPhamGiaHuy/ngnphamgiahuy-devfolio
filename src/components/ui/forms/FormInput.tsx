@@ -1,11 +1,22 @@
-"use client"
+"use client";
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import type { FormInputProps } from "@/types";
 
-const FormInput: React.FC<FormInputProps> = ({ id, label, placeholder = "", type = "text", isTextArea = false, cols = 40, rows = 10, error, registration, className = "" }) => {
+const FormInput: React.FC<FormInputProps> = ({
+    id,
+    label,
+    placeholder = "",
+    type = "text",
+    isTextArea = false,
+    cols = 40,
+    rows = 10,
+    error,
+    registration,
+    className = "",
+}) => {
     return (
         <div className={`form-input-wrapper ${className}`}>
             <div className={"form-input-field-container"}>
@@ -22,7 +33,9 @@ const FormInput: React.FC<FormInputProps> = ({ id, label, placeholder = "", type
                                 className={`form-input-textarea ${error ? "form-input-textarea-error" : ""}`}
                                 {...registration}
                                 aria-invalid={error ? "true" : "false"}
-                                aria-describedby={error ? `${id}-error` : undefined}
+                                aria-describedby={
+                                    error ? `${id}-error` : undefined
+                                }
                             />
                         ) : (
                             <input
@@ -34,7 +47,9 @@ const FormInput: React.FC<FormInputProps> = ({ id, label, placeholder = "", type
                                 className={`form-input-field ${error ? "form-input-field-error" : ""}`}
                                 {...registration}
                                 aria-invalid={error ? "true" : "false"}
-                                aria-describedby={error ? `${id}-error` : undefined}
+                                aria-describedby={
+                                    error ? `${id}-error` : undefined
+                                }
                             />
                         )}
                     </span>

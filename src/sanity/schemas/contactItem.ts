@@ -29,7 +29,8 @@ export default {
             name: "order",
             title: "Display Order",
             type: "number",
-            description: "Order in which to display this contact item (lower numbers first)",
+            description:
+                "Order in which to display this contact item (lower numbers first)",
         },
     ],
     preview: {

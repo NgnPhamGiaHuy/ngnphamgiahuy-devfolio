@@ -14,4 +14,3 @@ export interface SocialLink {
     icon: (props: { className?: string }) => ReactElement;
     ariaLabel?: string;
 }
-

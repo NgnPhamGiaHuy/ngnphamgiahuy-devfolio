@@ -6,7 +6,12 @@ import type { ContactFieldsProps } from "@/types";
 import { FORM_FIELDS } from "@/config";
 import { FormInput, SubmitButton } from "@/components";
 
-const ContactFields: React.FC<ContactFieldsProps> = ({ register, isSubmitting, errors, watch }) => {
+const ContactFields: React.FC<ContactFieldsProps> = ({
+    register,
+    isSubmitting,
+    errors,
+    watch,
+}) => {
     const termsAccepted = watch("termsAccepted");
 
     const getLabelColor = () => {

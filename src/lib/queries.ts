@@ -118,6 +118,23 @@ export const contactItemsQuery = `*[_type == "contactItem"] | order(order asc) {
     value
 }`;
 
+export const certificatesQuery = `*[_type == "certificate"] | order(order asc) {
+    _id,
+    title,
+    issuer,
+    issueDate,
+    expiryDate,
+    credentialId,
+    credentialUrl,
+    description,
+    image {
+        asset,
+        alt,
+        caption
+    },
+    category
+}`;
+
 export const siteSettingsQuery = `*[_type == "siteSettings"][0] {
     _id,
     logo,
@@ -161,6 +178,7 @@ export const homePageDataQuery = `{
     "testimonials": ${testimonialsQuery},
     "experience": ${experienceQuery},
     "education": ${educationQuery},
+    "certificates": ${certificatesQuery},
     "pricing": ${pricingQuery},
     "blogs": ${blogPostsQuery},
     "contacts": ${contactItemsQuery},

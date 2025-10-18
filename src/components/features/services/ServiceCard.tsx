@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -23,27 +23,28 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ item, index }) => {
             transition={{ delay: index * 0.1 }}
         >
             <div className={"card-inner"}>
-                <motion.div className={"card-category"} variants={contentVariants}>
-                    <span>
-                        {item.category}
-                    </span>
+                <motion.div
+                    className={"card-category"}
+                    variants={contentVariants}
+                >
+                    <span>{item.category}</span>
                 </motion.div>
-                <motion.div className={"card-icon"} variants={contentVariants}></motion.div>
+                <motion.div
+                    className={"card-icon"}
+                    variants={contentVariants}
+                ></motion.div>
                 <motion.h5 className={"card-title"} variants={contentVariants}>
-                    <span>
-                        {item.title}
-                    </span>
+                    <span>{item.title}</span>
                 </motion.h5>
-                <motion.div className={"card-description"} variants={contentVariants}>
-                    <p>
-                        {item.description}
-                    </p>
+                <motion.div
+                    className={"card-description"}
+                    variants={contentVariants}
+                >
+                    <p>{item.description}</p>
                 </motion.div>
                 <motion.div variants={contentVariants}>
                     <Link href={"/src/public"}>
-                        <span className={"card-link"}>
-                            More information
-                        </span>
+                        <span className={"card-link"}>More information</span>
                     </Link>
                 </motion.div>
                 <motion.div

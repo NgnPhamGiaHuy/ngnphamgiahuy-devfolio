@@ -13,18 +13,38 @@ const PlanCard: React.FC<PricingCardProps> = ({ item }) => {
                     <span>Popular</span>
                 </div>
             )}
-            <div className={clsx("plan-card", item.highlight ? "border-border-inverse" : "border-white")}>
-                <div className={"text-[13px] text-inverse font-bold uppercase tracking-wider"}>
-                    <span>
-                        {item.plan}
-                    </span>
+            <div
+                className={clsx(
+                    "plan-card",
+                    item.highlight ? "border-border-inverse" : "border-white"
+                )}
+            >
+                <div
+                    className={
+                        "text-[13px] text-inverse font-bold uppercase tracking-wider"
+                    }
+                >
+                    <span>{item.plan}</span>
                 </div>
-                <div className={"mt-[15px] min-h-[50px] text-[41px] text-primary leading-none"}></div>
-                <div className={"mb-[20px] text-[30px] text-inverse font-bold leading-none"}>
+                <div
+                    className={
+                        "mt-[15px] min-h-[50px] text-[41px] text-primary leading-none"
+                    }
+                ></div>
+                <div
+                    className={
+                        "mb-[20px] text-[30px] text-inverse font-bold leading-none"
+                    }
+                >
                     <span>
-                        {item.price}<b className={"text-primary"}>$</b>
+                        {item.price}
+                        <b className={"text-primary"}>$</b>
                     </span>
-                    <em className={"ml-[15px] text-[16px] not-italic font-bold"}>{item.period}</em>
+                    <em
+                        className={"ml-[15px] text-[16px] not-italic font-bold"}
+                    >
+                        {item.period}
+                    </em>
                 </div>
                 <div className={"min-h-[145px] pb-[30px] opacity-80"}>
                     <p>{item.description}</p>
@@ -32,23 +52,41 @@ const PlanCard: React.FC<PricingCardProps> = ({ item }) => {
                 <div>
                     <ul>
                         {item.features.included.map((item, index) => (
-                            <li key={index} className={"my-[5px] pl-[30px] list-none relative"}>
-                                <CheckIcon className={"size-[16px] top-[4px] stroke-4 left-0 text-primary absolute"} />
+                            <li
+                                key={index}
+                                className={
+                                    "my-[5px] pl-[30px] list-none relative"
+                                }
+                            >
+                                <CheckIcon
+                                    className={
+                                        "size-[16px] top-[4px] stroke-4 left-0 text-primary absolute"
+                                    }
+                                />
                                 {item}
                             </li>
                         ))}
                         {item.features.not_included.map((item, index) => (
-                            <li key={index} className={"my-[5px] pl-[30px] list-none relative"}>
-                                <em className={"text-[#b3b3b3] not-italic line-through"}>{item}</em>
+                            <li
+                                key={index}
+                                className={
+                                    "my-[5px] pl-[30px] list-none relative"
+                                }
+                            >
+                                <em
+                                    className={
+                                        "text-[#b3b3b3] not-italic line-through"
+                                    }
+                                >
+                                    {item}
+                                </em>
                             </li>
                         ))}
                     </ul>
                 </div>
                 <Link href={"/"}>
                     <span className={"w-full mt-[30px] z-2 secondary-button"}>
-                        <span className={"relative z-2"}>
-                            Start Project
-                        </span>
+                        <span className={"relative z-2"}>Start Project</span>
                     </span>
                 </Link>
                 <div className={"card-pattern"}></div>
@@ -58,5 +96,3 @@ const PlanCard: React.FC<PricingCardProps> = ({ item }) => {
 };
 
 export default PlanCard;
-
-

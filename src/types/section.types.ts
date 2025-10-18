@@ -3,4 +3,3 @@ export interface SectionConfig {
     enabled: boolean;
     resetAnimationOnView?: boolean;
 }
-

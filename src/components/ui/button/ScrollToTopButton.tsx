@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -38,17 +38,19 @@ const ScrollToTopButton: React.FC = () => {
                         duration: 0.3,
                         ease: "easeOut",
                         type: "spring",
-                        stiffness: 200
+                        stiffness: 200,
                     }}
                     whileHover={{
                         y: -2,
-                        transition: { duration: 0.2 }
+                        transition: { duration: 0.2 },
                     }}
                     whileTap={{
-                        transition: { duration: 0.1 }
+                        transition: { duration: 0.1 },
                     }}
                     onClick={scrollToTop}
-                    className={"p-3 bottom-8 right-8 text-inverse bg-card-inverse/80 border-2 border-solid border-primary  rounded-full shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] fixed cursor-pointer z-50"}
+                    className={
+                        "p-3 bottom-8 right-8 text-inverse bg-card-inverse/80 border-2 border-solid border-primary  rounded-full shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] fixed cursor-pointer z-50"
+                    }
                     aria-label={"Scroll to top"}
                 >
                     <motion.div
@@ -56,7 +58,7 @@ const ScrollToTopButton: React.FC = () => {
                         transition={{
                             duration: 2,
                             repeat: Infinity,
-                            ease: "easeInOut"
+                            ease: "easeInOut",
                         }}
                     >
                         <ChevronUpIcon className={"w-6 h-6"} />

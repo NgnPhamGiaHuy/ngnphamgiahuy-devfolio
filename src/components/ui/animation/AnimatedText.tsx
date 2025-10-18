@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
@@ -7,13 +7,21 @@ import type { AnimatedTextProps } from "@/types";
 
 import { Duration, HeroAnimationsConfig } from "@/config";
 
-const AnimatedText: React.FC<AnimatedTextProps> = ({ text, baseDelay = 0, className = "", containerClassName = "", staggerDelay = 40, duration = Duration.FAST }) => {
+const AnimatedText: React.FC<AnimatedTextProps> = ({
+    text,
+    baseDelay = 0,
+    className = "",
+    containerClassName = "",
+    staggerDelay = 40,
+    duration = Duration.FAST,
+}) => {
     const shouldAnimateWords = useMemo(() => text.length > 50, [text]);
 
     if (shouldAnimateWords) {
         const words = text.split(" ");
 
-        const containerVariants = HeroAnimationsConfig.animatedText.createWordContainer(baseDelay);
+        const containerVariants =
+            HeroAnimationsConfig.animatedText.createWordContainer(baseDelay);
 
         return (
             <motion.span
@@ -26,7 +34,12 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, baseDelay = 0, classN
                     <React.Fragment key={`word-${index}`}>
                         <motion.span
                             className={className}
-                            {...HeroAnimationsConfig.animatedText.wordItem(baseDelay, index, staggerDelay, duration)}
+                            {...HeroAnimationsConfig.animatedText.wordItem(
+                                baseDelay,
+                                index,
+                                staggerDelay,
+                                duration
+                            )}
                         >
                             {word}
                         </motion.span>
@@ -37,7 +50,8 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, baseDelay = 0, classN
         );
     }
 
-    const containerVariants = HeroAnimationsConfig.animatedText.createCharContainer(baseDelay);
+    const containerVariants =
+        HeroAnimationsConfig.animatedText.createCharContainer(baseDelay);
 
     return (
         <motion.span
@@ -50,7 +64,12 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, baseDelay = 0, classN
                 <motion.span
                     key={`${char}-${index}`}
                     className={className}
-                    {...HeroAnimationsConfig.animatedText.charItem(baseDelay, index, staggerDelay, duration)}
+                    {...HeroAnimationsConfig.animatedText.charItem(
+                        baseDelay,
+                        index,
+                        staggerDelay,
+                        duration
+                    )}
                 >
                     {char}
                 </motion.span>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -32,7 +32,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
             transition={{
                 duration: 0.4,
                 delay: index * 0.05,
-                layout: { type: "spring", damping: 20, stiffness: 100 }
+                layout: { type: "spring", damping: 20, stiffness: 100 },
             }}
         >
             <motion.div
@@ -40,7 +40,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
                 whileHover={{ y: -5, boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
                 transition={{ type: "spring", stiffness: 300 }}
             >
-                <Link href={linkHref} target={"_blank"}>
+                <Link href={linkHref} target={"_blank"} className={"w-full"}>
                     <div className={"project-card-image-container"}>
                         <Image
                             src={imageUrl}
@@ -60,9 +60,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
                                 {projectDescription}
                             </p>
                         </div>
-                        <span className={"card-link"}>
-                            See project
-                        </span>
+                        <span className={"card-link"}>See project</span>
                     </div>
                     <motion.div
                         className={"bottom-[-36px] card-pattern"}
@@ -77,5 +75,3 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
 };
 
 export default ProjectCard;
-
-

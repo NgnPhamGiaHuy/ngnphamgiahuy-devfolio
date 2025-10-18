@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { ThemeProvider as NextThemeProvider } from "next-themes";
@@ -15,11 +15,7 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
     }, []);
 
     if (!mounted) {
-        return (
-            <div suppressHydrationWarning>
-                {children}
-            </div>
-        );
+        return <div suppressHydrationWarning>{children}</div>;
     }
 
     return (
@@ -32,6 +28,6 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
             {children}
         </NextThemeProvider>
     );
-}
+};
 
 export default ThemeProvider;

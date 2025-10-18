@@ -10,7 +10,7 @@
     }
 
     .swiper-wrapper {
-        @apply w-full h-auto mb-[50px] flex text-left visible transition-transform transform translate-x-0 translate-y-0 translate-z-[0px] duration-0 box-content relative z-1;
+        @apply w-full h-auto mb-[50px] flex items-stretch! text-left visible transition-transform transform translate-x-0 translate-y-0 translate-z-[0px] duration-0 box-content relative z-1;
     }
 
     .swiper-carousel-navigation {

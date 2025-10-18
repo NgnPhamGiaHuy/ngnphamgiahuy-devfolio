@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -12,7 +12,11 @@ import type { ContentCarouselProps } from "@/types";
 
 import { StandardAnimations } from "@/config";
 
-const ContentCarousel = <T,>({ items, spaceBetween = 40, renderItem }: ContentCarouselProps<T>) => {
+const ContentCarousel = <T,>({
+    items,
+    spaceBetween = 40,
+    renderItem,
+}: ContentCarouselProps<T>) => {
     const containerVariants = StandardAnimations.fadeIn();
 
     const [mounted, setMounted] = useState(false);
@@ -57,17 +61,23 @@ const ContentCarousel = <T,>({ items, spaceBetween = 40, renderItem }: ContentCa
                             nextSlideMessage: "Next slide",
                             firstSlideMessage: "This is the first slide",
                             lastSlideMessage: "This is the last slide",
-                            paginationBulletMessage: "Go to slide {{index}}"
+                            paginationBulletMessage: "Go to slide {{index}}",
                         }}
                         onSwiper={(swiper) => {
                             swiperRef.current = swiper;
-                            setSlidesPerView(swiper.params.slidesPerView as number);
+                            setSlidesPerView(
+                                swiper.params.slidesPerView as number
+                            );
                         }}
                         onResize={(swiper) => {
-                            setSlidesPerView(swiper.params.slidesPerView as number);
+                            setSlidesPerView(
+                                swiper.params.slidesPerView as number
+                            );
                         }}
                         onBreakpoint={(swiper) => {
-                            setSlidesPerView(swiper.params.slidesPerView as number);
+                            setSlidesPerView(
+                                swiper.params.slidesPerView as number
+                            );
                         }}
                         onSlideChange={(swiper) => {
                             setActiveIndex(swiper.realIndex);
@@ -103,10 +113,11 @@ const ContentCarousel = <T,>({ items, spaceBetween = 40, renderItem }: ContentCa
                         {Array.from({ length: totalSlides }).map((_, index) => (
                             <span
                                 key={index}
-                                className={`swiper-carousel-pagination-dot ${index === activeIndex
-                                    ? "swiper-carousel-dot-active"
-                                    : "swiper-carousel-dot-inactive"
-                                    }`}
+                                className={`swiper-carousel-pagination-dot ${
+                                    index === activeIndex
+                                        ? "swiper-carousel-dot-active"
+                                        : "swiper-carousel-dot-inactive"
+                                }`}
                                 onClick={() => handlePaginationClick(index)}
                                 role={"tab"}
                                 tabIndex={0}

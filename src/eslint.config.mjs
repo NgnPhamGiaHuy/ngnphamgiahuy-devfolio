@@ -24,20 +24,18 @@ const eslintConfig = [
             "*.config.ts",
             "sanity/**",
             "public/**",
-            "styles/**"
+            "styles/**",
         ],
         rules: {
-            // Performance-focused rules
             "no-unused-vars": "warn",
             "no-console": "warn",
             "prefer-const": "error",
             "no-var": "error",
-            // Disable strict rules for performance
             "@typescript-eslint/no-explicit-any": "off",
             "@typescript-eslint/no-unused-vars": "warn",
-            "react-hooks/exhaustive-deps": "warn"
-        }
-    }
+            "react-hooks/exhaustive-deps": "warn",
+        },
+    },
 ];
 
 export default eslintConfig;

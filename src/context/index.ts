@@ -1,3 +1,5 @@
 // Context providers
-export { HeroAnimationProvider, useHeroAnimationContext } from "./HeroAnimationContext";
-
+export {
+    HeroAnimationProvider,
+    useHeroAnimationContext,
+} from "./HeroAnimationContext";

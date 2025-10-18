@@ -1,11 +1,18 @@
-"use client"
+"use client";
 
 import { motion, Variants } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
 import type { AccordionContentProps } from "@/types";
 
-const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, subheading, meta, content, panelId, labelledById }) => {
+const AccordionContent: React.FC<AccordionContentProps> = ({
+    isOpen,
+    subheading,
+    meta,
+    content,
+    panelId,
+    labelledById,
+}) => {
     const contentRef = useRef<HTMLDivElement>(null);
     const [height, setHeight] = useState(0);
 
@@ -14,7 +21,7 @@ const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, subheading,
 
         const element = contentRef.current;
 
-        const observer = new ResizeObserver(entries => {
+        const observer = new ResizeObserver((entries) => {
             for (const entry of entries) {
                 if (entry.target instanceof HTMLElement) {
                     const naturalHeight = entry.target.scrollHeight;
@@ -36,8 +43,8 @@ const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, subheading,
             transition: {
                 height: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
                 opacity: { duration: 0.25, delay: 0.12 },
-                filter: { duration: 0.25, delay: 0.12 }
-            }
+                filter: { duration: 0.25, delay: 0.12 },
+            },
         },
         closed: {
             height: 1,
@@ -46,9 +53,9 @@ const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, subheading,
             transition: {
                 height: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
                 opacity: { duration: 0.2 },
-                filter: { duration: 0.2 }
-            }
-        }
+                filter: { duration: 0.2 },
+            },
+        },
     };
 
     return (
@@ -70,9 +77,7 @@ const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, subheading,
                 <span>{meta}</span>
             </div>
             <div className={"accordion-content-description"}>
-                <p>
-                    {content}
-                </p>
+                <p>{content}</p>
             </div>
         </motion.div>
     );

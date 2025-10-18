@@ -115,9 +115,9 @@ export default {
             type: "file",
             description: "Upload your CV/Resume as a PDF",
             options: {
-                accept: "application/pdf"
+                accept: "application/pdf",
             },
-            validation: (Rule: Rule) => Rule.required()
+            validation: (Rule: Rule) => Rule.required(),
         },
         {
             name: "metaTitle",

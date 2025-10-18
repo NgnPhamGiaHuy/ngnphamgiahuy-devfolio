@@ -35,7 +35,8 @@ export default {
             title: "Excerpt",
             type: "text",
             validation: (Rule: Rule) => Rule.required().max(160),
-            description: "A short summary of the blog post (max 160 characters)",
+            description:
+                "A short summary of the blog post (max 160 characters)",
         },
         {
             name: "image",
@@ -52,8 +53,8 @@ export default {
                 },
                 {
                     name: "caption",
-            title: "Caption",
-            type: "string",
+                    title: "Caption",
+                    type: "string",
                 },
             ],
             validation: (Rule: Rule) => Rule.required(),

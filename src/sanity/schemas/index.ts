@@ -9,9 +9,11 @@ import pricing from "./pricing";
 import blogPost from "./blogPost";
 import contactItem from "./contactItem";
 import siteSettings from "./siteSettings";
+import certificate from "./certificate";
 
 export const schemaTypes = [
     blogPost,
+    certificate,
     contactItem,
     education,
     experience,

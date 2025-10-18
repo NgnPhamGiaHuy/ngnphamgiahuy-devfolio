@@ -1,4 +1,16 @@
-import { Profile, Service, Skill, Project, Experience, Education, Testimonial, Pricing, BlogPost, ContactItem } from "../sanity.types";
+import {
+    Profile,
+    Service,
+    Skill,
+    Project,
+    Experience,
+    Education,
+    Testimonial,
+    Pricing,
+    BlogPost,
+    ContactItem,
+    Certificate,
+} from "../sanity.types";
 
 export interface BaseSectionProps {
     id: string;
@@ -30,6 +42,10 @@ export interface ResumeSectionProps extends BaseSectionProps {
     experience: Experience[];
 }
 
+export interface CertificatesSectionProps extends BaseSectionProps {
+    certificates: Certificate[];
+}
+
 export interface TestimonialsSectionProps extends BaseSectionProps {
     testimonials: Testimonial[];
 }
@@ -57,6 +73,7 @@ export type SectionProps =
     | SkillsSectionProps
     | PortfoliosSectionProps
     | ResumeSectionProps
+    | CertificatesSectionProps
     | TestimonialsSectionProps
     | PricingSectionProps
     | BlogSectionProps

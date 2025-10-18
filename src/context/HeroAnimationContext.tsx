@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { createContext, ReactNode, useContext } from "react";
 
@@ -17,7 +17,10 @@ const HeroAnimationContext = createContext<HeroAnimationContextValue>({
     timeline: {},
 });
 
-export const HeroAnimationProvider: React.FC<{ children: ReactNode; timeline: HeroTextTimeline }> = ({ children, timeline }) => {
+export const HeroAnimationProvider: React.FC<{
+    children: ReactNode;
+    timeline: HeroTextTimeline;
+}> = ({ children, timeline }) => {
     return (
         <HeroAnimationContext.Provider value={{ timeline }}>
             {children}

@@ -17,7 +17,7 @@
         @apply content-[""] max-w-[60%] w-[40px] h-[2px] left-0 bottom-[-10px] bg-primary absolute;
         transform: scaleX(0);
         transform-origin: left;
-        transition: transform 0.3s cubic-bezier(.3, 0, .3, 1);
+        transition: transform 0.3s cubic-bezier(0.3, 0, 0.3, 1);
     }
 
     .project-category-filter-button:hover::before {
@@ -33,7 +33,7 @@
         position: relative;
     }
 
-    .project-grid>* {
+    .project-grid > * {
         transform-origin: center top;
     }
 }

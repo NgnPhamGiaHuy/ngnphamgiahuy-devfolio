@@ -1,5 +1,10 @@
 import React from "react";
-import { MapIcon, EnvelopeIcon, PhoneIcon, BuildingOfficeIcon } from "@heroicons/react/24/outline";
+import {
+    MapIcon,
+    EnvelopeIcon,
+    PhoneIcon,
+    BuildingOfficeIcon,
+} from "@heroicons/react/24/outline";
 
 export interface ContactTypeConfig {
     icon: React.ComponentType<{ className?: string }>;
@@ -12,22 +17,21 @@ export type ContactTypeMapping = Record<string, ContactTypeConfig>;
 export const CONTACT_TYPE_CONFIG: ContactTypeMapping = {
     email: {
         icon: EnvelopeIcon,
-        linkGenerator: (value) => `mailto:${value}`
+        linkGenerator: (value) => `mailto:${value}`,
     },
     phone: {
         icon: PhoneIcon,
-        linkGenerator: (value) => `tel:${value}`
+        linkGenerator: (value) => `tel:${value}`,
     },
     location: {
         icon: MapIcon,
-        label: "Address"
+        label: "Address",
     },
     office: {
-        icon: BuildingOfficeIcon
+        icon: BuildingOfficeIcon,
     },
 };
 
 export const DEFAULT_CONTACT_CONFIG: ContactTypeConfig = {
-    icon: MapIcon
+    icon: MapIcon,
 };
-

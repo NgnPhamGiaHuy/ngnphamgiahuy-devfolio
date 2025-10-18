@@ -61,7 +61,8 @@ export default {
             name: "order",
             title: "Display Order",
             type: "number",
-            description: "Order in which to display this project (lower numbers first)",
+            description:
+                "Order in which to display this project (lower numbers first)",
         },
         {
             name: "metaTitle",

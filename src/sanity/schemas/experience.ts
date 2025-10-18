@@ -10,7 +10,8 @@ export default {
             title: "Year/Period",
             type: "string",
             validation: (Rule: Rule) => Rule.required(),
-            description: "Time period of the experience (e.g., \"2020 - Present\")",
+            description:
+                'Time period of the experience (e.g., "2020 - Present")',
         },
         {
             name: "title",
@@ -34,7 +35,8 @@ export default {
             name: "order",
             title: "Display Order",
             type: "number",
-            description: "Order in which to display this experience (lower numbers first)",
+            description:
+                "Order in which to display this experience (lower numbers first)",
         },
     ],
     preview: {
@@ -43,7 +45,15 @@ export default {
             subtitle: "company",
             description: "year",
         },
-        prepare({ title, subtitle, description }: { title: string; subtitle: string; description: string }) {
+        prepare({
+            title,
+            subtitle,
+            description,
+        }: {
+            title: string;
+            subtitle: string;
+            description: string;
+        }) {
             return {
                 title: `${title} at ${subtitle}`,
                 subtitle: description,

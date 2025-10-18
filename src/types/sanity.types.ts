@@ -61,7 +61,11 @@ export interface Profile extends SanityDocument, SeoFields {
     location: string;
     experience_years: number;
     profile_image: SanityImage | string;
-    social_links: Array<{ platform: string; url: string; icon: SanityImage | string }>;
+    social_links: Array<{
+        platform: string;
+        url: string;
+        icon: SanityImage | string;
+    }>;
     cv_link?: string; // Resolved URL from file asset
 }
 
@@ -80,6 +84,20 @@ export interface Education extends SanityDocument {
     degree: string;
     institution: string;
     description: string;
+    order?: number;
+}
+
+export interface Certificate extends SanityDocument {
+    _type: "certificate";
+    title: string;
+    issuer: string;
+    issueDate: string;
+    expiryDate?: string;
+    credentialId?: string;
+    credentialUrl?: string;
+    description?: string;
+    image?: SanityImage | string;
+    category?: string;
     order?: number;
 }
 

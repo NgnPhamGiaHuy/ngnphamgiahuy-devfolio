@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -23,7 +23,10 @@ const useHeaderScroll = () => {
 
             lastScrollY.current = currentScrollY;
 
-            if (headerState === "animating-in" || headerState === "animating-out") {
+            if (
+                headerState === "animating-in" ||
+                headerState === "animating-out"
+            ) {
                 return;
             }
 
@@ -49,7 +52,9 @@ const useHeaderScroll = () => {
             }
         };
 
-        window.addEventListener("scroll", throttledHandleScroll, { passive: true });
+        window.addEventListener("scroll", throttledHandleScroll, {
+            passive: true,
+        });
 
         return () => {
             window.removeEventListener("scroll", throttledHandleScroll);

@@ -1,15 +1,18 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect, useCallback } from "react";
 
 const useSidebarAnimation = (isMenuOpen: boolean) => {
     const [sidebarEntered, setSidebarEntered] = useState<boolean>(false);
 
-    const handleTransitionEnd = useCallback((event: React.TransitionEvent<HTMLDivElement>) => {
-        if (isMenuOpen && event.target === event.currentTarget) {
-            setSidebarEntered(true);
-        }
-    }, [isMenuOpen]);
+    const handleTransitionEnd = useCallback(
+        (event: React.TransitionEvent<HTMLDivElement>) => {
+            if (isMenuOpen && event.target === event.currentTarget) {
+                setSidebarEntered(true);
+            }
+        },
+        [isMenuOpen]
+    );
 
     useEffect(() => {
         if (!isMenuOpen) {

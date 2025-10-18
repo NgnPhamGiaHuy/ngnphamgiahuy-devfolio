@@ -13,12 +13,21 @@ const SiteFooter: React.FC<SiteFooterProps> = ({ socialLinks }) => {
     const socialLinksData = generateSocialLinks(socialLinks);
 
     return (
-        <footer className={"m-0 p-0 max-lg:px-[30px] border-t border-solid border-inverse/10"}>
+        <footer
+            className={
+                "m-0 p-0 max-lg:px-[30px] border-t border-solid border-inverse/10"
+            }
+        >
             <section className={"py-[60px] relative"}>
                 <div className={"container-1300"}>
                     <div className={"flex-third"}>
                         <div className={"p-[10px] flex-wrapper"}>
-                            <SocialLinks links={socialLinksData} iconMargin={"mr-[15px]"} iconSize={"size-[22px]"} className={"w-full max-md:text-center"} />
+                            <SocialLinks
+                                links={socialLinksData}
+                                iconMargin={"mr-[15px]"}
+                                iconSize={"size-[22px]"}
+                                className={"w-full max-md:text-center"}
+                            />
                         </div>
                     </div>
                     <div className={"flex-third"}>

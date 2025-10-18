@@ -26,6 +26,11 @@ export const SECTIONS_CONFIG: SectionConfig[] = [
         resetAnimationOnView: false,
     },
     {
+        id: "certificates",
+        enabled: true,
+        resetAnimationOnView: false,
+    },
+    {
         id: "testimonials",
         enabled: true,
         resetAnimationOnView: false,

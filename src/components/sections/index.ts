@@ -1,5 +1,6 @@
 // Section components
 export { default as Blog } from "./Blog";
+export { default as Certificates } from "./Certificates";
 export { default as Contact } from "./Contact";
 export { default as Hero } from "./Hero";
 export { default as Map } from "./Map";

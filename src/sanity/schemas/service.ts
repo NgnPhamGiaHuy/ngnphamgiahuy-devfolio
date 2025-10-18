@@ -33,7 +33,8 @@ export default {
             name: "order",
             title: "Display Order",
             type: "number",
-            description: "Order in which to display this service (lower numbers first)",
+            description:
+                "Order in which to display this service (lower numbers first)",
         },
     ],
     preview: {
