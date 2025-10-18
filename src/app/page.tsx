@@ -3,11 +3,14 @@ import dynamic from "next/dynamic";
 
 import type { HomePageData } from "@/types";
 
-import { SECTIONS_CONFIG } from "@/config";
 import { data as FallbackData } from "@/data";
 import { SiteHeader, SiteFooter } from "@/components";
 import { sanityFetch, homePageDataQuery } from "@/lib";
-import { normalizeProfileData, renderSection } from "@/utils";
+import {
+    normalizeProfileData,
+    normalizeSectionConfigData,
+    renderSection,
+} from "@/utils";
 
 const ScrollToTopButton = dynamic(() =>
     import("@/components").then((mod) => ({ default: mod.ScrollToTopButton }))
@@ -29,12 +32,11 @@ export default async function Home() {
             "certificate",
             "pricing",
             "blogPost",
-            "contactItem",
-            "siteSettings",
+            "settings",
         ],
     });
 
-    const enabledSections = SECTIONS_CONFIG.filter(
+    const enabledSections = normalizeSectionConfigData(data.settings).filter(
         (section) => section.enabled
     );
 
@@ -42,7 +44,7 @@ export default async function Home() {
 
     return (
         <div className={"min-h-[50vh] overflow-hidden relative"}>
-            <SiteHeader profile={profile} logo={data.siteSettings?.logo} />
+            <SiteHeader profile={profile} logo={data.settings?.logo} />
             <div className={"relative"}>
                 {enabledSections.map((section) =>
                     renderSection(section, { sectionProps: data })

@@ -7,21 +7,19 @@ import education from "./education";
 import testimonial from "./testimonial";
 import pricing from "./pricing";
 import blogPost from "./blogPost";
-import contactItem from "./contactItem";
-import siteSettings from "./siteSettings";
+import settings from "./settings";
 import certificate from "./certificate";
 
 export const schemaTypes = [
     blogPost,
     certificate,
-    contactItem,
     education,
     experience,
     pricing,
     profile,
     project,
+    settings,
     service,
-    siteSettings,
     skill,
     testimonial,
 ];

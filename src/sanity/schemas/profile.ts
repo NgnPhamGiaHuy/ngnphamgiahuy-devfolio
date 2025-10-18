@@ -12,17 +12,6 @@ export default {
             validation: (Rule: Rule) => Rule.required(),
         },
         {
-            name: "title",
-            title: "Title",
-            type: "string",
-            validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-            name: "subtitle",
-            title: "Subtitle",
-            type: "string",
-        },
-        {
             name: "job_title",
             title: "Job Title",
             type: "string",
@@ -37,6 +26,17 @@ export default {
         {
             name: "location",
             title: "Location",
+            type: "string",
+        },
+        {
+            name: "email",
+            title: "Email Address",
+            type: "string",
+            validation: (Rule: Rule) => Rule.required().email(),
+        },
+        {
+            name: "phone",
+            title: "Phone Number",
             type: "string",
         },
         {

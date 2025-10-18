@@ -1,6 +1,5 @@
 import type {
     BlogPost,
-    ContactItem,
     Education,
     Experience,
     Pricing,
@@ -23,6 +22,5 @@ export interface MockDataType {
     testimonials: Testimonial[];
     pricing: Pricing[];
     blogs: BlogPost[];
-    contacts: ContactItem[];
     certificates: Certificate[];
 }

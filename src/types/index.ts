@@ -1,7 +1,7 @@
 export type {
     BlogPreviewProps,
     ContactFieldsProps,
-    ContactItemProps,
+    ContactMethodCardProps,
     MetricCardProps,
     PricingCardProps,
     PricingGridProps,
@@ -64,18 +64,17 @@ export type { ImageConfig } from "./image.types";
 export type { MockDataType } from "./mock.types";
 export type {
     BlogPost,
-    ContactItem,
     Experience,
     Education,
     Pricing,
     Profile,
     Project,
     Service,
-    SiteSettings,
+    Settings,
     Skill,
     Testimonial,
     SanityImage,
     Certificate,
+    SectionConfigItem,
 } from "./sanity.types";
-export type { SectionConfig } from "./section.types";
 export type { SocialLink, SocialPlatform, RawSocialLink } from "./social.types";

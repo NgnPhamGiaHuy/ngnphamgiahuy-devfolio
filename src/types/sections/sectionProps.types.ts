@@ -8,7 +8,6 @@ import {
     Testimonial,
     Pricing,
     BlogPost,
-    ContactItem,
     Certificate,
 } from "../sanity.types";
 
@@ -59,12 +58,11 @@ export interface BlogSectionProps extends BaseSectionProps {
 }
 
 export interface ContactSectionProps extends BaseSectionProps {
-    contacts: ContactItem[];
+    contactItems: Array<{ type: string; value: string; label: string }>;
 }
 
 export interface MapSectionProps extends BaseSectionProps {
     profile: Profile;
-    contacts: ContactItem[];
 }
 
 export type SectionProps =

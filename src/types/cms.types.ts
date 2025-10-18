@@ -1,13 +1,12 @@
 import type {
     BlogPost,
-    ContactItem,
     Education,
     Experience,
     Pricing,
     Profile,
     Project,
     Service,
-    SiteSettings,
+    Settings,
     Skill,
     Testimonial,
     Certificate,
@@ -24,6 +23,5 @@ export interface HomePageData {
     certificates?: Certificate[] | null;
     pricing?: Pricing[] | null;
     blogs?: BlogPost[] | null;
-    contacts?: ContactItem[] | null;
-    siteSettings?: SiteSettings | null;
+    settings?: Settings | null;
 }

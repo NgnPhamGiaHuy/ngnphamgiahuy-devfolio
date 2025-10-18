@@ -112,12 +112,6 @@ export const blogPostsQuery = `*[_type == "blogPost"] | order(date desc) {
     categories
 }`;
 
-export const contactItemsQuery = `*[_type == "contactItem"] | order(order asc) {
-    _id,
-    type,
-    value
-}`;
-
 export const certificatesQuery = `*[_type == "certificate"] | order(order asc) {
     _id,
     title,
@@ -135,7 +129,7 @@ export const certificatesQuery = `*[_type == "certificate"] | order(order asc) {
     category
 }`;
 
-export const siteSettingsQuery = `*[_type == "siteSettings"][0] {
+export const settingsQuery = `*[_type == "settings"][0] {
     _id,
     logo,
     metaTitle,
@@ -144,6 +138,51 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0] {
         asset,
         alt,
         caption
+    },
+    sectionsTitle,
+    hero {
+        enabled,
+        resetAnimationOnView
+    },
+    services {
+        enabled,
+        resetAnimationOnView
+    },
+    skills {
+        enabled,
+        resetAnimationOnView
+    },
+    portfolios {
+        enabled,
+        resetAnimationOnView
+    },
+    resume {
+        enabled,
+        resetAnimationOnView
+    },
+    certificates {
+        enabled,
+        resetAnimationOnView
+    },
+    testimonials {
+        enabled,
+        resetAnimationOnView
+    },
+    pricing {
+        enabled,
+        resetAnimationOnView
+    },
+    blog {
+        enabled,
+        resetAnimationOnView
+    },
+    contact {
+        enabled,
+        resetAnimationOnView
+    },
+    map {
+        enabled,
+        resetAnimationOnView
     }
 }`;
 
@@ -181,6 +220,5 @@ export const homePageDataQuery = `{
     "certificates": ${certificatesQuery},
     "pricing": ${pricingQuery},
     "blogs": ${blogPostsQuery},
-    "contacts": ${contactItemsQuery},
-    "siteSettings": ${siteSettingsQuery}
+    "settings": ${settingsQuery}
 }`;

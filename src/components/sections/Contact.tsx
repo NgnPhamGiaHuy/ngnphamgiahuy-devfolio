@@ -2,11 +2,16 @@ import React from "react";
 
 import type { ContactSectionProps } from "@/types";
 
-import { Wrapper, BackdropText, ContactMethodCard, ContactForm, } from "@/components";
+import {
+    Wrapper,
+    BackdropText,
+    ContactMethodCard,
+    ContactForm,
+} from "@/components";
 
 const Contact: React.FC<ContactSectionProps> = ({
     id,
-    contacts,
+    contactItems,
     resetAnimationOnView,
 }) => {
     return (
@@ -22,8 +27,13 @@ const Contact: React.FC<ContactSectionProps> = ({
             <div className={"flex-2-5"}>
                 <div className={"p-[10px] flex-wrap-start"}>
                     <div className={"w-full relative z-2"}>
-                        {contacts.map((contact, index) => (
-                            <ContactMethodCard key={index} contact={contact} />
+                        {contactItems.map((contact, index) => (
+                            <ContactMethodCard
+                                key={index}
+                                type={contact.type}
+                                value={contact.value}
+                                label={contact.label}
+                            />
                         ))}
                     </div>
                 </div>

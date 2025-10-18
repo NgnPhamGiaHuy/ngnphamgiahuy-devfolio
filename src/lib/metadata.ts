@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
-import type { Profile, SiteSettings, BlogPost } from "@/types/sanity.types";
+import type { Profile, Settings, BlogPost } from "@/types/sanity.types";
 
 import { data as mockData } from "@/data";
 import { urlFor } from "./sanity";
 import { sanityFetch } from "./sanity";
-import { profileQuery, siteSettingsQuery } from "./queries";
+import { profileQuery, settingsQuery } from "./queries";
 
 const resolveImageUrl = (
     image: unknown,
@@ -29,14 +29,14 @@ const resolveImageUrl = (
 
 export const generateHomePageMetadata = async (): Promise<Metadata> => {
     try {
-        const [profile, siteSettings] = await Promise.all([
+        const [profile, settings] = await Promise.all([
             sanityFetch<Profile | null>({
                 query: profileQuery,
                 tags: ["profile"],
             }),
-            sanityFetch<SiteSettings | null>({
-                query: siteSettingsQuery,
-                tags: ["siteSettings"],
+            sanityFetch<Settings | null>({
+                query: settingsQuery,
+                tags: ["settings"],
             }),
         ]);
 
@@ -47,17 +47,17 @@ export const generateHomePageMetadata = async (): Promise<Metadata> => {
 
         const title =
             effectiveProfile?.metaTitle ||
-            siteSettings?.metaTitle ||
+            settings?.metaTitle ||
             (effectiveProfile
                 ? `${effectiveProfile.name} - ${effectiveProfile.job_title}`
                 : "NgnPhamGiaHuy Devfolio");
         const description =
             effectiveProfile?.metaDescription ||
-            siteSettings?.metaDescription ||
+            settings?.metaDescription ||
             effectiveProfile?.description ||
             "";
 
-        const ogImage = effectiveProfile?.ogImage || siteSettings?.ogImage;
+        const ogImage = effectiveProfile?.ogImage || settings?.ogImage;
         const ogImageUrl =
             resolveImageUrl(ogImage, baseUrl) ||
             resolveImageUrl(effectiveProfile?.profile_image, baseUrl);

@@ -4,7 +4,6 @@ import {
     UseFormWatch,
 } from "react-hook-form";
 
-import { ContactItem } from "../sanity.types";
 import { ContactFormData } from "@/utils";
 
 export interface ContactFieldsProps {
@@ -14,6 +13,8 @@ export interface ContactFieldsProps {
     watch: UseFormWatch<ContactFormData>;
 }
 
-export interface ContactItemProps {
-    contact: ContactItem;
+export interface ContactMethodCardProps {
+    type: string;
+    value: string;
+    label?: string;
 }

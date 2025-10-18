@@ -54,11 +54,11 @@ export interface Skill extends SanityDocument {
 export interface Profile extends SanityDocument, SeoFields {
     _type: "profile";
     name: string;
-    title: string;
-    subtitle: string;
     job_title: string;
     description: string;
     location: string;
+    email: string;
+    phone?: string;
     experience_years: number;
     profile_image: SanityImage | string;
     social_links: Array<{
@@ -66,7 +66,7 @@ export interface Profile extends SanityDocument, SeoFields {
         url: string;
         icon: SanityImage | string;
     }>;
-    cv_link?: string; // Resolved URL from file asset
+    cv_link?: string;
 }
 
 export interface Experience extends SanityDocument {
@@ -139,14 +139,25 @@ export interface BlogPost extends SanityDocument, SeoFields {
     categories?: string[];
 }
 
-export interface ContactItem extends SanityDocument {
-    _type: "contactItem";
-    type: string;
-    value: string;
-    order?: number;
+export interface Settings extends SanityDocument, SeoFields {
+    _type: "settings";
+    logo: string;
+    sectionsTitle: string;
+    hero: SectionConfigItem;
+    services: SectionConfigItem;
+    skills: SectionConfigItem;
+    portfolios: SectionConfigItem;
+    resume: SectionConfigItem;
+    certificates: SectionConfigItem;
+    testimonials: SectionConfigItem;
+    pricing: SectionConfigItem;
+    blog: SectionConfigItem;
+    contact: SectionConfigItem;
+    map: SectionConfigItem;
 }
 
-export interface SiteSettings extends SanityDocument, SeoFields {
-    _type: "siteSettings";
-    logo: string;
+export interface SectionConfigItem {
+    id?: string;
+    enabled: boolean;
+    resetAnimationOnView?: boolean;
 }

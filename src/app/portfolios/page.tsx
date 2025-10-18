@@ -15,7 +15,7 @@ import {
 const PortfoliosPage = async () => {
     const data = await sanityFetch<HomePageData>({
         query: homePageDataQuery,
-        tags: ["profile", "project", "siteSettings"],
+        tags: ["profile", "project", "settings"],
     });
 
     const profile = normalizeProfileData(data.profile, FallbackData);
@@ -23,7 +23,7 @@ const PortfoliosPage = async () => {
 
     return (
         <div className={"min-h-[50vh] overflow-hidden relative"}>
-            <SiteHeader profile={profile} logo={data.siteSettings?.logo} />
+            <SiteHeader profile={profile} logo={data.settings?.logo} />
             <div className={"pt-[200px] relative"}>
                 <Portfolios
                     id={"portfolios"}

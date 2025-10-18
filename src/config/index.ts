@@ -1,4 +1,3 @@
-// Configuration files
 export {
     ANIMATION_CONFIG,
     StandardAnimations,
@@ -14,7 +13,6 @@ export {
     DEFAULT_STATS,
 } from "./hero.config";
 export { HeroAnimationsConfig } from "./hero.animations.config";
-export { SECTIONS_CONFIG } from "./sections.config";
 export {
     containerVariants,
     backgroundByName,

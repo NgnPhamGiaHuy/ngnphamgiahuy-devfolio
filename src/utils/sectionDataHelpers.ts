@@ -10,8 +10,9 @@ import {
     Testimonial,
     Pricing,
     BlogPost,
-    ContactItem,
     Certificate,
+    SectionConfigItem,
+    Settings,
 } from "@/types";
 
 const FALLBACK_DATA = data;
@@ -120,17 +121,30 @@ export const normalizeBlogsData = (
     return normalizeArrayData(blogs, fallbackData?.blogs, FALLBACK_DATA.blogs);
 };
 
-export const normalizeContactsData = (
-    contacts?: ContactItem[] | null,
+export const normalizeContactData = (
+    profile?: Profile | null,
     fallbackData?: MockDataType
-): ContactItem[] => {
-    return normalizeArrayData(
-        contacts,
-        fallbackData?.contacts,
-        FALLBACK_DATA.contacts
-    );
-};
+): Array<{ type: string; value: string; label: string }> => {
+    const normalizedProfile = normalizeProfileData(profile, fallbackData);
 
+    return [
+        {
+            type: "email",
+            value: normalizedProfile.email,
+            label: "Email",
+        },
+        {
+            type: "phone",
+            value: normalizedProfile.phone || "",
+            label: "Phone",
+        },
+        {
+            type: "location",
+            value: normalizedProfile.location || "",
+            label: "Location",
+        },
+    ].filter((item) => item.value);
+};
 export const normalizeCertificatesData = (
     certificates?: Certificate[] | null,
     fallbackData?: MockDataType
@@ -140,6 +154,42 @@ export const normalizeCertificatesData = (
         fallbackData?.certificates,
         FALLBACK_DATA.certificates
     );
+};
+
+export const normalizeSectionConfigData = (
+    settings?: Settings | null
+): SectionConfigItem[] => {
+    if (!settings) {
+        return [
+            { id: "hero", enabled: true },
+            { id: "services", enabled: true, resetAnimationOnView: false },
+            { id: "skills", enabled: true, resetAnimationOnView: false },
+            { id: "portfolios", enabled: true, resetAnimationOnView: false },
+            { id: "resume", enabled: true, resetAnimationOnView: false },
+            { id: "certificates", enabled: true, resetAnimationOnView: false },
+            { id: "testimonials", enabled: true, resetAnimationOnView: false },
+            { id: "pricing", enabled: true, resetAnimationOnView: false },
+            { id: "blog", enabled: true, resetAnimationOnView: false },
+            { id: "contact", enabled: true, resetAnimationOnView: false },
+            { id: "map", enabled: true },
+        ];
+    }
+
+    const sections = [
+        { id: "hero", ...settings.hero },
+        { id: "services", ...settings.services },
+        { id: "skills", ...settings.skills },
+        { id: "portfolios", ...settings.portfolios },
+        { id: "resume", ...settings.resume },
+        { id: "certificates", ...settings.certificates },
+        { id: "testimonials", ...settings.testimonials },
+        { id: "pricing", ...settings.pricing },
+        { id: "blog", ...settings.blog },
+        { id: "contact", ...settings.contact },
+        { id: "map", ...settings.map },
+    ];
+
+    return sections; // All sections now have id field
 };
 
 export const getSectionData = (
@@ -210,12 +260,11 @@ export const getSectionData = (
 
         case "contact":
             return {
-                contacts: normalizeContactsData(props.contacts, fallbackData),
+                contactItems: normalizeContactData(props.profile, fallbackData),
             };
 
         case "map":
             return {
-                contacts: normalizeContactsData(props.contacts, fallbackData),
                 profile: normalizeProfileData(props.profile, fallbackData),
             };
 

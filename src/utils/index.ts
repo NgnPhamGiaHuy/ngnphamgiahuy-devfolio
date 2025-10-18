@@ -1,4 +1,3 @@
-// Utility functions
 export { contactFormSchema, type ContactFormData } from "./contactFormSchema";
 export { getHeaderClasses, type HeaderState } from "./headerUtils";
 export {
@@ -20,6 +19,8 @@ export {
     normalizeTestimonialsData,
     normalizePricingData,
     normalizeBlogsData,
-    normalizeContactsData,
+    normalizeCertificatesData,
+    normalizeContactData,
+    normalizeSectionConfigData,
 } from "./sectionDataHelpers";
 export { generateSocialLinks, getIconForPlatform } from "./socialLinks";

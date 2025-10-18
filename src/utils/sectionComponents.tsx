@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { SectionConfig, MockDataType } from "@/types";
+import type { SectionConfigItem, MockDataType } from "@/types";
 
 import { getSectionData } from "./sectionDataHelpers";
 import {
@@ -37,14 +37,18 @@ type RenderSectionOptions = {
 };
 
 export const renderSection = (
-    sectionConfig: SectionConfig,
+    sectionConfig: SectionConfigItem,
     options?: RenderSectionOptions
 ): React.ReactNode => {
     const { id: sectionId, resetAnimationOnView } = sectionConfig;
+
+    if (!sectionId) {
+        return null;
+    }
+
     const SectionComponent = sectionComponents[sectionId];
 
     if (!SectionComponent) {
-        console.warn(`Section component with ID "${sectionId}" not found`);
         return null;
     }
 

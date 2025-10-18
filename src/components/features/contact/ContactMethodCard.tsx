@@ -1,22 +1,22 @@
 import React from "react";
 import Link from "next/link";
 
-import type { ContactItemProps } from "@/types";
+import type { ContactMethodCardProps } from "@/types";
 
 import { CONTACT_TYPE_CONFIG, DEFAULT_CONTACT_CONFIG } from "@/config";
 
-const ContactMethodCard: React.FC<ContactItemProps> = ({ contact }) => {
+const ContactMethodCard: React.FC<ContactMethodCardProps> = ({
+    type,
+    value,
+    label,
+}) => {
     const config =
-        CONTACT_TYPE_CONFIG[contact.type.toLowerCase()] ||
-        DEFAULT_CONTACT_CONFIG;
+        CONTACT_TYPE_CONFIG[type.toLowerCase()] || DEFAULT_CONTACT_CONFIG;
 
     const displayLabel =
-        config.label ||
-        contact.type.charAt(0).toUpperCase() + contact.type.slice(1);
+        label || config.label || type.charAt(0).toUpperCase() + type.slice(1);
 
-    const link = config.linkGenerator
-        ? config.linkGenerator(contact.value)
-        : null;
+    const link = config.linkGenerator ? config.linkGenerator(value) : null;
 
     const Icon = config.icon;
 
@@ -31,10 +31,10 @@ const ContactMethodCard: React.FC<ContactItemProps> = ({ contact }) => {
             <div className={"opacity-80"}>
                 {link ? (
                     <Link href={link} className={"contact-method-card-link"}>
-                        {contact.value}
+                        {value}
                     </Link>
                 ) : (
-                    <span>{contact.value}</span>
+                    <span>{value}</span>
                 )}
             </div>
         </div>
