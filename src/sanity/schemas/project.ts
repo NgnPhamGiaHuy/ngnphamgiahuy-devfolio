@@ -1,4 +1,5 @@
 import { Rule } from "sanity";
+import seoFields from "./seoFields";
 
 export default {
     name: "project",
@@ -48,43 +49,22 @@ export default {
             name: "link",
             title: "Project URL",
             type: "url",
-            description: "Link to the live project or repository",
+            description: "Direct link to the live project or source repository",
         },
         {
             name: "featured",
             title: "Featured Project",
             type: "boolean",
-            description: "Mark this project as featured",
+            description: "Highlight this project as a featured showcase item",
             initialValue: false,
         },
         {
             name: "order",
             title: "Display Order",
             type: "number",
-            description:
-                "Order in which to display this project (lower numbers first)",
+            description: "Display priority order (lower numbers appear first)",
         },
-        {
-            name: "metaTitle",
-            title: "Meta Title",
-            type: "string",
-            description: "Title for SEO purposes",
-        },
-        {
-            name: "metaDescription",
-            title: "Meta Description",
-            type: "text",
-            description: "Description for SEO purposes",
-        },
-        {
-            name: "ogImage",
-            title: "Social Sharing Image",
-            type: "image",
-            description: "Image for social media sharing",
-            options: {
-                hotspot: true,
-            },
-        },
+        ...seoFields.fields,
     ],
     preview: {
         select: {

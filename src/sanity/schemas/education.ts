@@ -10,7 +10,8 @@ export default {
             title: "Year/Period",
             type: "string",
             validation: (Rule: Rule) => Rule.required(),
-            description: 'Time period of education (e.g., "2014 - 2018")',
+            description:
+                'Academic period (e.g., "2014 - 2018", "Sep 2020 - May 2024")',
         },
         {
             name: "degree",
@@ -34,8 +35,7 @@ export default {
             name: "order",
             title: "Display Order",
             type: "number",
-            description:
-                "Order in which to display this education item (lower numbers first)",
+            description: "Display priority order (lower numbers appear first)",
         },
     ],
     preview: {

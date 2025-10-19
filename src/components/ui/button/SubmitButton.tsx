@@ -7,11 +7,9 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ isSubmitting }) => {
         <button type={"submit"} disabled={isSubmitting} className={"z-2"}>
             <span className={"primary-button"}>
                 {isSubmitting ? (
-                    <>
+                    <div className={"flex flex-row items-center gap-2"}>
                         <svg
-                            className={
-                                "size-4 -ml-1 mr-2 text-white animate-spin"
-                            }
+                            className={"size-4 text-white animate-spin"}
                             xmlns={"http://www.w3.org/2000/svg"}
                             fill={"none"}
                             viewBox={"0 0 24 24"}
@@ -33,7 +31,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ isSubmitting }) => {
                             />
                         </svg>
                         Sending...
-                    </>
+                    </div>
                 ) : (
                     "Send Message"
                 )}

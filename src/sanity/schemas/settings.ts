@@ -1,3 +1,6 @@
+import { Rule } from "sanity";
+import seoFields from "./seoFields";
+
 export default {
     name: "settings",
     title: "Settings",
@@ -8,39 +11,7 @@ export default {
             title: "Logo Text",
             type: "string",
         },
-        {
-            name: "metaTitle",
-            title: "Default Meta Title",
-            type: "string",
-            description:
-                "Default title for SEO purposes (for pages without specific meta titles)",
-        },
-        {
-            name: "metaDescription",
-            title: "Default Meta Description",
-            type: "text",
-            description:
-                "Default description for SEO purposes (for pages without specific meta descriptions)",
-        },
-        {
-            name: "ogImage",
-            title: "Default Social Sharing Image",
-            type: "image",
-            description:
-                "Default image for social media sharing (for pages without specific OG images)",
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: "sectionsTitle",
-            title: "Sections Configuration Title",
-            type: "string",
-            initialValue: "Website Sections Configuration",
-            readOnly: true,
-            description:
-                "This is the main configuration for your website sections",
-        },
+        ...seoFields.fields,
         {
             name: "hero",
             title: "Hero Section",
@@ -51,7 +22,8 @@ export default {
                     title: "Enable Hero Section",
                     type: "boolean",
                     initialValue: true,
-                    description: "Show the main hero section with your profile",
+                    description:
+                        "Display the main hero section featuring your professional profile",
                 },
                 {
                     name: "resetAnimationOnView",
@@ -59,7 +31,7 @@ export default {
                     type: "boolean",
                     initialValue: false,
                     description:
-                        "Reset animations when scrolling back to this section",
+                        "Restart animations when users scroll back to this section",
                 },
             ],
             options: {
@@ -77,7 +49,7 @@ export default {
                     title: "Enable Services Section",
                     type: "boolean",
                     initialValue: true,
-                    description: "Show your service offerings",
+                    description: "Showcase your professional service offerings",
                 },
                 {
                     name: "resetAnimationOnView",
@@ -85,7 +57,7 @@ export default {
                     type: "boolean",
                     initialValue: false,
                     description:
-                        "Reset animations when scrolling back to this section",
+                        "Restart animations when users scroll back to this section",
                 },
             ],
             options: {
@@ -103,7 +75,8 @@ export default {
                     title: "Enable Skills Section",
                     type: "boolean",
                     initialValue: true,
-                    description: "Show your technical skills and expertise",
+                    description:
+                        "Display your technical skills and professional expertise",
                 },
                 {
                     name: "resetAnimationOnView",
@@ -111,7 +84,7 @@ export default {
                     type: "boolean",
                     initialValue: false,
                     description:
-                        "Reset animations when scrolling back to this section",
+                        "Restart animations when users scroll back to this section",
                 },
             ],
             options: {
@@ -129,7 +102,8 @@ export default {
                     title: "Enable Portfolios Section",
                     type: "boolean",
                     initialValue: true,
-                    description: "Show your project showcase",
+                    description:
+                        "Showcase your portfolio projects and creative work",
                 },
                 {
                     name: "resetAnimationOnView",
@@ -137,7 +111,7 @@ export default {
                     type: "boolean",
                     initialValue: false,
                     description:
-                        "Reset animations when scrolling back to this section",
+                        "Restart animations when users scroll back to this section",
                 },
             ],
             options: {
@@ -155,7 +129,8 @@ export default {
                     title: "Enable Resume Section",
                     type: "boolean",
                     initialValue: true,
-                    description: "Show work experience and education",
+                    description:
+                        "Display your work experience and educational background",
                 },
                 {
                     name: "resetAnimationOnView",
@@ -163,7 +138,7 @@ export default {
                     type: "boolean",
                     initialValue: false,
                     description:
-                        "Reset animations when scrolling back to this section",
+                        "Restart animations when users scroll back to this section",
                 },
             ],
             options: {
@@ -181,7 +156,8 @@ export default {
                     title: "Enable Certificates Section",
                     type: "boolean",
                     initialValue: true,
-                    description: "Show your professional certifications",
+                    description:
+                        "Showcase your professional certifications and achievements",
                 },
                 {
                     name: "resetAnimationOnView",
@@ -189,7 +165,7 @@ export default {
                     type: "boolean",
                     initialValue: false,
                     description:
-                        "Reset animations when scrolling back to this section",
+                        "Restart animations when users scroll back to this section",
                 },
             ],
             options: {
@@ -207,7 +183,8 @@ export default {
                     title: "Enable Testimonials Section",
                     type: "boolean",
                     initialValue: true,
-                    description: "Show client testimonials",
+                    description:
+                        "Display client testimonials and professional recommendations",
                 },
                 {
                     name: "resetAnimationOnView",
@@ -215,7 +192,7 @@ export default {
                     type: "boolean",
                     initialValue: false,
                     description:
-                        "Reset animations when scrolling back to this section",
+                        "Restart animations when users scroll back to this section",
                 },
             ],
             options: {
@@ -233,7 +210,8 @@ export default {
                     title: "Enable Pricing Section",
                     type: "boolean",
                     initialValue: true,
-                    description: "Show service pricing plans",
+                    description:
+                        "Display your service pricing plans and packages",
                 },
                 {
                     name: "resetAnimationOnView",
@@ -241,7 +219,7 @@ export default {
                     type: "boolean",
                     initialValue: false,
                     description:
-                        "Reset animations when scrolling back to this section",
+                        "Restart animations when users scroll back to this section",
                 },
             ],
             options: {
@@ -259,7 +237,7 @@ export default {
                     title: "Enable Blog Section",
                     type: "boolean",
                     initialValue: true,
-                    description: "Show latest blog posts",
+                    description: "Display your latest blog posts and articles",
                 },
                 {
                     name: "resetAnimationOnView",
@@ -267,7 +245,7 @@ export default {
                     type: "boolean",
                     initialValue: false,
                     description:
-                        "Reset animations when scrolling back to this section",
+                        "Restart animations when users scroll back to this section",
                 },
             ],
             options: {
@@ -285,7 +263,7 @@ export default {
                     title: "Enable Contact Section",
                     type: "boolean",
                     initialValue: true,
-                    description: "Show contact information and form",
+                    description: "Display contact information and inquiry form",
                 },
                 {
                     name: "resetAnimationOnView",
@@ -293,7 +271,7 @@ export default {
                     type: "boolean",
                     initialValue: false,
                     description:
-                        "Reset animations when scrolling back to this section",
+                        "Restart animations when users scroll back to this section",
                 },
             ],
             options: {
@@ -311,7 +289,7 @@ export default {
                     title: "Enable Map Section",
                     type: "boolean",
                     initialValue: true,
-                    description: "Show location map",
+                    description: "Display an interactive location map",
                 },
                 {
                     name: "resetAnimationOnView",
@@ -319,7 +297,26 @@ export default {
                     type: "boolean",
                     initialValue: false,
                     description:
-                        "Reset animations when scrolling back to this section",
+                        "Restart animations when users scroll back to this section",
+                },
+                {
+                    name: "embedUrl",
+                    title: "Google Maps Embed URL",
+                    type: "url",
+                    description:
+                        "Google Maps embed URL for your location (get from Google Maps > Share > Embed a map)",
+                    validation: (Rule: Rule) =>
+                        Rule.uri({
+                            scheme: ["https"],
+                        }),
+                },
+                {
+                    name: "height",
+                    title: "Map Height",
+                    type: "number",
+                    initialValue: 580,
+                    description: "Height of the map in pixels",
+                    validation: (Rule: Rule) => Rule.min(300).max(800),
                 },
             ],
             options: {
@@ -331,7 +328,6 @@ export default {
     preview: {
         select: {
             logo: "logo",
-            sectionsTitle: "sectionsTitle",
             hero: "hero.enabled",
             services: "services.enabled",
             skills: "skills.enabled",
@@ -346,7 +342,6 @@ export default {
         },
         prepare({
             logo,
-            sectionsTitle,
             hero,
             services,
             skills,
@@ -360,7 +355,6 @@ export default {
             map,
         }: {
             logo: string;
-            sectionsTitle: string;
             hero: boolean;
             services: boolean;
             skills: boolean;

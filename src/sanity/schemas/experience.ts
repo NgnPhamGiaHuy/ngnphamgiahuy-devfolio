@@ -11,7 +11,7 @@ export default {
             type: "string",
             validation: (Rule: Rule) => Rule.required(),
             description:
-                'Time period of the experience (e.g., "2020 - Present")',
+                'Employment period (e.g., "2020 - Present", "Jan 2019 - Dec 2021")',
         },
         {
             name: "title",
@@ -35,8 +35,7 @@ export default {
             name: "order",
             title: "Display Order",
             type: "number",
-            description:
-                "Order in which to display this experience (lower numbers first)",
+            description: "Display priority order (lower numbers appear first)",
         },
     ],
     preview: {

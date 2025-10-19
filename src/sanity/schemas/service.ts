@@ -27,14 +27,13 @@ export default {
             name: "icon",
             title: "Icon",
             type: "string",
-            description: "Icon name from your icon library",
+            description: "Icon identifier from your icon library",
         },
         {
             name: "order",
             title: "Display Order",
             type: "number",
-            description:
-                "Order in which to display this service (lower numbers first)",
+            description: "Display priority order (lower numbers appear first)",
         },
     ],
     preview: {

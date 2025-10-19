@@ -1,4 +1,5 @@
 import { Rule } from "sanity";
+import seoFields from "./seoFields";
 
 export default {
     name: "profile",
@@ -19,9 +20,11 @@ export default {
         },
         {
             name: "description",
-            title: "Description",
+            title: "Professional Summary",
             type: "text",
             validation: (Rule: Rule) => Rule.required(),
+            description:
+                "A compelling professional summary that highlights your expertise and value proposition",
         },
         {
             name: "location",
@@ -111,35 +114,16 @@ export default {
         },
         {
             name: "cv_link",
-            title: "CV/Resume File",
+            title: "Resume/CV",
             type: "file",
-            description: "Upload your CV/Resume as a PDF",
+            description:
+                "Upload your professional resume or CV as a PDF document",
             options: {
                 accept: "application/pdf",
             },
             validation: (Rule: Rule) => Rule.required(),
         },
-        {
-            name: "metaTitle",
-            title: "Meta Title",
-            type: "string",
-            description: "Title for SEO purposes",
-        },
-        {
-            name: "metaDescription",
-            title: "Meta Description",
-            type: "text",
-            description: "Description for SEO purposes",
-        },
-        {
-            name: "ogImage",
-            title: "Social Sharing Image",
-            type: "image",
-            description: "Image for social media sharing",
-            options: {
-                hotspot: true,
-            },
-        },
+        ...seoFields.fields,
     ],
     preview: {
         select: {

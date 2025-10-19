@@ -143,7 +143,7 @@ export const normalizeContactData = (
             value: normalizedProfile.location || "",
             label: "Location",
         },
-    ].filter((item) => item.value);
+    ].filter((item) => item.value && item.value.trim() !== "");
 };
 export const normalizeCertificatesData = (
     certificates?: Certificate[] | null,
@@ -265,7 +265,11 @@ export const getSectionData = (
 
         case "map":
             return {
-                profile: normalizeProfileData(props.profile, fallbackData),
+                mapConfig: props.settings?.map || {
+                    enabled: true,
+                    embedUrl: undefined,
+                    height: 580,
+                },
             };
 
         default:

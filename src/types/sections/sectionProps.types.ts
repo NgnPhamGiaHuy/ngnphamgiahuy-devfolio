@@ -9,6 +9,7 @@ import {
     Pricing,
     BlogPost,
     Certificate,
+    MapConfigItem,
 } from "../sanity.types";
 
 export interface BaseSectionProps {
@@ -62,7 +63,7 @@ export interface ContactSectionProps extends BaseSectionProps {
 }
 
 export interface MapSectionProps extends BaseSectionProps {
-    profile: Profile;
+    mapConfig: MapConfigItem;
 }
 
 export type SectionProps =

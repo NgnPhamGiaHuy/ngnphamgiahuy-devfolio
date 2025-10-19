@@ -26,14 +26,13 @@ export default {
             name: "category",
             title: "Category",
             type: "string",
-            description: "Optional category for grouping skills",
+            description: "Optional skill category for better organization",
         },
         {
             name: "order",
             title: "Display Order",
             type: "number",
-            description:
-                "Order in which to display this skill (lower numbers first)",
+            description: "Display priority order (lower numbers appear first)",
         },
     ],
     preview: {

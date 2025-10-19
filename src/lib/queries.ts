@@ -1,11 +1,11 @@
 export const profileQuery = `*[_type == "profile"][0] {
     _id,
     name,
-    title,
-    subtitle,
     job_title,
     description,
     location,
+    email,
+    phone,
     experience_years,
     profile_image {
         asset,
@@ -139,7 +139,6 @@ export const settingsQuery = `*[_type == "settings"][0] {
         alt,
         caption
     },
-    sectionsTitle,
     hero {
         enabled,
         resetAnimationOnView
@@ -182,7 +181,9 @@ export const settingsQuery = `*[_type == "settings"][0] {
     },
     map {
         enabled,
-        resetAnimationOnView
+        resetAnimationOnView,
+        embedUrl,
+        height
     }
 }`;
 

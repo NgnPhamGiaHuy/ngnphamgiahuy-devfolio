@@ -21,7 +21,8 @@ export default {
             name: "period",
             title: "Period",
             type: "string",
-            description: 'E.g. "per month" or "per project"',
+            description:
+                'Billing period (e.g., "per month", "per project", "one-time")',
             validation: (Rule: Rule) => Rule.required(),
         },
         {
@@ -59,8 +60,7 @@ export default {
             name: "order",
             title: "Display Order",
             type: "number",
-            description:
-                "Order in which to display this plan (lower numbers first)",
+            description: "Display priority order (lower numbers appear first)",
         },
     ],
     preview: {

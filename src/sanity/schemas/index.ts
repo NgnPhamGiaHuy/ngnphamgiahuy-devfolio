@@ -7,6 +7,7 @@ import education from "./education";
 import testimonial from "./testimonial";
 import pricing from "./pricing";
 import blogPost from "./blogPost";
+import seoFields from "./seoFields";
 import settings from "./settings";
 import certificate from "./certificate";
 
@@ -18,6 +19,7 @@ export const schemaTypes = [
     pricing,
     profile,
     project,
+    seoFields,
     settings,
     service,
     skill,

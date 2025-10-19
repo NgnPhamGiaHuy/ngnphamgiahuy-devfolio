@@ -76,5 +76,6 @@ export type {
     SanityImage,
     Certificate,
     SectionConfigItem,
+    MapConfigItem,
 } from "./sanity.types";
 export type { SocialLink, SocialPlatform, RawSocialLink } from "./social.types";

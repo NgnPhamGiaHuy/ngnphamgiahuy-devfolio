@@ -43,8 +43,7 @@ export default {
             name: "order",
             title: "Display Order",
             type: "number",
-            description:
-                "Order in which to display this testimonial (lower numbers first)",
+            description: "Display priority order (lower numbers appear first)",
         },
     ],
     preview: {

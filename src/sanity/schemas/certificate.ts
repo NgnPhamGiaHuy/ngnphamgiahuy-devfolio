@@ -11,46 +11,48 @@ export default {
             type: "string",
             validation: (Rule: Rule) => Rule.required(),
             description:
-                "Certificate title (e.g., 'AWS Certified Solutions Architect - Associate')",
+                "Professional certification title (e.g., 'AWS Certified Solutions Architect - Associate')",
         },
         {
             name: "issuer",
             title: "Issuing Organization",
             type: "string",
             validation: (Rule: Rule) => Rule.required(),
-            description: "Organization that issued the certificate",
+            description: "Official organization that issued this certification",
         },
         {
             name: "issueDate",
             title: "Issue Date",
             type: "date",
             validation: (Rule: Rule) => Rule.required(),
-            description: "Date when the certificate was issued",
+            description: "Date when the certification was officially issued",
         },
         {
             name: "expiryDate",
             title: "Expiry Date",
             type: "date",
             description:
-                "Date when the certificate expires (leave empty if no expiry)",
+                "Expiration date for time-limited certifications (leave empty if permanent)",
         },
         {
             name: "credentialId",
             title: "Credential ID",
             type: "string",
-            description: "Unique identifier for the certificate",
+            description:
+                "Unique credential identifier for verification purposes",
         },
         {
             name: "credentialUrl",
             title: "Verification URL",
             type: "url",
-            description: "Link to verify the certificate online",
+            description: "Direct link to verify this certification online",
         },
         {
             name: "description",
             title: "Description",
             type: "text",
-            description: "Brief description of what the certificate represents",
+            description:
+                "Brief overview of the certification's scope and value",
         },
         {
             name: "image",
@@ -64,7 +66,7 @@ export default {
                     name: "alt",
                     title: "Alt Text",
                     type: "string",
-                    description: "Alternative text for accessibility",
+                    description: "Descriptive text for accessibility and SEO",
                 },
             ],
         },
@@ -73,14 +75,13 @@ export default {
             title: "Category",
             type: "string",
             description:
-                "Category to group certificates (e.g., Cloud Computing, DevOps, Frontend Development, etc.)",
+                "Professional category for organizing certifications (e.g., Cloud Computing, DevOps, Frontend Development)",
         },
         {
             name: "order",
             title: "Display Order",
             type: "number",
-            description:
-                "Order in which to display this certificate (lower numbers first)",
+            description: "Display priority order (lower numbers appear first)",
         },
     ],
     preview: {

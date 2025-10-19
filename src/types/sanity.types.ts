@@ -142,7 +142,6 @@ export interface BlogPost extends SanityDocument, SeoFields {
 export interface Settings extends SanityDocument, SeoFields {
     _type: "settings";
     logo: string;
-    sectionsTitle: string;
     hero: SectionConfigItem;
     services: SectionConfigItem;
     skills: SectionConfigItem;
@@ -153,11 +152,16 @@ export interface Settings extends SanityDocument, SeoFields {
     pricing: SectionConfigItem;
     blog: SectionConfigItem;
     contact: SectionConfigItem;
-    map: SectionConfigItem;
+    map: MapConfigItem;
 }
 
 export interface SectionConfigItem {
     id?: string;
     enabled: boolean;
     resetAnimationOnView?: boolean;
+}
+
+export interface MapConfigItem extends SectionConfigItem {
+    embedUrl?: string;
+    height?: number;
 }

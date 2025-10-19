@@ -1,4 +1,5 @@
 import { Rule } from "sanity";
+import seoFields from "./seoFields";
 
 export default {
     name: "blogPost",
@@ -36,7 +37,7 @@ export default {
             type: "text",
             validation: (Rule: Rule) => Rule.required().max(160),
             description:
-                "A short summary of the blog post (max 160 characters)",
+                "A concise, engaging summary that highlights your blog's main insight for readers and SEO",
         },
         {
             name: "image",
@@ -77,7 +78,8 @@ export default {
                             name: "alt",
                             title: "Alternative text",
                             type: "string",
-                            description: "Important for SEO and accessibility",
+                            description:
+                                "Essential for SEO optimization and accessibility compliance",
                         },
                         {
                             name: "caption",
@@ -100,27 +102,7 @@ export default {
             type: "array",
             of: [{ type: "string" }],
         },
-        {
-            name: "metaTitle",
-            title: "Meta Title",
-            type: "string",
-            description: "Title for SEO purposes",
-        },
-        {
-            name: "metaDescription",
-            title: "Meta Description",
-            type: "text",
-            description: "Description for SEO purposes",
-        },
-        {
-            name: "ogImage",
-            title: "Social Sharing Image",
-            type: "image",
-            description: "Image for social media sharing",
-            options: {
-                hotspot: true,
-            },
-        },
+        ...seoFields.fields,
     ],
     preview: {
         select: {
