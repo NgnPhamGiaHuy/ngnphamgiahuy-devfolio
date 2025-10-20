@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React, { memo, useMemo } from "react";
+import React, { useMemo } from "react";
 
 import type { Profile } from "@/types";
 
@@ -9,7 +9,11 @@ import { AnimatedText } from "@/components";
 import { HeroAnimationsConfig } from "@/config";
 import { useHeroAnimationContext } from "@/context";
 
-const PersonalIntro = memo(({ profile }: { profile: Profile }) => {
+interface PersonalIntroProps {
+    profile: Profile;
+}
+
+const PersonalIntro: React.FC<PersonalIntroProps> = ({ profile }) => {
     const { timeline } = useHeroAnimationContext();
 
     const name = profile?.name || "Your Name";
@@ -135,7 +139,7 @@ const PersonalIntro = memo(({ profile }: { profile: Profile }) => {
             </motion.div>
         </motion.div>
     );
-});
+};
 
 PersonalIntro.displayName = "PersonalIntro";
 

@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import React, { useMemo } from "react";
 
 import type { Service, ServicesSectionProps } from "@/types";
 
@@ -26,7 +26,11 @@ const ContentCarousel = dynamic(
 ) as React.ComponentType<{
     items: Service[];
     spaceBetween?: number;
-    renderItem: (item: Service, index: number) => React.ReactNode;
+    renderItem: (
+        item: Service,
+        index: number,
+        isActive?: boolean
+    ) => React.ReactNode;
 }>;
 
 const Services: React.FC<ServicesSectionProps> = ({
@@ -34,7 +38,14 @@ const Services: React.FC<ServicesSectionProps> = ({
     services,
     resetAnimationOnView,
 }) => {
-    const containerVariants = StandardAnimations.fadeInUp(15);
+    const containerVariants = useMemo(
+        () => StandardAnimations.fadeInUp(15),
+        []
+    );
+    const innerStaggerVariants = useMemo(
+        () => StandardAnimations.staggerChildren(0.1, 0.2),
+        []
+    );
 
     return (
         <Wrapper
@@ -54,12 +65,16 @@ const Services: React.FC<ServicesSectionProps> = ({
             >
                 <motion.div
                     className={"p-[10px] flex-wrap-start"}
-                    variants={StandardAnimations.staggerChildren(0.1, 0.2)}
+                    variants={innerStaggerVariants}
                 >
                     <ContentCarousel
                         items={services}
-                        renderItem={(item, index) => (
-                            <ServiceCard item={item} index={index} />
+                        renderItem={(service, i, active) => (
+                            <ServiceCard
+                                item={service}
+                                index={i}
+                                isActive={active}
+                            />
                         )}
                     />
                     <BackdropText text={"Services"} />
@@ -68,5 +83,7 @@ const Services: React.FC<ServicesSectionProps> = ({
         </Wrapper>
     );
 };
+
+Services.displayName = "Services";
 
 export default Services;

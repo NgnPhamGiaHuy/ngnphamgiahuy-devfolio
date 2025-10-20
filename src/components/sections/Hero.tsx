@@ -1,16 +1,23 @@
 "use client";
 
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
-import React, { useMemo, memo } from "react";
 
 import type { HeroSectionProps } from "@/types";
 
 import { HeroAnimationProvider } from "@/context";
 import { useDynamicTextAnimation } from "@/hooks";
 import { HeroAnimationsConfig, vlinePositions } from "@/config";
-import { VerticalRule, BackdropText, BioSection, DownloadResumeButton, PersonalIntro, ProfileVisual, } from "@/components";
+import {
+    VerticalRule,
+    BackdropText,
+    BioSection,
+    DownloadResumeButton,
+    PersonalIntro,
+    ProfileVisual,
+} from "@/components";
 
-const Hero: React.FC<HeroSectionProps> = memo(({ id, profile, projects }) => {
+const Hero: React.FC<HeroSectionProps> = ({ id, profile, projects }) => {
     const { createTypingTimeline } = useDynamicTextAnimation();
 
     const containerVariants = useMemo(() => HeroAnimationsConfig.container, []);
@@ -78,7 +85,7 @@ const Hero: React.FC<HeroSectionProps> = memo(({ id, profile, projects }) => {
             </section>
         </HeroAnimationProvider>
     );
-});
+};
 
 Hero.displayName = "Hero";
 

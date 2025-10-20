@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 
 import type { AccordionContentProps } from "@/types";
 
@@ -35,28 +35,31 @@ const AccordionContent: React.FC<AccordionContentProps> = ({
         return () => observer.disconnect();
     }, [subheading, meta, content]);
 
-    const variants: Variants = {
-        open: {
-            height,
-            opacity: 1,
-            filter: "blur(0px)",
-            transition: {
-                height: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-                opacity: { duration: 0.25, delay: 0.12 },
-                filter: { duration: 0.25, delay: 0.12 },
+    const variants: Variants = useMemo(
+        () => ({
+            open: {
+                height,
+                opacity: 1,
+                filter: "blur(0px)",
+                transition: {
+                    height: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                    opacity: { duration: 0.25, delay: 0.12 },
+                    filter: { duration: 0.25, delay: 0.12 },
+                },
             },
-        },
-        closed: {
-            height: 1,
-            opacity: 0,
-            filter: "blur(1px)",
-            transition: {
-                height: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
-                opacity: { duration: 0.2 },
-                filter: { duration: 0.2 },
+            closed: {
+                height: 1,
+                opacity: 0,
+                filter: "blur(1px)",
+                transition: {
+                    height: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+                    opacity: { duration: 0.2 },
+                    filter: { duration: 0.2 },
+                },
             },
-        },
-    };
+        }),
+        [height]
+    );
 
     return (
         <motion.div
@@ -82,5 +85,7 @@ const AccordionContent: React.FC<AccordionContentProps> = ({
         </motion.div>
     );
 };
+
+AccordionContent.displayName = "AccordionContent";
 
 export default AccordionContent;

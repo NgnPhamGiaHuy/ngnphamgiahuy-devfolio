@@ -4,7 +4,13 @@ import type { SubmitButtonProps } from "@/types";
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({ isSubmitting }) => {
     return (
-        <button type={"submit"} disabled={isSubmitting} className={"z-2"}>
+        <button
+            type={"submit"}
+            disabled={isSubmitting}
+            className={"z-2"}
+            aria-busy={isSubmitting}
+            aria-live={"polite"}
+        >
             <span className={"primary-button"}>
                 {isSubmitting ? (
                     <div className={"flex flex-row items-center gap-2"}>
@@ -39,5 +45,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ isSubmitting }) => {
         </button>
     );
 };
+
+SubmitButton.displayName = "SubmitButton";
 
 export default SubmitButton;

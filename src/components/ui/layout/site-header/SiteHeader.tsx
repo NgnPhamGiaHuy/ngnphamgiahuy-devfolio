@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 
 import type { SiteHeaderProps } from "@/types";
 
@@ -12,16 +12,24 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({
     profile,
     className,
     logo = "Portfolio",
+    enabledSections,
 }) => {
     const headerRef = useRef<HTMLElement>(null);
 
     const { isMenuOpen, toggleMenu } = useMenuState();
     const { headerState, handleAnimationEnd } = useHeaderScroll();
 
+    const headerClassNames = useMemo(
+        () => `${getHeaderClasses(headerState)} ${className || ""}`,
+        [headerState, className]
+    );
+
     return (
         <header
             ref={headerRef}
-            className={`${getHeaderClasses(headerState)} ${className || ""}`}
+            className={headerClassNames}
+            role={"banner"}
+            aria-label={`Site header (${logo})`}
             onAnimationEnd={handleAnimationEnd}
         >
             <section className={"relative"}>
@@ -39,6 +47,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({
                             <Sidebar
                                 profile={profile}
                                 isMenuOpen={isMenuOpen}
+                                enabledSections={enabledSections}
                             />
                         </div>
                     </div>
@@ -47,5 +56,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({
         </header>
     );
 };
+
+SiteHeader.displayName = "SiteHeader";
 
 export default SiteHeader;

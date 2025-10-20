@@ -49,7 +49,10 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
             <AnimatePresence mode={"popLayout"}>
                 {displayedPortfolios.map((portfolio, index) => (
                     <motion.div
-                        key={portfolio._id || `portfolio-${index}`}
+                        key={
+                            portfolio._id ||
+                            `${portfolio.name || "portfolio"}-${portfolio.link || ""}-${index}`
+                        }
                         layout
                         variants={itemVariants}
                         transition={{
@@ -64,5 +67,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
         </motion.div>
     );
 };
+
+ProjectGrid.displayName = "ProjectGrid";
 
 export default ProjectGrid;

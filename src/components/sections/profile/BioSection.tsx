@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React, { memo, useMemo } from "react";
+import React, { useMemo } from "react";
 
 import type { Profile } from "@/types";
 
@@ -14,7 +14,7 @@ interface BioSectionProps {
     profile: Profile;
 }
 
-const BioSection: React.FC<BioSectionProps> = memo(({ profile }) => {
+const BioSection: React.FC<BioSectionProps> = ({ profile }) => {
     const { timeline } = useHeroAnimationContext();
 
     const description =
@@ -83,7 +83,7 @@ const BioSection: React.FC<BioSectionProps> = memo(({ profile }) => {
             )}
         </motion.div>
     );
-});
+};
 
 BioSection.displayName = "BioSection";
 

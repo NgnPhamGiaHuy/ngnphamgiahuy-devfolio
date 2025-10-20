@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { motion, useInView } from "framer-motion";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import type { WrapperProps } from "@/types";
 
@@ -20,7 +20,7 @@ const Wrapper: React.FC<WrapperProps> = ({
     resetAnimationOnView = false,
     children,
 }) => {
-    const sectionRef = useRef(null);
+    const sectionRef = useRef<HTMLElement | null>(null);
     const isInView = useInView(sectionRef, {
         once: !resetAnimationOnView,
         amount: 0.1,
@@ -33,8 +33,14 @@ const Wrapper: React.FC<WrapperProps> = ({
         }
     }, [isInView, resetAnimationOnView]);
 
-    const backgroundClass = backgroundByName[backgroundVariant];
-    const vlineProps = vlinePositions[verticalRulePosition];
+    const backgroundClass = useMemo(
+        () => backgroundByName[backgroundVariant],
+        [backgroundVariant]
+    );
+    const vlineProps = useMemo(
+        () => vlinePositions[verticalRulePosition],
+        [verticalRulePosition]
+    );
 
     return (
         <section
@@ -77,5 +83,7 @@ const Wrapper: React.FC<WrapperProps> = ({
         </section>
     );
 };
+
+Wrapper.displayName = "Wrapper";
 
 export default Wrapper;

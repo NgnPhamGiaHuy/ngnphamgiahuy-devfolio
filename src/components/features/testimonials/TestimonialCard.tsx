@@ -1,15 +1,26 @@
-import React from "react";
 import Image from "next/image";
+import React, { useMemo } from "react";
 
-import { TestimonialCardProps } from "@/types";
+import type { TestimonialCardProps } from "@/types";
+
 import { processImage } from "@/utils";
 
+const IMAGE_WIDTH = 600;
+const IMAGE_HEIGHT = 400;
+
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ item }) => {
-    const { url: imageUrl, alt: imageAlt } = processImage(
-        item.image,
-        { width: 600, height: 400, fallbackImage: "/images/profile2.png" },
-        item.name || "testimonial image"
-    );
+    const { imageUrl, imageAlt } = useMemo(() => {
+        const { url, alt } = processImage(
+            item.image,
+            {
+                width: IMAGE_WIDTH,
+                height: IMAGE_HEIGHT,
+                fallbackImage: "/images/profile2.png",
+            },
+            item.name || "testimonial image"
+        );
+        return { imageUrl: url, imageAlt: alt };
+    }, [item.image, item.name]);
 
     return (
         <div
@@ -26,11 +37,15 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ item }) => {
                     <Image
                         src={imageUrl}
                         alt={imageAlt}
-                        width={600}
-                        height={400}
+                        width={IMAGE_WIDTH}
+                        height={IMAGE_HEIGHT}
                         className={
                             "max-w-full w-full h-[180px] rounded-[18px] object-center object-cover border-none shadow-none relative"
                         }
+                        sizes="(max-width: 768px) 100vw, 600px"
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="auto"
                     />
                     <div
                         className={
@@ -72,5 +87,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ item }) => {
         </div>
     );
 };
+
+TestimonialCard.displayName = "TestimonialCard";
 
 export default TestimonialCard;

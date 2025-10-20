@@ -15,15 +15,19 @@ const ContentCarousel = dynamic(
     {
         ssr: false,
         loading: () => (
-            <div className={"swiper-carousel-outer"}>
-                <div className={"swiper-carousel"}>Loading...</div>
+            <div className="swiper-carousel-outer">
+                <div className="swiper-carousel">Loading...</div>
             </div>
         ),
     }
 ) as React.ComponentType<{
     items: Testimonial[];
     spaceBetween?: number;
-    renderItem: (item: Testimonial, index: number) => React.ReactNode;
+    renderItem: (
+        item: Testimonial,
+        index: number,
+        isActive?: boolean
+    ) => React.ReactNode;
 }>;
 
 const Testimonials: React.FC<TestimonialsSectionProps> = ({
@@ -45,8 +49,14 @@ const Testimonials: React.FC<TestimonialsSectionProps> = ({
                     <ContentCarousel
                         items={testimonials}
                         spaceBetween={40}
-                        renderItem={(item, index) => (
-                            <TestimonialCard key={index} item={item} />
+                        renderItem={(testimonial, index) => (
+                            <TestimonialCard
+                                key={
+                                    (testimonial as any)._id ||
+                                    `${testimonial.name}-${index}`
+                                }
+                                item={testimonial}
+                            />
                         )}
                     />
                     <BackdropText text={"Reviews"} />
@@ -55,5 +65,7 @@ const Testimonials: React.FC<TestimonialsSectionProps> = ({
         </Wrapper>
     );
 };
+
+Testimonials.displayName = "Testimonials";
 
 export default Testimonials;

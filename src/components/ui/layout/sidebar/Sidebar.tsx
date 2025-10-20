@@ -1,6 +1,6 @@
 "use client";
 
-import React, { memo } from "react";
+import React, { useMemo } from "react";
 
 import type { SidebarProps } from "@/types";
 
@@ -9,13 +9,49 @@ import { generateSocialLinks } from "@/utils";
 import { useSidebarAnimation } from "@/hooks";
 import { VerticalRule, SocialLinks, NavItem } from "@/components";
 
-const Sidebar: React.FC<SidebarProps> = memo(({ profile, isMenuOpen }) => {
+const SECTION_DISPLAY_NAMES: Record<string, string> = {
+    hero: "Home",
+    services: "Services",
+    skills: "Skills",
+    portfolios: "Portfolios",
+    resume: "Resume",
+    certificates: "Certificates",
+    testimonials: "Testimonials",
+    pricing: "Pricing",
+    blog: "Blog",
+    contact: "Contact",
+    map: "Map",
+};
+
+const Sidebar: React.FC<SidebarProps> = ({
+    profile,
+    isMenuOpen,
+    enabledSections,
+}) => {
     const { sidebarEntered, handleTransitionEnd } =
         useSidebarAnimation(isMenuOpen);
 
-    const socialLinks = generateSocialLinks(profile.social_links);
+    const socialLinks = useMemo(
+        () => generateSocialLinks(profile.social_links),
+        [profile.social_links]
+    );
 
-    const sidebarClasses = `sidebar ${isMenuOpen ? "sidebar-visible" : "sidebar-hidden"}`;
+    const menuItems = useMemo(() => {
+        if (enabledSections) {
+            return enabledSections
+                .filter((section) => section.enabled && section.id)
+                .map(
+                    (section) =>
+                        SECTION_DISPLAY_NAMES[section.id!] || section.id!
+                );
+        }
+        return SIDEBAR_CONFIG.MENU_ITEMS;
+    }, [enabledSections]);
+
+    const sidebarClasses = useMemo(
+        () => `sidebar ${isMenuOpen ? "sidebar-visible" : "sidebar-hidden"}`,
+        [isMenuOpen]
+    );
 
     return (
         <div
@@ -33,16 +69,14 @@ const Sidebar: React.FC<SidebarProps> = memo(({ profile, isMenuOpen }) => {
                                 aria-label={"Navigation menu"}
                             >
                                 <ul role={"menubar"}>
-                                    {SIDEBAR_CONFIG.MENU_ITEMS.map(
-                                        (item, index) => (
-                                            <NavItem
-                                                key={item}
-                                                text={item}
-                                                index={index}
-                                                sidebarEntered={sidebarEntered}
-                                            />
-                                        )
-                                    )}
+                                    {menuItems.map((item, index) => (
+                                        <NavItem
+                                            key={item}
+                                            text={item}
+                                            index={index}
+                                            sidebarEntered={sidebarEntered}
+                                        />
+                                    ))}
                                 </ul>
                             </nav>
                             <SocialLinks
@@ -66,7 +100,7 @@ const Sidebar: React.FC<SidebarProps> = memo(({ profile, isMenuOpen }) => {
             </div>
         </div>
     );
-});
+};
 
 Sidebar.displayName = "Sidebar";
 

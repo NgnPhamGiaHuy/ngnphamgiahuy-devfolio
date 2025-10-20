@@ -7,7 +7,7 @@ interface ThemeProviderProps {
     children: React.ReactNode;
 }
 
-const ThemeProvider = ({ children }: ThemeProviderProps) => {
+const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -29,5 +29,7 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
         </NextThemeProvider>
     );
 };
+
+ThemeProvider.displayName = "ThemeProvider";
 
 export default ThemeProvider;

@@ -36,15 +36,18 @@ export default async function Home() {
         ],
     });
 
+    const profile = normalizeProfileData(data.profile, FallbackData);
     const enabledSections = normalizeSectionConfigData(data.settings).filter(
         (section) => section.enabled
     );
 
-    const profile = normalizeProfileData(data.profile, FallbackData);
-
     return (
         <div className={"min-h-[50vh] overflow-hidden relative"}>
-            <SiteHeader profile={profile} logo={data.settings?.logo} />
+            <SiteHeader
+                profile={profile}
+                logo={data.settings?.logo}
+                enabledSections={enabledSections}
+            />
             <div className={"relative"}>
                 {enabledSections.map((section) =>
                     renderSection(section, { sectionProps: data })

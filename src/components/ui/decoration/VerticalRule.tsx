@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import type { VerticalRuleProps } from "@/types";
 
@@ -11,21 +11,40 @@ const VerticalRule: React.FC<VerticalRuleProps> = ({
     shadow = "before:shadow-[var(--shadow-offset-md)] after:shadow-[var(--shadow-offset-md)]",
     showPattern = true,
     className = "",
-}) => {
-    const style: React.CSSProperties = {
-        width,
-        top,
-        right,
-        bottom,
-        left,
-        position: "absolute",
-    };
+}: VerticalRuleProps) => {
+    const normalizedWidth = useMemo(
+        () => (/^\d+$/.test(width) ? `${width}px` : width),
+        [width]
+    );
+
+    const style: React.CSSProperties = useMemo(
+        () => ({
+            width: normalizedWidth,
+            top,
+            right,
+            bottom,
+            left,
+            position: "absolute",
+        }),
+        [normalizedWidth, top, right, bottom, left]
+    );
 
     return (
-        <div className={`vertical-rule ${shadow} ${className}`} style={style}>
-            {showPattern && <span className={"vertical-rule-pattern"}></span>}
+        <div
+            className={`vertical-rule ${shadow} ${className}`}
+            style={style}
+            aria-hidden={"true"}
+        >
+            {showPattern && (
+                <span
+                    className={"vertical-rule-pattern"}
+                    aria-hidden={"true"}
+                ></span>
+            )}
         </div>
     );
 };
+
+VerticalRule.displayName = "VerticalRule";
 
 export default VerticalRule;

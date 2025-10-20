@@ -24,3 +24,4 @@ export {
     normalizeSectionConfigData,
 } from "./sectionDataHelpers";
 export { generateSocialLinks, getIconForPlatform } from "./socialLinks";
+export { formatDate } from "./dateUtils";

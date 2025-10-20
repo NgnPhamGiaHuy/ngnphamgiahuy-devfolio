@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import type { Profile, Settings, BlogPost } from "@/types/sanity.types";
+import type { Profile, Settings } from "@/types/sanity.types";
 
 import { data as mockData } from "@/data";
 import { urlFor } from "./sanity";
@@ -40,8 +40,22 @@ export const generateHomePageMetadata = async (): Promise<Metadata> => {
             }),
         ]);
 
-        const baseUrl =
-            process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+        const resolveBaseUrl = (): string => {
+            const envUrl =
+                process.env.NEXT_PUBLIC_BASE_URL ||
+                process.env.NEXT_PUBLIC_SITE_URL ||
+                process.env.NEXT_PUBLIC_VERCEL_URL ||
+                "http://localhost:3000";
+
+            const withProtocol = envUrl.startsWith("http")
+                ? envUrl
+                : `https://${envUrl}`;
+            return withProtocol.endsWith("/")
+                ? withProtocol.slice(0, -1)
+                : withProtocol;
+        };
+
+        const baseUrl = resolveBaseUrl();
 
         const effectiveProfile = profile ?? (mockData as any)?.profile ?? null;
 

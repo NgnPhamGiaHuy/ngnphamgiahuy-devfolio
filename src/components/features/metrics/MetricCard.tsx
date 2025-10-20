@@ -61,4 +61,6 @@ const MetricCard: React.FC<MetricCardProps> = ({
     );
 };
 
+MetricCard.displayName = "MetricCard";
+
 export default MetricCard;

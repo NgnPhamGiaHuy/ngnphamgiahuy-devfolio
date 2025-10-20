@@ -1,4 +1,3 @@
-// Section components
 export { default as Blog } from "./Blog";
 export { default as Certificates } from "./Certificates";
 export { default as Contact } from "./Contact";
@@ -11,5 +10,4 @@ export { default as Skills } from "./Skills";
 export { default as Testimonials } from "./Testimonials";
 export { default as Portfolios } from "./Portfolios";
 
-// Re-export wrapper components
 export { Wrapper, WrapperHeader } from "./wrapper/index";

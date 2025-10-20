@@ -5,4 +5,5 @@ export interface ServiceCardProps {
         description: string;
     };
     index: number;
+    isActive?: boolean;
 }

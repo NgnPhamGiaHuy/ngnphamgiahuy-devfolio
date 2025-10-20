@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 
 import type { SkillsSectionProps } from "@/types";
@@ -13,8 +13,11 @@ const Skills: React.FC<SkillsSectionProps> = ({
     skills,
     resetAnimationOnView,
 }) => {
-    const itemVariants = StandardAnimations.springUp(30);
-    const containerVariants = StandardAnimations.fadeInUp(15);
+    const itemVariants = useMemo(() => StandardAnimations.springUp(30), []);
+    const containerVariants = useMemo(
+        () => StandardAnimations.fadeInUp(15),
+        []
+    );
 
     return (
         <Wrapper
@@ -40,7 +43,7 @@ const Skills: React.FC<SkillsSectionProps> = ({
             >
                 {skills.map((item, index) => (
                     <SkillCard
-                        key={index}
+                        key={(item as any)._id || `${item.name}-${index}`}
                         item={item}
                         variants={itemVariants}
                     />
@@ -50,5 +53,7 @@ const Skills: React.FC<SkillsSectionProps> = ({
         </Wrapper>
     );
 };
+
+Skills.displayName = "Skills";
 
 export default Skills;

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { UseFormRegisterReturn } from "react-hook-form";
 
-import type { Profile } from "../sanity.types";
+import type { Profile, SectionConfigItem } from "../sanity.types";
 import type { SocialLink } from "../social.types";
 
 export type {
@@ -46,7 +46,7 @@ export interface BackdropTextProps {
 export interface ContentCarouselProps<T> {
     items: T[];
     spaceBetween?: number;
-    renderItem: (item: T, index: number) => React.ReactNode;
+    renderItem: (item: T, index: number, isActive?: boolean) => React.ReactNode;
 }
 
 export interface DownloadResumeButtonProps {
@@ -75,11 +75,13 @@ export interface FormStatusProps {
 export interface SidebarProps {
     profile: Profile;
     isMenuOpen: boolean;
+    enabledSections?: SectionConfigItem[];
 }
 export interface SiteHeaderProps {
     profile: Profile;
     logo?: string;
     className?: string;
+    enabledSections?: SectionConfigItem[];
 }
 export interface SocialLinksProps {
     links: SocialLink[];

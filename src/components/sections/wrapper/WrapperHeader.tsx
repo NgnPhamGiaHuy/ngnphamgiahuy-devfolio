@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
+import React, { useEffect, useMemo, useState } from "react";
 
 import type { WrapperHeaderProps } from "@/types";
 
@@ -20,30 +20,34 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({
         }
     }, [isInView]);
 
-    const firstSubtitleWord = subtitle.split(" ")[0];
-    const restSubtitleWords = subtitle.split(" ").slice(1).join(" ");
+    const { firstSubtitleWord, restSubtitleWords } = useMemo(() => {
+        const parts = subtitle.split(" ");
+        return {
+            firstSubtitleWord: parts[0] || "",
+            restSubtitleWords: parts.slice(1).join(" "),
+        };
+    }, [subtitle]);
 
-    const itemVariants: Variants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.25 },
-        },
-    };
-
-    const spanVariants = ({ index }: { index: number }): Variants => {
-        const variants = {
+    const itemVariants: Variants = useMemo(
+        () => ({
             hidden: { opacity: 0, y: 20 },
             visible: {
                 opacity: 1,
                 y: 0,
-                transition: { delay: index * 0.25 },
+                transition: { duration: 0.25 },
             },
-        };
+        }),
+        []
+    );
 
-        return variants;
-    };
+    const spanVariants = ({ index }: { index: number }): Variants => ({
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { delay: index * 0.25 },
+        },
+    });
 
     return (
         <section className={"wrapper-header"}>
@@ -107,5 +111,7 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({
         </section>
     );
 };
+
+WrapperHeader.displayName = "WrapperHeader";
 
 export default WrapperHeader;

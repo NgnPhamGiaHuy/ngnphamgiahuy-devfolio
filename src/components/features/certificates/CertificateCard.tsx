@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -8,54 +8,74 @@ import { motion } from "framer-motion";
 import type { Certificate } from "@/types";
 
 import { ArrowLink } from "@/components";
-import { processImage } from "@/utils";
 import { StandardAnimations } from "@/config";
+import { processImage, formatDate } from "@/utils";
 
-const CertificateCard = ({
-    index,
-    item,
-}: {
+const cardVariants = StandardAnimations.scaleIn(0.95);
+const IMAGE_WIDTH = 400;
+const IMAGE_HEIGHT = 250;
+
+interface CertificateCardProps {
     index: number;
     item: Certificate;
+    isActive?: boolean;
+}
+
+const CertificateCard: React.FC<CertificateCardProps> = ({
+    item,
+    isActive = false,
 }) => {
-    const { url: imageUrl, alt: imageAlt } = processImage(
-        item.image,
-        { width: 400, height: 250, fallbackImage: "/images/profile2.png" },
-        item.title
+    const { imageUrl, imageAlt } = useMemo(() => {
+        const { url, alt } = processImage(
+            item.image,
+            {
+                width: IMAGE_WIDTH,
+                height: IMAGE_HEIGHT,
+                fallbackImage: "/images/profile2.png",
+            },
+            item.title
+        );
+        return { imageUrl: url, imageAlt: alt };
+    }, [item.image, item.title]);
+
+    const issuedDate = useMemo(
+        () => formatDate(item.issueDate),
+        [item.issueDate]
+    );
+    const expiryDate = useMemo(
+        () => (item.expiryDate ? formatDate(item.expiryDate) : null),
+        [item.expiryDate]
     );
 
-    const formatDate = (dateString: string): string => {
-        const date = new Date(dateString);
-
-        return date.toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "2-digit",
-        });
-    };
-    const cardVariants = StandardAnimations.scaleIn(0.95);
+    const credentialHref = item.credentialUrl || "#";
 
     return (
         <motion.div
-            key={index}
             className="card"
             variants={cardVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: index * 0.1 }}
+            animate={isActive ? "visible" : "hidden"}
+            transition={{ delay: 0.1 }}
         >
             <div className="card-inner">
                 <div className="h-full flex flex-col justify-between">
                     {/* Image Section */}
                     <div className="mt-[30px] order-2">
-                        <Link href={item.credentialUrl || "#"}>
+                        <Link
+                            href={credentialHref}
+                            aria-label={`Open certificate: ${item.title}`}
+                            prefetch
+                        >
                             <Image
                                 src={imageUrl}
                                 alt={imageAlt}
                                 className="w-full h-[180px] object-cover rounded-[20px]"
-                                width={400}
-                                height={250}
+                                width={IMAGE_WIDTH}
+                                height={IMAGE_HEIGHT}
+                                sizes="(max-width: 768px) 100vw, 400px"
+                                loading="lazy"
+                                decoding="async"
+                                fetchPriority="auto"
                             />
                         </Link>
                     </div>
@@ -66,18 +86,20 @@ const CertificateCard = ({
                             {/* Header */}
                             <div>
                                 <div className="mt-[15px] mb-[4px] text-[13px] text-inverse! font-medium uppercase tracking-wider">
-                                    <span>{formatDate(item.issueDate)}</span>
-                                    {item.expiryDate && (
+                                    <span>{issuedDate}</span>
+                                    {expiryDate && (
                                         <>
                                             <span className="mx-2">-</span>
-                                            <span>
-                                                {formatDate(item.expiryDate)}
-                                            </span>
+                                            <span>{expiryDate}</span>
                                         </>
                                     )}
                                 </div>
                                 <h5 className="text-[24px] text-inverse!">
-                                    <Link href={item.credentialUrl || "#"}>
+                                    <Link
+                                        href={credentialHref}
+                                        aria-label={`View certificate details for: ${item.title}`}
+                                        prefetch
+                                    >
                                         {item.title}
                                     </Link>
                                 </h5>
@@ -86,7 +108,7 @@ const CertificateCard = ({
                             {/* Description */}
                             <div className="opacity-80">
                                 {item.description && (
-                                    <p className="mb-2 line-clamp-3">
+                                    <p className="mb-2 line-clamp-4">
                                         {item.description}
                                     </p>
                                 )}
@@ -95,7 +117,7 @@ const CertificateCard = ({
 
                         {/* Action */}
                         <div className="mt-[10px] opacity-80">
-                            <ArrowLink href={item.credentialUrl || "#"}>
+                            <ArrowLink href={credentialHref}>
                                 View Certificate
                             </ArrowLink>
                         </div>
@@ -105,5 +127,7 @@ const CertificateCard = ({
         </motion.div>
     );
 };
+
+CertificateCard.displayName = "CertificateCard";
 
 export default CertificateCard;

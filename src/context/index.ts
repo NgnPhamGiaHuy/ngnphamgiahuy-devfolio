@@ -1,4 +1,3 @@
-// Context providers
 export {
     HeroAnimationProvider,
     useHeroAnimationContext,

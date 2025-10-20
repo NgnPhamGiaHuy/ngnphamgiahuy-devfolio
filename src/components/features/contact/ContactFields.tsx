@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import React from "react";
+import clsx from "clsx";
 
 import type { ContactFieldsProps } from "@/types";
 
@@ -14,11 +14,11 @@ const ContactFields: React.FC<ContactFieldsProps> = ({
 }) => {
     const termsAccepted = watch("termsAccepted");
 
-    const getLabelColor = () => {
-        if (errors.termsAccepted) return "text-red-500";
-        if (termsAccepted) return "text-green-600";
-        return "text-gray-700";
-    };
+    const labelColor = errors.termsAccepted
+        ? "text-red-500"
+        : termsAccepted
+          ? "text-green-600"
+          : "text-gray-700";
 
     return (
         <div className={"contact-fields"}>
@@ -59,32 +59,33 @@ const ContactFields: React.FC<ContactFieldsProps> = ({
             />
             <div className={"contact-fields-footer"}>
                 <div className={"contact-fields-terms-container"}>
-                    <span className={"relative"}>
-                        <span className={"contact-fields-terms-label-wrapper"}>
-                            <label
-                                htmlFor={"termsAccepted"}
-                                className={clsx(
-                                    getLabelColor(),
-                                    "contact-fields-terms-label"
-                                )}
-                            >
-                                <span className={"contact-fields-terms-text"}>
-                                    Accept the terms and conditions
-                                </span>
-                                <input
-                                    type={"checkbox"}
-                                    id={"termsAccepted"}
-                                    className={"contact-fields-terms-checkbox"}
-                                    {...register("termsAccepted")}
-                                />
-                            </label>
+                    <label
+                        htmlFor={"termsAccepted"}
+                        className={clsx(
+                            labelColor,
+                            "contact-fields-terms-label"
+                        )}
+                    >
+                        <span className={"contact-fields-terms-text"}>
+                            Accept the terms and conditions
                         </span>
-                    </span>
+                        <input
+                            type={"checkbox"}
+                            id={"termsAccepted"}
+                            className={"contact-fields-terms-checkbox"}
+                            aria-invalid={
+                                Boolean(errors.termsAccepted) || undefined
+                            }
+                            {...register("termsAccepted")}
+                        />
+                    </label>
                 </div>
                 <SubmitButton isSubmitting={isSubmitting} />
             </div>
         </div>
     );
 };
+
+ContactFields.displayName = "ContactFields";
 
 export default ContactFields;

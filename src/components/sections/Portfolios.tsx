@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
+import React, { useMemo } from "react";
 
 import type { PortfoliosSectionProps } from "@/types";
 
@@ -21,10 +21,14 @@ const Portfolios: React.FC<PortfoliosSectionProps> = ({
     hideSeeMore = false,
     resetAnimationOnView,
 }) => {
-    const normalizedItems = projects.map((p) => ({
-        ...p,
-        category: p.category ?? "Uncategorized",
-    }));
+    const normalizedItems = useMemo(
+        () =>
+            projects.map((p) => ({
+                ...p,
+                category: p.category ?? "Uncategorized",
+            })),
+        [projects]
+    );
 
     const {
         categories,
@@ -32,6 +36,11 @@ const Portfolios: React.FC<PortfoliosSectionProps> = ({
         filteredPortfolios,
         handleCategoryChange,
     } = useCategoryFilter(normalizedItems);
+
+    const showSeeMore = useMemo(
+        () => !hideSeeMore && projects.length > 5,
+        [hideSeeMore, projects.length]
+    );
 
     return (
         <Wrapper
@@ -56,13 +65,17 @@ const Portfolios: React.FC<PortfoliosSectionProps> = ({
                                 maxItems={maxItems}
                                 portfolios={filteredPortfolios}
                             />
-                            {!hideSeeMore && projects.length > 5 && (
+                            {showSeeMore && (
                                 <div
                                     className={
                                         "mt-[70px] max-lg:mt-[50px] text-center relative z-2"
                                     }
                                 >
-                                    <Link href={`/${id}`}>
+                                    <Link
+                                        href={`/${id}`}
+                                        aria-label={`View more projects in ${id}`}
+                                        prefetch
+                                    >
                                         <span className={"primary-button"}>
                                             View More
                                         </span>
@@ -77,5 +90,7 @@ const Portfolios: React.FC<PortfoliosSectionProps> = ({
         </Wrapper>
     );
 };
+
+Portfolios.displayName = "Portfolios";
 
 export default Portfolios;

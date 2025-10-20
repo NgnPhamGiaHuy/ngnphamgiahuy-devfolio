@@ -10,27 +10,35 @@ const ContactMethodCard: React.FC<ContactMethodCardProps> = ({
     value,
     label,
 }) => {
-    const config =
-        CONTACT_TYPE_CONFIG[type.toLowerCase()] || DEFAULT_CONTACT_CONFIG;
+    const key = typeof type === "string" ? type.toLowerCase() : "";
+    const config = CONTACT_TYPE_CONFIG[key] || DEFAULT_CONTACT_CONFIG;
 
     const displayLabel =
-        label || config.label || type.charAt(0).toUpperCase() + type.slice(1);
+        label ||
+        config.label ||
+        (typeof type === "string"
+            ? type.charAt(0).toUpperCase() + type.slice(1)
+            : "");
 
     const link = config.linkGenerator ? config.linkGenerator(value) : null;
-
     const Icon = config.icon;
 
     return (
         <div className={"contact-method-card"}>
             <div className={"contact-method-card-icon-wrapper"}>
-                <Icon className={"size-5"} />
+                {Icon ? <Icon className={"size-5"} /> : <span aria-hidden />}
             </div>
             <div className={"contact-method-card-label"}>
                 <span>{displayLabel}</span>
             </div>
             <div className={"opacity-80"}>
                 {link ? (
-                    <Link href={link} className={"contact-method-card-link"}>
+                    <Link
+                        href={link}
+                        className={"contact-method-card-link"}
+                        aria-label={`${displayLabel}: ${value}`}
+                        prefetch
+                    >
                         {value}
                     </Link>
                 ) : (
@@ -40,5 +48,7 @@ const ContactMethodCard: React.FC<ContactMethodCardProps> = ({
         </div>
     );
 };
+
+ContactMethodCard.displayName = "ContactMethodCard";
 
 export default ContactMethodCard;

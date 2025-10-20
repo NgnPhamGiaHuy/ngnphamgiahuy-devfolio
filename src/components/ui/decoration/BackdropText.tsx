@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import type { BackdropTextProps } from "@/types";
 
@@ -10,7 +10,10 @@ const BackdropText: React.FC<BackdropTextProps> = ({
     left = "0",
     className = "",
 }) => {
-    const positionStyle: React.CSSProperties = { top, right, bottom, left };
+    const positionStyle: React.CSSProperties = useMemo(
+        () => ({ top, right, bottom, left }),
+        [top, right, bottom, left]
+    );
 
     return (
         <div
@@ -28,5 +31,7 @@ const BackdropText: React.FC<BackdropTextProps> = ({
         </div>
     );
 };
+
+BackdropText.displayName = "BackdropText";
 
 export default BackdropText;

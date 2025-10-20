@@ -1,19 +1,31 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 
 import type { CertificatesSectionProps } from "@/types";
 
 import { StandardAnimations } from "@/config";
-import { Wrapper, BackdropText, CertificateCard, ContentCarousel, } from "@/components";
+import {
+    Wrapper,
+    BackdropText,
+    CertificateCard,
+    ContentCarousel,
+} from "@/components";
 
 const Certificates: React.FC<CertificatesSectionProps> = ({
     id,
     certificates,
     resetAnimationOnView,
 }) => {
-    const containerVariants = StandardAnimations.fadeInUp(15);
+    const containerVariants = useMemo(
+        () => StandardAnimations.fadeInUp(15),
+        []
+    );
+    const innerStaggerVariants = useMemo(
+        () => StandardAnimations.staggerChildren(0.1, 0.2),
+        []
+    );
 
     return (
         <Wrapper
@@ -25,20 +37,24 @@ const Certificates: React.FC<CertificatesSectionProps> = ({
             resetAnimationOnView={resetAnimationOnView}
         >
             <motion.div
-                className={"flex-full"}
+                className="flex-full"
                 variants={containerVariants}
-                initial={"hidden"}
-                whileInView={"visible"}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
             >
                 <motion.div
-                    className={"p-[10px] flex-wrap-start"}
-                    variants={StandardAnimations.staggerChildren(0.1, 0.2)}
+                    className="p-[10px] flex-wrap-start"
+                    variants={innerStaggerVariants}
                 >
                     <ContentCarousel
                         items={certificates}
-                        renderItem={(item, index) => (
-                            <CertificateCard item={item} index={index} />
+                        renderItem={(item, index, isActive) => (
+                            <CertificateCard
+                                item={item}
+                                index={index}
+                                isActive={isActive}
+                            />
                         )}
                     />
                     <BackdropText text={"Services"} />
@@ -47,5 +63,7 @@ const Certificates: React.FC<CertificatesSectionProps> = ({
         </Wrapper>
     );
 };
+
+Certificates.displayName = "Certificates";
 
 export default Certificates;

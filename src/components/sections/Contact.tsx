@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import type { ContactSectionProps } from "@/types";
 
@@ -14,6 +14,15 @@ const Contact: React.FC<ContactSectionProps> = ({
     contactItems,
     resetAnimationOnView,
 }) => {
+    const keyedContacts = useMemo(
+        () =>
+            contactItems.map((c, index) => ({
+                key: (c as any)._id || `${c.type}-${c.value}-${index}`,
+                item: c,
+            })),
+        [contactItems]
+    );
+
     return (
         <Wrapper
             id={id}
@@ -27,12 +36,12 @@ const Contact: React.FC<ContactSectionProps> = ({
             <div className={"flex-2-5"}>
                 <div className={"p-[10px] flex-wrap-start"}>
                     <div className={"w-full relative z-2"}>
-                        {contactItems.map((contact, index) => (
+                        {keyedContacts.map(({ key, item }) => (
                             <ContactMethodCard
-                                key={index}
-                                type={contact.type}
-                                value={contact.value}
-                                label={contact.label}
+                                key={key}
+                                type={item.type}
+                                value={item.value}
+                                label={item.label}
                             />
                         ))}
                     </div>
@@ -54,5 +63,7 @@ const Contact: React.FC<ContactSectionProps> = ({
         </Wrapper>
     );
 };
+
+Contact.displayName = "Contact";
 
 export default Contact;

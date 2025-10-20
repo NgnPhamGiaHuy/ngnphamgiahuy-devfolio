@@ -1,4 +1,3 @@
-// Library utilities
 export { homePageDataQuery } from "./queries";
 export {
     projectId,

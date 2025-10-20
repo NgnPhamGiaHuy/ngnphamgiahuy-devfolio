@@ -15,20 +15,26 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
     staggerDelay = 40,
     duration = Duration.FAST,
 }) => {
-    const shouldAnimateWords = useMemo(() => text.length > 50, [text]);
+    const safeText = useMemo(() => text ?? "", [text]);
+    const shouldAnimateWords = useMemo(() => safeText.length > 50, [safeText]);
+    const words = useMemo(() => safeText.split(" "), [safeText]);
+    const chars = useMemo(() => safeText.split(""), [safeText]);
+    const wordContainerVariants = useMemo(
+        () => HeroAnimationsConfig.animatedText.createWordContainer(baseDelay),
+        [baseDelay]
+    );
+    const charContainerVariants = useMemo(
+        () => HeroAnimationsConfig.animatedText.createCharContainer(baseDelay),
+        [baseDelay]
+    );
 
     if (shouldAnimateWords) {
-        const words = text.split(" ");
-
-        const containerVariants =
-            HeroAnimationsConfig.animatedText.createWordContainer(baseDelay);
-
         return (
             <motion.span
                 className={containerClassName}
                 initial={"hidden"}
                 animate={"visible"}
-                variants={containerVariants}
+                variants={wordContainerVariants}
             >
                 {words.map((word, index) => (
                     <React.Fragment key={`word-${index}`}>
@@ -50,17 +56,14 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
         );
     }
 
-    const containerVariants =
-        HeroAnimationsConfig.animatedText.createCharContainer(baseDelay);
-
     return (
         <motion.span
             className={containerClassName}
             initial={"hidden"}
             animate={"visible"}
-            variants={containerVariants}
+            variants={charContainerVariants}
         >
-            {text.split("").map((char, index) => (
+            {chars.map((char, index) => (
                 <motion.span
                     key={`${char}-${index}`}
                     className={className}
@@ -77,5 +80,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
         </motion.span>
     );
 };
+
+AnimatedText.displayName = "AnimatedText";
 
 export default AnimatedText;

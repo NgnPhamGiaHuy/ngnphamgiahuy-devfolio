@@ -189,7 +189,7 @@ export const normalizeSectionConfigData = (
         { id: "map", ...settings.map },
     ];
 
-    return sections; // All sections now have id field
+    return sections;
 };
 
 export const getSectionData = (

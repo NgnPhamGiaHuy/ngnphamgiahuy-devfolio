@@ -32,4 +32,6 @@ const Pricing: React.FC<PricingSectionProps> = ({
     );
 };
 
+Pricing.displayName = "Pricing";
+
 export default Pricing;

@@ -5,6 +5,12 @@ export {
     Stagger,
     Delay,
 } from "./animation.config";
+export {
+    SWIPER_MODULES,
+    AUTOPLAY_CONFIG,
+    BREAKPOINTS,
+    A11Y_CONFIG,
+} from "./carousel.config";
 export { CONTACT_TYPE_CONFIG, DEFAULT_CONTACT_CONFIG } from "./contact.config";
 export { API_CONFIG, FORM_MESSAGES, FORM_FIELDS } from "./contactForm.config";
 export {

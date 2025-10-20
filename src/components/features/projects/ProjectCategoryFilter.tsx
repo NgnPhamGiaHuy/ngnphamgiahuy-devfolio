@@ -34,7 +34,7 @@ const ProjectCategoryFilter: React.FC<ProjectCategoryFilterProps> = ({
         >
             {categories.map((category, index) => (
                 <motion.button
-                    key={index}
+                    key={category}
                     onClick={() => onCategoryChange(category)}
                     className={clsx(
                         "project-category-filter-button",
@@ -57,5 +57,7 @@ const ProjectCategoryFilter: React.FC<ProjectCategoryFilterProps> = ({
         </motion.div>
     );
 };
+
+ProjectCategoryFilter.displayName = "ProjectCategoryFilter";
 
 export default ProjectCategoryFilter;

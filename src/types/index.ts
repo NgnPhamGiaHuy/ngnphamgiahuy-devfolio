@@ -59,6 +59,15 @@ export type {
 } from "./ui/index";
 
 export type { AnimationConfig } from "./animation.types";
+export type {
+    UseCarouselStateReturn,
+    UseCarouselRefReturn,
+    UseCarouselEventsProps,
+    UseCarouselInitializationProps,
+    CarouselContainerProps,
+    CarouselSlidesProps,
+    CarouselPaginationProps,
+} from "./carousel.types";
 export type { HomePageData } from "./cms.types";
 export type { ImageConfig } from "./image.types";
 export type { MockDataType } from "./mock.types";

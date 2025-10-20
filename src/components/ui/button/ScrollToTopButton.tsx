@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUpIcon } from "@heroicons/react/24/outline";
 
@@ -20,12 +20,9 @@ const ScrollToTopButton: React.FC = () => {
         return () => window.removeEventListener("scroll", toggleVisibility);
     }, []);
 
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
+    const scrollToTop = useCallback(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
 
     return (
         <AnimatePresence>
@@ -52,6 +49,7 @@ const ScrollToTopButton: React.FC = () => {
                         "p-3 bottom-8 right-8 text-inverse bg-card-inverse/80 border-2 border-solid border-primary  rounded-full shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] fixed cursor-pointer z-50"
                     }
                     aria-label={"Scroll to top"}
+                    title={"Scroll to top"}
                 >
                     <motion.div
                         animate={{ y: [0, -2, 0] }}
@@ -68,5 +66,7 @@ const ScrollToTopButton: React.FC = () => {
         </AnimatePresence>
     );
 };
+
+ScrollToTopButton.displayName = "ScrollToTopButton";
 
 export default ScrollToTopButton;

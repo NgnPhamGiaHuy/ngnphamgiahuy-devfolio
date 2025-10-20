@@ -1,20 +1,26 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 
 import type { ProjectCardProps } from "@/types";
 
 import { processPortfolioImage } from "@/utils";
 
+const IMAGE_WIDTH = 600;
+const IMAGE_HEIGHT = 400;
+
 const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
-    const { url: imageUrl, alt: imageAlt } = processPortfolioImage(
-        portfolio.image,
-        portfolio.name || "Untitled Project",
-        { fallbackImage: "/images/profile2.png" }
-    );
+    const { imageUrl, imageAlt } = useMemo(() => {
+        const { url, alt } = processPortfolioImage(
+            portfolio.image,
+            portfolio.name || "Untitled Project",
+            { fallbackImage: "/images/profile2.png" }
+        );
+        return { imageUrl: url, imageAlt: alt };
+    }, [portfolio.image, portfolio.name]);
 
     const linkHref = portfolio.link || "#";
 
@@ -40,14 +46,25 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
                 whileHover={{ y: -5, boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
                 transition={{ type: "spring", stiffness: 300 }}
             >
-                <Link href={linkHref} target={"_blank"} className={"w-full"}>
+                <Link
+                    href={linkHref}
+                    target={"_blank"}
+                    rel={"noopener noreferrer"}
+                    className={"w-full"}
+                    aria-label={`Open project: ${projectName}`}
+                    prefetch
+                >
                     <div className={"project-card-image-container"}>
                         <Image
                             src={imageUrl}
                             alt={imageAlt}
                             className={"project-card-image"}
-                            width={600}
-                            height={400}
+                            width={IMAGE_WIDTH}
+                            height={IMAGE_HEIGHT}
+                            sizes="(max-width: 1024px) 100vw, 600px"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="auto"
                         />
                     </div>
                     <div className={"pt-[30px] bottom-0 relative"}>
@@ -73,5 +90,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ portfolio, index }) => {
         </motion.div>
     );
 };
+
+ProjectCard.displayName = "ProjectCard";
 
 export default ProjectCard;

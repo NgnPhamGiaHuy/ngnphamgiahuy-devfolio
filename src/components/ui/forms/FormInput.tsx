@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import type { FormInputProps } from "@/types";
@@ -17,12 +17,26 @@ const FormInput: React.FC<FormInputProps> = ({
     registration,
     className = "",
 }) => {
+    const describedById = error ? `${id}-error` : undefined;
+    const ariaInvalid = Boolean(error);
+
+    const inputClassName = useMemo(
+        () => `form-input-field ${error ? "form-input-field-error" : ""}`,
+        [error]
+    );
+    const textareaClassName = useMemo(
+        () => `form-input-textarea ${error ? "form-input-textarea-error" : ""}`,
+        [error]
+    );
+
     return (
         <div className={`form-input-wrapper ${className}`}>
             <div className={"form-input-field-container"}>
                 <label htmlFor={id} className={"form-input-label"}>
                     {label}&nbsp;
-                    <b className={"text-primary"}>*</b>
+                    <b className={"text-primary"} aria-hidden={"true"}>
+                        *
+                    </b>
                     <span className={"relative"}>
                         {isTextArea ? (
                             <textarea
@@ -30,12 +44,10 @@ const FormInput: React.FC<FormInputProps> = ({
                                 cols={cols}
                                 rows={rows}
                                 placeholder={placeholder}
-                                className={`form-input-textarea ${error ? "form-input-textarea-error" : ""}`}
+                                className={textareaClassName}
                                 {...registration}
-                                aria-invalid={error ? "true" : "false"}
-                                aria-describedby={
-                                    error ? `${id}-error` : undefined
-                                }
+                                aria-invalid={ariaInvalid}
+                                aria-describedby={describedById}
                             />
                         ) : (
                             <input
@@ -44,12 +56,10 @@ const FormInput: React.FC<FormInputProps> = ({
                                 size={40}
                                 maxLength={400}
                                 placeholder={placeholder}
-                                className={`form-input-field ${error ? "form-input-field-error" : ""}`}
+                                className={inputClassName}
                                 {...registration}
-                                aria-invalid={error ? "true" : "false"}
-                                aria-describedby={
-                                    error ? `${id}-error` : undefined
-                                }
+                                aria-invalid={ariaInvalid}
+                                aria-describedby={describedById}
                             />
                         )}
                     </span>
@@ -63,6 +73,8 @@ const FormInput: React.FC<FormInputProps> = ({
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.2 }}
+                            role={"alert"}
+                            aria-live={"polite"}
                         >
                             {error}
                         </motion.p>
@@ -72,5 +84,7 @@ const FormInput: React.FC<FormInputProps> = ({
         </div>
     );
 };
+
+FormInput.displayName = "FormInput";
 
 export default FormInput;

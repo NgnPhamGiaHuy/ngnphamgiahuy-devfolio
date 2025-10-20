@@ -71,4 +71,6 @@ const Resume: React.FC<ResumeSectionProps> = ({
     );
 };
 
+Resume.displayName = "Resume";
+
 export default Resume;

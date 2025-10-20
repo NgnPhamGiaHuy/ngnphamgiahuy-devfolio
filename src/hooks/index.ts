@@ -7,3 +7,5 @@ export {
     useDynamicTextAnimation,
     useSidebarAnimation,
 } from "./animation/index";
+
+export * from "./carousel/index";

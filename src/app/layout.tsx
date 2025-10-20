@@ -1,5 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
+import type { ResolvingMetadata } from "next";
 import { Roboto, Caveat, Jost } from "next/font/google";
 
 import "./globals.css";
@@ -21,7 +22,12 @@ const geistJost = Jost({
     subsets: ["latin"],
 });
 
-export const metadata: Metadata = await generateHomePageMetadata();
+export async function generateMetadata(
+    _props: unknown,
+    _parent: ResolvingMetadata
+): Promise<Metadata> {
+    return await generateHomePageMetadata();
+}
 
 interface RootLayoutProps {
     children: React.ReactNode;

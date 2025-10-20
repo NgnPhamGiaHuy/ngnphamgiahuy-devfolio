@@ -1,8 +1,8 @@
 "use client";
 
 import clsx from "clsx";
-import React, { useId, useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import React, { useCallback, useId, useState } from "react";
 
 import type { AccordionItemProps } from "@/types";
 
@@ -22,9 +22,9 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
     const panelId = `accordion-panel-${index}-${baseId}`;
     const buttonId = `accordion-header-${index}-${baseId}`;
 
-    const toggleAccordion = () => {
+    const toggleAccordion = useCallback(() => {
         setIsOpen((prevState) => !prevState);
-    };
+    }, []);
 
     return (
         <div
@@ -68,5 +68,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
         </div>
     );
 };
+
+AccordionItem.displayName = "AccordionItem";
 
 export default AccordionItem;

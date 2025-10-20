@@ -1,7 +1,7 @@
 "use client";
 
-import clsx from "clsx";
 import React from "react";
+import clsx from "clsx";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
 
@@ -43,6 +43,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ item, variants }) => {
                     className={
                         "px-3 py-1 inline-flex items-center text-inverse bg-primary/10 font-bold rounded-full"
                     }
+                    aria-label={`${item.experience_years} years of experience`}
                 >
                     <CountUp
                         end={item.experience_years}
@@ -57,5 +58,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ item, variants }) => {
         </motion.div>
     );
 };
+
+SkillCard.displayName = "SkillCard";
 
 export default SkillCard;
