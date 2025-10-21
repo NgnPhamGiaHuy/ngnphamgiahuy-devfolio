@@ -6,19 +6,16 @@ import { motion } from "framer-motion";
 
 import type { ProjectCategoryFilterProps } from "@/types";
 
-import { StandardAnimations, Duration, Delay, Stagger } from "@/config";
+import { COMMON_ANIMATIONS, Duration, Delay, Stagger } from "@/config";
 
 const ProjectCategoryFilter: React.FC<ProjectCategoryFilterProps> = ({
     categories,
     activeCategory,
     onCategoryChange,
 }) => {
-    const hoverVariants = StandardAnimations.buttonHover();
-    const itemVariants = StandardAnimations.fadeInUp(12);
-    const containerVariants = StandardAnimations.staggerChildren(
-        Stagger.NORMAL,
-        Delay.SHORT
-    );
+    const hoverVariants = COMMON_ANIMATIONS.buttonHover;
+    const itemVariants = COMMON_ANIMATIONS.fadeInUp15;
+    const containerVariants = COMMON_ANIMATIONS.staggerNormal;
 
     const buttonVariants = { ...itemVariants, ...hoverVariants } as const;
 

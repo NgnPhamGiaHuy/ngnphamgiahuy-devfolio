@@ -147,3 +147,24 @@ export const STANDARD_ANIMATIONS: AnimationConfig = {
 };
 
 export const StandardAnimations = STANDARD_ANIMATIONS;
+
+export const COMMON_ANIMATIONS = {
+    fadeInUp15: STANDARD_ANIMATIONS.fadeInUp(15),
+    fadeInUp20: STANDARD_ANIMATIONS.fadeInUp(20),
+    fadeInUp30: STANDARD_ANIMATIONS.fadeInUp(30),
+
+    scaleIn95: STANDARD_ANIMATIONS.scaleIn(0.95),
+    scaleIn90: STANDARD_ANIMATIONS.scaleIn(0.9),
+
+    springUp16: STANDARD_ANIMATIONS.springUp(16),
+    springUp30: STANDARD_ANIMATIONS.springUp(30),
+    springUp50: STANDARD_ANIMATIONS.springUp(50),
+
+    staggerNormal: STANDARD_ANIMATIONS.staggerChildren(Stagger.NORMAL),
+    staggerTight: STANDARD_ANIMATIONS.staggerChildren(Stagger.TIGHT),
+    staggerLoose: STANDARD_ANIMATIONS.staggerChildren(Stagger.LOOSE),
+
+    buttonHover: STANDARD_ANIMATIONS.buttonHover(),
+
+    fadeIn: STANDARD_ANIMATIONS.fadeIn(),
+} as const;

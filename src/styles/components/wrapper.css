@@ -24,4 +24,9 @@
     .wrapper-header-subtitle-text {
         @apply ml-[10px] text-[30px] max-lg:text-[24px] text-inverse font-bold font-["Caveat"] tracking-normal normal-case;
     }
+
+    /* ExportWrapper component */
+    .export-wrapper {
+        @apply min-h-screen pt-[20px] max-md:pt-[50px] max-lg:pt-0 pb-0 relative;
+    }
 }

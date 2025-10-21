@@ -6,15 +6,15 @@
 
 @theme {
     /* Burnt monochromatic palette */
-    --color-burnt-900: #9D3314;
+    --color-burnt-900: #9d3314;
     /* darkest */
-    --color-burnt-800: #C54119;
-    --color-burnt-700: #E45328;
-    --color-burnt-600: #E97451;
+    --color-burnt-800: #c54119;
+    --color-burnt-700: #e45328;
+    --color-burnt-600: #e97451;
     /* Burnt Sienna (brand) */
-    --color-burnt-500: #EE957A;
-    --color-burnt-400: #F3B5A2;
-    --color-burnt-300: #F8D6CB;
+    --color-burnt-500: #ee957a;
+    --color-burnt-400: #f3b5a2;
+    --color-burnt-300: #f8d6cb;
     /* lightest */
 
     --color-white: #fff;
@@ -78,7 +78,7 @@
     --surface-2: #202326;
     --surface-3: color-mix(in oklab, var(--surface-2) 85%, white);
 
-    --shadow-offset-md: 5px 5px rgba(255, 255, 255, .1);
+    --shadow-offset-md: 5px 5px rgba(255, 255, 255, 0.1);
 }
 
 body {

@@ -6,15 +6,15 @@ import { motion, AnimatePresence, Target } from "framer-motion";
 import type { ProjectGridProps } from "@/types";
 
 import { ProjectCard } from "@/components/features/projects";
-import { StandardAnimations, Duration, Stagger } from "@/config";
+import { COMMON_ANIMATIONS, Duration, Stagger } from "@/config";
 
 const ProjectGrid: React.FC<ProjectGridProps> = ({
     maxItems,
     portfolios = [],
 }) => {
-    const itemEnter = StandardAnimations.springUp(16);
-    const itemScale = StandardAnimations.scaleIn(0.95);
-    const gridVariants = StandardAnimations.staggerChildren(Stagger.NORMAL);
+    const itemEnter = COMMON_ANIMATIONS.springUp16;
+    const itemScale = COMMON_ANIMATIONS.scaleIn95;
+    const gridVariants = COMMON_ANIMATIONS.staggerNormal;
 
     const itemVariants = {
         hidden: {

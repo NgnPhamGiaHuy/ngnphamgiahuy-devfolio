@@ -37,13 +37,28 @@ export const normalizeArrayData = <T>(
     return defaultFallback;
 };
 
+// Generic normalize function for array data with fallback
+export const normalizeData = <T>(
+    data: T[] | null | undefined,
+    fallbackData: MockDataType,
+    dataKey: keyof MockDataType,
+    defaultFallback: T[] = []
+): T[] => {
+    return normalizeArrayData(
+        data,
+        fallbackData[dataKey] as T[],
+        defaultFallback
+    );
+};
+
 export const normalizeServicesData = (
     services?: Service[] | null,
     fallbackData?: MockDataType
 ): Service[] => {
-    return normalizeArrayData(
+    return normalizeData(
         services,
-        fallbackData?.services,
+        fallbackData || FALLBACK_DATA,
+        "services",
         FALLBACK_DATA.services
     );
 };
@@ -52,9 +67,10 @@ export const normalizeSkillsData = (
     skills?: Skill[] | null,
     fallbackData?: MockDataType
 ): Skill[] => {
-    return normalizeArrayData(
+    return normalizeData(
         skills,
-        fallbackData?.skills,
+        fallbackData || FALLBACK_DATA,
+        "skills",
         FALLBACK_DATA.skills
     );
 };
@@ -63,9 +79,10 @@ export const normalizeProjectsData = (
     projects?: Project[] | null,
     fallbackData?: MockDataType
 ): Project[] => {
-    return normalizeArrayData(
+    return normalizeData(
         projects,
-        fallbackData?.projects,
+        fallbackData || FALLBACK_DATA,
+        "projects",
         FALLBACK_DATA.projects
     );
 };
@@ -74,9 +91,10 @@ export const normalizeExperienceData = (
     experience?: Experience[] | null,
     fallbackData?: MockDataType
 ): Experience[] => {
-    return normalizeArrayData(
+    return normalizeData(
         experience,
-        fallbackData?.experience,
+        fallbackData || FALLBACK_DATA,
+        "experience",
         FALLBACK_DATA.experience
     );
 };
@@ -85,9 +103,10 @@ export const normalizeEducationData = (
     education?: Education[] | null,
     fallbackData?: MockDataType
 ): Education[] => {
-    return normalizeArrayData(
+    return normalizeData(
         education,
-        fallbackData?.education,
+        fallbackData || FALLBACK_DATA,
+        "education",
         FALLBACK_DATA.education
     );
 };
@@ -96,9 +115,10 @@ export const normalizeTestimonialsData = (
     testimonials?: Testimonial[] | null,
     fallbackData?: MockDataType
 ): Testimonial[] => {
-    return normalizeArrayData(
+    return normalizeData(
         testimonials,
-        fallbackData?.testimonials,
+        fallbackData || FALLBACK_DATA,
+        "testimonials",
         FALLBACK_DATA.testimonials
     );
 };
@@ -107,9 +127,10 @@ export const normalizePricingData = (
     pricing?: Pricing[] | null,
     fallbackData?: MockDataType
 ): Pricing[] => {
-    return normalizeArrayData(
+    return normalizeData(
         pricing,
-        fallbackData?.pricing,
+        fallbackData || FALLBACK_DATA,
+        "pricing",
         FALLBACK_DATA.pricing
     );
 };
@@ -118,7 +139,12 @@ export const normalizeBlogsData = (
     blogs?: BlogPost[] | null,
     fallbackData?: MockDataType
 ): BlogPost[] => {
-    return normalizeArrayData(blogs, fallbackData?.blogs, FALLBACK_DATA.blogs);
+    return normalizeData(
+        blogs,
+        fallbackData || FALLBACK_DATA,
+        "blogs",
+        FALLBACK_DATA.blogs
+    );
 };
 
 export const normalizeContactData = (
@@ -149,9 +175,10 @@ export const normalizeCertificatesData = (
     certificates?: Certificate[] | null,
     fallbackData?: MockDataType
 ): Certificate[] => {
-    return normalizeArrayData(
+    return normalizeData(
         certificates,
-        fallbackData?.certificates,
+        fallbackData || FALLBACK_DATA,
+        "certificates",
         FALLBACK_DATA.certificates
     );
 };

@@ -1,31 +1,11 @@
 import { Metadata } from "next";
 
-import type { Profile, Settings } from "@/types/sanity.types";
+import type { Profile, Settings } from "@/types";
 
 import { data as mockData } from "@/data";
-import { urlFor } from "./sanity";
+import { resolveImageUrl } from "@/utils";
 import { sanityFetch } from "./sanity";
 import { profileQuery, settingsQuery } from "./queries";
-
-const resolveImageUrl = (
-    image: unknown,
-    baseUrl: string
-): string | undefined => {
-    if (!image) return undefined;
-    if (typeof image === "string") {
-        if (image.startsWith("http")) return image;
-        if (image.startsWith("/")) return `${baseUrl}${image}`;
-        return undefined;
-    }
-    try {
-        return urlFor(image as any)
-            .width(1200)
-            .height(630)
-            .url();
-    } catch {
-        return undefined;
-    }
-};
 
 export const generateHomePageMetadata = async (): Promise<Metadata> => {
     try {

@@ -1,21 +1,3 @@
-export type {
-    DecorativeLayerProps,
-    StatInfo,
-    ProfileVisualProps,
-} from "./profile.types";
-export type {
-    BaseSectionProps,
-    HeroSectionProps,
-    ServicesSectionProps,
-    SkillsSectionProps,
-    PortfoliosSectionProps,
-    ResumeSectionProps,
-    CertificatesSectionProps,
-    TestimonialsSectionProps,
-    PricingSectionProps,
-    BlogSectionProps,
-    ContactSectionProps,
-    MapSectionProps,
-    SectionProps,
-} from "./sectionProps.types";
-export type { WrapperHeaderProps, WrapperProps } from "./wrapper.types";
+export type * from "./profile.types";
+export type * from "./sectionProps.types";
+export type * from "./wrapper.types";

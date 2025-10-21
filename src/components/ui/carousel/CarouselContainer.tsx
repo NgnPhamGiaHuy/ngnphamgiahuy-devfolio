@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 
 import type { CarouselContainerProps } from "@/types";
 
-import { StandardAnimations } from "@/config";
+import { COMMON_ANIMATIONS } from "@/config";
 
 const CarouselContainer: React.FC<CarouselContainerProps> = ({ children }) => {
-    const containerVariants = useMemo(() => StandardAnimations.fadeIn(), []);
+    const containerVariants = useMemo(() => COMMON_ANIMATIONS.fadeIn, []);
 
     return (
         <motion.div

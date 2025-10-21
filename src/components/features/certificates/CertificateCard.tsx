@@ -8,10 +8,10 @@ import { motion } from "framer-motion";
 import type { Certificate } from "@/types";
 
 import { ArrowLink } from "@/components";
-import { StandardAnimations } from "@/config";
+import { COMMON_ANIMATIONS } from "@/config";
 import { processImage, formatDate } from "@/utils";
 
-const cardVariants = StandardAnimations.scaleIn(0.95);
+const cardVariants = COMMON_ANIMATIONS.scaleIn95;
 const IMAGE_WIDTH = 400;
 const IMAGE_HEIGHT = 250;
 

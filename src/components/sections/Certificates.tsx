@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import type { CertificatesSectionProps } from "@/types";
 
-import { StandardAnimations } from "@/config";
+import { COMMON_ANIMATIONS } from "@/config";
 import {
     Wrapper,
     BackdropText,
@@ -18,12 +18,9 @@ const Certificates: React.FC<CertificatesSectionProps> = ({
     certificates,
     resetAnimationOnView,
 }) => {
-    const containerVariants = useMemo(
-        () => StandardAnimations.fadeInUp(15),
-        []
-    );
+    const containerVariants = useMemo(() => COMMON_ANIMATIONS.fadeInUp15, []);
     const innerStaggerVariants = useMemo(
-        () => StandardAnimations.staggerChildren(0.1, 0.2),
+        () => COMMON_ANIMATIONS.staggerLoose,
         []
     );
 

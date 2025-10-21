@@ -1,12 +1,10 @@
 import type { Variants } from "framer-motion";
 
-import { ANIMATION_CONFIG, StandardAnimations } from "./animation.config";
+import { ANIMATION_CONFIG, COMMON_ANIMATIONS } from "./animation.config";
 
-export const heroContainerVariants: Variants =
-    StandardAnimations.staggerChildren(0.3, 0.1);
+export const heroContainerVariants: Variants = COMMON_ANIMATIONS.staggerLoose;
 
-export const heroProfileBlockVariants: Variants =
-    StandardAnimations.springUp(50);
+export const heroProfileBlockVariants: Variants = COMMON_ANIMATIONS.springUp50;
 
 export const personalIntroContainerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -105,13 +103,13 @@ export const bioSectionSocialLinksVariants: Variants = {
 };
 
 export const downloadResumeContainerVariants: Variants =
-    StandardAnimations.springUp(30);
+    COMMON_ANIMATIONS.springUp30;
 
 export const downloadResumeButtonVariants: Variants =
-    StandardAnimations.fadeInUp(15);
+    COMMON_ANIMATIONS.fadeInUp15;
 
 export const downloadResumeButtonHoverVariants: Variants =
-    StandardAnimations.buttonHover();
+    COMMON_ANIMATIONS.buttonHover;
 
 export const profileVisualDefaultVariants: Variants = {
     hidden: {

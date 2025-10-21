@@ -17,3 +17,13 @@ export interface WrapperProps {
     resetAnimationOnView?: boolean;
     children: React.ReactNode;
 }
+
+export interface ExportWrapperProps {
+    id: string;
+    title: string;
+    subtitle: string;
+    contentMaxWidth?: string;
+    backgroundVariant?: "gradientUp" | "gradientDown" | "none";
+    hasBodyPadding?: boolean;
+    children: React.ReactNode;
+}

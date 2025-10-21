@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import type { SkillsSectionProps } from "@/types";
 
-import { StandardAnimations } from "@/config";
+import { COMMON_ANIMATIONS } from "@/config";
 import { Wrapper, SkillCard, BackdropText } from "@/components";
 
 const Skills: React.FC<SkillsSectionProps> = ({
@@ -13,11 +13,8 @@ const Skills: React.FC<SkillsSectionProps> = ({
     skills,
     resetAnimationOnView,
 }) => {
-    const itemVariants = useMemo(() => StandardAnimations.springUp(30), []);
-    const containerVariants = useMemo(
-        () => StandardAnimations.fadeInUp(15),
-        []
-    );
+    const itemVariants = useMemo(() => COMMON_ANIMATIONS.springUp30, []);
+    const containerVariants = useMemo(() => COMMON_ANIMATIONS.fadeInUp15, []);
 
     return (
         <Wrapper

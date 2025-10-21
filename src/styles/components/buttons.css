@@ -10,7 +10,9 @@
 
     .primary-button:hover {
         @apply text-white;
-        transition: color 0.3s ease 0.2s, border-color 0.3s ease;
+        transition:
+            color 0.3s ease 0.2s,
+            border-color 0.3s ease;
     }
 
     .primary-button:hover::before {
@@ -40,5 +42,4 @@
     .my-skill::before {
         @apply content-[""] w-[40px] max-md:w-[2px] h-[2px] max-md:h-[40px] mt-[-1px] max-md:mt-0 max-md:ml-[-1px] top-1/2 max-md:top-0 left-[-1px] max-md:left-1/2 bg-inverse absolute;
     }
-
 }

@@ -10,4 +10,4 @@ export { default as Skills } from "./Skills";
 export { default as Testimonials } from "./Testimonials";
 export { default as Portfolios } from "./Portfolios";
 
-export { Wrapper, WrapperHeader } from "./wrapper/index";
+export * from "./wrapper/index";

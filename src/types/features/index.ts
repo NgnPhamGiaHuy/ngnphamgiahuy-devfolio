@@ -1,15 +1,8 @@
-export type { BlogPreviewProps } from "./blog.types";
-export type {
-    ContactFieldsProps,
-    ContactMethodCardProps,
-} from "./contact.types";
-export type { MetricCardProps } from "./metric.types";
-export type { PricingCardProps, PricingGridProps } from "./pricing.types";
-export type {
-    ProjectCardProps,
-    ProjectGridProps,
-    ProjectCategoryFilterProps,
-} from "./project.types";
-export type { ServiceCardProps } from "./service.types";
-export type { SkillCardProps } from "./skill.types";
-export type { TestimonialCardProps } from "./testimonial.types";
+export type * from "./blog.types";
+export type * from "./contact.types";
+export type * from "./metric.types";
+export type * from "./pricing.types";
+export type * from "./project.types";
+export type * from "./service.types";
+export type * from "./skill.types";
+export type * from "./testimonial.types";

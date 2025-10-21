@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 
 import type { ServiceCardProps } from "@/types";
 
-import { StandardAnimations } from "@/config";
+import { COMMON_ANIMATIONS } from "@/config";
 
-const cardVariants = StandardAnimations.scaleIn(0.95);
-const contentVariants = StandardAnimations.fadeInUp(10);
+const cardVariants = COMMON_ANIMATIONS.scaleIn95;
+const contentVariants = COMMON_ANIMATIONS.fadeInUp15;
 const patternVariants = {
     hidden: { opacity: 0, scale: 0.8, rotate: -5 },
     visible: { opacity: 1, scale: 1, rotate: 0 },

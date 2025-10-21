@@ -7,8 +7,16 @@ const DEFAULT_CONFIG: Pick<Required<ImageConfig>, "fallbackAlt"> = {
 
 export const resolveImageUrl = (
     image: SanityImage | string | undefined,
-    config: ImageConfig
+    configOrBaseUrl?: ImageConfig | string
 ): string => {
+    // Handle both ImageConfig object and baseUrl string for backward compatibility
+    const isConfigObject =
+        configOrBaseUrl && typeof configOrBaseUrl === "object";
+    const config = isConfigObject
+        ? (configOrBaseUrl as ImageConfig)
+        : undefined;
+    const baseUrl = !isConfigObject ? (configOrBaseUrl as string) : undefined;
+
     const { fallbackImage } = { ...DEFAULT_CONFIG, ...config };
 
     if (!image) {
@@ -16,9 +24,28 @@ export const resolveImageUrl = (
     }
 
     if (typeof image === "string") {
+        // Handle baseUrl case (from metadata.ts)
+        if (baseUrl) {
+            if (image.startsWith("http")) return image;
+            if (image.startsWith("/")) return `${baseUrl}${image}`;
+            return "";
+        }
+        // Handle config case (original behavior)
         return image;
     }
-    return urlFor(image as SanityImage).url();
+
+    // Handle Sanity image
+    try {
+        if (config?.width && config?.height) {
+            return urlFor(image as SanityImage)
+                .width(config.width)
+                .height(config.height)
+                .url();
+        }
+        return urlFor(image as SanityImage).url();
+    } catch {
+        return fallbackImage || "";
+    }
 };
 
 export const getImageAlt = (

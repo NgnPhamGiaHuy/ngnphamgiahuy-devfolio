@@ -6,7 +6,7 @@ import React, { useMemo } from "react";
 
 import type { Service, ServicesSectionProps } from "@/types";
 
-import { StandardAnimations } from "@/config";
+import { COMMON_ANIMATIONS } from "@/config";
 import { Wrapper, BackdropText } from "@/components";
 import { ServiceCard } from "@/components/features/services";
 
@@ -38,12 +38,9 @@ const Services: React.FC<ServicesSectionProps> = ({
     services,
     resetAnimationOnView,
 }) => {
-    const containerVariants = useMemo(
-        () => StandardAnimations.fadeInUp(15),
-        []
-    );
+    const containerVariants = useMemo(() => COMMON_ANIMATIONS.fadeInUp15, []);
     const innerStaggerVariants = useMemo(
-        () => StandardAnimations.staggerChildren(0.1, 0.2),
+        () => COMMON_ANIMATIONS.staggerLoose,
         []
     );
 

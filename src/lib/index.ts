@@ -1,10 +1,3 @@
-export { homePageDataQuery } from "./queries";
-export {
-    projectId,
-    dataset,
-    apiVersion,
-    config,
-    sanityClient,
-    urlFor,
-    sanityFetch,
-} from "./sanity";
+export * from "./export";
+export * from "./queries";
+export * from "./sanity";
