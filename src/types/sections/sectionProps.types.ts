@@ -15,6 +15,7 @@ import {
 export interface BaseSectionProps {
     id: string;
     resetAnimationOnView?: boolean;
+    verticalRulePosition?: "left" | "right";
 }
 
 export interface HeroSectionProps extends BaseSectionProps {

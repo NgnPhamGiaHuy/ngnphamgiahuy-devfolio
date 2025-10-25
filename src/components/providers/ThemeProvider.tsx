@@ -1,29 +1,76 @@
+// ============================================================
+// Component: ThemeProvider
+// Purpose: Theme context provider with SSR-safe hydration handling
+// ============================================================
+
 "use client";
 
 import React, { useEffect, useState } from "react";
 import { ThemeProvider as NextThemeProvider } from "next-themes";
 
+// ============================================================
+// Component Props
+// ============================================================
+
 interface ThemeProviderProps {
     children: React.ReactNode;
 }
 
-const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+// ============================================================
+// Component Definition
+// ============================================================
+
+/**
+ * ThemeProvider component wraps the application with theme context.
+ * Features SSR-safe hydration, system theme detection, and proper accessibility.
+ *
+ * @param props - Component props
+ * @param props.children - Child components to wrap with theme context
+ * @returns Theme provider component
+ */
+const ThemeProvider: React.FC<ThemeProviderProps> = ({
+    children,
+    ...props
+}) => {
+    // ============================================================
+    // State
+    // ============================================================
+
     const [mounted, setMounted] = useState(false);
+
+    // ============================================================
+    // Effects
+    // ============================================================
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
+    // ============================================================
+    // Render
+    // ============================================================
+
+    // Prevent hydration mismatch by rendering placeholder until mounted
     if (!mounted) {
-        return <div suppressHydrationWarning>{children}</div>;
+        return (
+            <div
+                suppressHydrationWarning
+                data-testid="theme-provider-loading"
+                {...props}
+            >
+                {children}
+            </div>
+        );
     }
 
     return (
         <NextThemeProvider
-            attribute={"data-theme"}
-            defaultTheme={"system"}
+            attribute="data-theme"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
+            data-testid="theme-provider"
+            {...props}
         >
             {children}
         </NextThemeProvider>

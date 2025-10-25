@@ -1,18 +1,60 @@
+/* ============================================================
+   File: header.css
+   Purpose: Header component styles with scroll animations
+   Components: SiteHeader
+   ============================================================ */
+
 @layer components {
-    /* Header section */
+    /* ============================================================
+       Header Component
+       ============================================================ */
+
+    /**
+     * Header main container
+     * - Full width with responsive padding
+     * - Fixed positioning at top of screen
+     * - Smooth transition for scroll effects
+     * - High z-index for proper layering
+     * - Responsive padding for mobile devices
+     */
     .header {
         @apply w-full px-5 py-[30px] md:p-[30px] top-0 left-0 absolute transition-all duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] z-[90];
     }
 
+    /* ============================================================
+       Header Scroll Animations
+       ============================================================ */
+
+    /**
+     * Header animate-in animation
+     * - Slides down from off-screen position
+     * - Smooth cubic-bezier easing
+     * - 0.6s duration for smooth entrance
+     * - Only applies on large screens (1200px+)
+     */
     @media screen and (min-width: 1200px) {
         .header.animate-in {
-            animation: header_animate_one .6s cubic-bezier(.25, .46, .45, .94) 0s forwards;
+            animation: header_animate_one 0.6s
+                cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s forwards;
         }
 
+        /**
+         * Header animate-out animation
+         * - Slides up to off-screen position
+         * - Faster duration for quick exit
+         * - Different cubic-bezier for exit timing
+         */
         .header.animate-out {
-            animation: header_animate_two .3s cubic-bezier(.55, .06, .68, .19) 0s forwards;
+            animation: header_animate_two 0.3s
+                cubic-bezier(0.55, 0.06, 0.68, 0.19) 0s forwards;
         }
 
+        /**
+         * Header slide-in keyframes
+         * - Starts from -100px translateY (off-screen)
+         * - Ends at 0px translateY (visible position)
+         * - Uses translateZ(0) for hardware acceleration
+         */
         @keyframes header_animate_one {
             0% {
                 transform: translateZ(0) translateY(-100px);
@@ -23,6 +65,12 @@
             }
         }
 
+        /**
+         * Header slide-out keyframes
+         * - Starts from 0px translateY (visible position)
+         * - Ends at -100px translateY (off-screen)
+         * - Uses translateZ(0) for hardware acceleration
+         */
         @keyframes header_animate_two {
             0% {
                 transform: translateZ(0) translateY(0px);

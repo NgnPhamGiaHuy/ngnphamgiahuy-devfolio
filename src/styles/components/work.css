@@ -1,18 +1,34 @@
+/* ============================================================
+   File: work.css
+   Purpose: Styling for portfolio/project-related components
+   Components: ProjectGrid, ProjectCategoryFilter, Portfolios
+   ============================================================ */
+
 @layer components {
-    /* Portfolios section */
+    /* ============================================================
+       Portfolio Section Layout
+       ============================================================ */
+
+    /* Main container for portfolios section with responsive margins */
     .portfolios-inner-container {
         @apply mx-[-20px] max-lg:mx-auto relative z-2;
     }
 
-    /* ProjectCategoryFilter component */
+    /* ============================================================
+       Project Category Filter Component
+       ============================================================ */
+
+    /* Filter container with centered layout and proper spacing */
     .project-category-filter-container {
         @apply mb-[30px] text-center transform translate-x-0 translate-y-0 z-2 relative;
     }
 
+    /* Individual filter button with hover states and transitions */
     .project-category-filter-button {
         @apply mx-[20px] max-md:mx-[10px] mb-[20px] max-md:mb-[10px] inline-block align-top text-[13px] text-inverse font-bold uppercase tracking-wider cursor-pointer outline-none transition duration-700 ease-[cubic-bezier(.3,0,.3,1)] relative;
     }
 
+    /* Underline animation effect - hidden by default */
     .project-category-filter-button::before {
         @apply content-[""] max-w-[60%] w-[40px] h-[2px] left-0 bottom-[-10px] bg-primary absolute;
         transform: scaleX(0);
@@ -20,20 +36,24 @@
         transition: transform 0.3s cubic-bezier(0.3, 0, 0.3, 1);
     }
 
+    /* Underline animation on hover - scales to full width */
     .project-category-filter-button:hover::before {
         transform: scaleX(1);
     }
 
-    /* ProjectGrid component */
+    /* ============================================================
+       Project Grid Component
+       ============================================================ */
+
+    /* Main grid container with equal-height rows and responsive columns */
     .project-grid {
-        @apply mt-[-40px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative;
+        @apply min-h-0 mt-[-40px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[1fr] items-stretch overflow-hidden relative;
         will-change: transform, opacity, height;
-        overflow: hidden;
-        min-height: 0;
-        position: relative;
     }
 
+    /* Grid items configured as flex containers for equal height distribution */
     .project-grid > * {
+        @apply flex flex-col;
         transform-origin: center top;
     }
 }

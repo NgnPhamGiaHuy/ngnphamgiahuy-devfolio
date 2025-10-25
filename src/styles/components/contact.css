@@ -1,100 +1,263 @@
+/* ============================================================
+   File: contact.css
+   Purpose: Contact form and method card component styles
+   Components: ContactMethodCard, ContactFields, FormInput, FormStatus
+   ============================================================ */
+
 @layer components {
-    /* ContactMethodCard component */
+    /* ============================================================
+       ContactMethodCard Component
+       ============================================================ */
+
+    /**
+     * ContactMethodCard main container
+     * - Responsive width (full on mobile, half on large screens)
+     * - Consistent margins with mobile optimization
+     * - Block layout with relative positioning
+     */
     .contact-method-card {
         @apply max-md:w-full max-lg:w-1/2 mb-[40px] max-md:mb-[30px] pl-[130px] max-lg:pl-[120px] max-lg:text-[16px] max-lg:align-top max-lg:inline-block block relative;
     }
 
+    /**
+     * ContactMethodCard icon wrapper
+     * - Circular icon container with shadow effect
+     * - Centered content with consistent sizing
+     * - Positioned absolutely in top-left corner
+     */
     .contact-method-card-icon-wrapper {
         @apply size-[56px] top-0 left-0 flex items-center justify-center text-[20px] text-center bg-card-inverse shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] border-2 border-solid border-border-inverse rounded-full leading-[52px] absolute;
     }
 
+    /**
+     * ContactMethodCard connecting line
+     * - Horizontal line connecting icon to content
+     * - Positioned after icon with proper alignment
+     * - Black color for visual connection
+     */
     .contact-method-card-icon-wrapper::after {
         @apply content-[""] w-[40px] h-[2px] mt-[-1px] top-1/2 left-full text-[20px] text-center bg-black leading-[52px] absolute;
     }
 
+    /**
+     * ContactMethodCard label text
+     * - Large, bold text with Caveat font
+     * - Responsive sizing for mobile devices
+     * - Uses inverse color for theme compatibility
+     */
     .contact-method-card-label {
         @apply py-[10px] text-[30px] max-md:text-[24px] text-inverse font-["Caveat"] font-bold leading-none;
     }
 
+    /**
+     * ContactMethodCard link styling
+     * - Smooth transition for hover effects
+     * - Primary color on hover for brand consistency
+     * - Duration optimized for smooth animation
+     */
     .contact-method-card-link {
         @apply transition-all duration-350 hover:text-primary;
     }
 
-    /* ContactFields component */
+    /* ============================================================
+       ContactFields Component
+       ============================================================ */
+
+    /**
+     * ContactFields main container
+     * - Negative margins for proper spacing
+     * - Flex wrap for responsive layout
+     * - Allows child elements to use full width
+     */
     .contact-fields {
         @apply mx-[-12px] flex flex-wrap;
     }
 
+    /**
+     * ContactFields half-width input wrapper
+     * - Half width on medium screens and up
+     * - Full width on mobile devices
+     * - Proper flex behavior for layout
+     */
     .contact-fields-input-wrapper-half {
         @apply md:flex-none! md:basis-auto! md:w-1/2!;
     }
 
+    /**
+     * ContactFields footer container
+     * - Right-aligned content with responsive behavior
+     * - Flex layout with proper spacing
+     * - Responsive alignment for mobile devices
+     */
     .contact-fields-footer {
         @apply max-w-full w-full px-[12px] flex items-center max-md:items-end justify-end max-md:flex-col md:flex-[0_0_auto] text-right;
     }
 
+    /**
+     * ContactFields terms container
+     * - Inline block with proper line height
+     * - Right margin for spacing
+     * - Aligns with button height
+     */
     .contact-fields-terms-container {
         @apply mr-[30px] inline-block leading-[56px];
     }
 
+    /**
+     * ContactFields terms label wrapper
+     * - Relative positioning for checkbox placement
+     * - Inline block for proper alignment
+     * - Left margin for spacing
+     */
     .contact-fields-terms-label-wrapper {
         @apply ml-[1em] inline-block relative;
     }
 
+    /**
+     * ContactFields terms label
+     * - Cursor pointer for clickability
+     * - Smooth color transition on hover
+     * - Proper indentation for checkbox alignment
+     */
     .contact-fields-terms-label {
         @apply p-0 indent-[30px] cursor-pointer transition-colors duration-200;
     }
 
+    /**
+     * ContactFields terms text
+     * - Right-aligned text for form consistency
+     * - Uses inverse color for theme compatibility
+     * - Normal font weight for readability
+     */
     .contact-fields-terms-text {
         @apply text-[16px] text-right text-inverse! font-normal tracking-wider;
     }
 
+    /**
+     * ContactFields terms checkbox
+     * - Middle alignment with text
+     * - Relative positioning for proper placement
+     * - Minimal margins for tight spacing
+     */
     .contact-fields-terms-checkbox {
         @apply mt-0 ml-[4px] top-[-1px] align-middle relative;
     }
 
-    /* FormInput component */
+    /* ============================================================
+       FormInput Component
+       ============================================================ */
+
+    /**
+     * FormInput wrapper container
+     * - Full width with consistent padding
+     * - Shrink prevention for layout stability
+     * - Relative positioning for child elements
+     */
     .form-input-wrapper {
         @apply max-w-full w-full px-[12px] shrink-0 relative;
     }
 
+    /**
+     * FormInput field container
+     * - Consistent bottom margin for spacing
+     * - Relative positioning for error messages
+     * - Responsive margins for mobile devices
+     */
     .form-input-field-container {
         @apply mb-[30px] max-md:mb-[25px] relative;
     }
 
+    /**
+     * FormInput label styling
+     * - Small, bold, uppercase text
+     * - Proper indentation for visual alignment
+     * - Block display for proper spacing
+     */
     .form-input-label {
         @apply p-0 text-[14px] indent-[30px] font-bold tracking-wider uppercase block;
     }
 
+    /**
+     * FormInput field styling
+     * - Rounded corners with consistent height
+     * - Proper padding for content
+     * - Uses inverse color for theme compatibility
+     * - No outline for custom focus styling
+     */
     .form-input-field {
         @apply w-full h-[60px] mt-[10px] px-[30px] text-[16px] text-inverse font-normal bg-card-inverse border-2 border-solid border-border-inverse rounded-[30px] outline-none resize-none block relative;
     }
 
+    /**
+     * FormInput field error state
+     * - Red border for error indication
+     * - Red focus ring for accessibility
+     * - Clear visual feedback for validation errors
+     */
     .form-input-field-error {
         @apply border-red-400 focus:ring-red-200 focus:border-red-400;
     }
 
+    /**
+     * FormInput textarea styling
+     * - Increased height for multi-line content
+     * - Vertical padding for text area
+     * - Same styling as input field for consistency
+     */
     .form-input-textarea {
         @apply w-full h-[140px] mt-[10px] px-[30px] py-[20px] text-[16px] text-inverse font-normal bg-card-inverse border-2 border-solid border-border-inverse rounded-[30px] outline-none resize-none block relative;
     }
 
+    /**
+     * FormInput textarea error state
+     * - Same error styling as input field
+     * - Consistent visual feedback across form elements
+     */
     .form-input-textarea-error {
         @apply border-red-400 focus:ring-red-200 focus:border-red-400;
     }
 
+    /**
+     * FormInput error message
+     * - Right-aligned for form consistency
+     * - Red color for error indication
+     * - Absolute positioning for proper placement
+     */
     .form-input-error-message {
         @apply w-full text-[14px] text-right pr-[24px] text-red-500 absolute;
     }
 
-    /* Status messages */
+    /* ============================================================
+       FormStatus Component
+       ============================================================ */
+
+    /**
+     * Status message base styling
+     * - Full width with consistent padding
+     * - Rounded corners for modern appearance
+     * - Border for visual definition
+     * - Absolute positioning for overlay effect
+     */
     .status-message {
         @apply w-full mt-6 p-4 rounded-lg border absolute;
     }
 
+    /**
+     * Status message success state
+     * - Green background with light opacity
+     * - Green text and border for success indication
+     * - High contrast for accessibility
+     */
     .status-message-success {
         @apply bg-green-50 text-green-800 border-green-200;
     }
 
+    /**
+     * Status message error state
+     * - Red background with light opacity
+     * - Red text and border for error indication
+     * - High contrast for accessibility
+     */
     .status-message-error {
         @apply bg-red-50 text-red-800 border-red-200;
     }

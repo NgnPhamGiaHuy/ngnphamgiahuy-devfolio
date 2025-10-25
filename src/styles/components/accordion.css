@@ -1,56 +1,159 @@
+/* ============================================================
+   File: accordion.css
+   Purpose: Accordion component styles with expand/collapse animations
+   Components: Accordion, AccordionItem, AccordionContent
+   ============================================================ */
+
 @layer components {
-    /* Accordion container */
+    /* ============================================================
+       Accordion Container
+       ============================================================ */
+
+    /**
+     * Accordion label styling
+     * - Large, centered text with bottom border
+     * - Uses inverse color for theme compatibility
+     * - Bold uppercase text with wide tracking
+     * - Consistent padding bottom for spacing
+     */
     .accordion-label {
         @apply m-0! pb-[30px] text-[24px] text-center text-inverse! border-b-2 border-solid border-border-inverse leading-none block relative;
     }
 
+    /**
+     * Accordion items container
+     * - Responsive bottom margin for mobile devices
+     * - Higher z-index for proper layering
+     * - Relative positioning for child elements
+     */
     .accordion-items-container {
         @apply max-md:mb-[40px] relative z-2;
     }
 
-    /* Accordion items */
+    /* ============================================================
+       Accordion Items
+       ============================================================ */
+
+    /**
+     * Accordion item base styling
+     * - Bottom border for visual separation
+     * - Relative positioning for toggle button
+     * - Consistent border styling
+     */
     .accordion-item {
         @apply border-b-2 border-solid border-border-inverse relative;
     }
 
+    /**
+     * Accordion item with additional right border
+     * - Used for subsequent items in grid layout
+     * - Creates visual grid separation
+     * - Maintains consistent border styling
+     */
     .accordion-item-subsequent {
         @apply border-b-2 border-r-2 border-solid border-border-inverse relative;
     }
 
-    /* Accordion headers */
+    /* ============================================================
+       Accordion Headers
+       ============================================================ */
+
+    /**
+     * Accordion item header styling
+     * - Consistent padding with responsive adjustments
+     * - Large text with mobile optimization
+     * - Cursor pointer for interaction indication
+     * - Responsive font sizes for better readability
+     */
     .accordion-item-header {
         @apply p-[30px]! max-md:py-[25px]! max-md:pr-[50px]! max-md:pl-[20px]! text-[21px] max-md:text-[18px] cursor-pointer;
     }
 
+    /**
+     * Accordion toggle button (plus/minus icon)
+     * - Circular button positioned in bottom-right corner
+     * - Shadow effect for depth
+     * - Smooth transition for state changes
+     * - High z-index for proper layering
+     */
     .accordion-item-header::after {
         @apply absolute w-[48px] h-[48px] right-[-24px] bottom-[-24px] leading-[40px] shadow-[var(--shadow-offset-md)] text-[30px] text-center font-normal z-2 rounded-[50%] border-2 border-solid border-border-inverse transition duration-1200 ease-[cubic-bezier(.3,0,.3,1)];
     }
 
+    /**
+     * Accordion header open state
+     * - Background color for open state
+     * - Theme-aware background colors
+     * - Light background in light mode, dark in dark mode
+     */
     .accordion-item-header-open {
         @apply after:bg-[rgb(240,235,227)] dark:after:bg-[#222831];
     }
 
+    /**
+     * Accordion header open state icon
+     * - Minus (-) icon for open state
+     * - Uses inverse color for theme compatibility
+     * - Clear visual indication of expanded state
+     */
     .accordion-item-header-open::after {
         @apply content-["-"] text-inverse;
     }
 
+    /**
+     * Accordion header closed state icon
+     * - Plus (+) icon for closed state
+     * - Uses inverse color for theme compatibility
+     * - Card background for visual distinction
+     * - Clear visual indication of collapsed state
+     */
     .accordion-item-header-closed::after {
         @apply content-["+"] text-inverse bg-card-inverse;
     }
 
-    /* Accordion content */
+    /* ============================================================
+       Accordion Content
+       ============================================================ */
+
+    /**
+     * Accordion content container
+     * - Responsive padding with mobile optimization
+     * - Box-sizing border-box for proper sizing
+     * - Overflow hidden for smooth animations
+     * - Relative positioning for child elements
+     */
     .accordion-content {
         @apply pr-[50px] pl-[30px] max-md:px-[20px] box-border overflow-hidden relative;
     }
 
+    /**
+     * Accordion content subheading
+     * - Large, bold text with Caveat font
+     * - Responsive sizing for mobile devices
+     * - Float left on desktop, block on mobile
+     * - Uses inverse color for theme compatibility
+     */
     .accordion-content-subheading {
         @apply max-md:w-full float-left max-md:float-none text-[28px] max-md:text-[24px] text-inverse font-bold font-["Caveat"] leading-[40px];
     }
 
+    /**
+     * Accordion content meta information
+     * - Small, bold, uppercase text
+     * - Float right on desktop, block on mobile
+     * - Wide tracking for readability
+     * - Uses inverse color for theme compatibility
+     */
     .accordion-content-meta {
         @apply float-right max-md:float-none text-[13px] text-inverse font-bold uppercase tracking-wider max-md:leading-snug leading-[46px];
     }
 
+    /**
+     * Accordion content description
+     * - Clear both floats for proper layout
+     * - Consistent padding for spacing
+     * - Contains the main content text
+     */
     .accordion-content-description {
         @apply pt-[15px] pb-[30px] clear-both;
     }

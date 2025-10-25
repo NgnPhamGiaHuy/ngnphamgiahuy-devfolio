@@ -141,47 +141,58 @@ export const settingsQuery = `*[_type == "settings"][0] {
     },
     hero {
         enabled,
-        resetAnimationOnView
+        resetAnimationOnView,
+        verticalRuleDirection
     },
     services {
         enabled,
-        resetAnimationOnView
+        resetAnimationOnView,
+        verticalRuleDirection
     },
     skills {
         enabled,
-        resetAnimationOnView
+        resetAnimationOnView,
+        verticalRuleDirection
     },
     portfolios {
         enabled,
-        resetAnimationOnView
+        resetAnimationOnView,
+        verticalRuleDirection
     },
     resume {
         enabled,
-        resetAnimationOnView
+        resetAnimationOnView,
+        verticalRuleDirection
     },
     certificates {
         enabled,
-        resetAnimationOnView
+        resetAnimationOnView,
+        verticalRuleDirection
     },
     testimonials {
         enabled,
-        resetAnimationOnView
+        resetAnimationOnView,
+        verticalRuleDirection
     },
     pricing {
         enabled,
-        resetAnimationOnView
+        resetAnimationOnView,
+        verticalRuleDirection
     },
     blog {
         enabled,
-        resetAnimationOnView
+        resetAnimationOnView,
+        verticalRuleDirection
     },
     contact {
         enabled,
-        resetAnimationOnView
+        resetAnimationOnView,
+        verticalRuleDirection
     },
     map {
         enabled,
         resetAnimationOnView,
+        verticalRuleDirection,
         embedUrl,
         height
     }

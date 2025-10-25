@@ -2,7 +2,6 @@ export type * from "./features/index";
 export type * from "./sections/index";
 export type * from "./ui/index";
 export type * from "./animation.types";
-export type * from "./carousel.types";
 export type * from "./cms.types";
 export type * from "./image.types";
 export type * from "./mock.types";

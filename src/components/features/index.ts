@@ -1,9 +1,35 @@
+// Blog components
 export * from "./blog";
-export * from "./certificates";
-export * from "./projects";
-export * from "./pricing";
-export * from "./testimonials";
-export * from "./skills";
-export * from "./metrics";
+
+// Certificate components
+export * from "./certificate";
+
+// Contact components
 export * from "./contact";
-export * from "./services";
+
+// Export components
+export * from "./export";
+
+// Landing components
+export * from "./landing";
+
+// Pricing components
+export * from "./pricing";
+
+// Profile components
+export * from "./profile";
+
+// Project components
+export * from "./project";
+
+// Service components
+export * from "./service";
+
+// Skill components
+export * from "./skill";
+
+// Statistics components
+export * from "./statistics";
+
+// Testimonial components
+export * from "./testimonial";

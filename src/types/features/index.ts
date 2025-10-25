@@ -1,6 +1,5 @@
 export type * from "./blog.types";
 export type * from "./contact.types";
-export type * from "./metric.types";
 export type * from "./pricing.types";
 export type * from "./project.types";
 export type * from "./service.types";

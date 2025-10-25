@@ -159,6 +159,7 @@ export interface SectionConfigItem {
     id?: string;
     enabled: boolean;
     resetAnimationOnView?: boolean;
+    verticalRuleDirection?: "left" | "right";
 }
 
 export interface MapConfigItem extends SectionConfigItem {

@@ -1,16 +1,55 @@
+/* ============================================================
+   File: profile.css
+   Purpose: Profile visual component styles with responsive positioning
+   Components: ProfileVisual, ProfileStats
+   ============================================================ */
+
 @layer components {
+    /* ============================================================
+       ProfileVisual Component
+       ============================================================ */
+
+    /**
+     * ProfileVisual container
+     * - Fixed dimensions with responsive positioning
+     * - Complex responsive transforms for different screen sizes
+     * - Absolute positioning for overlay effect
+     * - High z-index for proper layering
+     * - Responsive margins and transforms
+     */
     .profile-visual-container {
         @apply w-[680px] h-[800px] mt-[-390px] min-[1700px]:mt-[-400px] max-lg:ml-[-340px] top-1/2 max-md:top-[680px] max-lg:top-[740px] right-[-20px] max-lg:right-auto min-[1700px]:right-[-50px] max-lg:bottom-auto max-lg:left-1/2 max-md:transform max-md:scale-50 max-lg:scale-90 max-xl:scale-80 max-lg:origin-top absolute z-2;
     }
 
+    /**
+     * ProfileVisual image styling
+     * - Full container coverage
+     * - Object-bottom positioning for proper cropping
+     * - Rounded full for circular appearance
+     * - High z-index for proper layering
+     * - No border for clean appearance
+     */
     .profile-visual-image {
         @apply w-full h-full top-0 left-0 object-bottom object-contain border-none rounded-full absolute z-10;
     }
 
+    /**
+     * ProfileVisual stats container
+     * - Positioned absolutely within profile container
+     * - Higher z-index for proper layering
+     * - Contains statistics or additional information
+     */
     .profile-visual-stats-container {
         @apply top-[420px] left-[-125px] absolute z-12;
     }
 
+    /**
+     * ProfileVisual avatar circle background
+     * - Circular background with primary color
+     * - Full size matching container dimensions
+     * - Positioned at bottom-left
+     * - Lower z-index for background effect
+     */
     .profile-visual-avatar-circle {
         @apply size-[680px] bottom-0 left-0 bg-primary rounded-full absolute z-2;
     }

@@ -1,42 +1,128 @@
+/* ============================================================
+   File: swiper.css
+   Purpose: Swiper carousel component styles with navigation
+   Components: ContentCarousel, CarouselPagination
+   ============================================================ */
+
 @layer components {
-    /* ContentCarousel component */
+    /* ============================================================
+       ContentCarousel Component
+       ============================================================ */
+
+    /**
+     * Swiper carousel outer container
+     * - Full width with bottom margin
+     * - Relative positioning for child elements
+     * - Contains the entire carousel structure
+     */
     .swiper-carousel-outer {
         @apply w-full mb-[20px] relative;
     }
 
+    /**
+     * Swiper carousel main container
+     * - Full width and height with centered text
+     * - Smooth transitions for transform and opacity
+     * - Hardware acceleration with translateZ
+     * - Visible with full opacity
+     */
     .swiper-carousel {
         @apply w-full h-full p-0 text-center visible touch-pan-y transform translate-x-0 translate-y-0 opacity-100 relative;
-        transition: transform 0.7s cubic-bezier(0.3, 0, 0.3, 1) 0.15s, opacity 0.4s linear, color 0.3s linear, -webkit-transform 0.7s cubic-bezier(0.3, 0, 0.3, 1);
+        transition:
+            transform 0.7s cubic-bezier(0.3, 0, 0.3, 1) 0.15s,
+            opacity 0.4s linear,
+            color 0.3s linear,
+            -webkit-transform 0.7s cubic-bezier(0.3, 0, 0.3, 1);
     }
 
+    /**
+     * Swiper wrapper container
+     * - Full width with auto height
+     * - Flex layout with stretch alignment
+     * - Bottom margin for navigation space
+     * - Hardware acceleration with translateZ
+     * - Box-content sizing for proper layout
+     */
     .swiper-wrapper {
         @apply w-full h-auto mb-[50px] flex items-stretch! text-left visible transition-transform transform translate-x-0 translate-y-0 translate-z-[0px] duration-0 box-content relative z-1;
     }
 
+    /* ============================================================
+       CarouselPagination Component
+       ============================================================ */
+
+    /**
+     * Swiper carousel navigation container
+     * - Auto width with bottom positioning
+     * - Centered text alignment
+     * - Smooth opacity transition
+     * - Inline block for proper sizing
+     * - High z-index for proper layering
+     */
     .swiper-carousel-navigation {
         @apply w-auto bottom-[10px] left-0 text-center transition-opacity duration-300 transform translate-x-0 translate-y-0 translate-z-0 inline-block relative z-10;
     }
 
+    /**
+     * Swiper carousel navigation line
+     * - Full width horizontal line
+     * - Positioned at center vertically
+     * - Uses inverse color for theme compatibility
+     * - Block display for proper rendering
+     */
     .swiper-carousel-navigation::before {
         @apply content-[""] w-full h-[2px] top-1/2 left-0 bg-inverse block absolute;
     }
 
+    /**
+     * Swiper carousel active dot
+     * - Larger size for active state
+     * - Primary color for brand consistency
+     * - Border with inverse color
+     * - Full opacity for visibility
+     * - Cursor pointer for interaction
+     */
     .swiper-carousel-dot-active {
         @apply w-[13px] h-[13px] top-[2px] bg-primary border-2 border-solid border-inverse rounded-[50%] opacity-100 inline-block cursor-pointer relative;
     }
 
+    /**
+     * Swiper carousel inactive dot
+     * - Smaller size for inactive state
+     * - Card background for subtle appearance
+     * - Border with inverse color
+     * - Full opacity for visibility
+     * - Cursor pointer for interaction
+     */
     .swiper-carousel-dot-inactive {
         @apply w-[8px] h-[8px] top-0 bg-card-inverse border-2 border-solid border-inverse rounded-[50%] opacity-100 inline-block cursor-pointer relative;
     }
 
+    /**
+     * Swiper carousel pagination dot
+     * - Right margin for spacing between dots
+     * - Smooth transition for hover effects
+     * - Ease-in-out timing for natural feel
+     */
     .swiper-carousel-pagination-dot {
         @apply mr-[4px] transition-all duration-300 ease-in-out;
     }
 
+    /**
+     * Swiper carousel pagination dot last child
+     * - Removes right margin from last dot
+     * - Prevents extra spacing at end
+     */
     .swiper-carousel-pagination-dot:last-child {
         margin-right: 0;
     }
 
+    /**
+     * Swiper carousel pagination dot hover state
+     * - Scales up on hover for interaction feedback
+     * - Smooth transform animation
+     * - Enhanced user experience
+     */
     .swiper-carousel-pagination-dot:hover {
         @apply transform scale-110;
     }

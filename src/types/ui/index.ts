@@ -1,6 +1,5 @@
 export type * from "./navigation.types";
 export type * from "./accordion.types";
-export type * from "./export.types";
 export type * from "./animation.types";
 export type * from "./carousel.types";
 export type * from "./forms.types";

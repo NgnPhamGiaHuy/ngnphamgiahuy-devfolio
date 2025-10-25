@@ -1,13 +1,44 @@
+/* ============================================================
+   File: link.css
+   Purpose: Arrow link component styles with hover animations
+   Components: ArrowLink
+   ============================================================ */
+
 @layer components {
-    /* Arrow Link section */
+    /* ============================================================
+       ArrowLink Component
+       ============================================================ */
+
+    /**
+     * ArrowLink main styling
+     * - Consistent height with bold text
+     * - Uses inverse color for theme compatibility
+     * - Smooth transition for hover effects
+     * - Inline block for proper alignment
+     * - Relative positioning for arrow placement
+     */
     .arrow-link {
         @apply h-[22px] text-[16px] text-inverse font-bold transition duration-700 ease-[cubic-bezier(0.3,0,0.3,1)] align-top leading-[22px] inline-block relative;
     }
 
+    /**
+     * ArrowLink arrow icon
+     * - Font Awesome arrow icon
+     * - Primary color for brand consistency
+     * - Smooth margin transition for hover effect
+     * - Positioned after text content
+     */
     .arrow-link::after {
         @apply content-["\f061"] ml-[20px] top-[1px] left-0 text-primary font-["Font_Awesome_7_Free"] font-bold transition-[margin] duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] relative;
     }
 
+    /**
+     * ArrowLink hover state
+     * - Arrow slides further right on hover
+     * - Creates dynamic movement effect
+     * - Smooth cubic-bezier transition
+     * - Enhanced user interaction feedback
+     */
     .arrow-link:hover::after {
         @apply ml-[35px];
     }

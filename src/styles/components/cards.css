@@ -1,88 +1,266 @@
+/* ============================================================
+   File: cards.css
+   Purpose: Card component styles for ServiceCard, ProjectCard, and PlanCard
+   Components: ServiceCard, ProjectCard, PlanCard, ExportCard
+   ============================================================ */
+
 @layer components {
-    /* ServiceCard component */
+    /* ============================================================
+       ServiceCard Component
+       ============================================================ */
+
+    /**
+     * ServiceCard container with flex layout and transform optimization
+     * - Full width and height with centered content
+     * - Hardware acceleration for smooth animations
+     * - Prevents layout shifts with backface-hidden
+     */
     .card {
         @apply w-full h-full flex items-center justify-center shrink-0 transition-transform transform translate-z-0 backface-hidden box-border relative;
     }
 
+    /**
+     * ServiceCard inner content container
+     * - Rounded corners with consistent padding
+     * - Smooth transitions for hover effects
+     * - Overflow hidden for clean edges
+     */
     .card-inner {
         @apply w-full h-full mt-0 px-[30px] py-[35px] bg-card-inverse rounded-[18px] opacity-100 transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] overflow-hidden relative;
     }
 
+    /**
+     * ServiceCard category label
+     * - Small, bold, uppercase text
+     * - Uses inverse color for theme compatibility
+     */
     .card-category {
         @apply text-[13px] text-inverse! text-left font-bold tracking-wider uppercase;
     }
 
+    /**
+     * ServiceCard icon container
+     * - Minimum height for consistent spacing
+     * - Primary color for brand consistency
+     * - Large icon size for visual impact
+     */
     .card-icon {
         @apply mt-[15px] min-h-[50px] text-[41px] text-primary leading-none;
     }
 
+    /**
+     * ServiceCard title styling
+     * - Large, bold text with tight leading
+     * - Uses inverse color for theme compatibility
+     * - Consistent margin bottom for spacing
+     */
     .card-title {
         @apply mb-[15px]! text-[24px]! text-inverse! font-bold leading-snug;
     }
 
+    /**
+     * ServiceCard description area
+     * - Minimum height for consistent card heights
+     * - Reduced opacity for visual hierarchy
+     * - Flexible growth for content
+     */
     .card-description {
         @apply min-h-[175px] flex-1 opacity-80;
     }
 
+    /**
+     * ServiceCard link with arrow animation
+     * - Bold text with consistent height
+     * - Smooth transition for hover effects
+     * - Relative positioning for arrow placement
+     */
     .card-link {
         @apply h-[22px] text-[16px] text-inverse font-bold align-top leading-[22px] transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] relative;
     }
 
+    /**
+     * ServiceCard link arrow icon
+     * - Font Awesome arrow icon
+     * - Primary color for brand consistency
+     * - Smooth transform animation on hover
+     */
     .card-link::after {
         @apply content-["\f061"] ml-[15px] top-[1px] text-primary font-["Font_Awesome_7_Free"] font-black transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] transform translate-x-0 absolute;
     }
 
+    /**
+     * ServiceCard link hover state
+     * - Arrow slides right on hover
+     * - Smooth animation for better UX
+     */
     .card-link:hover::after {
         @apply transform translate-x-2;
     }
 
+    /**
+     * ServiceCard decorative pattern
+     * - Background pattern with dark mode support
+     * - Positioned in bottom-right corner
+     * - Inverts colors in dark mode
+     */
     .card-pattern {
         @apply size-[141px] right-[-24px] bottom-[-24px] bg-[url("/images/pat-1.png")] dark:invert bg-center bg-no-repeat bg-contain absolute;
     }
 
-    /* ProjectCard component */
+    /* ============================================================
+       ProjectCard Component
+       ============================================================ */
+
+    /**
+     * ProjectCard item container
+     * - Responsive padding with mobile optimization
+     * - Full height with flex column layout
+     * - Hardware acceleration for animations
+     */
     .project-card-item {
-        @apply max-w-full pt-[40px] max-md:pt-[30px] px-[20px] max-md:px-[10px] flex-none basis-full overflow-hidden;
+        @apply max-w-full h-full pt-[32px] max-md:pt-[24px] px-[16px] max-md:px-[12px] flex flex-col flex-none basis-full overflow-hidden;
         will-change: transform, opacity;
     }
 
+    /**
+     * ProjectCard main container
+     * - Rounded corners with consistent styling
+     * - Full height with flex column layout
+     * - Responsive padding (24px desktop, 20px mobile)
+     */
     .project-card {
-        @apply p-[30px] bg-card-inverse rounded-[20px] overflow-hidden relative;
+        @apply p-[24px] h-full flex flex-col bg-card-inverse rounded-[20px] overflow-hidden relative;
     }
 
+    /**
+     * ProjectCard mobile padding override
+     * - Reduced padding on mobile devices
+     * - Maintains visual hierarchy
+     */
+    @media (max-width: 768px) {
+        .project-card {
+            padding: 20px;
+        }
+    }
+
+    /**
+     * ProjectCard image container
+     * - Rounded corners matching card design
+     * - Consistent margin bottom for spacing
+     * - Overflow hidden for clean edges
+     */
     .project-card-image-container {
-        @apply rounded-[18px] overflow-hidden leading-none relative;
+        @apply mb-[24px] rounded-[18px] overflow-hidden leading-none relative;
     }
 
+    /**
+     * ProjectCard image styling
+     * - Fixed height for consistent card heights
+     * - Object cover for proper aspect ratio
+     * - Rounded corners for visual consistency
+     */
     .project-card-image {
         @apply max-w-full w-full h-[240px] object-cover border-none shadow-none rounded-[18px];
     }
 
+    /**
+     * ProjectCard content container
+     * - Flexible growth with space distribution
+     * - Consistent gap between sections
+     * - Flex column layout for proper stacking
+     */
+    .project-card-content {
+        @apply flex-1 flex flex-col justify-between gap-[24px];
+    }
+
+    /**
+     * ProjectCard header section
+     * - Tight spacing between title and category
+     * - Flex column layout for proper alignment
+     */
+    .project-card-header {
+        @apply flex flex-col gap-[8px];
+    }
+
+    /**
+     * ProjectCard category label
+     * - Small, bold, uppercase text
+     * - Primary color for brand consistency
+     * - Block display for proper spacing
+     */
     .project-card-category {
-        @apply mb-[5px] text-[13px] text-primary font-bold tracking-wider uppercase block;
+        @apply m-0! text-[13px] text-primary font-bold tracking-wider uppercase block;
     }
 
+    /**
+     * ProjectCard title styling
+     * - Large, bold text with tight leading
+     * - Uses inverse color for theme compatibility
+     * - No margin for gap-based spacing
+     */
     .project-card-title {
-        @apply m-0! text-[24px]! text-inverse!;
+        @apply m-0! text-[24px] text-inverse font-bold leading-tight;
     }
 
+    /**
+     * ProjectCard footer section
+     * - Consistent gap between elements
+     * - Flex column layout for proper alignment
+     */
+    .project-card-footer {
+        @apply flex flex-col gap-[16px];
+    }
+
+    /**
+     * ProjectCard description container
+     * - Uses inverse color for theme compatibility
+     * - Natural height for content flow
+     */
     .project-card-description {
-        @apply min-h-[125px] mt-[15px] text-inverse;
+        @apply min-h-auto text-inverse;
     }
 
+    /**
+     * ProjectCard description text
+     * - Readable font size with relaxed leading
+     * - Line clamp for consistent heights
+     * - No margin for gap-based spacing
+     */
     .project-card-description-text {
-        @apply my-[30px] max-md:my-[20px] line-clamp-3;
+        @apply m-0! text-[16px] leading-relaxed line-clamp-3;
     }
 
-    /* PlanCard component */
+    /* ============================================================
+       PlanCard Component (Pricing Cards)
+       ============================================================ */
+
+    /**
+     * PlanCard wrapper container
+     * - Responsive margins with mobile optimization
+     * - Full width with consistent padding
+     * - Shrink prevention for layout stability
+     */
     .plan-card-wrapper {
         @apply max-w-full w-full px-[20px] mb-[40px] max-md:mb-[30px] shrink-0 relative;
     }
 
+    /**
+     * PlanCard main container
+     * - Rounded corners with border styling
+     * - Consistent padding for content
+     * - Background matching card theme
+     */
     .plan-card {
         @apply py-[30px] px-[35px] rounded-[18px] bg-card-inverse border-2 border-solid overflow-hidden relative;
     }
 
+    /**
+     * PlanCard badge (e.g., "Popular", "Best Value")
+     * - Positioned above card with overlap
+     * - Primary color with white text
+     * - Shadow effect for depth
+     * - Rounded pill shape
+     */
     .plan-card-badge {
         @apply h-[26px] px-[15px] top-[-12px] right-[60px] text-[13px] text-white font-bold border-2 border-solid border-border-inverse bg-primary shadow-[5px_5px_0px_0px_rgba(0,0,0,.2)] rounded-[26px] absolute uppercase tracking-wider leading-[22px] z-2;
     }

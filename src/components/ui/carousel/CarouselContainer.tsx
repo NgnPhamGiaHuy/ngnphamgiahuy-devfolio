@@ -1,14 +1,51 @@
+// ============================================================
+// Component: CarouselContainer
+// Purpose: Container wrapper for carousel components with animations
+// ============================================================
+
 "use client";
 
-import React, { useMemo } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-
-import type { CarouselContainerProps } from "@/types";
 
 import { COMMON_ANIMATIONS } from "@/config";
 
-const CarouselContainer: React.FC<CarouselContainerProps> = ({ children }) => {
-    const containerVariants = useMemo(() => COMMON_ANIMATIONS.fadeIn, []);
+// ============================================================
+// Types
+// ============================================================
+
+/**
+ * Props for CarouselContainer component
+ */
+interface CarouselContainerProps {
+    children: React.ReactNode;
+}
+
+// ============================================================
+// Component Definition
+// ============================================================
+
+/**
+ * CarouselContainer component wraps carousel content with animations.
+ * Features fade-in animations, accessibility, and proper structure.
+ *
+ * @param props - Component props
+ * @param props.children - Carousel content to wrap
+ * @returns Carousel container component
+ */
+const CarouselContainer: React.FC<CarouselContainerProps> = ({
+    children,
+    ...props
+}) => {
+    // ============================================================
+    // Animation Configuration
+    // ============================================================
+
+    const containerVariants = COMMON_ANIMATIONS.fadeIn;
+
+    // ============================================================
+    // Render
+    // ============================================================
 
     return (
         <motion.div
@@ -17,8 +54,10 @@ const CarouselContainer: React.FC<CarouselContainerProps> = ({ children }) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            role={"group"}
-            aria-label={"Carousel container"}
+            role="group"
+            aria-label="Carousel container"
+            data-testid="carousel-container"
+            {...props}
         >
             {children}
         </motion.div>

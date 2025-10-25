@@ -1,22 +1,67 @@
+// ============================================================
+// Component: CarouselPagination
+// Purpose: Carousel pagination dots with accessibility and animations
+// ============================================================
+
 "use client";
 
 import { motion } from "framer-motion";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 
-import type { CarouselPaginationProps } from "@/types";
+// ============================================================
+// Types
+// ============================================================
 
+/**
+ * Props for CarouselPagination component
+ */
+interface CarouselPaginationProps {
+    totalSlides: number;
+    slidesPerView: number;
+    activeIndex: number;
+    onClickDot: (index: number) => void;
+    onKeyDownDot: (
+        event: React.KeyboardEvent<HTMLSpanElement>,
+        index: number
+    ) => void;
+}
+
+// ============================================================
+// Component Definition
+// ============================================================
+
+/**
+ * CarouselPagination component renders pagination dots for carousel navigation.
+ * Features accessibility, keyboard navigation, and smooth animations.
+ *
+ * @param props - Component props
+ * @param props.totalSlides - Total number of slides
+ * @param props.slidesPerView - Number of slides visible at once
+ * @param props.activeIndex - Currently active slide index
+ * @param props.onClickDot - Click handler for pagination dots
+ * @param props.onKeyDownDot - Keyboard handler for pagination dots
+ * @returns Carousel pagination component
+ */
 const CarouselPagination: React.FC<CarouselPaginationProps> = ({
     totalSlides,
     slidesPerView,
     activeIndex,
     onClickDot,
     onKeyDownDot,
+    ...props
 }) => {
+    // ============================================================
+    // Data Processing
+    // ============================================================
+
     const shouldRender = totalSlides > slidesPerView;
-    const indices = useMemo(
-        () => Array.from({ length: totalSlides }, (_, i) => i),
-        [totalSlides]
-    );
+
+    // Remove unnecessary useMemo - simple array creation doesn't need memoization
+    const indices = Array.from({ length: totalSlides }, (_, i) => i);
+
+    // ============================================================
+    // Event Handlers
+    // ============================================================
 
     const handleClick = useCallback(
         (index: number) => {
@@ -32,6 +77,10 @@ const CarouselPagination: React.FC<CarouselPaginationProps> = ({
         [onKeyDownDot]
     );
 
+    // ============================================================
+    // Render
+    // ============================================================
+
     if (!shouldRender) return null;
 
     return (
@@ -42,6 +91,8 @@ const CarouselPagination: React.FC<CarouselPaginationProps> = ({
             transition={{ delay: 0.5, duration: 0.5 }}
             role="tablist"
             aria-label="Carousel pagination"
+            data-testid="carousel-pagination"
+            {...props}
         >
             {indices.map((index) => (
                 <span
@@ -57,6 +108,7 @@ const CarouselPagination: React.FC<CarouselPaginationProps> = ({
                     aria-label={`Go to slide ${index + 1}`}
                     aria-selected={index === activeIndex}
                     onKeyDown={(e) => handleKeyDown(e, index)}
+                    data-testid={`carousel-pagination-dot-${index}`}
                 />
             ))}
         </motion.div>

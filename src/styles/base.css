@@ -1,21 +1,40 @@
+/* ============================================================
+   File: base.css
+   Purpose: Global CSS variables, theme configuration, and base styles
+   ============================================================ */
+
+/* ============================================================
+   CSS Custom Properties (CSS Variables)
+   ============================================================ */
+
 :root {
+    /* Base color scheme */
     --background: #f0ebe3;
     --foreground: #262626;
     color-scheme: light dark;
 }
 
+/* ============================================================
+   Theme Configuration
+   ============================================================ */
+
 @theme {
-    /* Burnt monochromatic palette */
-    --color-burnt-900: #9d3314;
-    /* darkest */
+    /* ============================================================
+       Burnt Monochromatic Palette
+       ============================================================ */
+
+    /* Primary burnt color scale (darkest to lightest) */
+    --color-burnt-900: #9d3314; /* darkest */
     --color-burnt-800: #c54119;
     --color-burnt-700: #e45328;
-    --color-burnt-600: #e97451;
-    /* Burnt Sienna (brand) */
+    --color-burnt-600: #e97451; /* Burnt Sienna (brand) */
     --color-burnt-500: #ee957a;
     --color-burnt-400: #f3b5a2;
-    --color-burnt-300: #f8d6cb;
-    /* lightest */
+    --color-burnt-300: #f8d6cb; /* lightest */
+
+    /* ============================================================
+       Neutral Colors
+       ============================================================ */
 
     --color-white: #fff;
     --color-light: #f8f9fa;
@@ -23,7 +42,10 @@
     --color-gray: #6c757d;
     --color-gray-dark: #343a40;
 
-    /* legacy hues (kept for compatibility; avoid for brand) */
+    /* ============================================================
+       Legacy Color Palette (kept for compatibility; avoid for brand)
+       ============================================================ */
+
     --color-blue: #0d6efd;
     --color-indigo: #6610f2;
     --color-purple: #6f42c1;
@@ -35,7 +57,10 @@
     --color-teal: #20c997;
     --color-cyan: #0dcaf0;
 
-    /* semantic colors mapped to Burnt palette */
+    /* ============================================================
+       Semantic Color Mapping (mapped to Burnt palette)
+       ============================================================ */
+
     --color-primary: var(--color-burnt-600);
     --color-secondary: var(--color-burnt-400);
     --color-success: var(--color-burnt-700);
@@ -43,49 +68,89 @@
     --color-warning: var(--color-burnt-700);
     --color-danger: var(--color-burnt-800);
 
+    /* ============================================================
+       Inverse Colors (for dark mode compatibility)
+       ============================================================ */
+
     --color-inverse: #000;
     --color-card-inverse: #fff;
     --color-border-inverse: #000;
 
+    /* ============================================================
+       Shadow Configuration
+       ============================================================ */
+
     --shadow-offset-md: 5px 5px rgb(0 0 0 / 0.2);
 }
 
+/* ============================================================
+   Inline Theme Configuration
+   ============================================================ */
+
 @theme inline {
+    /* Base color mapping */
     --color-background: var(--background);
     --color-foreground: var(--foreground);
+
+    /* Typography configuration */
     --font-sans: var(--font-geist-jost);
     --font-mono: var(--font-geist-mono);
-    /* surface tokens */
+
+    /* ============================================================
+       Surface Tokens (for layered UI elements)
+       ============================================================ */
+
     --surface-1: var(--background);
     --surface-2: var(--color-card-inverse);
     --surface-3: color-mix(in oklab, var(--surface-2) 85%, black);
 }
 
+/* ============================================================
+   Dark Theme Configuration
+   ============================================================ */
+
 [data-theme="dark"] {
-    --background: #222831;
-    /* deep charcoal for warmth */
+    /* Base dark theme colors */
+    --background: #222831; /* deep charcoal for warmth */
     --foreground: #ececec;
+
+    /* Inverse color adjustments for dark mode */
     --color-inverse: #fff;
     --color-card-inverse: #202326;
     --color-border-inverse: #a6a8aa;
 
-    /* elevate primary on dark for contrast */
+    /* ============================================================
+       Elevated Primary Colors (for better contrast in dark mode)
+       ============================================================ */
+
     --color-primary: var(--color-burnt-500);
     --color-secondary: var(--color-burnt-300);
 
-    /* surface tokens */
+    /* ============================================================
+       Dark Mode Surface Tokens
+       ============================================================ */
+
     --surface-1: #1b1d1f;
     --surface-2: #202326;
     --surface-3: color-mix(in oklab, var(--surface-2) 85%, white);
 
+    /* Dark mode shadow adjustment */
     --shadow-offset-md: 5px 5px rgba(255, 255, 255, 0.1);
 }
+
+/* ============================================================
+   Base Element Styles
+   ============================================================ */
 
 body {
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-geist-jost), sans-serif;
 }
+
+/* ============================================================
+   Typography Styles
+   ============================================================ */
 
 :where(h1, h2, h3, h4, h5, h6) {
     font-family: var(--font-geist-jost), sans-serif;
@@ -95,19 +160,27 @@ body {
     margin: 0 0 15px;
 }
 
-/* Accessible selection color */
+/* ============================================================
+   Accessibility Enhancements
+   ============================================================ */
+
+/* Accessible text selection color */
 ::selection {
     background: var(--color-burnt-600);
     color: #fff;
 }
 
-/* Global focus-visible ring */
+/* Global focus-visible ring for keyboard navigation */
 :where(a, button, input, textarea, select):focus-visible {
     outline: 2px solid var(--color-burnt-700);
     outline-offset: 2px;
 }
 
-/* Respect reduced motion */
+/* ============================================================
+   Motion Preferences
+   ============================================================ */
+
+/* Respect user's reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;

@@ -1,84 +1,242 @@
+/* ============================================================
+   File: common.css
+   Purpose: Common utility classes and component styles using Tailwind CSS
+   ============================================================ */
+
 @layer components {
+    /* ============================================================
+       Container Layout Classes
+       ============================================================ */
+
+    /**
+     * Full-width container with responsive flex behavior
+     * - Centers content horizontally
+     * - Switches to flex-wrap on large screens and below
+     * - Provides relative positioning context
+     */
     .container-full {
         @apply mx-auto flex max-lg:flex-wrap relative;
     }
 
+    /**
+     * Constrained container with 1300px max-width
+     * - Limits content width for better readability
+     * - Maintains responsive flex behavior
+     * - Centers content horizontally
+     */
     .container-1300 {
         @apply max-w-[1300px] mx-auto flex max-lg:flex-wrap relative;
     }
 
+    /**
+     * Flex container with space-between justification
+     * - Distributes content evenly across available space
+     * - Responsive flex-wrap behavior
+     * - Centers content horizontally
+     */
     .flex-container {
         @apply mx-auto flex max-lg:flex-wrap justify-between relative;
     }
 
+    /* ============================================================
+       Flex Layout Utility Classes
+       ============================================================ */
+
+    /**
+     * Full-width flex wrapper with centered content
+     * - Centers items both horizontally and vertically
+     * - Uses flex-wrap for responsive behavior
+     * - Provides full width coverage
+     */
     .flex-wrapper {
         @apply w-full flex flex-wrap items-center justify-center content-center relative;
     }
 
+    /**
+     * Flex container with start alignment
+     * - Aligns items to the start of the container
+     * - Centers items vertically
+     */
     .flex-start {
         @apply flex items-center justify-start;
     }
 
+    /**
+     * Flex container with center alignment
+     * - Centers items both horizontally and vertically
+     * - Standard centering utility
+     */
     .flex-center {
         @apply flex items-center justify-center;
     }
 
+    /**
+     * Flex container with space-between distribution
+     * - Distributes items evenly across available space
+     * - Centers items vertically
+     */
     .flex-between {
         @apply flex items-center justify-between;
     }
 
+    /* ============================================================
+       Responsive Width Classes
+       ============================================================ */
+
+    /**
+     * Base flex container with minimal height
+     * - Provides flex context with minimal height
+     * - Relative positioning for child elements
+     */
     .flex-base {
         @apply min-h-[1px] flex relative;
     }
 
+    /**
+     * Full-width flex container
+     * - Takes full width of parent
+     * - Minimal height with flex context
+     */
     .flex-full {
         @apply w-full min-h-[1px] flex relative;
     }
 
+    /**
+     * Half-width responsive container
+     * - Full width on mobile, half width on medium screens and up
+     * - Flex context with minimal height
+     */
     .flex-half {
         @apply w-full md:w-1/2 min-h-[1px] flex relative;
     }
 
+    /**
+     * Third-width responsive container
+     * - Full width on mobile, third width on medium screens and up
+     * - Minimal height with relative positioning
+     */
     .flex-third {
         @apply w-full md:w-1/3 min-h-[1px] relative;
     }
 
+    /**
+     * 40% width responsive container
+     * - Full width on mobile, 40% width on large screens and up
+     * - Flex context with minimal height
+     */
     .flex-2-5 {
-        @apply w-full md:lg:w-[40%] min-h-[1px] flex relative;
+        @apply w-full lg:w-[40%] min-h-[1px] flex relative;
     }
 
+    /**
+     * 60% width responsive container
+     * - Full width on mobile, 60% width on large screens and up
+     * - Flex context with minimal height
+     */
     .flex-3-5 {
-        @apply w-full md:lg:w-[60%] min-h-[1px] flex relative;
+        @apply w-full lg:w-[60%] min-h-[1px] flex relative;
     }
 
+    /* ============================================================
+       Flex Wrap Utility Classes
+       ============================================================ */
+
+    /**
+     * Flex wrap container with start alignment
+     * - Wraps content to new lines as needed
+     * - Aligns wrapped content to start
+     * - Full width with relative positioning
+     */
     .flex-wrap-start {
         @apply w-full flex flex-wrap content-start relative;
     }
 
+    /**
+     * Flex wrap container with center alignment
+     * - Wraps content to new lines as needed
+     * - Centers wrapped content both horizontally and vertically
+     * - Full width with relative positioning
+     */
     .flex-wrap-center {
         @apply w-full flex flex-wrap items-center content-center relative;
     }
 
+    /* ============================================================
+       Grid Layout Classes
+       ============================================================ */
+
+    /**
+     * Responsive grid container
+     * - 1 column on mobile
+     * - 2 columns on medium screens
+     * - 3 columns on large screens
+     */
     .grid-responsive {
         @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
     }
 
+    /* ============================================================
+       Brand and Logo Styles
+       ============================================================ */
+
+    /**
+     * Logo text styling
+     * - Large, bold, uppercase text
+     * - Uses inverse color for theme compatibility
+     * - Provides brand consistency
+     */
     .logo {
         @apply text-2xl text-inverse font-black uppercase;
     }
 
+    /**
+     * Logo animated indicator
+     * - Small circular indicator with ping animation
+     * - Positioned after logo text
+     * - Uses primary color for brand consistency
+     */
     .logo::after {
         @apply content-[""] w-2 h-2 border-2 border-solid border-primary absolute rounded-full top-1/3 ml-2 animate-ping;
     }
 
+    /* ============================================================
+       Background and Decorative Classes
+       ============================================================ */
+
+    /**
+     * Pattern background with dark mode support
+     * - Uses pat-1.png image as background
+     * - Inverts colors in dark mode
+     * - Absolute positioning for overlay effect
+     */
     .pat-background {
         @apply bg-[url("/images/pat-1.png")] bg-no-repeat bg-contain bg-center dark:invert absolute;
     }
 
+    /* ============================================================
+       Border and Visual Classes
+       ============================================================ */
+
+    /**
+     * Inverse border styling
+     * - 2px solid border using inverse color
+     * - Theme-aware border color
+     */
     .border-2-inverse {
         @apply border-2 border-solid border-border-inverse;
     }
 
+    /* ============================================================
+       Typography Utility Classes
+       ============================================================ */
+
+    /**
+     * Caption text styling
+     * - Small, bold, uppercase text
+     * - Wide letter spacing for readability
+     * - Uses inverse color for theme compatibility
+     * - Removes default margins
+     */
     .caption-text {
         @apply m-0! text-[13px] text-inverse! font-bold uppercase tracking-wider relative;
     }

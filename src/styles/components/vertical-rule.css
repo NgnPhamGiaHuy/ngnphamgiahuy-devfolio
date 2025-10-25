@@ -1,17 +1,54 @@
+/* ============================================================
+   File: vertical-rule.css
+   Purpose: Vertical rule component styles with decorative elements
+   Components: VerticalRule
+   ============================================================ */
+
 @layer components {
-    /* VerticalRule component */
+    /* ============================================================
+       VerticalRule Component
+       ============================================================ */
+
+    /**
+     * VerticalRule main styling
+     * - Uses inverse border color for theme compatibility
+     * - Pointer events disabled for non-interactive element
+     * - Absolute positioning for precise placement
+     * - High z-index for proper layering
+     */
     .vertical-rule {
         @apply bg-border-inverse pointer-events-none absolute z-3;
     }
 
+    /**
+     * VerticalRule top circle
+     * - Circular decorative element at top
+     * - Card background with border
+     * - Positioned to overlap rule line
+     * - Lower z-index than rule line
+     */
     .vertical-rule::before {
         @apply absolute content-[""] size-[30px] top-[-15px] left-[-15px] bg-card-inverse border-2 border-solid border-border-inverse rounded-full z-1;
     }
 
+    /**
+     * VerticalRule bottom circle
+     * - Circular decorative element at bottom
+     * - Card background with border
+     * - Positioned to overlap rule line
+     * - Lower z-index than rule line
+     */
     .vertical-rule::after {
         @apply absolute content-[""] size-[30px] bottom-[-15px] left-[-15px] bg-card-inverse border-2 border-solid border-border-inverse rounded-full z-1;
     }
 
+    /**
+     * VerticalRule pattern decoration
+     * - Background pattern with dark mode support
+     * - Positioned above the rule line
+     * - Inverts colors in dark mode
+     * - Block display for proper rendering
+     */
     .vertical-rule-pattern {
         @apply size-[226px] top-[-188px] bottom-auto left-[-168px] bg-[url("/images/pat-1.png")] bg-no-repeat bg-contain dark:invert block absolute;
     }

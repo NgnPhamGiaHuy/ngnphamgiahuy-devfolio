@@ -1,13 +1,45 @@
+/* ============================================================
+   File: buttons.css
+   Purpose: Button component styles with animations and interactions
+   Components: PrimaryButton, SecondaryButton, SkillButton
+   ============================================================ */
+
 @layer components {
+    /* ============================================================
+       PrimaryButton Component
+       ============================================================ */
+
+    /**
+     * PrimaryButton main styling
+     * - Rounded pill shape with consistent height
+     * - Bold, uppercase text with wide tracking
+     * - Shadow effect for depth
+     * - Overflow hidden for animation effects
+     * - Smooth color transition on hover
+     */
     .primary-button {
         @apply h-[56px] px-[40px] text-[13px] text-inverse text-center font-bold border-2 border-solid border-border-inverse shadow-[var(--shadow-offset-md)] rounded-[56px] outline-none tracking-wider leading-[52px] align-top overflow-hidden inline-block cursor-pointer uppercase relative;
         transition: color 0.3s ease;
     }
 
+    /**
+     * PrimaryButton background animation element
+     * - Starts as a point (0x0) in the center
+     * - Expands to fill button on hover
+     * - Primary color background
+     * - Smooth transition with easing
+     * - Positioned behind text content
+     */
     .primary-button::before {
         @apply content-[""] w-0 h-0 top-1/2 left-1/2 rounded-[56px] opacity-100 bg-primary! transform -translate-x-1/2 -translate-y-1/2 transition-[width,height] duration-700 ease-[ease] z-[-1] absolute;
     }
 
+    /**
+     * PrimaryButton hover state
+     * - Text changes to white for contrast
+     * - Delayed color transition for smooth effect
+     * - Border color transition for consistency
+     */
     .primary-button:hover {
         @apply text-white;
         transition:
@@ -15,30 +47,86 @@
             border-color 0.3s ease;
     }
 
+    /**
+     * PrimaryButton hover background expansion
+     * - Background expands to 97% width and 90% height
+     * - Creates smooth fill animation effect
+     * - Maintains rounded corners
+     */
     .primary-button:hover::before {
         @apply w-[97%] h-[90%];
     }
 
+    /* ============================================================
+       SecondaryButton Component
+       ============================================================ */
+
+    /**
+     * SecondaryButton main styling
+     * - Similar dimensions to primary button
+     * - White text with primary background
+     * - Shadow effect for depth
+     * - Overflow hidden for arrow animation
+     */
     .secondary-button {
         @apply h-[56px] px-[40px] text-[13px] text-white text-center font-bold outline-none border-2 border-solid border-border-inverse shadow-[var(--shadow-offset-md)] rounded-[56px] inline-block uppercase tracking-wider overflow-hidden align-top cursor-pointer relative leading-[52px];
     }
 
+    /**
+     * SecondaryButton background element
+     * - Primary color background
+     * - Slightly smaller than button for border effect
+     * - Positioned behind text content
+     * - Rounded corners matching button
+     */
     .secondary-button::before {
         @apply content-[""] w-[calc(100%-4px)] h-[calc(100%-4px)] top-1/2 left-1/2 bg-primary transform -translate-x-1/2 -translate-y-1/2 rounded-[56px] absolute z-1;
     }
 
+    /**
+     * SecondaryButton arrow icon
+     * - Font Awesome arrow icon
+     * - Positioned on the right side
+     * - White color for contrast
+     * - Smooth transition for hover effect
+     */
     .secondary-button::after {
         @apply content-["\f061"] top-0 right-[30px] text-white font-bold font-["Font_Awesome_7_Free"] transition-[right] duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] absolute z-2;
     }
 
+    /**
+     * SecondaryButton hover arrow animation
+     * - Arrow slides further right on hover
+     * - Creates dynamic movement effect
+     * - Smooth cubic-bezier transition
+     */
     .secondary-button:hover::after {
         @apply right-[35px];
     }
 
+    /* ============================================================
+       SkillButton Component (My Skill)
+       ============================================================ */
+
+    /**
+     * SkillButton main styling
+     * - Consistent height with other buttons
+     * - Responsive padding and margins
+     * - Bold, uppercase text
+     * - Uses inverse color for theme compatibility
+     */
     .my-skill {
         @apply h-[56px] max-md:mt-[20px] max-md:pt-[40px] pl-[70px] max-md:pl-0 max-md:block align-top text-[13px] text-inverse font-bold tracking-wider leading-[56px] uppercase relative;
     }
 
+    /**
+     * SkillButton decorative line
+     * - Horizontal line on desktop (40px x 2px)
+     * - Vertical line on mobile (2px x 40px)
+     * - Positioned before text content
+     * - Uses inverse color for theme compatibility
+     * - Responsive positioning for different screen sizes
+     */
     .my-skill::before {
         @apply content-[""] w-[40px] max-md:w-[2px] h-[2px] max-md:h-[40px] mt-[-1px] max-md:mt-0 max-md:ml-[-1px] top-1/2 max-md:top-0 left-[-1px] max-md:left-1/2 bg-inverse absolute;
     }

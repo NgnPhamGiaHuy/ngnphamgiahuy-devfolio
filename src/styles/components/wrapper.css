@@ -1,31 +1,98 @@
+/* ============================================================
+   File: wrapper.css
+   Purpose: Wrapper component styles for section layouts
+   Components: Wrapper, WrapperHeader, ExportWrapper
+   ============================================================ */
+
 @layer components {
-    /* Wrapper component */
+    /* ============================================================
+       Wrapper Component
+       ============================================================ */
+
+    /**
+     * Wrapper main container
+     * - Responsive top and bottom padding
+     * - Mobile: 50px top, 20px bottom
+     * - Large: 0px top, 120px bottom
+     * - Desktop: 20px top, 210px bottom
+     * - Relative positioning for child elements
+     */
     .wrapper {
         @apply pt-[20px] max-md:pt-[50px] max-lg:pt-0 pb-[210px] max-md:pb-[20px] max-lg:pb-[120px] relative;
     }
 
-    /* WrapperHeader component */
+    /* ============================================================
+       WrapperHeader Component
+       ============================================================ */
+
+    /**
+     * WrapperHeader main container
+     * - Full width with responsive margins
+     * - Mobile: no padding, Large: no top margin
+     * - Desktop: no top margin, 60px bottom margin
+     * - Relative positioning for child elements
+     */
     .wrapper-header {
         @apply w-full mt-0 max-lg:mt-0 mb-[60px] max-lg:mb-[30px] max-md:p-0 relative;
     }
 
+    /**
+     * WrapperHeader title styling
+     * - Large, bold, uppercase text
+     * - Responsive sizing: Mobile 26px, Large 34px, Desktop 44px
+     * - Uses inverse color for theme compatibility
+     * - Wide tracking for readability
+     * - Break-words for long text handling
+     * - Tight leading for compact appearance
+     */
     .wrapper-header-title {
         @apply mt-0 mb-[10px]! text-[44px] max-md:text-[26px] max-lg:text-[34px] text-inverse font-bold uppercase tracking-wider break-words leading-snug;
     }
 
+    /**
+     * WrapperHeader title word styling
+     * - Same responsive sizing as main title
+     * - Uses inverse color for theme compatibility
+     * - Used for individual word styling
+     */
     .wrapper-header-title-word {
         @apply text-[44px] max-md:text-[26px] max-lg:text-[34px] text-inverse;
     }
 
+    /**
+     * WrapperHeader subtitle styling
+     * - Small, bold, uppercase text
+     * - Primary color for brand consistency
+     * - No leading for tight spacing
+     */
     .wrapper-header-subtitle {
         @apply text-[14px] text-primary font-bold uppercase leading-none;
     }
 
+    /**
+     * WrapperHeader subtitle text styling
+     * - Large text with Caveat font
+     * - Left margin for spacing
+     * - Responsive sizing: Large 24px, Desktop 30px
+     * - Uses inverse color for theme compatibility
+     * - Normal case (not uppercase)
+     */
     .wrapper-header-subtitle-text {
         @apply ml-[10px] text-[30px] max-lg:text-[24px] text-inverse font-bold font-["Caveat"] tracking-normal normal-case;
     }
 
-    /* ExportWrapper component */
+    /* ============================================================
+       ExportWrapper Component
+       ============================================================ */
+
+    /**
+     * ExportWrapper main container
+     * - Full screen height for export pages
+     * - Responsive top padding
+     * - Mobile: 50px, Large: 0px, Desktop: 20px
+     * - No bottom padding for full height
+     * - Relative positioning for child elements
+     */
     .export-wrapper {
         @apply min-h-screen pt-[20px] max-md:pt-[50px] max-lg:pt-0 pb-0 relative;
     }
