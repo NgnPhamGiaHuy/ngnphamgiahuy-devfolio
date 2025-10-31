@@ -2,7 +2,7 @@ import { UseFormRegisterReturn } from "react-hook-form";
 
 export interface FormInputProps {
     id: string;
-    label: string;
+    label?: string;
     placeholder?: string;
     type?: string;
     isTextArea?: boolean;
@@ -22,4 +22,6 @@ export interface FormStatusProps {
 
 export interface SubmitButtonProps {
     isSubmitting: boolean;
+    disabled?: boolean;
+    label?: string;
 }

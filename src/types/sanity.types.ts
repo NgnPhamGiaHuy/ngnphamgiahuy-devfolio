@@ -129,7 +129,6 @@ export interface BlogPost extends SanityDocument, SeoFields {
     title: string;
     date: string;
     excerpt: string;
-    link: string;
     slug: {
         _type: "slug";
         current: string;
@@ -137,6 +136,7 @@ export interface BlogPost extends SanityDocument, SeoFields {
     image: SanityImage | string;
     content?: any[];
     categories?: string[];
+    author?: string | null;
 }
 
 export interface Settings extends SanityDocument, SeoFields {

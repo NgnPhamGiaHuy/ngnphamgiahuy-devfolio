@@ -4,27 +4,20 @@
 // ============================================================
 
 import React from "react";
-import dynamic from "next/dynamic";
 
 import type { HomePageData } from "@/types";
 
 import { data as FallbackData } from "@/data";
-import { SiteHeader, SiteFooter } from "@/components";
+import { PageChrome } from "@/components";
 import { sanityFetch, homePageDataQuery } from "@/lib";
+import { renderSection } from "@/components/section/SectionRenderer";
 import { normalizeProfileData, normalizeSectionConfigData } from "@/utils";
-import { renderSection } from "@/utils/sectionComponents";
 
 // ============================================================
 // Dynamic Imports
 // ============================================================
 
-/**
- * Dynamically imported ScrollToTopButton for better performance.
- * Only loads when needed to reduce initial bundle size.
- */
-const ScrollToTopButton = dynamic(() =>
-    import("@/components").then((mod) => ({ default: mod.ScrollToTopButton }))
-);
+// ScrollToTopButton handled by PageChrome
 
 // ============================================================
 // Page Configuration
@@ -87,26 +80,16 @@ export default async function Home(): Promise<React.JSX.Element> {
     // ============================================================
 
     return (
-        <div className="min-h-[50vh] overflow-hidden relative">
-            {/* Site Header */}
-            <SiteHeader
-                profile={profile}
-                logo={data.settings?.logo}
-                enabledSections={enabledSections}
-            />
-
-            {/* Dynamic Sections */}
+        <PageChrome
+            profile={profile}
+            logo={data.settings?.logo}
+            enabledSections={enabledSections}
+        >
             <div className="relative">
                 {enabledSections.map((section) =>
                     renderSection(section, { sectionProps: data })
                 )}
             </div>
-
-            {/* Site Footer */}
-            <SiteFooter socialLinks={profile.social_links} />
-
-            {/* Scroll to Top Button */}
-            <ScrollToTopButton />
-        </div>
+        </PageChrome>
     );
 }

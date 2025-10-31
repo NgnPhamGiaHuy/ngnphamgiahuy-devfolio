@@ -5,9 +5,11 @@
    ============================================================ */
 
 import { structureTool } from "sanity/structure";
+import { markdownSchema } from "sanity-plugin-markdown";
 import { defineConfig, SchemaTypeDefinition } from "sanity";
 
 import { codeInput } from "@sanity/code-input";
+import { table } from "@sanity/table";
 import { schemaTypes } from "./lib/sanity/schemas";
 import { deskStructure } from "./lib/sanity/deskStructure";
 
@@ -78,11 +80,15 @@ export default defineConfig({
     plugins: [
         // Code input plugin for syntax highlighting
         codeInput(),
+        // Table plugin for spreadsheet-like tables in Portable Text
+        table(),
 
         // Custom desk structure for content organization
         structureTool({
             structure: deskStructure,
         }),
+
+        markdownSchema(),
     ],
 
     // Schema configuration

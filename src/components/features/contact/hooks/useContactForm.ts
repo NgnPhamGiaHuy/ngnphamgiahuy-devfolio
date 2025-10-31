@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { API_CONFIG, FORM_MESSAGES } from "@/config";
-import { ContactFormData, contactFormSchema } from "@/utils";
+import { ContactFormData, contactFormSchema } from "@/schemas";
 
 // ============================================================
 // Types

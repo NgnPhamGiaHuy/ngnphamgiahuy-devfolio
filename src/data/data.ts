@@ -7,7 +7,6 @@ export const data: MockDataType = {
             date: "2024-08-01",
             excerpt:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            link: "#",
             slug: {
                 _type: "slug",
                 current: "lorem-ipsum-dolor-sit-amet-consectetur",
@@ -24,13 +23,13 @@ export const data: MockDataType = {
             _createdAt: "2024-01-01T00:00:00Z",
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-001",
+            author: "Jane Doe",
         },
         {
             title: "Sed ut perspiciatis unde omnis iste natus",
             date: "2024-08-15",
             excerpt:
                 "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            link: "#",
             slug: {
                 _type: "slug",
                 current: "sed-ut-perspiciatis-unde-omnis-iste-natus",
@@ -47,13 +46,13 @@ export const data: MockDataType = {
             _createdAt: "2024-01-01T00:00:00Z",
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-002",
+            author: null,
         },
         {
             title: "Ut enim ad minima veniam quis nostrum",
             date: "2024-09-01",
             excerpt:
                 "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            link: "#",
             slug: {
                 _type: "slug",
                 current: "ut-enim-ad-minima-veniam-quis-nostrum",
@@ -69,13 +68,13 @@ export const data: MockDataType = {
             _createdAt: "2024-01-01T00:00:00Z",
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-003",
+            author: "Alex Smith",
         },
         {
             title: "Nemo enim ipsam voluptatem quia voluptas",
             date: "2024-09-15",
             excerpt:
                 "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
-            link: "#",
             slug: {
                 _type: "slug",
                 current: "nemo-enim-ipsam-voluptatem-quia-voluptas",
@@ -92,6 +91,7 @@ export const data: MockDataType = {
             _createdAt: "2024-01-01T00:00:00Z",
             _updatedAt: "2024-01-01T00:00:00Z",
             _rev: "rev-004",
+            author: null,
         },
     ],
     certificates: [

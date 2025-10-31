@@ -4,7 +4,7 @@ import {
     UseFormWatch,
 } from "react-hook-form";
 
-import { ContactFormData } from "@/utils";
+import { ContactFormData } from "@/schemas";
 
 export interface ContactFieldsProps {
     register: (name: keyof ContactFormData) => UseFormRegisterReturn;

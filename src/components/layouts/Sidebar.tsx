@@ -11,7 +11,7 @@ import type { SidebarProps } from "@/types";
 
 import useSidebarAnimation from "./hooks/useSidebarAnimation";
 import { SIDEBAR_CONFIG } from "@/config";
-import { generateSocialLinks } from "@/utils";
+import { generateSocialLinks } from "@/components/ui/social";
 import { VerticalRule, SocialLinks, NavItem } from "@/components";
 
 // ============================================================

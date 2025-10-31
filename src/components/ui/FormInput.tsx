@@ -68,10 +68,14 @@ const FormInput: React.FC<FormInputProps> = ({
         >
             <div className="form-input-field-container">
                 <label htmlFor={id} className="form-input-label">
-                    {label}&nbsp;
-                    <b className="text-primary" aria-hidden="true">
-                        *
-                    </b>
+                    {label && (
+                        <>
+                            {label}&nbsp;
+                            <b className="text-primary" aria-hidden="true">
+                                *
+                            </b>
+                        </>
+                    )}
                     <span className="relative">
                         {isTextArea ? (
                             <textarea

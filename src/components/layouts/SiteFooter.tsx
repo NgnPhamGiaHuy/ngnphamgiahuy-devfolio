@@ -8,13 +8,13 @@ import React from "react";
 import type { RawSocialLink } from "@/types";
 
 import { SocialLinks } from "@/components";
-import { generateSocialLinks } from "@/utils";
+import { generateSocialLinks } from "@/components/ui/social";
 
 // ============================================================
 // Component Props
 // ============================================================
 
-interface SiteFooterProps {
+interface SiteFooterProps extends React.HTMLAttributes<HTMLElement> {
     socialLinks: RawSocialLink[];
 }
 
@@ -30,7 +30,7 @@ interface SiteFooterProps {
  * @param props.socialLinks - Array of social media links
  * @returns Site footer component
  */
-const SiteFooter: React.FC<SiteFooterProps> = ({ socialLinks }) => {
+const SiteFooter: React.FC<SiteFooterProps> = ({ socialLinks, ...props }) => {
     // ============================================================
     // Data Processing
     // ============================================================
@@ -49,6 +49,7 @@ const SiteFooter: React.FC<SiteFooterProps> = ({ socialLinks }) => {
             role="contentinfo"
             aria-label="Site footer"
             data-testid="site-footer"
+            {...props}
         >
             <section className="py-[60px] relative">
                 <div className="container-1300">

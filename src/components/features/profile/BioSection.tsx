@@ -5,15 +5,15 @@
 
 "use client";
 
-import { motion } from "framer-motion";
 import React from "react";
+import { motion } from "framer-motion";
 
 import type { Profile } from "@/types";
 
-import { generateSocialLinks } from "@/utils";
 import { HeroAnimationsConfig } from "@/config";
 import { useHeroAnimationContext } from "@/components";
 import { SocialLinks, AnimatedText } from "@/components";
+import { generateSocialLinks } from "@/components/ui/social";
 
 // ============================================================
 // Types

@@ -28,10 +28,7 @@ interface ThemeProviderProps {
  * @param props.children - Child components to wrap with theme context
  * @returns Theme provider component
  */
-const ThemeProvider: React.FC<ThemeProviderProps> = ({
-    children,
-    ...props
-}) => {
+const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     // ============================================================
     // State
     // ============================================================
@@ -53,11 +50,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
     // Prevent hydration mismatch by rendering placeholder until mounted
     if (!mounted) {
         return (
-            <div
-                suppressHydrationWarning
-                data-testid="theme-provider-loading"
-                {...props}
-            >
+            <div suppressHydrationWarning data-testid="theme-provider-loading">
                 {children}
             </div>
         );
@@ -70,7 +63,6 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
             enableSystem
             disableTransitionOnChange
             data-testid="theme-provider"
-            {...props}
         >
             {children}
         </NextThemeProvider>

@@ -161,6 +161,10 @@
         @apply w-full flex flex-wrap items-center content-center relative;
     }
 
+    .flex-0-0-auto {
+        flex: 0 0 auto;
+    }
+
     /* ============================================================
        Grid Layout Classes
        ============================================================ */

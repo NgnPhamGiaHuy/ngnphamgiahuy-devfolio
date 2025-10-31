@@ -14,6 +14,7 @@ export { default as MenuToggle } from "./MenuToggle";
 export { default as NavItem } from "./NavItem";
 export { default as ScrollToTopButton } from "./ScrollToTopButton";
 export { default as SocialLinks } from "./SocialLinks";
+export { default as SocialShare } from "./SocialShare";
 export { default as SubmitButton } from "./SubmitButton";
 export { default as ThemeToggle } from "./ThemeToggle";
 export { default as VerticalRule } from "./VerticalRule";

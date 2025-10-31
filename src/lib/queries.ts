@@ -109,7 +109,8 @@ export const blogPostsQuery = `*[_type == "blogPost"] | order(date desc) {
         alt,
         caption
     },
-    categories
+    categories,
+    author
 }`;
 
 export const certificatesQuery = `*[_type == "certificate"] | order(order asc) {
@@ -217,7 +218,8 @@ export const blogPostBySlugQuery = (slug: string) => `
             asset,
             alt,
             caption
-        }
+        },
+        author
     }
 `;
 

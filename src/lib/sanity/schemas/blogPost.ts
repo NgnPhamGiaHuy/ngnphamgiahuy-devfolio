@@ -1,7 +1,7 @@
 import { Rule } from "sanity";
 import seoFields from "./seoFields";
 
-export default {
+const blogPostSchema = {
     name: "blogPost",
     title: "Blog Posts",
     type: "document",
@@ -21,6 +21,12 @@ export default {
                 maxLength: 96,
             },
             validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+            name: "author",
+            title: "Author",
+            type: "string",
+            description: "Optional author name for the post",
         },
         {
             name: "date",
@@ -68,6 +74,8 @@ export default {
                 {
                     type: "block",
                 },
+                // Official Sanity table plugin type
+                { type: "table" },
                 {
                     type: "image",
                     options: {
@@ -112,3 +120,5 @@ export default {
         },
     },
 };
+
+export default blogPostSchema;

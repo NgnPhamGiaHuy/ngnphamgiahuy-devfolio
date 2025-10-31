@@ -50,7 +50,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({ blog, ...props }) => {
     );
 
     const formattedDate = formatDate(blog.date);
-    const postHref = blog.link;
+    const postHref = `/blog/${blog.slug.current}`;
     const postTitle = blog.title;
 
     // ============================================================
@@ -75,7 +75,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({ blog, ...props }) => {
                             <Image
                                 src={imageUrl}
                                 alt={imageAlt}
-                                className="w-full h-[180px] object-cover rounded-[20px] transition-transform hover:scale-105"
+                                className="w-full h-[180px] object-cover rounded-[20px]"
                                 width={IMAGE_WIDTH}
                                 height={IMAGE_HEIGHT}
                                 sizes="(max-width: 768px) 100vw, 400px"
@@ -102,7 +102,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({ blog, ...props }) => {
                                 href={postHref}
                                 aria-label={`Read blog post: ${postTitle}`}
                                 prefetch={false}
-                                className="hover:text-primary transition-colors"
+                                className="hover:text-primary transition-colors duration-700"
                             >
                                 {postTitle}
                             </Link>

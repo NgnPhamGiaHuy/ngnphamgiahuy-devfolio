@@ -68,3 +68,5 @@ export const useKeyboardHandler = (
 
     return handleKeyboardEvent;
 };
+
+export default useKeyboardHandler;

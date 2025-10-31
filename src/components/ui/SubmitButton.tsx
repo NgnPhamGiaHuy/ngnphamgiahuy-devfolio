@@ -21,6 +21,8 @@ import type { SubmitButtonProps } from "@/types";
  */
 const SubmitButton: React.FC<SubmitButtonProps> = ({
     isSubmitting,
+    disabled,
+    label = "Send Message",
     ...props
 }) => {
     // ============================================================
@@ -30,7 +32,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
     return (
         <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || Boolean(disabled)}
             className="z-2"
             aria-busy={isSubmitting}
             aria-live="polite"
@@ -67,7 +69,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
                         </span>
                     </div>
                 ) : (
-                    <span data-testid="submit-button-text">Send Message</span>
+                    <span data-testid="submit-button-text">{label}</span>
                 )}
             </span>
         </button>

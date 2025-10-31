@@ -8,7 +8,7 @@ import React, { useCallback } from "react";
 
 import type { MenuToggleProps } from "@/types";
 
-import { useKeyboardHandler } from "@/utils/keyboardUtils";
+import { useKeyboardHandler } from "@/hooks";
 
 // ============================================================
 // Component Definition

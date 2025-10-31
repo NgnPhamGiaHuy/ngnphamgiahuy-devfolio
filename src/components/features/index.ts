@@ -1,6 +1,9 @@
 // Blog components
 export * from "./blog";
 
+// Blog item components
+export * from "./blogItem";
+
 // Certificate components
 export * from "./certificate";
 
