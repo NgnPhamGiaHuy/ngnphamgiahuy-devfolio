@@ -52,13 +52,24 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title, className }) => {
     const platforms = useSharePlatforms(currentUrl, currentTitle);
 
     return (
-        <section className={className} aria-label="Share this page" data-testid={TEST_IDS.root}>
+        <section
+            className={className}
+            aria-label="Share this page"
+            data-testid={TEST_IDS.root}
+        >
             <div className="flex flex-col items-start gap-4">
                 <div>
-                    <div className="mb-2 text-sm text-muted-foreground" data-testid={TEST_IDS.heading}>
+                    <div
+                        className="mb-2 text-sm text-muted-foreground"
+                        data-testid={TEST_IDS.heading}
+                    >
                         Share
                     </div>
-                    <ul className="flex items-center gap-2" aria-label="Share platforms" data-testid={TEST_IDS.list}>
+                    <ul
+                        className="flex items-center gap-2"
+                        aria-label="Share platforms"
+                        data-testid={TEST_IDS.list}
+                    >
                         {platforms.map(({ id, href, label, Icon }) => (
                             <li key={id}>
                                 <SocialPlatformButton

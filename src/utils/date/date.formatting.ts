@@ -96,5 +96,3 @@ export const formatDateLegacy = (
 ): string => {
     return formatDate(dateString, { locale });
 };
-
-

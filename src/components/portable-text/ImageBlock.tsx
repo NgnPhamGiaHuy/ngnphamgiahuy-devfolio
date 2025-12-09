@@ -45,7 +45,10 @@ const ImageBlock = ({ value }: ImageBlockProps) => {
         const caption = value?.caption || "";
 
         return (
-            <figure className="w-full my-8 rounded-2xl overflow-hidden mx-auto" data-testid={TEST_IDS.root}>
+            <figure
+                className="w-full my-8 rounded-2xl overflow-hidden mx-auto"
+                data-testid={TEST_IDS.root}
+            >
                 <Image
                     src={src}
                     alt={alt}

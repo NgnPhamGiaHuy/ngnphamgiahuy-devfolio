@@ -38,7 +38,7 @@ interface BlogPostIntroProps {
 const BlogPostIntro = ({ children }: BlogPostIntroProps) => {
     return (
         <section
-            className="pt-[170px] lg:pt-[220px] pb-[70px] lg:pb-[120px] bg-[linear-gradient(180deg,#fff_0%,#f0ebe3_100%)] z-3 relative"
+            className="pt-[170px] lg:pt-[220px] pb-[70px] lg:pb-[120px] bg-[linear-gradient(180deg,#fff_0%,#f0ebe3_100%)] dark:bg-[linear-gradient(180deg,#31363c_0%,#222831_100%)] z-3 relative"
             aria-label="Post introduction"
             data-testid={TEST_IDS.root}
         >

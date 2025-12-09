@@ -80,21 +80,23 @@ const Blog: React.FC<BlogSectionProps> = ({
                     </div>
 
                     {/* View All Button */}
-                    <div className="mt-[70px] max-lg:mt-[50px] text-center relative z-2">
-                        <Link
-                            href={BLOG_ROUTE}
-                            aria-label="View all blog posts"
-                            prefetch={false}
-                            className="inline-block"
-                        >
-                            <span
-                                className="primary-button"
-                                data-testid="view-all-blog-button"
+                    {displayedBlogs.length >= 3 && (
+                        <div className="mt-[70px] max-lg:mt-[50px] text-center relative z-2">
+                            <Link
+                                href={BLOG_ROUTE}
+                                aria-label="View all blog posts"
+                                prefetch={false}
+                                className="inline-block"
                             >
-                                View All Posts
-                            </span>
-                        </Link>
-                    </div>
+                                <span
+                                    className="primary-button"
+                                    data-testid="view-all-blog-button"
+                                >
+                                    View All Posts
+                                </span>
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
 
