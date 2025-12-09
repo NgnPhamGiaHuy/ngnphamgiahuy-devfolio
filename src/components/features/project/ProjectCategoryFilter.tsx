@@ -9,7 +9,7 @@ import clsx from "clsx";
 import React from "react";
 import { motion } from "framer-motion";
 
-import type { ProjectCategoryFilterProps } from "@/types";
+import type { ProjectCategoryFilterProps } from "@/shared/types";
 
 import { COMMON_ANIMATIONS, Duration, Delay, Stagger } from "@/config";
 

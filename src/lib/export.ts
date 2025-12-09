@@ -4,7 +4,7 @@ import type {
     ExportedData,
     ExportContentType,
     ExportQueries,
-} from "@/types";
+} from "@/shared/types";
 
 import { EXPORT_CONTENT_TYPES, EXPORT_DEFAULTS } from "@/config";
 

@@ -5,7 +5,7 @@
 
 import React from "react";
 
-import type { ContactSectionProps } from "@/types";
+import type { ContactSectionProps } from "@/shared/types";
 
 import {
     Wrapper,

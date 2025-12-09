@@ -10,7 +10,7 @@ import type {
     Experience,
     AccordionFieldMapping,
     ResumeSectionProps,
-} from "@/types";
+} from "@/shared/types";
 
 import { Wrapper, Accordion, BackdropText } from "@/components";
 

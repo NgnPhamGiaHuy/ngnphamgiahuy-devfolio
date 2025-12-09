@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
-import type { Profile, Settings } from "@/types";
+import type { Profile, Settings } from "@/shared/types";
 
 import { data as mockData } from "@/data";
-import { resolveImageUrl } from "@/utils";
+import { resolveImageUrl } from "@/shared/utils";
 import { sanityFetch } from "./sanity";
 import { profileQuery, settingsQuery } from "./queries";
 

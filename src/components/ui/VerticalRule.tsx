@@ -5,7 +5,7 @@
 
 import React from "react";
 
-import type { VerticalRuleProps } from "@/types";
+import type { VerticalRuleProps } from "@/shared/types";
 
 // ============================================================
 // Component Definition

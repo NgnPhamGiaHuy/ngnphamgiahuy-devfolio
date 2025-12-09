@@ -5,7 +5,7 @@
 
 import React from "react";
 
-import type { MapSectionProps } from "@/types";
+import type { MapSectionProps } from "@/shared/types";
 
 // ============================================================
 // Constants

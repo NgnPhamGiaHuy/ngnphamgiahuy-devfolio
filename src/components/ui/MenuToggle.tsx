@@ -6,9 +6,9 @@
 import clsx from "clsx";
 import React, { useCallback } from "react";
 
-import type { MenuToggleProps } from "@/types";
+import type { MenuToggleProps } from "@/shared/types";
 
-import { useKeyboardHandler } from "@/hooks";
+import { useKeyboardHandler } from "@/shared/hooks";
 
 // ============================================================
 // Component Definition

@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { TableValue } from "@/types/portable-text.types";
+import type { TableValue } from "@/shared/types/portable-text.types";
 
 // ============================================================
 // Component: TableBlock

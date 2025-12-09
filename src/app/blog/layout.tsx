@@ -9,12 +9,15 @@
 // ============================================================
 import React from "react";
 
-import type { HomePageData } from "@/types";
+import type { HomePageData } from "@/shared/types";
 
 import { PageChrome } from "@/components";
 import { data as FallbackData } from "@/data";
-import { sanityFetch, homePageDataQuery } from "@/lib";
-import { normalizeProfileData, normalizeSectionConfigData } from "@/utils";
+import { homePageDataQuery, sanityFetch } from "@/lib";
+import {
+    normalizeProfileData,
+    normalizeSectionConfigData,
+} from "@/shared/utils";
 
 // ============================================================
 // ISR / Revalidation

@@ -8,7 +8,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-import type { Testimonial, TestimonialsSectionProps } from "@/types";
+import type { Testimonial, TestimonialsSectionProps } from "@/shared/types";
 
 import { Wrapper, BackdropText, TestimonialCard } from "@/components";
 

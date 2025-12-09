@@ -5,7 +5,7 @@
 
 import { useState, useCallback } from "react";
 
-import { downloadJSON } from "@/utils";
+import { downloadJSON } from "@/shared/utils";
 import { getAvailableContentTypes, exportContentType } from "@/lib";
 
 // ============================================================

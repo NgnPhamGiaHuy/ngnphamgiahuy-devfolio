@@ -7,7 +7,7 @@
 
 import type { Variants } from "framer-motion";
 
-import { AnimationConfig } from "@/types";
+import { AnimationConfig } from "@/shared/types";
 
 // ============================================================
 // Animation Configuration Constants

@@ -5,7 +5,7 @@
 
 import React from "react";
 
-import type { BackdropTextProps } from "@/types";
+import type { BackdropTextProps } from "@/shared/types";
 
 // ============================================================
 // Component Definition

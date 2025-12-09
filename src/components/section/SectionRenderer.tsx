@@ -8,9 +8,9 @@
 // ============================================================
 import React from "react";
 
-import type { SectionConfigItem, MockDataType } from "@/types";
+import type { SectionConfigItem, MockDataType } from "@/shared/types";
 
-import { getSectionData } from "@/utils/sections";
+import { getSectionData } from "@/shared/utils/sections";
 import Hero from "@/components/features/landing/Hero";
 import Certificates from "@/components/features/certificate/Certificates";
 import Services from "@/components/features/service/Services";

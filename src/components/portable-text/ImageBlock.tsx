@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 import { urlFor } from "@/lib";
-import type { ImageValue } from "@/types/portable-text.types";
+import type { ImageValue } from "@/shared/types/portable-text.types";
 
 // ============================================================
 // Component: ImageBlock

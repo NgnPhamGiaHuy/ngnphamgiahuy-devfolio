@@ -5,7 +5,7 @@
 
 import React from "react";
 
-import type { PricingSectionProps } from "@/types";
+import type { PricingSectionProps } from "@/shared/types";
 
 import { Wrapper, PlanGrid, BackdropText } from "@/components";
 

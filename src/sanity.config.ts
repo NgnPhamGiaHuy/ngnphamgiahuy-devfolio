@@ -10,8 +10,8 @@ import { defineConfig, SchemaTypeDefinition } from "sanity";
 
 import { codeInput } from "@sanity/code-input";
 import { table } from "@sanity/table";
-import { schemaTypes } from "./lib/sanity/schemas";
-import { deskStructure } from "./lib/sanity/deskStructure";
+import { schemaTypes } from "./infrastructure/persistence/sanity/schemas";
+import { sanityDeskStructure } from "./infrastructure/persistence/sanity/SanityDeskStructure";
 
 // ============================================================
 // Environment Configuration
@@ -85,7 +85,7 @@ export default defineConfig({
 
         // Custom desk structure for content organization
         structureTool({
-            structure: deskStructure,
+            structure: sanityDeskStructure,
         }),
 
         markdownSchema(),

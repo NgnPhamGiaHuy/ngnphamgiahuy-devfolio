@@ -7,12 +7,12 @@
 
 import React from "react";
 
-import type { SidebarProps } from "@/types";
+import type { SidebarProps } from "@/shared/types";
 
 import useSidebarAnimation from "./hooks/useSidebarAnimation";
 import { SIDEBAR_CONFIG } from "@/config";
 import { generateSocialLinks } from "@/components/ui/social";
-import { VerticalRule, SocialLinks, NavItem } from "@/components";
+import { NavItem, SocialLinks, VerticalRule } from "@/components";
 
 // ============================================================
 // Constants

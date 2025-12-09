@@ -7,7 +7,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import React from "react";
 
-import type { ArrowLinkProps } from "@/types";
+import type { ArrowLinkProps } from "@/shared/types";
 
 // ============================================================
 // Component Definition

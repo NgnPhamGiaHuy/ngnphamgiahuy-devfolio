@@ -5,7 +5,7 @@
 
 import React from "react";
 
-import type { DecorativeLayerProps } from "@/types";
+import type { DecorativeLayerProps } from "@/shared/types";
 
 // ============================================================
 // Component Definition

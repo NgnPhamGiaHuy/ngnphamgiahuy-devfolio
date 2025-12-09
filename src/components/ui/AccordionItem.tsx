@@ -9,7 +9,7 @@ import clsx from "clsx";
 import { AnimatePresence } from "framer-motion";
 import React, { useCallback, useId, useState } from "react";
 
-import type { AccordionItemProps } from "@/types";
+import type { AccordionItemProps } from "@/shared/types";
 
 import { AccordionContent } from "@/components";
 

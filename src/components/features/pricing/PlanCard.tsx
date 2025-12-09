@@ -8,7 +8,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
-import type { PricingCardProps } from "@/types";
+import type { PricingCardProps } from "@/shared/types";
 
 // ============================================================
 // Constants

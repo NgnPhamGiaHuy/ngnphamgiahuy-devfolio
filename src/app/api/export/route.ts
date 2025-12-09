@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 
-import type { ExportOptions, ExportContentType } from "@/types";
+import type { ExportOptions, ExportContentType } from "@/shared/types";
 
 import { exportPortfolioData, exportContentType } from "@/lib";
 

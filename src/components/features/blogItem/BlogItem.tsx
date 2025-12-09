@@ -15,7 +15,7 @@ import {
     buildImageProps,
     buildPostUrl,
     withCategoriesBlock,
-} from "@/utils/blog/blogPost.helpers";
+} from "@/shared/utils/blog/blogPost.helpers";
 import {
     BlogPostContainer,
     BlogPostHeader,

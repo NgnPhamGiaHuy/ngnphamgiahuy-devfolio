@@ -7,7 +7,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { HeaderState } from "@/utils";
+import { HeaderState } from "@/shared/utils";
 
 // ============================================================
 // Constants

@@ -11,7 +11,7 @@
 import React from "react";
 import { Link2, Copy, Check } from "lucide-react";
 
-import { useCopyToClipboard } from "@/hooks";
+import { useCopyToClipboard } from "@/shared/hooks";
 
 // ============================================================
 // Constants

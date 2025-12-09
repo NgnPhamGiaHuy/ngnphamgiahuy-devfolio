@@ -8,7 +8,7 @@
 import { motion, Variants } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
-import type { AccordionContentProps } from "@/types";
+import type { AccordionContentProps } from "@/shared/types";
 
 // ============================================================
 // Component Definition

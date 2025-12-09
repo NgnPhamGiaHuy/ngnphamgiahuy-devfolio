@@ -7,10 +7,10 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import type { BlogPreviewProps } from "@/types";
+import type { BlogPreviewProps } from "@/shared/types";
 
 import { ArrowLink } from "@/components";
-import { formatDate, processImage } from "@/utils";
+import { formatDate, processImage } from "@/shared/utils";
 
 // ============================================================
 // Constants

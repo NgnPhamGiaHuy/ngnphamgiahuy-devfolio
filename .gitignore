@@ -1,22 +1,187 @@
-# Next.js build output
-.next/
+# Generated on 2025-12-09
+# Includes: webstorm, macos, windows, next_js, react, typescript, npm
+
+### Universal ###
+# Common files that should be ignored in all projects
+
+# Logs
+*.log
+# Temporary files
+*.tmp
+*~
+
+*.bak
+# Environment files (containing secrets, API keys, credentials)
+.env
+*.env
+.env.*
+
+# Local configuration that shouldn't be shared
+*.local
+
+### Webstorm ###
+# WebStorm IDE specific files and settings
+
+# WebStorm
+../.idea/
+*.iws
+*.iml
+*.ipr
+
+.idea_modules/
 out/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
 
-# Node.js dependencies
-/node_modules
+.idea/jsLibraryMappings.xml
+.idea/watcherTasks.xml
+.idea/jsLinters/
+.idea/inspectionProfiles/
+.idea/codeStyles/
 
-# Environment variables
-.env*.local
+### Macos ###
+# macOS operating system specific files
 
-# Production build files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+
+Temporary Items
+.apdisk
+*.icloud
+.AppleDB/
+.AppleDesktop/
+
+*.AppleDouble
+*.AppleDB
+.Spotlight-V100/
+.Trashes/
+*.swp
+
+Network Trash Folder/
+.DS_Store?
+.Spotlight-V100
+.Trashes
+
+### Windows ###
+# Windows operating system specific files
+
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+
+*.msm
+*.msp
+*.lnk
+*.tmp
+*.bak
+
+System Volume Information/
+[Tt]emp/
+$Recycle.Bin/
+~$*
+*.log
+
+hiberfil.sys
+pagefile.sys
+*.db
+Desktop.ini
+ntuser.dat*
+
+### Next_js ###
+# next_js specific files
+
+.next/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+### React ###
+# React build directory and environment files
+
+build/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+.DS_*
+**/*.backup.*
 
-# IDE specific files
-.idea/
-.vscode/
+**/*.back.*
+*.sublime*
+psd
+thumb
+sketch
 
-# macOS files
-.DS_Store
+coverage/
+
+### Typescript ###
+# typescript specific files
+
+*.tsbuildinfo
+node_modules/
+dist/
+
+### Npm ###
+# NPM package manager files and directories
+
+# NPM (Node Package Manager)
+node_modules/
+package-lock.json
+.npm/
+.node-gyp/
+
+npm-debug.log*
+.npmrc
+.npm-cache/
+.npm-global/
+.node_repl_history
+
+.env
+npm-shrinkwrap.json
+.npmignore
+.package-lock.json
+npm-debug.log.*
+
+.npm-debug/
+.npm-tmp/
+.npm-tarball/
+node_modules_*
+.npm-init.js
+
+.npm-update-notifier
+.node_modules.ember-try/
+.npm-version
+.node_history
+.v8flags.*
+
+.babel.json
+package.json.bak

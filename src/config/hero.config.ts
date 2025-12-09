@@ -1,4 +1,4 @@
-import { DecorativeLayerProps, StatInfo } from "@/types";
+import { DecorativeLayerProps, StatInfo } from "@/shared/types";
 
 export const HERO_CONFIG = {
     PATTERN_LAYERS: [

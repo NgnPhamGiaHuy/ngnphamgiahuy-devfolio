@@ -5,13 +5,16 @@
 
 import React from "react";
 
-import type { HomePageData } from "@/types";
+import type { HomePageData } from "@/shared/types";
 
 import { data as FallbackData } from "@/data";
 import { PageChrome } from "@/components";
-import { sanityFetch, homePageDataQuery } from "@/lib";
+import { homePageDataQuery, sanityFetch } from "@/lib";
 import { renderSection } from "@/components/section/SectionRenderer";
-import { normalizeProfileData, normalizeSectionConfigData } from "@/utils";
+import {
+    normalizeProfileData,
+    normalizeSectionConfigData,
+} from "@/shared/utils";
 
 // ============================================================
 // Dynamic Imports

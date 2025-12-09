@@ -8,7 +8,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 
-import type { Profile } from "@/types";
+import type { Profile } from "@/shared/types";
 
 import { AnimatedText } from "@/components";
 import { HeroAnimationsConfig } from "@/config";

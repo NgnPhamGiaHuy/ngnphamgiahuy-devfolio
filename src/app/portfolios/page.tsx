@@ -5,11 +5,11 @@
 
 import React from "react";
 
-import type { HomePageData } from "@/types";
+import type { HomePageData } from "@/shared/types";
 
 import { data as FallbackData } from "@/data";
 import { homePageDataQuery, sanityFetch } from "@/lib";
-import { normalizeProfileData, normalizeProjectsData } from "@/utils";
+import { normalizeProfileData, normalizeProjectsData } from "@/shared/utils";
 import {
     Portfolios,
     ScrollToTopButton,

@@ -6,7 +6,7 @@
 import Link from "next/link";
 import React from "react";
 
-import type { BlogSectionProps } from "@/types";
+import type { BlogSectionProps } from "@/shared/types";
 
 import { BlogPreview, BackdropText, Wrapper } from "@/components";
 

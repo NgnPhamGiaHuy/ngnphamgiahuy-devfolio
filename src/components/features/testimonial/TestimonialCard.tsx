@@ -6,9 +6,9 @@
 import Image from "next/image";
 import React from "react";
 
-import type { TestimonialCardProps } from "@/types";
+import type { TestimonialCardProps } from "@/shared/types";
 
-import { processImage } from "@/utils";
+import { processImage } from "@/shared/utils";
 
 // ============================================================
 // Constants

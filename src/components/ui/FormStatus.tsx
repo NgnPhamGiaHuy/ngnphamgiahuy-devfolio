@@ -8,7 +8,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import type { FormStatusProps } from "@/types";
+import type { FormStatusProps } from "@/shared/types";
 
 import { FORM_VARIANTS } from "@/config";
 

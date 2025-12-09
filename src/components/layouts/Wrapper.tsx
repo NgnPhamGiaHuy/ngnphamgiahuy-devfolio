@@ -9,7 +9,7 @@ import clsx from "clsx";
 import { motion, useInView } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
-import type { WrapperProps } from "@/types";
+import type { WrapperProps } from "@/shared/types";
 
 import { VerticalRule, WrapperHeader } from "@/components";
 import { containerVariants, backgroundByName, vlinePositions } from "@/config";

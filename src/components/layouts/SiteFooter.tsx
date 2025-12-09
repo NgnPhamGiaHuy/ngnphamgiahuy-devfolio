@@ -5,7 +5,7 @@
 
 import React from "react";
 
-import type { RawSocialLink } from "@/types";
+import type { RawSocialLink } from "@/shared/types";
 
 import { SocialLinks } from "@/components";
 import { generateSocialLinks } from "@/components/ui/social";

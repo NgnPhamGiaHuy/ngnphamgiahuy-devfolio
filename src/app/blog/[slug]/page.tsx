@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { data as mockData } from "@/data";
-import { getBlogPostBySlug } from "@/utils/blog/blogPost.helpers";
+import { getBlogPostBySlug } from "@/shared/utils/blog/blogPost.helpers";
 import BlogItem from "@/components/features/blogItem/BlogItem";
 
 // ============================================================

@@ -1,4 +1,4 @@
-import { MockDataType } from "@/types";
+import { MockDataType } from "@/shared/types";
 
 export const data: MockDataType = {
     blogs: [

@@ -5,7 +5,7 @@
 
 import React from "react";
 
-import type { SubmitButtonProps } from "@/types";
+import type { SubmitButtonProps } from "@/shared/types";
 
 // ============================================================
 // Component Definition

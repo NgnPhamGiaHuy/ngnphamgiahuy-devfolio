@@ -6,7 +6,7 @@
 import Link from "next/link";
 import React from "react";
 
-import type { BrandLinkProps } from "@/types";
+import type { BrandLinkProps } from "@/shared/types";
 
 // ============================================================
 // Component Definition

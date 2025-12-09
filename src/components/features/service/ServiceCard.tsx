@@ -9,7 +9,7 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-import type { ServiceCardProps } from "@/types";
+import type { ServiceCardProps } from "@/shared/types";
 
 import { SERVICE_CARD_VARIANTS } from "@/config";
 

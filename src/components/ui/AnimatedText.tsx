@@ -8,7 +8,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import type { AnimatedTextProps } from "@/types";
+import type { AnimatedTextProps } from "@/shared/types";
 
 import { Duration, HeroAnimationsConfig } from "@/config";
 

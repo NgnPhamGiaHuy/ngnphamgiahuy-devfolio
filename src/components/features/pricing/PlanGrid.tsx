@@ -5,7 +5,7 @@
 
 import React from "react";
 
-import type { PricingGridProps } from "@/types";
+import type { PricingGridProps } from "@/shared/types";
 
 import { PlanCard } from "@/components";
 

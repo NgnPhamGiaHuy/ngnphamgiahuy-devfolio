@@ -5,7 +5,7 @@
 
 import React from "react";
 
-import type { AccordionProps } from "@/types";
+import type { AccordionProps } from "@/shared/types";
 
 import { AccordionItem } from "@/components";
 

@@ -10,7 +10,7 @@ import clsx from "clsx";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
 
-import type { SkillCardProps } from "@/types";
+import type { SkillCardProps } from "@/shared/types";
 
 import { SKILL_CARD_VARIANTS } from "@/config";
 

@@ -8,7 +8,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import type { SkillsSectionProps } from "@/types";
+import type { SkillsSectionProps } from "@/shared/types";
 
 import { StandardAnimations } from "@/config";
 import { Wrapper, SkillCard, BackdropText } from "@/components";

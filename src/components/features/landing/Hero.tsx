@@ -8,18 +8,18 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import type { HeroSectionProps } from "@/types";
+import type { HeroSectionProps } from "@/shared/types";
 
-import { useDynamicTextAnimation } from "@/hooks";
+import { useDynamicTextAnimation } from "@/shared/hooks";
 import { HeroAnimationsConfig, vlinePositions } from "@/config";
 import {
-    VerticalRule,
     BackdropText,
     BioSection,
     DownloadResumeButton,
+    HeroAnimationProvider,
     PersonalIntro,
     ProfileVisual,
-    HeroAnimationProvider,
+    VerticalRule,
 } from "@/components";
 
 // ============================================================

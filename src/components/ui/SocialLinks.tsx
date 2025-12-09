@@ -6,7 +6,7 @@
 import Link from "next/link";
 import React from "react";
 
-import type { SocialLinksProps } from "@/types";
+import type { SocialLinksProps } from "@/shared/types";
 
 // ============================================================
 // Component Definition

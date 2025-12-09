@@ -24,7 +24,7 @@ import type {
     CodeValue,
     ImageValue,
     PortableTextValue,
-} from "@/types";
+} from "@/shared/types";
 
 import { CodeBlock, ImageBlock, TableBlock } from "@/components";
 import {

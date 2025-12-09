@@ -16,9 +16,9 @@ import type {
     SocialPlatform,
     RawSocialLink,
     SanityImage,
-} from "@/types";
+} from "@/shared/types";
 
-import { resolveImageUrl, getImageAlt } from "@/utils";
+import { resolveImageUrl, getImageAlt } from "@/shared/utils";
 
 // ============================================================
 // Constants

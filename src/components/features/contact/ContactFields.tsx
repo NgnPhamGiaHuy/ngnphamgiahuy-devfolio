@@ -6,7 +6,7 @@
 import React from "react";
 import clsx from "clsx";
 
-import type { ContactFieldsProps } from "@/types";
+import type { ContactFieldsProps } from "@/shared/types";
 
 import { FORM_FIELDS } from "@/config";
 import { FormInput, SubmitButton } from "@/components";

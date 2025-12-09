@@ -9,7 +9,7 @@ import { useTheme } from "next-themes";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
-import type { ThemeToggleProps } from "@/types";
+import type { ThemeToggleProps } from "@/shared/types";
 
 // ============================================================
 // Component Definition

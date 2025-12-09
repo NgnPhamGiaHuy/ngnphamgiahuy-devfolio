@@ -8,7 +8,7 @@
 import React from "react";
 import { motion, AnimatePresence, Target } from "framer-motion";
 
-import type { ProjectGridProps } from "@/types";
+import type { ProjectGridProps } from "@/shared/types";
 
 import { ProjectCard } from "@/components";
 import { COMMON_ANIMATIONS, Duration, Stagger } from "@/config";

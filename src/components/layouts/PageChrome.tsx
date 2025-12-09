@@ -8,9 +8,9 @@
 // ============================================================
 import React from "react";
 
-import type { Profile, SectionConfigItem } from "@/types/sanity.types";
+import type { Profile, SectionConfigItem } from "@/shared/types/sanity.types";
 
-import { SiteHeader, SiteFooter, ScrollToTopButton } from "@/components";
+import { ScrollToTopButton, SiteFooter, SiteHeader } from "@/components";
 
 // ============================================================
 // Constants

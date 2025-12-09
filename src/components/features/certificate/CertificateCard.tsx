@@ -10,11 +10,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import type { Certificate } from "@/types";
+import type { Certificate } from "@/shared/types";
 
 import { ArrowLink } from "@/components";
 import { CERTIFICATE_CARD_VARIANTS } from "@/config";
-import { processImage, formatDate } from "@/utils";
+import { processImage, formatDate } from "@/shared/utils";
 
 // ============================================================
 // Constants

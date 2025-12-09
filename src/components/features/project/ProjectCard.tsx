@@ -10,9 +10,9 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 
-import type { ProjectCardProps } from "@/types";
+import type { ProjectCardProps } from "@/shared/types";
 
-import { processPortfolioImage } from "@/utils";
+import { processPortfolioImage } from "@/shared/utils";
 import { PROJECT_CARD_VARIANTS } from "@/config";
 
 // ============================================================

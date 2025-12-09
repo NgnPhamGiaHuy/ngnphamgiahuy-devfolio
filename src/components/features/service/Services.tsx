@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import React from "react";
 
-import type { Service, ServicesSectionProps } from "@/types";
+import type { Service, ServicesSectionProps } from "@/shared/types";
 
 import { StandardAnimations } from "@/config";
 import { BackdropText, ServiceCard, Wrapper } from "@/components";

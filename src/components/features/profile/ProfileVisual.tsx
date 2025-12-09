@@ -9,10 +9,10 @@ import Image from "next/image";
 import React from "react";
 import { motion, Variants } from "framer-motion";
 
-import type { ProfileVisualProps, Profile, Project } from "@/types";
+import type { Profile, ProfileVisualProps, Project } from "@/shared/types";
 
-import { processImage } from "@/utils";
-import { MetricCard, DecorativeLayer } from "@/components";
+import { processImage } from "@/shared/utils";
+import { DecorativeLayer, MetricCard } from "@/components";
 import {
     DEFAULT_PATTERN_LAYERS,
     DEFAULT_STATS,

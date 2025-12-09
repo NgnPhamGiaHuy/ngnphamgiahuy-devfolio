@@ -8,11 +8,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import type { Profile } from "@/types";
+import type { Profile } from "@/shared/types";
 
 import { HeroAnimationsConfig } from "@/config";
-import { useHeroAnimationContext } from "@/components";
-import { SocialLinks, AnimatedText } from "@/components";
+import {
+    AnimatedText,
+    SocialLinks,
+    useHeroAnimationContext,
+} from "@/components";
 import { generateSocialLinks } from "@/components/ui/social";
 
 // ============================================================

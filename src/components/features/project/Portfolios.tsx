@@ -8,7 +8,7 @@
 import Link from "next/link";
 import React from "react";
 
-import type { PortfoliosSectionProps } from "@/types";
+import type { PortfoliosSectionProps } from "@/shared/types";
 
 import useCategoryFilter from "./hooks/useCategoryFilter";
 import {

@@ -8,7 +8,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import type { CertificatesSectionProps } from "@/types";
+import type { CertificatesSectionProps } from "@/shared/types";
 
 import CertificateCard from "./CertificateCard";
 import { StandardAnimations } from "@/config";

@@ -4,7 +4,11 @@ import React from "react";
 
 import CopyLinkField from "@/components/ui/social/CopyLinkField";
 import SocialPlatformButton from "@/components/ui/social/SocialPlatformButton";
-import { useShareOrigin, useResolvedShare, useSharePlatforms } from "@/hooks";
+import {
+    useShareOrigin,
+    useResolvedShare,
+    useSharePlatforms,
+} from "@/shared/hooks";
 
 // ============================================================
 // Component: SocialShare

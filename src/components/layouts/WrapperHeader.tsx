@@ -8,7 +8,7 @@
 import { motion, Variants } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
-import type { WrapperHeaderProps } from "@/types";
+import type { WrapperHeaderProps } from "@/shared/types";
 
 import { AnimatedText } from "@/components";
 

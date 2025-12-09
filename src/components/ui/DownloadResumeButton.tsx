@@ -9,7 +9,7 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 
-import type { DownloadResumeButtonProps } from "@/types";
+import type { DownloadResumeButtonProps } from "@/shared/types";
 
 import { HeroAnimationsConfig } from "@/config";
 

@@ -6,7 +6,7 @@
 import Link from "next/link";
 import React from "react";
 
-import type { NavItemProps } from "@/types";
+import type { NavItemProps } from "@/shared/types";
 
 import { SIDEBAR_CONFIG } from "@/config";
 

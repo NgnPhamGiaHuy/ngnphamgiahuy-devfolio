@@ -7,12 +7,12 @@
 
 import React, { useRef } from "react";
 
-import type { SiteHeaderProps } from "@/types";
+import type { SiteHeaderProps } from "@/shared/types";
 
 import useMenuState from "./hooks/useMenuState";
 import useHeaderScroll from "./hooks/useHeaderScroll";
-import { getHeaderClasses } from "@/utils";
-import { BrandLink, ThemeToggle, MenuToggle, Sidebar } from "@/components";
+import { getHeaderClasses } from "@/shared/utils";
+import { BrandLink, MenuToggle, Sidebar, ThemeToggle } from "@/components";
 
 // ============================================================
 // Component Definition
