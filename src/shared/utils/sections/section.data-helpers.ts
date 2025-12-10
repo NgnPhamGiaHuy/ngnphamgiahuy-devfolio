@@ -3,7 +3,8 @@
 // Purpose: Data normalization and section configuration utilities
 // ============================================================
 
-import { data } from "@/data";
+import { createMockData } from "@/infrastructure/persistence/mocks";
+import type { CompleteMockData } from "@/infrastructure/persistence/mocks";
 import {
     BlogPost,
     Certificate,
@@ -25,7 +26,22 @@ import {
 // ============================================================
 
 /** Fallback data for when Sanity data is unavailable */
-const FALLBACK_DATA = data;
+const FALLBACK_DATA = createMockData();
+
+// Helper to convert CompleteMockData to MockDataType (for backward compatibility)
+const toMockDataType = (data: CompleteMockData): MockDataType => ({
+    logo: data.logo,
+    profile: data.profile,
+    services: data.services,
+    skills: data.skills,
+    projects: data.projects,
+    education: data.education,
+    experience: data.experience,
+    testimonials: data.testimonials,
+    pricing: data.pricing,
+    blogs: data.blogs,
+    certificates: data.certificates,
+});
 
 /** Default vertical rule positions for each section */
 const SECTION_VERTICAL_RULE_DEFAULTS: Record<string, "left" | "right"> = {
@@ -154,7 +170,7 @@ export const getVerticalRulePosition = (
  */
 export const normalizeProfileData = (
     profile?: Profile | null,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): Profile => {
     // Return Sanity profile if available
     if (profile) return profile;
@@ -221,7 +237,7 @@ export const normalizeArrayData = <T>(
  */
 export const normalizeData = <T>(
     data: T[] | null | undefined,
-    fallbackData: MockDataType,
+    fallbackData: MockDataType | CompleteMockData,
     dataKey: keyof MockDataType,
     defaultFallback: T[] = []
 ): T[] => {
@@ -245,11 +261,12 @@ export const normalizeData = <T>(
  */
 export const normalizeServicesData = (
     services?: Service[] | null,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): Service[] => {
+    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
     return normalizeData(
         services,
-        fallbackData || FALLBACK_DATA,
+        fallback,
         "services",
         FALLBACK_DATA.services
     );
@@ -264,14 +281,10 @@ export const normalizeServicesData = (
  */
 export const normalizeSkillsData = (
     skills?: Skill[] | null,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): Skill[] => {
-    return normalizeData(
-        skills,
-        fallbackData || FALLBACK_DATA,
-        "skills",
-        FALLBACK_DATA.skills
-    );
+    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+    return normalizeData(skills, fallback, "skills", FALLBACK_DATA.skills);
 };
 
 /**
@@ -283,11 +296,12 @@ export const normalizeSkillsData = (
  */
 export const normalizeProjectsData = (
     projects?: Project[] | null,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): Project[] => {
+    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
     return normalizeData(
         projects,
-        fallbackData || FALLBACK_DATA,
+        fallback,
         "projects",
         FALLBACK_DATA.projects
     );
@@ -302,11 +316,12 @@ export const normalizeProjectsData = (
  */
 export const normalizeExperienceData = (
     experience?: Experience[] | null,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): Experience[] => {
+    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
     return normalizeData(
         experience,
-        fallbackData || FALLBACK_DATA,
+        fallback,
         "experience",
         FALLBACK_DATA.experience
     );
@@ -321,11 +336,12 @@ export const normalizeExperienceData = (
  */
 export const normalizeEducationData = (
     education?: Education[] | null,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): Education[] => {
+    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
     return normalizeData(
         education,
-        fallbackData || FALLBACK_DATA,
+        fallback,
         "education",
         FALLBACK_DATA.education
     );
@@ -340,11 +356,12 @@ export const normalizeEducationData = (
  */
 export const normalizeTestimonialsData = (
     testimonials?: Testimonial[] | null,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): Testimonial[] => {
+    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
     return normalizeData(
         testimonials,
-        fallbackData || FALLBACK_DATA,
+        fallback,
         "testimonials",
         FALLBACK_DATA.testimonials
     );
@@ -359,14 +376,10 @@ export const normalizeTestimonialsData = (
  */
 export const normalizePricingData = (
     pricing?: Pricing[] | null,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): Pricing[] => {
-    return normalizeData(
-        pricing,
-        fallbackData || FALLBACK_DATA,
-        "pricing",
-        FALLBACK_DATA.pricing
-    );
+    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+    return normalizeData(pricing, fallback, "pricing", FALLBACK_DATA.pricing);
 };
 
 /**
@@ -378,14 +391,10 @@ export const normalizePricingData = (
  */
 export const normalizeBlogsData = (
     blogs?: BlogPost[] | null,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): BlogPost[] => {
-    return normalizeData(
-        blogs,
-        fallbackData || FALLBACK_DATA,
-        "blogs",
-        FALLBACK_DATA.blogs
-    );
+    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+    return normalizeData(blogs, fallback, "blogs", FALLBACK_DATA.blogs);
 };
 
 /**
@@ -404,7 +413,7 @@ export const normalizeBlogsData = (
  */
 export const normalizeContactData = (
     profile?: Profile | null,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): ContactDataItem[] => {
     const normalizedProfile = normalizeProfileData(profile, fallbackData);
 
@@ -441,11 +450,12 @@ export const normalizeContactData = (
  */
 export const normalizeCertificatesData = (
     certificates?: Certificate[] | null,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): Certificate[] => {
+    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
     return normalizeData(
         certificates,
-        fallbackData || FALLBACK_DATA,
+        fallback,
         "certificates",
         FALLBACK_DATA.certificates
     );
@@ -517,7 +527,7 @@ export const normalizeSectionConfigData = (
 export const getSectionData = (
     sectionId: string,
     props: any,
-    fallbackData?: MockDataType
+    fallbackData?: MockDataType | CompleteMockData
 ): SectionDataResult => {
     // Get vertical rule position for the section
     const verticalRulePosition = getVerticalRulePosition(

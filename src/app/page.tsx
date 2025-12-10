@@ -7,7 +7,7 @@ import React from "react";
 
 import type { HomePageData } from "@/shared/types";
 
-import { data as FallbackData } from "@/data";
+import { createMockData } from "@/infrastructure/persistence/mocks";
 import { PageChrome } from "@/components";
 import { homePageDataQuery, sanityFetch } from "@/lib";
 import { renderSection } from "@/components/section/SectionRenderer";
@@ -69,6 +69,9 @@ export default async function Home(): Promise<React.JSX.Element> {
     // ============================================================
     // Data Processing
     // ============================================================
+
+    // Generate fallback mock data
+    const FallbackData = createMockData();
 
     // Normalize profile data with fallback
     const profile = normalizeProfileData(data.profile, FallbackData);

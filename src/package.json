@@ -3,10 +3,10 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "src/node_modules/.bin/next dev --turbopack",
-        "build": "src/node_modules/.bin/next build",
-        "start": "src/node_modules/.bin/next start",
-        "lint": "src/node_modules/.bin/next lint",
+        "dev": "next dev --turbopack",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
         "analyze": "ANALYZE=true npm run build"
     },
     "dependencies": {

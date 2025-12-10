@@ -5,12 +5,13 @@ import { fakeSanityImage } from "@/infrastructure/persistence/mocks/factories/sa
 
 type Project = z.infer<typeof ProjectSchema>;
 
-const createProject = (overrides: Partial<Project> = {}): Project => {
+const createProject = (): Project => {
     const data = {
         _id: faker.string.nanoid(),
         _type: "project",
         _createdAt: faker.date.past().toISOString(),
         _updatedAt: faker.date.recent().toISOString(),
+        _rev: faker.string.uuid(),
 
         name: faker.commerce.productName(),
 
@@ -27,8 +28,6 @@ const createProject = (overrides: Partial<Project> = {}): Project => {
         featured: faker.datatype.boolean(),
 
         order: faker.number.int({ min: 1, max: 50 }),
-
-        ...overrides,
     };
 
     return ProjectSchema.parse(data);

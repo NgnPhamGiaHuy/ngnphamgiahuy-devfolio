@@ -12,13 +12,13 @@ const ProfileSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
         description: z.string(),
         location: z.string(),
         email: z.email(),
-        phone: z.string(),
+        phone: z.string().optional(),
         experience_years: z.number(),
         profile_image: z.union([SanityImageSchema, z.string()]),
         social_links: z.array(
             z.object({
                 platform: z.string(),
-                url: z.url(),
+                url: z.string(),
                 icon: z.union([SanityImageSchema, z.string()]),
             })
         ),

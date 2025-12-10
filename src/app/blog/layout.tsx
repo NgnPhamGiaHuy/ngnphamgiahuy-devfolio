@@ -12,7 +12,7 @@ import React from "react";
 import type { HomePageData } from "@/shared/types";
 
 import { PageChrome } from "@/components";
-import { data as FallbackData } from "@/data";
+import { createMockData } from "@/infrastructure/persistence/mocks";
 import { homePageDataQuery, sanityFetch } from "@/lib";
 import {
     normalizeProfileData,
@@ -65,6 +65,9 @@ const BlogLayout = async ({ children }: BlogLayoutProps) => {
         query: homePageDataQuery,
         tags: SANITY_CACHE_TAGS as unknown as string[],
     });
+
+    // Generate fallback mock data
+    const FallbackData = createMockData();
 
     // Normalize upstream data for consistent rendering
     const profile = normalizeProfileData(data.profile, FallbackData);

@@ -7,7 +7,7 @@ import SectionConfigItemSchema from "@/schemas/setting/section-config-item.schem
 
 const SettingSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
     z.object({
-        _type: "settings",
+        _type: z.literal("settings"),
         logo: z.string(),
         hero: SectionConfigItemSchema,
         services: SectionConfigItemSchema,

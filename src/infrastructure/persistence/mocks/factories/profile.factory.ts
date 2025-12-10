@@ -5,7 +5,7 @@ import ProfileSchema from "@/schemas/content/profile.schema";
 
 type Profile = z.infer<typeof ProfileSchema>;
 
-const createProfile = (overrides: Partial<Profile> = {}): Profile => {
+const createProfile = (): Profile => {
     const data = {
         _id: faker.string.uuid(),
         _type: "profile",
@@ -37,8 +37,6 @@ const createProfile = (overrides: Partial<Profile> = {}): Profile => {
         ],
 
         cv_link: "#",
-
-        ...overrides,
     };
 
     return ProfileSchema.parse(data);

@@ -10,7 +10,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { data as mockData } from "@/data";
+import { createMockData } from "@/infrastructure/persistence/mocks";
 import { getBlogPostBySlug } from "@/shared/utils/blog/blogPost.helpers";
 import BlogItem from "@/components/features/blogItem/BlogItem";
 
@@ -29,6 +29,7 @@ export const generateMetadata = async ({
     params,
 }: BlogPostDetailProps): Promise<Metadata> => {
     const { slug } = await params;
+    const mockData = createMockData();
     const post = mockData.blogs.find((b) => b.slug?.current === slug);
     if (!post) return {};
     return {
@@ -46,6 +47,7 @@ export const generateMetadata = async ({
  */
 const BlogPostPage = async ({ params }: BlogPostDetailProps) => {
     const { slug } = await params;
+    const mockData = createMockData();
 
     const post = await getBlogPostBySlug(slug, mockData.blogs);
     if (!post) return notFound();

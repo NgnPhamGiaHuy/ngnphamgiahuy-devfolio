@@ -9,7 +9,7 @@
 // ============================================================
 import React from "react";
 
-import { data as mockData } from "@/data";
+import { createMockData } from "@/infrastructure/persistence/mocks";
 import {
     getBlogPostBySlug,
     buildImageProps,
@@ -57,6 +57,7 @@ const BlogItem = async ({ slug }: BlogItemProps) => {
     // Data Fetch
     // ------------------------------------------------------------
     // Source is mock/static today; can be swapped with CMS queries without changing the view layer
+    const mockData = createMockData();
     const post = await getBlogPostBySlug(slug, mockData.blogs);
 
     // ------------------------------------------------------------

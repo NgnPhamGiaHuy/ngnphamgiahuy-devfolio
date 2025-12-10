@@ -5,7 +5,7 @@ import ExperienceSchema from "@/schemas/content/experience.schema";
 
 type Experience = z.infer<typeof ExperienceSchema>;
 
-const createExperience = (overrides: Partial<Experience> = {}): Experience => {
+const createExperience = (): Experience => {
     const data = {
         _id: faker.string.uuid(),
         _type: "experience",
@@ -30,8 +30,6 @@ const createExperience = (overrides: Partial<Experience> = {}): Experience => {
         year: `${faker.number.int({ min: 2018, max: 2025 })}`,
 
         order: faker.number.int({ min: 1, max: 20 }),
-
-        ...overrides,
     };
 
     return ExperienceSchema.parse(data);

@@ -5,12 +5,13 @@ import ServiceSchema from "@/schemas/content/service.schema";
 
 type Service = z.infer<typeof ServiceSchema>;
 
-const createService = (overrides: Partial<Service> = {}): Service => {
+const createService = (): Service => {
     const data = {
         _id: faker.string.nanoid(),
         _type: "service",
         _createdAt: faker.date.past().toISOString(),
         _updatedAt: faker.date.recent().toISOString(),
+        _rev: faker.string.uuid(),
 
         icon: faker.helpers.arrayElement([
             "lucide:code",
@@ -34,8 +35,6 @@ const createService = (overrides: Partial<Service> = {}): Service => {
         description: faker.lorem.sentences(2),
 
         order: faker.number.int({ min: 1, max: 50 }),
-
-        ...overrides,
     };
 
     return ServiceSchema.parse(data);

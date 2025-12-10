@@ -14,7 +14,7 @@ const BlogPostSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
             _type: z.literal("slug"),
             current: z.string(),
         }),
-        image: z.url().or(SanityImageSchema),
+        image: z.union([SanityImageSchema, z.string()]),
         content: z.array(z.any()).optional(),
         categories: z.array(z.string()).optional(),
         author: z.string().optional().nullable(),

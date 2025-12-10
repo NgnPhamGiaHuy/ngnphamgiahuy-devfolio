@@ -5,7 +5,7 @@ import EducationSchema from "@/schemas/content/education.schema";
 
 type Education = z.infer<typeof EducationSchema>;
 
-const createEducation = (overrides: Partial<Education> = {}): Education => {
+const createEducation = (): Education => {
     const data = {
         _id: faker.string.uuid(),
         _type: "education",
@@ -28,8 +28,6 @@ const createEducation = (overrides: Partial<Education> = {}): Education => {
         description: faker.lorem.paragraph(),
 
         order: faker.number.int({ min: 1, max: 20 }),
-
-        ...overrides,
     };
 
     return EducationSchema.parse(data);

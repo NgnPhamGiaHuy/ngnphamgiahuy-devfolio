@@ -5,7 +5,7 @@ import PricingSchema from "@/schemas/content/pricing.schema";
 
 type Pricing = z.infer<typeof PricingSchema>;
 
-const createPricing = (overrides: Partial<Pricing> = {}): Pricing => {
+const createPricing = (): Pricing => {
     const data = {
         _id: faker.string.uuid(),
         _type: "pricing",
@@ -52,8 +52,6 @@ const createPricing = (overrides: Partial<Pricing> = {}): Pricing => {
         highlight: faker.datatype.boolean(),
 
         order: faker.number.int({ min: 1, max: 10 }),
-
-        ...overrides,
     };
 
     return PricingSchema.parse(data);

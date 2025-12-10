@@ -6,9 +6,7 @@ import { fakeSanityImage } from "@/infrastructure/persistence/mocks/factories/sa
 
 type Certificate = z.infer<typeof CertificateSchema>;
 
-const createCertificate = (
-    overrides: Partial<Certificate> = {}
-): Certificate => {
+const createCertificate = (): Certificate => {
     const data = {
         _id: faker.string.uuid(),
         _type: "certificate",
@@ -51,8 +49,6 @@ const createCertificate = (
         ]),
 
         order: faker.number.int({ min: 1, max: 99 }),
-
-        ...overrides,
     };
 
     return CertificateSchema.parse(data);

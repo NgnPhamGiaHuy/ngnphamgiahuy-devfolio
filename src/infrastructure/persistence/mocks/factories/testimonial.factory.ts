@@ -6,14 +6,13 @@ import { fakeSanityImage } from "@/infrastructure/persistence/mocks/factories/sa
 
 type Testimonial = z.infer<typeof TestimonialSchema>;
 
-const createTestimonial = (
-    overrides: Partial<Testimonial> = {}
-): Testimonial => {
+const createTestimonial = (): Testimonial => {
     const data = {
         _id: faker.string.nanoid(),
         _type: "testimonial",
         _createdAt: faker.date.past().toISOString(),
         _updatedAt: faker.date.recent().toISOString(),
+        _rev: faker.string.uuid(),
 
         name: faker.person.fullName(),
 
@@ -24,8 +23,6 @@ const createTestimonial = (
         image: faker.datatype.boolean() ? fakeSanityImage() : faker.image.url(),
 
         order: faker.number.int({ min: 1, max: 50 }),
-
-        ...overrides,
     };
 
     return TestimonialSchema.parse(data);

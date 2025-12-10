@@ -6,7 +6,7 @@ import { fakeSanityImage } from "@/infrastructure/persistence/mocks/factories/sa
 
 type Blog = z.infer<typeof BlogPostSchema>;
 
-const createBlogPost = (overrides: Partial<Blog> = {}): Blog => {
+const createBlogPost = (): Blog => {
     const data = {
         _id: faker.string.uuid(),
         _type: "blogPost",
@@ -45,8 +45,6 @@ const createBlogPost = (overrides: Partial<Blog> = {}): Blog => {
         ),
 
         author: faker.person.fullName(),
-
-        ...overrides,
     };
 
     return BlogPostSchema.parse(data);

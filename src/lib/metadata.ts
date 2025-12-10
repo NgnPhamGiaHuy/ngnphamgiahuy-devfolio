@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import type { Profile, Settings } from "@/shared/types";
 
-import { data as mockData } from "@/data";
+import { createMockData } from "@/infrastructure/persistence/mocks";
 import { resolveImageUrl } from "@/shared/utils";
 import { sanityFetch } from "./sanity";
 import { profileQuery, settingsQuery } from "./queries";
@@ -37,7 +37,8 @@ export const generateHomePageMetadata = async (): Promise<Metadata> => {
 
         const baseUrl = resolveBaseUrl();
 
-        const effectiveProfile = profile ?? (mockData as any)?.profile ?? null;
+        const mockData = createMockData();
+        const effectiveProfile = profile ?? mockData.profile ?? null;
 
         const title =
             effectiveProfile?.metaTitle ||
@@ -62,7 +63,6 @@ export const generateHomePageMetadata = async (): Promise<Metadata> => {
             keywords: [
                 effectiveProfile?.name,
                 effectiveProfile?.job_title,
-                effectiveProfile?.title,
                 "portfolio",
                 "developer",
                 "software engineer",

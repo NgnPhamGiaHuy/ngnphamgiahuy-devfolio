@@ -7,7 +7,7 @@ import React from "react";
 
 import type { HomePageData } from "@/shared/types";
 
-import { data as FallbackData } from "@/data";
+import { createMockData } from "@/infrastructure/persistence/mocks";
 import { homePageDataQuery, sanityFetch } from "@/lib";
 import { normalizeProfileData, normalizeProjectsData } from "@/shared/utils";
 import {
@@ -66,6 +66,9 @@ const PortfoliosPage = async (): Promise<React.JSX.Element> => {
     // ============================================================
     // Data Processing
     // ============================================================
+
+    // Generate fallback mock data
+    const FallbackData = createMockData();
 
     // Normalize profile data with fallback
     const profile = normalizeProfileData(data.profile, FallbackData);

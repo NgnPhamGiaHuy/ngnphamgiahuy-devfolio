@@ -5,12 +5,13 @@ import SkillSchema from "@/schemas/content/skill.schema";
 
 type Skill = z.infer<typeof SkillSchema>;
 
-const createSkill = (overrides: Partial<Skill> = {}): Skill => {
+const createSkill = (): Skill => {
     const data = {
         _id: faker.string.nanoid(),
         _type: "skill",
         _createdAt: faker.date.past().toISOString(),
         _updatedAt: faker.date.recent().toISOString(),
+        _rev: faker.string.uuid(),
 
         name: faker.helpers.arrayElement([
             "JavaScript",
@@ -42,8 +43,6 @@ const createSkill = (overrides: Partial<Skill> = {}): Skill => {
         ]),
 
         order: faker.number.int({ min: 1, max: 100 }),
-
-        ...overrides,
     };
 
     return SkillSchema.parse(data);

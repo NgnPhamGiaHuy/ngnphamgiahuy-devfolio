@@ -3,7 +3,7 @@ import { z } from "zod";
 import SanityDocumentSchema from "@/schemas/base/sanity-document.schema";
 
 const PricingSchema = SanityDocumentSchema.extend({
-    _type: "pricing",
+    _type: z.literal("pricing"),
     plan: z.string(),
     price: z.string(),
     period: z.string(),

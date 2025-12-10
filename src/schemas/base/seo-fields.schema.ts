@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import SanityImageSchema from "@/src/schemas/base/sanity-image.schema";
+import SanityImageSchema from "@/schemas/base/sanity-image.schema";
 
 const SeoFields = z.object({
     metaTitle: z.string().optional(),
