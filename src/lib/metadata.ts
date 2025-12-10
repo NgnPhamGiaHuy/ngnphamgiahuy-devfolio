@@ -2,10 +2,13 @@ import { Metadata } from "next";
 
 import type { Profile, Settings } from "@/shared/types";
 
-import { createMockData } from "@/infrastructure/persistence/mocks";
 import { resolveImageUrl } from "@/shared/utils";
-import { sanityFetch } from "./sanity";
-import { profileQuery, settingsQuery } from "./queries";
+import { createMockData } from "@/infrastructure/persistence/mocks";
+import { sanityFetch } from "@/infrastructure/persistence/sanity/SanityClient";
+import {
+    profileQuery,
+    settingsQuery,
+} from "@/infrastructure/persistence/sanity/queries";
 
 export const generateHomePageMetadata = async (): Promise<Metadata> => {
     try {

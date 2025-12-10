@@ -1,4 +1,3 @@
-import { sanityClient, urlFor } from "./sanity";
 import type {
     ExportOptions,
     ExportedData,
@@ -20,7 +19,11 @@ import {
     blogPostsQuery,
     certificatesQuery,
     settingsQuery,
-} from "./queries";
+} from "@/infrastructure/persistence/sanity/queries";
+import {
+    sanityClient,
+    urlFor,
+} from "@/infrastructure/persistence/sanity/SanityClient";
 
 const resolveImageUrls = (data: any): any => {
     if (!data) return data;

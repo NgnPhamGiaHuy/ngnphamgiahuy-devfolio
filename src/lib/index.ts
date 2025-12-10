@@ -1,3 +1,3 @@
 export * from "./export";
-export * from "./queries";
-export * from "./sanity";
+export * from "@/infrastructure/persistence/sanity/queries";
+export * from "../infrastructure/persistence/sanity/SanityClient";
