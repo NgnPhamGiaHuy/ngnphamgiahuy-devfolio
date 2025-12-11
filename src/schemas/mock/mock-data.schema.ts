@@ -1,15 +1,15 @@
 import { z } from "zod";
 
-import ProfileSchema from "@/schemas/content/profile.schema";
-import ServiceSchema from "@/schemas/content/service.schema";
-import SkillSchema from "@/schemas/content/skill.schema";
-import ProjectSchema from "@/schemas/content/project.schema";
-import EducationSchema from "@/schemas/content/education.schema";
-import ExperienceSchema from "@/schemas/content/experience.schema";
-import TestimonialSchema from "@/schemas/content/testimonial.schema";
-import PricingSchema from "@/schemas/content/pricing.schema";
-import BlogPostSchema from "@/schemas/content/blog-post.schema";
-import CertificateSchema from "@/schemas/content/certificate.schema";
+import ProfileSchema from "../content/profile.schema";
+import ServiceSchema from "../content/service.schema";
+import SkillSchema from "../content/skill.schema";
+import ProjectSchema from "../content/project.schema";
+import EducationSchema from "../content/education.schema";
+import ExperienceSchema from "../content/experience.schema";
+import TestimonialSchema from "../content/testimonial.schema";
+import PricingSchema from "../content/pricing.schema";
+import BlogPostSchema from "../content/blog-post.schema";
+import CertificateSchema from "../content/certificate.schema";
 
 const MockDataSchema = z.object({
     logo: z.string(),
@@ -24,5 +24,7 @@ const MockDataSchema = z.object({
     blogs: z.array(BlogPostSchema),
     certificates: z.array(CertificateSchema),
 });
+
+export type MockDataType = z.infer<typeof MockDataSchema>;
 
 export default MockDataSchema;

@@ -1,60 +1,29 @@
-// ============================================================
-// Component: ProfileVisual
-// Purpose: Profile image with decorative elements and statistics
-// ============================================================
-
 "use client";
 
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 
-import type { Profile, ProfileVisualProps, Project } from "@/shared/types";
+import type { ProfileVisualProps } from "@/shared/types";
 
-import { processImage } from "@/shared/utils";
+import { processImage } from "@/shared";
 import { DecorativeLayer, MetricCard } from "@/components";
 import {
     DEFAULT_PATTERN_LAYERS,
     DEFAULT_STATS,
     HeroAnimationsConfig,
-} from "@/infrastructure/config";
-
-// ============================================================
-// Constants
-// ============================================================
+} from "@/infrastructure";
+import { ProfileType, ProjectType } from "@/schemas";
 
 const IMAGE_WIDTH = 680;
 const IMAGE_HEIGHT = 800;
 const FALLBACK_IMAGE = "/images/profile2.png";
 
-// ============================================================
-// Types
-// ============================================================
-
 interface ExtendedProfileVisualProps extends ProfileVisualProps {
-    profile?: Profile;
-    projects?: Project[];
+    profile?: ProfileType;
+    projects?: ProjectType[];
 }
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * ProfileVisual component renders a profile image with decorative elements and statistics.
- * Features animated profile image, decorative layers, and professional metrics.
- *
- * @param props - Component props
- * @param props.profile - Profile data object
- * @param props.projects - Array of project data
- * @param props.patternLayers - Decorative pattern layers
- * @param props.variants - Animation variants
- * @param props.initial - Initial animation state
- * @param props.animate - Animation state
- * @param props.transition - Animation transition
- * @param props.className - Additional CSS classes
- * @returns Profile visual component
- */
 const ProfileVisual: React.FC<ExtendedProfileVisualProps> = ({
     className = "",
     profile,
@@ -66,11 +35,6 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = ({
     transition = {},
     ...props
 }) => {
-    // ============================================================
-    // Data Processing
-    // ============================================================
-
-    // Process profile image - lightweight operation that doesn't need memoization
     const { url: profileImageUrl, alt: profileImageAlt } = processImage(
         profile?.profile_image,
         {
@@ -81,7 +45,6 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = ({
         { fallbackAlt: "Professional profile picture" }
     );
 
-    // Generate statistics based on profile and projects data
     const stats = React.useMemo(() => {
         if (!profile) {
             if (Array.isArray(projects)) {
@@ -116,17 +79,11 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = ({
         ];
     }, [profile, projects]);
 
-    // ============================================================
-    // Animation Configuration
-    // ============================================================
-
-    // Remove unnecessary useMemo - animation variants are static objects
     const defaultVariants = HeroAnimationsConfig.profileVisual.default;
     const imageVariants = HeroAnimationsConfig.profileVisual.image;
     const statsVariants = HeroAnimationsConfig.profileVisual.stats;
     const statItemVariants = HeroAnimationsConfig.profileVisual.statItem;
 
-    // Merge custom variants with defaults
     const mergedVariants = React.useMemo(
         () =>
             variants &&
@@ -136,10 +93,6 @@ const ProfileVisual: React.FC<ExtendedProfileVisualProps> = ({
                 : defaultVariants,
         [variants, defaultVariants]
     );
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <motion.div

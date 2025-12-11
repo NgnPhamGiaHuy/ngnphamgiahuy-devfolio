@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "@/schemas/base/sanity-document.schema";
-import SeoFieldsSchema from "@/schemas/base/seo-fields.schema";
-import MapConfigItemSchema from "@/schemas/setting/map-config-item.schema";
-import SectionConfigItemSchema from "@/schemas/setting/section-config-item.schema";
+import SanityDocumentSchema from "../base/sanity-document.schema";
+import SeoFieldsSchema from "../base/seo-fields.schema";
+import MapConfigItemSchema from "../setting/map-config-item.schema";
+import SectionConfigItemSchema from "../setting/section-config-item.schema";
 
-const SettingSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
+const SettingsSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
     z.object({
         _type: z.literal("settings"),
         logo: z.string(),
@@ -23,4 +23,6 @@ const SettingSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
     })
 );
 
-export default SettingSchema;
+export type SettingsType = z.infer<typeof SettingsSchema>;
+
+export default SettingsSchema;

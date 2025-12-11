@@ -1,8 +1,3 @@
-// ============================================================
-// Component: CertificateCard
-// Purpose: Individual certificate preview card with image, title, and details
-// ============================================================
-
 "use client";
 
 import React from "react";
@@ -10,54 +5,27 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import type { Certificate } from "@/shared/types";
+import type { CertificateType } from "@/schemas";
 
 import { ArrowLink } from "@/components";
-import { CERTIFICATE_CARD_VARIANTS } from "@/infrastructure/config";
-import { formatDate, processImage } from "@/shared/utils";
-
-// ============================================================
-// Constants
-// ============================================================
+import { formatDate, processImage } from "@/shared";
+import { CERTIFICATE_CARD_VARIANTS } from "@/infrastructure";
 
 const IMAGE_WIDTH = 400;
 const IMAGE_HEIGHT = 250;
 const FALLBACK_IMAGE = "/images/profile2.png";
 
-// ============================================================
-// Types
-// ============================================================
-
 interface CertificateCardProps {
     index: number;
-    item: Certificate;
+    item: CertificateType;
     isActive?: boolean;
 }
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * CertificateCard component renders an individual certificate preview card.
- * Displays certificate image, issue/expiry dates, title, description, and view link.
- * Features hover effects and optimized image loading for better UX.
- *
- * @param props - Component props
- * @param props.item - Certificate data object
- * @param props.index - Index of the certificate in the carousel
- * @param props.isActive - Whether the certificate is currently active in carousel
- * @returns Certificate preview card component
- */
 const CertificateCard: React.FC<CertificateCardProps> = ({
     item,
     isActive = false,
     ...props
 }) => {
-    // ============================================================
-    // Data Processing
-    // ============================================================
-
     const { url: imageUrl, alt: imageAlt } = processImage(
         item.image,
         {
@@ -71,10 +39,6 @@ const CertificateCard: React.FC<CertificateCardProps> = ({
     const issuedDate = formatDate(item.issueDate);
     const expiryDate = item.expiryDate ? formatDate(item.expiryDate) : null;
     const credentialHref = item.credentialUrl || "#";
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <motion.article

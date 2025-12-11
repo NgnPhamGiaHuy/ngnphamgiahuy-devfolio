@@ -1,6 +1,8 @@
 import React from "react";
 
-import type { MockDataType, SectionConfigItem } from "@/shared/types";
+import type { MockDataType, SectionConfigItemType } from "@/schemas";
+
+import { getSectionData } from "@/shared";
 
 import Hero from "@/components/features/landing/Hero";
 import Certificates from "@/components/features/certificate/Certificates";
@@ -13,7 +15,6 @@ import Pricing from "@/components/features/pricing/Pricing";
 import Blog from "@/components/features/blog/Blog";
 import Contact from "@/components/features/contact/Contact";
 import Map from "@/components/features/contact/Map";
-import { getSectionData } from "@/shared";
 
 const SECTION_COMPONENTS: Record<string, React.ComponentType<any>> = {
     hero: Hero,
@@ -47,7 +48,7 @@ export const getSectionComponent = (
 };
 
 export const renderSection = (
-    sectionConfig: SectionConfigItem,
+    sectionConfig: SectionConfigItemType,
     options?: RenderSectionOptions
 ): React.ReactNode => {
     const { id: sectionId, resetAnimationOnView } = sectionConfig;

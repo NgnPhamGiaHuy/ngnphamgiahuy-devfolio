@@ -1,8 +1,3 @@
-// ============================================================
-// Component: Sidebar
-// Purpose: Mobile navigation sidebar with menu items and social links
-// ============================================================
-
 "use client";
 
 import React from "react";
@@ -10,13 +5,9 @@ import React from "react";
 import type { SidebarProps } from "@/shared/types";
 
 import useSidebarAnimation from "./hooks/useSidebarAnimation";
-import { SIDEBAR_CONFIG } from "@/infrastructure/config";
+import { SIDEBAR_CONFIG } from "@/infrastructure";
 import { generateSocialLinks } from "@/components/ui/social";
 import { NavItem, SocialLinks, VerticalRule } from "@/components";
-
-// ============================================================
-// Constants
-// ============================================================
 
 const SECTION_DISPLAY_NAMES: Record<string, string> = {
     hero: "Home",
@@ -32,36 +23,14 @@ const SECTION_DISPLAY_NAMES: Record<string, string> = {
     map: "Map",
 };
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * Sidebar component renders a mobile navigation sidebar.
- * Features menu items, social links, and smooth animations.
- *
- * @param props - Component props
- * @param props.profile - User profile data
- * @param props.isMenuOpen - Whether the sidebar is open
- * @param props.enabledSections - Available navigation sections
- * @returns Sidebar component
- */
 const Sidebar: React.FC<SidebarProps> = ({
     profile,
     isMenuOpen,
     enabledSections,
     ...props
 }) => {
-    // ============================================================
-    // Custom Hooks
-    // ============================================================
-
     const { sidebarEntered, handleTransitionEnd } =
         useSidebarAnimation(isMenuOpen);
-
-    // ============================================================
-    // Data Processing
-    // ============================================================
 
     const socialLinks = generateSocialLinks(profile.social_links);
 
@@ -74,10 +43,6 @@ const Sidebar: React.FC<SidebarProps> = ({
         : SIDEBAR_CONFIG.MENU_ITEMS;
 
     const sidebarClasses = `sidebar ${isMenuOpen ? "sidebar-visible" : "sidebar-hidden"}`;
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <div

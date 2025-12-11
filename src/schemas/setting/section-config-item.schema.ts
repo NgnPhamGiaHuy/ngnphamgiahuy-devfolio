@@ -7,4 +7,6 @@ const SectionConfigItemSchema = z.object({
     verticalRuleDirection: z.enum(["left", "right"]).optional(),
 });
 
+export type SectionConfigItemType = z.infer<typeof SectionConfigItemSchema>;
+
 export default SectionConfigItemSchema;

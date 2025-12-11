@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "@/schemas/base/sanity-document.schema";
-import SanityImageSchema from "@/schemas/base/sanity-image.schema";
-import SeoFieldsSchema from "@/schemas/base/seo-fields.schema";
+import SanityDocumentSchema from "../base/sanity-document.schema";
+import SanityImageSchema from "../base/sanity-image.schema";
+import SeoFieldsSchema from "../base/seo-fields.schema";
 
 const BlogPostSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
     z.object({
@@ -20,5 +20,7 @@ const BlogPostSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
         author: z.string().optional().nullable(),
     })
 );
+
+export type BlogPostType = z.infer<typeof BlogPostSchema>;
 
 export default BlogPostSchema;

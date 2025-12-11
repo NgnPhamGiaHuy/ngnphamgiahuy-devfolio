@@ -1,48 +1,19 @@
-// ============================================================
-// Component: PersonalIntro
-// Purpose: Animated personal introduction with name and job title
-// ============================================================
-
 "use client";
 
-import { motion } from "framer-motion";
 import React from "react";
+import { motion } from "framer-motion";
 
-import type { Profile } from "@/shared/types";
+import type { ProfileType } from "@/schemas";
 
 import { AnimatedText, useHeroAnimationContext } from "@/components";
 import { HeroAnimationsConfig } from "@/infrastructure/config";
 
-// ============================================================
-// Types
-// ============================================================
-
 interface PersonalIntroProps {
-    profile: Profile;
+    profile: ProfileType;
 }
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * PersonalIntro component renders an animated personal introduction.
- * Features typing animation for greeting, name, and job title.
- *
- * @param props - Component props
- * @param props.profile - Profile data object
- * @returns Personal introduction component
- */
 const PersonalIntro: React.FC<PersonalIntroProps> = ({ profile }) => {
-    // ============================================================
-    // Animation Context
-    // ============================================================
-
     const { timeline } = useHeroAnimationContext();
-
-    // ============================================================
-    // Data Processing
-    // ============================================================
 
     const name = profile?.name || "Your Name";
     const nameWords = React.useMemo(() => name.split(" "), [name]);
@@ -51,20 +22,11 @@ const PersonalIntro: React.FC<PersonalIntroProps> = ({ profile }) => {
 
     const jobTitle = profile?.job_title || "Developer";
 
-    // ============================================================
-    // Animation Configuration
-    // ============================================================
-
-    // Remove unnecessary useMemo - animation variants are static objects
     const containerVariants = HeroAnimationsConfig.personalIntro.container;
     const itemVariants = HeroAnimationsConfig.personalIntro.item;
     const nameVariants = HeroAnimationsConfig.personalIntro.name;
     const nameWordVariants = HeroAnimationsConfig.personalIntro.nameWord;
     const jobTitleVariants = HeroAnimationsConfig.personalIntro.jobTitle;
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <motion.div

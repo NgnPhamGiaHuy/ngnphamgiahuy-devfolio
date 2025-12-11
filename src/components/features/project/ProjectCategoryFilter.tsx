@@ -11,7 +11,12 @@ import { motion } from "framer-motion";
 
 import type { ProjectCategoryFilterProps } from "@/shared/types";
 
-import { COMMON_ANIMATIONS, Duration, Delay, Stagger } from "@/infrastructure/config";
+import {
+    COMMON_ANIMATIONS,
+    Duration,
+    Delay,
+    Stagger,
+} from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition

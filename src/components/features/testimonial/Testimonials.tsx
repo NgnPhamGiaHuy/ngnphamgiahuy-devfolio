@@ -1,20 +1,12 @@
-// ============================================================
-// Component: Testimonials
-// Purpose: Display testimonials section with carousel layout
-// ============================================================
-
 "use client";
 
 import React from "react";
 import dynamic from "next/dynamic";
 
-import type { Testimonial, TestimonialsSectionProps } from "@/shared/types";
+import type { TestimonialType } from "@/schemas";
+import type { TestimonialsSectionProps } from "@/shared";
 
 import { BackdropText, TestimonialCard, Wrapper } from "@/components";
-
-// ============================================================
-// Dynamic Imports
-// ============================================================
 
 const ContentCarousel = dynamic(
     () =>
@@ -30,39 +22,21 @@ const ContentCarousel = dynamic(
         ),
     }
 ) as React.ComponentType<{
-    items: Testimonial[];
+    items: TestimonialType[];
     spaceBetween?: number;
     renderItem: (
-        item: Testimonial,
+        item: TestimonialType,
         index: number,
         isActive?: boolean
     ) => React.ReactNode;
 }>;
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * Testimonials component renders a section displaying customer testimonials.
- * Features carousel layout, smooth animations, and responsive design.
- *
- * @param props - Component props
- * @param props.id - Unique identifier for the section
- * @param props.testimonials - Array of testimonial data
- * @param props.resetAnimationOnView - Whether to reset animations on view
- * @returns Testimonials section component
- */
 const Testimonials: React.FC<TestimonialsSectionProps> = ({
     id,
     testimonials,
     resetAnimationOnView,
     verticalRulePosition,
 }) => {
-    // ============================================================
-    // Render
-    // ============================================================
-
     return (
         <Wrapper
             id={id}

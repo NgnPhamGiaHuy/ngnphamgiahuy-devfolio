@@ -1,44 +1,23 @@
-// ============================================================
-// Component: SkillCard
-// Purpose: Individual skill card with experience visualization and animations
-// ============================================================
-
 "use client";
 
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 import CountUp from "react-countup";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
-import type { SkillCardProps } from "@/shared/types";
+import type { SkillType } from "@/schemas";
 
-import { SKILL_CARD_VARIANTS } from "@/infrastructure/config";
-
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * SkillCard component renders an individual skill with experience visualization.
- * Features animated counters, progress bars, and proper accessibility.
- *
- * @param props - Component props
- * @param props.item - Skill data object
- * @param props.variants - Animation variants
- * @returns Skill card component
- */
-const SkillCard: React.FC<SkillCardProps> = ({ item, variants, ...props }) => {
-    // ============================================================
-    // Data Processing
-    // ============================================================
-
+const SkillCard = ({
+    item,
+    variants,
+    ...props
+}: {
+    item: SkillType;
+    variants: Variants;
+}) => {
     const skillName = item.name || "Skill";
     const skillDescription = item.description || "";
     const experienceYears = item.experience_years || 0;
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <motion.article

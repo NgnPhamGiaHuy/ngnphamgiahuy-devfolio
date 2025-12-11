@@ -1,16 +1,16 @@
-import {
-    Profile,
-    Service,
-    Skill,
-    Project,
-    Experience,
-    Education,
-    Testimonial,
-    Pricing,
-    BlogPost,
-    Certificate,
-    MapConfigItem,
-} from "../sanity.types";
+import type {
+    BlogPostType,
+    CertificateType,
+    EducationType,
+    ExperienceType,
+    MapConfigItemType,
+    PricingType,
+    ProfileType,
+    ProjectType,
+    ServiceType,
+    SkillType,
+    TestimonialType,
+} from "@/schemas";
 
 export interface BaseSectionProps {
     id: string;
@@ -19,44 +19,44 @@ export interface BaseSectionProps {
 }
 
 export interface HeroSectionProps extends BaseSectionProps {
-    profile: Profile;
-    projects: Project[];
+    profile: ProfileType;
+    projects: ProjectType[];
 }
 
 export interface ServicesSectionProps extends BaseSectionProps {
-    services: Service[];
+    services: ServiceType[];
 }
 
 export interface SkillsSectionProps extends BaseSectionProps {
-    skills: Skill[];
+    skills: SkillType[];
 }
 
 export interface PortfoliosSectionProps extends BaseSectionProps {
-    projects: Project[];
+    projects: ProjectType[];
     maxItems?: number;
     hideSeeMore?: boolean;
     backgroundVariant?: "gradientUp" | "gradientDown" | "none";
 }
 
 export interface ResumeSectionProps extends BaseSectionProps {
-    education: Education[];
-    experience: Experience[];
+    education: EducationType[];
+    experience: ExperienceType[];
 }
 
 export interface CertificatesSectionProps extends BaseSectionProps {
-    certificates: Certificate[];
+    certificates: CertificateType[];
 }
 
 export interface TestimonialsSectionProps extends BaseSectionProps {
-    testimonials: Testimonial[];
+    testimonials: TestimonialType[];
 }
 
 export interface PricingSectionProps extends BaseSectionProps {
-    pricing: Pricing[];
+    pricing: PricingType[];
 }
 
 export interface BlogSectionProps extends BaseSectionProps {
-    blogs: BlogPost[];
+    blogs: BlogPostType[];
 }
 
 export interface ContactSectionProps extends BaseSectionProps {
@@ -64,7 +64,7 @@ export interface ContactSectionProps extends BaseSectionProps {
 }
 
 export interface MapSectionProps extends BaseSectionProps {
-    mapConfig: MapConfigItem;
+    mapConfig: MapConfigItemType;
 }
 
 export type SectionProps =

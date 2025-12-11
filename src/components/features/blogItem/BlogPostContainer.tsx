@@ -10,7 +10,12 @@
 import clsx from "clsx";
 import React from "react";
 
-import { BlogItemForm, BlogPostContent, SocialShare, VerticalRule, } from "@/components";
+import {
+    BlogItemForm,
+    BlogPostContent,
+    SocialShare,
+    VerticalRule,
+} from "@/components";
 
 // ============================================================
 // Constants

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "@/schemas/base/sanity-document.schema";
-import SanityImageSchema from "@/schemas/base/sanity-image.schema";
+import SanityDocumentSchema from "../base/sanity-document.schema";
+import SanityImageSchema from "../base/sanity-image.schema";
 
 const CertificateSchema = SanityDocumentSchema.extend({
     _type: z.literal("certificate"),
@@ -16,5 +16,7 @@ const CertificateSchema = SanityDocumentSchema.extend({
     category: z.string().optional(),
     order: z.number().optional(),
 });
+
+export type CertificateType = z.infer<typeof CertificateSchema>;
 
 export default CertificateSchema;

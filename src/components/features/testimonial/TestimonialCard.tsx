@@ -1,44 +1,15 @@
-// ============================================================
-// Component: TestimonialCard
-// Purpose: Individual testimonial card with image, quote, and author info
-// ============================================================
-
 import Image from "next/image";
 import React from "react";
 
-import type { TestimonialCardProps } from "@/shared/types";
+import type { TestimonialType } from "@/schemas";
 
-import { processImage } from "@/shared/utils";
-
-// ============================================================
-// Constants
-// ============================================================
+import { processImage } from "@/shared";
 
 const IMAGE_WIDTH = 600;
 const IMAGE_HEIGHT = 400;
 const FALLBACK_IMAGE = "/images/profile2.png";
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * TestimonialCard component renders an individual testimonial.
- * Features customer image, quote, author information, and proper accessibility.
- *
- * @param props - Component props
- * @param props.item - Testimonial data object
- * @returns Testimonial card component
- */
-const TestimonialCard: React.FC<TestimonialCardProps> = ({
-    item,
-    ...props
-}) => {
-    // ============================================================
-    // Data Processing
-    // ============================================================
-
-    // Process image data - lightweight operation that doesn't need memoization
+const TestimonialCard = ({ item, ...props }: { item: TestimonialType }) => {
     const { url: imageUrl, alt: imageAlt } = processImage(
         item.image,
         {
@@ -49,14 +20,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         { fallbackAlt: item.name || "testimonial image" }
     );
 
-    // Testimonial metadata with fallback values
     const customerName = item.name || "Anonymous";
     const customerPosition = item.position || "";
     const testimonialQuote = item.quote || "";
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <article

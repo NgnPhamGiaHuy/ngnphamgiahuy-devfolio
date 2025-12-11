@@ -1,52 +1,24 @@
-// ============================================================
-// Component: Resume
-// Purpose: Display education and experience in a two-column accordion layout
-// ============================================================
-
 import React from "react";
 
-import type {
-    AccordionFieldMapping,
-    Education,
-    Experience,
-    ResumeSectionProps,
-} from "@/shared/types";
+import type { EducationType, ExperienceType } from "@/schemas";
+import type { AccordionFieldMapping, ResumeSectionProps } from "@/shared";
 
 import { Accordion, BackdropText, Wrapper } from "@/components";
 
-// ============================================================
-// Constants
-// ============================================================
-
-const educationFieldMapping: AccordionFieldMapping<Education> = {
+const educationFieldMapping: AccordionFieldMapping<EducationType> = {
     meta: "year",
     heading: "institution",
     subheading: "degree",
     content: "description",
 };
 
-const experienceFieldMapping: AccordionFieldMapping<Experience> = {
+const experienceFieldMapping: AccordionFieldMapping<ExperienceType> = {
     meta: "year",
     heading: "company",
     subheading: "title",
     content: "description",
 };
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * Resume component renders education and experience in a two-column layout.
- * Features accordion components for expandable content sections.
- *
- * @param props - Component props
- * @param props.id - Unique identifier for the section
- * @param props.experience - Array of experience data
- * @param props.education - Array of education data
- * @param props.resetAnimationOnView - Whether to reset animations on view
- * @returns Resume section component
- */
 const Resume: React.FC<ResumeSectionProps> = ({
     id,
     experience,
@@ -54,10 +26,6 @@ const Resume: React.FC<ResumeSectionProps> = ({
     resetAnimationOnView,
     verticalRulePosition,
 }) => {
-    // ============================================================
-    // Render
-    // ============================================================
-
     return (
         <Wrapper
             id={id}

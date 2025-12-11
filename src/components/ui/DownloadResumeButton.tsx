@@ -1,46 +1,15 @@
-// ============================================================
-// Component: DownloadResumeButton
-// Purpose: Download resume button with animations and secondary action
-// ============================================================
-
 "use client";
 
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 
-import type { DownloadResumeButtonProps } from "@/shared/types";
+import { HeroAnimationsConfig } from "@/infrastructure";
 
-import { HeroAnimationsConfig } from "@/infrastructure/config";
-
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * DownloadResumeButton component renders action buttons for resume download and skills view.
- * Features animations, accessibility, and proper link handling.
- *
- * @param props - Component props
- * @param props.cvLink - Resume/CV download link
- * @returns Download resume button component
- */
-const DownloadResumeButton: React.FC<DownloadResumeButtonProps> = ({
-    cvLink,
-    ...props
-}) => {
-    // ============================================================
-    // Animation Configuration
-    // ============================================================
-
-    // Remove unnecessary useMemo - animation variants are static objects
+const DownloadResumeButton = ({ cvLink, ...props }: { cvLink?: string }) => {
     const containerVariants = HeroAnimationsConfig.downloadResume.container;
     const buttonVariants = HeroAnimationsConfig.downloadResume.button;
     const buttonHoverVariants = HeroAnimationsConfig.downloadResume.hover;
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <motion.div

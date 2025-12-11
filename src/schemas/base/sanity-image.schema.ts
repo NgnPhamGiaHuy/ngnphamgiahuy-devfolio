@@ -10,4 +10,6 @@ const SanityImageSchema = z.object({
     caption: z.string().optional(),
 });
 
+export type SanityImageType = z.infer<typeof SanityImageSchema>;
+
 export default SanityImageSchema;

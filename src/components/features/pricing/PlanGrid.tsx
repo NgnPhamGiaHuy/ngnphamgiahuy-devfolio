@@ -1,31 +1,10 @@
-// ============================================================
-// Component: PlanGrid
-// Purpose: Responsive grid container for pricing plan cards
-// ============================================================
-
 import React from "react";
 
-import type { PricingGridProps } from "@/shared/types";
+import type { PricingType } from "@/schemas";
 
 import { PlanCard } from "@/components";
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * PlanGrid component renders a responsive grid of pricing plan cards.
- * Features proper key generation and accessibility support.
- *
- * @param props - Component props
- * @param props.pricing - Array of pricing plan data
- * @returns Pricing grid component
- */
-const PlanGrid: React.FC<PricingGridProps> = ({ pricing }) => {
-    // ============================================================
-    // Render
-    // ============================================================
-
+const PlanGrid = ({ pricing }: { pricing: PricingType[] }) => {
     return (
         <div
             className="w-full grid-responsive relative z-2"

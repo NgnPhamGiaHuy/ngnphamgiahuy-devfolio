@@ -611,8 +611,8 @@ const SECTION_COMPONENTS: Record<
 export const renderSection = async (sectionConfig, options) => {
     const ComponentLoader = SECTION_COMPONENTS[sectionId];
     if (!ComponentLoader) return null;
-    
-    const {default: SectionComponent} = await ComponentLoader();
+
+    const { default: SectionComponent } = await ComponentLoader();
     // ... render
 };
 ```
@@ -819,7 +819,7 @@ sanityFetch({
 ### Migration Map
 
 | Current Location                         | New Location                                                                                                    | Reason                 |
-|------------------------------------------|-----------------------------------------------------------------------------------------------------------------|------------------------|
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | `utils/sections/section.data-helpers.ts` | Split into:<br>`services/section.service.ts`<br>`utils/sections/normalization.ts`<br>`utils/sections/config.ts` | Separate concerns      |
 | `lib/export.ts` (image logic)            | `services/image.service.ts`                                                                                     | Extract service        |
 | `lib/queries.ts`                         | `lib/sanity/queries/*.queries.ts`                                                                               | Split by feature       |

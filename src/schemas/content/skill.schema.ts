@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "@/schemas/base/sanity-document.schema";
+import SanityDocumentSchema from "../base/sanity-document.schema";
 
 const SkillSchema = SanityDocumentSchema.extend({
     _type: z.literal("skill"),
@@ -10,5 +10,7 @@ const SkillSchema = SanityDocumentSchema.extend({
     description: z.string(),
     experience_years: z.number(),
 });
+
+export type SkillType = z.infer<typeof SkillSchema>;
 
 export default SkillSchema;

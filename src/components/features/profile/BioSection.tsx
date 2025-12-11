@@ -1,16 +1,11 @@
-// ============================================================
-// Component: BioSection
-// Purpose: Personal description and social links with animations
-// ============================================================
-
 "use client";
 
 import React from "react";
 import { motion } from "framer-motion";
 
-import type { Profile } from "@/shared/types";
+import type { ProfileType } from "@/schemas";
 
-import { HeroAnimationsConfig } from "@/infrastructure/config";
+import { HeroAnimationsConfig } from "@/infrastructure";
 import {
     AnimatedText,
     SocialLinks,
@@ -18,66 +13,31 @@ import {
 } from "@/components";
 import { generateSocialLinks } from "@/components/ui/social";
 
-// ============================================================
-// Types
-// ============================================================
-
 interface BioSectionProps {
-    profile: Profile;
+    profile: ProfileType;
 }
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * BioSection component renders personal description and social links.
- * Features animated text and social media links with dynamic stagger timing.
- *
- * @param props - Component props
- * @param props.profile - Profile data object
- * @returns Bio section component
- */
 const BioSection: React.FC<BioSectionProps> = ({ profile }) => {
-    // ============================================================
-    // Animation Context
-    // ============================================================
-
     const { timeline } = useHeroAnimationContext();
-
-    // ============================================================
-    // Data Processing
-    // ============================================================
 
     const description =
         profile?.description || "Welcome to my portfolio website";
     const descriptionLength = description.length;
 
-    // Calculate dynamic stagger based on description length
     const dynamicStagger = React.useMemo(
         () => Math.min(0.3, descriptionLength * 0.001),
         [descriptionLength]
     );
 
-    // Generate social links from profile data
     const socialLinks = React.useMemo(() => {
         if (!profile?.social_links) return [];
         return generateSocialLinks(profile.social_links);
     }, [profile?.social_links]);
 
-    // ============================================================
-    // Animation Configuration
-    // ============================================================
-
-    // Remove unnecessary useMemo - animation variants are static objects
     const containerVariants =
         HeroAnimationsConfig.bioSection.createContainer(dynamicStagger);
     const itemVariants = HeroAnimationsConfig.bioSection.item;
     const socialLinksVariants = HeroAnimationsConfig.bioSection.socialLinks;
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <motion.div

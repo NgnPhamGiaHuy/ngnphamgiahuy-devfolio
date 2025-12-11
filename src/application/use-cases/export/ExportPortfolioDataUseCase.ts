@@ -1,29 +1,27 @@
 import type {
-    ExportOptions,
-    ExportedData,
     ExportContentType,
+    ExportedData,
+    ExportOptions,
     ExportQueries,
-} from "@/shared/types";
-
-import { EXPORT_CONTENT_TYPES, EXPORT_DEFAULTS } from "@/infrastructure/config";
+} from "@/shared";
 
 import {
-    profileQuery,
-    skillsQuery,
-    projectsQuery,
-    experienceQuery,
-    educationQuery,
-    servicesQuery,
-    testimonialsQuery,
-    pricingQuery,
     blogPostsQuery,
     certificatesQuery,
-    settingsQuery,
-} from "@/infrastructure/persistence/sanity/queries";
-import {
+    educationQuery,
+    experienceQuery,
+    EXPORT_CONTENT_TYPES,
+    EXPORT_DEFAULTS,
+    pricingQuery,
+    profileQuery,
+    projectsQuery,
     sanityClient,
+    servicesQuery,
+    settingsQuery,
+    skillsQuery,
+    testimonialsQuery,
     urlFor,
-} from "@/infrastructure/persistence/sanity/SanityClient";
+} from "@/infrastructure";
 
 const resolveImageUrls = (data: any): any => {
     if (!data) return data;

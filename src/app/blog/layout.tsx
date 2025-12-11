@@ -13,7 +13,10 @@ import type { HomePageData } from "@/shared/types";
 
 import { PageChrome } from "@/components";
 import { createMockData } from "@/infrastructure/persistence/mocks";
-import { normalizeProfileData, normalizeSectionConfigData, } from "@/shared/utils";
+import {
+    normalizeProfileData,
+    normalizeSectionConfigData,
+} from "@/shared/utils";
 import { homePageDataQuery, sanityFetch } from "@/infrastructure"; // ============================================================
 
 // ============================================================

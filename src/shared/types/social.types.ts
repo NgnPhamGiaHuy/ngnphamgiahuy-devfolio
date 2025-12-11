@@ -1,12 +1,13 @@
 import { ReactElement } from "react";
-import { SanityImage } from "./sanity.types";
+
+import type { SanityImageType } from "@/schemas";
 
 export type SocialPlatform = "github" | "facebook" | "linkedin" | string;
 
 export interface RawSocialLink {
     platform: SocialPlatform;
     url: string;
-    icon: SanityImage | string;
+    icon: SanityImageType | string;
 }
 
 export interface SocialLink {

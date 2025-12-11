@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { copyTextWithFallback } from "@/shared/utils";
+import { copyTextWithFallback } from "@/shared";
 
 interface UseCopyToClipboardOptions {
     resetAfterMs?: number;
@@ -41,10 +41,10 @@ const useCopyToClipboard = (
 
     const copy = React.useCallback(
         async (text: string) => {
-            // Prepare for a new copy attempt; cancel any pending resets
             clearTimer();
             setCopied(false);
             setError(null);
+
             try {
                 await copyTextWithFallback(text);
                 setCopied(true);

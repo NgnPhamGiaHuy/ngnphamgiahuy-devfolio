@@ -1,44 +1,17 @@
-// ============================================================
-// Component: BlogPreview
-// Purpose: Individual blog post preview card with image, title, and excerpt
-// ============================================================
-
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import type { BlogPreviewProps } from "@/shared/types";
+import type { BlogPostType } from "@/schemas";
 
 import { ArrowLink } from "@/components";
-import { formatDate, processImage } from "@/shared/utils";
-
-// ============================================================
-// Constants
-// ============================================================
+import { formatDate, processImage } from "@/shared";
 
 const IMAGE_WIDTH = 400;
 const IMAGE_HEIGHT = 250;
 const FALLBACK_IMAGE = "/images/profile2.png";
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * BlogPreview component renders an individual blog post preview card.
- * Displays blog image, publication date, title, excerpt, and read more link.
- * Features hover effects and optimized image loading for better UX.
- *
- * @param props - Component props
- * @param props.blog - Blog post data object
- * @param props - Additional props passed through to article element
- * @returns Blog preview card component
- */
-const BlogPreview: React.FC<BlogPreviewProps> = ({ blog, ...props }) => {
-    // ============================================================
-    // Data Processing
-    // ============================================================
-
+const BlogPreview = ({ blog, ...props }: { blog: BlogPostType }) => {
     const { url: imageUrl, alt: imageAlt } = processImage(
         blog.image,
         {
@@ -52,10 +25,6 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({ blog, ...props }) => {
     const formattedDate = formatDate(blog.date);
     const postHref = `/blog/${blog.slug.current}`;
     const postTitle = blog.title;
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <article

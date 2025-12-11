@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "@/schemas/base/sanity-document.schema";
+import SanityDocumentSchema from "../base/sanity-document.schema";
 
 const PricingSchema = SanityDocumentSchema.extend({
     _type: z.literal("pricing"),
@@ -15,5 +15,7 @@ const PricingSchema = SanityDocumentSchema.extend({
     highlight: z.boolean().optional(),
     order: z.number().optional(),
 });
+
+export type PricingType = z.infer<typeof PricingSchema>;
 
 export default PricingSchema;

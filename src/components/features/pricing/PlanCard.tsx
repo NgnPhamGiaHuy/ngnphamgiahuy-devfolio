@@ -1,38 +1,13 @@
-// ============================================================
-// Component: PlanCard
-// Purpose: Individual pricing plan card with features and pricing
-// ============================================================
-
 import React from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
-import type { PricingCardProps } from "@/shared/types";
+import type { PricingType } from "@/schemas";
 
-// ============================================================
-// Constants
-// ============================================================
+const CONTACT_ROUTE = "/contact";
 
-const CONTACT_ROUTE = "/contact"; // Update this to your actual contact route
-
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * PlanCard component renders an individual pricing plan card.
- * Displays plan details, pricing, features, and call-to-action button.
- *
- * @param props - Component props
- * @param props.item - Pricing plan data object
- * @returns Pricing plan card component
- */
-const PlanCard: React.FC<PricingCardProps> = ({ item, ...props }) => {
-    // ============================================================
-    // Render
-    // ============================================================
-
+const PlanCard = ({ item, ...props }: { item: PricingType }) => {
     return (
         <article
             className="plan-card-wrapper"

@@ -26,7 +26,8 @@ import TestimonialSchema from "@/schemas/content/testimonial.schema";
 import MockDataSchema from "@/schemas/mock/mock-data.schema";
 import MapConfigItemSchema from "@/schemas/setting/map-config-item.schema";
 import SectionConfigItemSchema from "@/schemas/setting/section-config-item.schema";
-import SettingSchema from "@/schemas/setting/setting.schema";
+import SettingsSchema from "@/schemas/setting/settings.schema";
+import { DEFAULT_MOCK_COUNTS } from "./config";
 
 type BlogPost = z.infer<typeof BlogPostSchema>;
 type Certificate = z.infer<typeof CertificateSchema>;
@@ -38,10 +39,10 @@ type Project = z.infer<typeof ProjectSchema>;
 type Service = z.infer<typeof ServiceSchema>;
 type Skill = z.infer<typeof SkillSchema>;
 type Testimonial = z.infer<typeof TestimonialSchema>;
-type Setting = z.infer<typeof SettingSchema>;
+type Setting = z.infer<typeof SettingsSchema>;
 
 const CompleteMockDataSchema = MockDataSchema.extend({
-    settings: SettingSchema,
+    settings: SettingsSchema,
 });
 
 export type CompleteMockData = z.infer<typeof CompleteMockDataSchema>;
@@ -150,8 +151,6 @@ const generateList = <T>({
     );
 };
 
-import { DEFAULT_MOCK_COUNTS } from "./config";
-
 const DEFAULT_COUNTS = DEFAULT_MOCK_COUNTS;
 
 const pickRandom = <T>(items: T[]): T | undefined =>
@@ -202,7 +201,7 @@ const buildSettings = (
         }),
     };
 
-    return SettingSchema.parse({ ...data, ...overrides });
+    return SettingsSchema.parse({ ...data, ...overrides });
 };
 
 export const createMockData = (

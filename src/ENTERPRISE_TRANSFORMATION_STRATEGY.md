@@ -691,7 +691,7 @@ This comprehensive table maps **every file** in the current codebase to its new 
 #### Domain Layer Migrations
 
 | Current Location                         | New Location                                                                                                                                                     | Reason                                     |
-|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | `utils/sections/section.data-helpers.ts` | `domain/section/services/SectionNormalizationService.ts`<br>`domain/section/services/SectionConfigService.ts`<br>`domain/section/services/SectionDataService.ts` | Split god file into domain services        |
 | `utils/blog/blogPost.helpers.ts`         | `domain/blog/services/BlogNormalizationService.ts`                                                                                                               | Domain-specific business logic             |
 | `types/features/blog.types.ts`           | `domain/blog/entities/BlogPost.ts`<br>`domain/blog/value-objects/BlogMetadata.ts`                                                                                | Types become domain entities/value objects |
@@ -710,7 +710,7 @@ This comprehensive table maps **every file** in the current codebase to its new 
 #### Application Layer Migrations
 
 | Current Location                                         | New Location                                                                                          | Reason                               |
-|----------------------------------------------------------|-------------------------------------------------------------------------------------------------------|--------------------------------------|
+| -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------ |
 | `lib/export.ts`                                          | `application/use-cases/export/ExportPortfolioDataUseCase.ts`<br>`application/dto/ExportOptionsDto.ts` | Export logic becomes use case        |
 | `lib/metadata.ts`                                        | `application/use-cases/seo/GenerateMetadataUseCase.ts`<br>`application/dto/MetadataDto.ts`            | Metadata generation becomes use case |
 | `app/page.tsx` (data fetching logic)                     | `application/use-cases/home/GetHomePageDataUseCase.ts`                                                | Extract data fetching to use case    |
@@ -724,7 +724,7 @@ This comprehensive table maps **every file** in the current codebase to its new 
 #### Infrastructure Layer Migrations
 
 | Current Location                   | New Location                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Reason                                     |
-|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
 | `lib/sanity.ts`                    | `infrastructure/persistence/sanity/SanityClient.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Sanity client implementation               |
 | `lib/queries.ts`                   | `infrastructure/persistence/sanity/queries/blog.queries.ts`<br>`infrastructure/persistence/sanity/queries/portfolio.queries.ts`<br>`infrastructure/persistence/sanity/queries/profile.queries.ts`<br>`infrastructure/persistence/sanity/queries/section.queries.ts`<br>`infrastructure/persistence/sanity/queries/settings.queries.ts`                                                                                                                                                                                                                             | Split queries by feature                   |
 | `lib/sanity/deskStructure.ts`      | `infrastructure/persistence/sanity/SanityDeskStructure.ts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Sanity desk structure config               |
@@ -751,7 +751,7 @@ This comprehensive table maps **every file** in the current codebase to its new 
 #### Presentation Layer Migrations
 
 | Current Location                         | New Location                                              | Reason                               |
-|------------------------------------------|-----------------------------------------------------------|--------------------------------------|
+| ---------------------------------------- | --------------------------------------------------------- | ------------------------------------ |
 | `app/layout.tsx`                         | `presentation/web/app/layout.tsx`                         | Root layout                          |
 | `app/page.tsx`                           | `presentation/web/app/page.tsx`                           | Home page                            |
 | `app/blog/layout.tsx`                    | `presentation/web/app/blog/layout.tsx`                    | Blog layout                          |
@@ -789,7 +789,7 @@ This comprehensive table maps **every file** in the current codebase to its new 
 #### Shared Utilities Migrations
 
 | Current Location                    | New Location                                                                      | Reason                                                     |
-|-------------------------------------|-----------------------------------------------------------------------------------|------------------------------------------------------------|
+| ----------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | `utils/date/date.formatting.ts`     | `shared/utils/date/date.formatting.ts`                                            | Pure date utility                                          |
 | `utils/date/index.ts`               | `shared/utils/date/index.ts`                                                      | Date utils index                                           |
 | `utils/dom/clipboard.ts`            | `shared/utils/dom/clipboard.ts`                                                   | DOM utility                                                |
@@ -820,7 +820,7 @@ This comprehensive table maps **every file** in the current codebase to its new 
 #### Configuration & Build Files (No Migration Needed)
 
 | Current Location      | New Location                 | Reason                        |
-|-----------------------|------------------------------|-------------------------------|
+| --------------------- | ---------------------------- | ----------------------------- |
 | `package.json`        | `package.json` (root)        | Package config (no change)    |
 | `package-lock.json`   | `package-lock.json` (root)   | Lock file (no change)         |
 | `tsconfig.json`       | `tsconfig.json` (root)       | TypeScript config (no change) |
@@ -874,7 +874,7 @@ This comprehensive table maps **every file** in the current codebase to its new 
 **Goal**: Fix critical issues, establish foundation
 
 | Task                            | Files/Folders                                                                                    | Changes                                       | Risk   | Priority |
-|---------------------------------|--------------------------------------------------------------------------------------------------|-----------------------------------------------|--------|----------|
+| ------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------- | ------ | -------- |
 | Split `section.data-helpers.ts` | `utils/sections/` → Split into 3 files                                                           | Extract normalization, config, data retrieval | Medium | P0       |
 | Fix SQL injection               | `lib/queries.ts`                                                                                 | Use parameterized queries                     | Low    | P0       |
 | Add error handling              | Create `shared/exceptions/`                                                                      | Exception hierarchy                           | Low    | P0       |
@@ -896,7 +896,7 @@ This comprehensive table maps **every file** in the current codebase to its new 
 **Goal**: Introduce Clean Architecture layers
 
 | Task                        | Files/Folders                                  | Changes                | Risk   | Priority |
-|-----------------------------|------------------------------------------------|------------------------|--------|----------|
+| --------------------------- | ---------------------------------------------- | ---------------------- | ------ | -------- |
 | Create Domain layer         | Create `domain/` structure                     | Move business logic    | Medium | P0       |
 | Extract entities            | `types/` → `domain/*/entities/`                | Create domain entities | Medium | P0       |
 | Create Application layer    | Create `application/` structure                | Extract use cases      | Medium | P0       |
@@ -919,7 +919,7 @@ This comprehensive table maps **every file** in the current codebase to its new 
 **Goal**: Implement Dependency Inversion Principle
 
 | Task                         | Files/Folders                                     | Changes                              | Risk   | Priority |
-|------------------------------|---------------------------------------------------|--------------------------------------|--------|----------|
+| ---------------------------- | ------------------------------------------------- | ------------------------------------ | ------ | -------- |
 | Create repository interfaces | `application/interfaces/repositories/`            | Define IRepository<T>                | Low    | P0       |
 | Implement repositories       | `infrastructure/persistence/sanity/repositories/` | Implement interfaces                 | Medium | P0       |
 | Create service interfaces    | `application/interfaces/services/`                | IImageService, ICacheService         | Low    | P0       |
@@ -940,7 +940,7 @@ This comprehensive table maps **every file** in the current codebase to its new 
 **Goal**: Add logging, monitoring, tracing
 
 | Task                         | Files/Folders                                     | Changes               | Risk   | Priority |
-|------------------------------|---------------------------------------------------|-----------------------|--------|----------|
+| ---------------------------- | ------------------------------------------------- | --------------------- | ------ | -------- |
 | Implement structured logging | `infrastructure/logging/Logger.ts`                | JSON logs, log levels | Low    | P0       |
 | Add OpenTelemetry            | `infrastructure/logging/OpenTelemetryAdapter.ts`  | Distributed tracing   | Medium | P0       |
 | Add metrics collection       | `infrastructure/monitoring/MetricsCollector.ts`   | Prometheus metrics    | Medium | P0       |
@@ -963,7 +963,7 @@ This comprehensive table maps **every file** in the current codebase to its new 
 **Goal**: Prepare for high traffic and team growth
 
 | Task                    | Files/Folders                                | Changes                 | Risk   | Priority |
-|-------------------------|----------------------------------------------|-------------------------|--------|----------|
+| ----------------------- | -------------------------------------------- | ----------------------- | ------ | -------- |
 | Add caching layer       | `infrastructure/persistence/cache/`          | Redis integration       | Medium | P0       |
 | Implement rate limiting | `infrastructure/security/RateLimiter.ts`     | API protection          | Low    | P0       |
 | Add circuit breaker     | `infrastructure/external/CircuitBreaker.ts`  | Resilience pattern      | Medium | P1       |
@@ -1009,7 +1009,7 @@ export const getSectionData = (...) => {...
 export class SectionNormalizationService {
     normalize<T>(data: T[], fallback: T[]): T[] { ...
     }
-    
+
     normalizeProfile(profile: Profile, fallback: Profile): Profile { ...
     }
 }
@@ -1018,7 +1018,7 @@ export class SectionNormalizationService {
 export class SectionConfigService {
     normalizeConfig(settings: Settings): SectionConfig[] { ...
     }
-    
+
     getVerticalRulePosition(sectionId: string, settings: Settings): Position { ...
     }
 }
@@ -1054,7 +1054,7 @@ export const exportPortfolioData = async (...) => { ...
 export class ImageProcessingService {
     resolveImageUrls(data: any): any { ...
     }
-    
+
     buildImageUrl(source: SanityImageSource, options: ImageOptions): string { ...
     }
 }
@@ -1066,7 +1066,7 @@ export class ExportPortfolioDataUseCase {
         private repository: IPortfolioRepository
     ) {
     }
-    
+
     async execute(options: ExportOptions): Promise<ExportedData> {
         const data = await this.repository.fetchAll(options.contentTypes);
         return this.imageService.resolveImageUrls(data);
@@ -1102,11 +1102,11 @@ export interface ISectionComponent {
 
 export class SectionRegistry {
     private components = new Map<string, ISectionComponent>();
-    
+
     register(section: ISectionComponent): void {
         this.components.set(section.id, section);
     }
-    
+
     get(id: string): ISectionComponent | undefined {
         return this.components.get(id);
     }
@@ -1142,9 +1142,9 @@ export class SectionComponentRegistry extends SectionRegistry {
 // application/interfaces/repositories/IBlogRepository.ts
 export interface IBlogRepository {
     findById(id: string): Promise<BlogPost | null>;
-    
+
     findAll(options: QueryOptions): Promise<BlogPost[]>;
-    
+
     findBySlug(slug: string): Promise<BlogPost | null>;
 }
 
@@ -1152,10 +1152,10 @@ export interface IBlogRepository {
 export class SanityBlogRepository implements IBlogRepository {
     async findById(id: string): Promise<BlogPost | null> { ...
     }
-    
+
     async findAll(options: QueryOptions): Promise<BlogPost[]> { ...
     }
-    
+
     async findBySlug(slug: string): Promise<BlogPost | null> { ...
     }
 }
@@ -1165,7 +1165,7 @@ export class SanityBlogRepository implements IBlogRepository {
 export class MongoBlogRepository implements IBlogRepository {
     async findById(id: string): Promise<BlogPost | null> { ...
     }
-    
+
     // Same interface, different implementation
 }
 ```
@@ -1182,13 +1182,13 @@ export class MongoBlogRepository implements IBlogRepository {
 // BAD: Large interface
 interface IDataHelper {
     normalizeServices(): Service[];
-    
+
     normalizeSkills(): Skill[];
-    
+
     normalizeProjects(): Project[];
-    
+
     normalizeBlogs(): BlogPost[];
-    
+
     // ... 10 more methods
 }
 
@@ -1226,11 +1226,10 @@ export const Blog = () => {
 ```typescript
 // application/use-cases/blog/ListBlogPostsUseCase.ts
 export class ListBlogPostsUseCase {
-    constructor(private repository: IBlogRepository) {
-    } // Depend on abstraction
-    
+    constructor(private repository: IBlogRepository) {} // Depend on abstraction
+
     async execute(): Promise<BlogPost[]> {
-        return this.repository.findAll({limit: 10});
+        return this.repository.findAll({ limit: 10 });
     }
 }
 
@@ -1266,11 +1265,11 @@ export class HeroSectionStrategy implements ISectionStrategy {
 // domain/section/services/SectionRenderer.ts
 export class SectionRenderer {
     private strategies = new Map<string, ISectionStrategy>();
-    
+
     registerStrategy(id: string, strategy: ISectionStrategy): void {
         this.strategies.set(id, strategy);
     }
-    
+
     render(config: SectionConfig, data: any): React.ReactNode {
         const strategy = this.strategies.get(config.id);
         return strategy?.render(config, data) ?? null;
@@ -1287,7 +1286,7 @@ export class SectionRenderer {
 export class RepositoryFactory {
     static createBlogRepository(): IBlogRepository {
         const adapter = process.env.DATA_ADAPTER || "sanity";
-        
+
         switch (adapter) {
             case "sanity":
                 return new SanityBlogRepository();
@@ -1308,7 +1307,7 @@ export class RepositoryFactory {
 // application/interfaces/services/IImageService.ts
 export interface IImageService {
     resolveUrls(data: any): any;
-    
+
     buildUrl(source: ImageSource, options: ImageOptions): string;
 }
 
@@ -1316,7 +1315,7 @@ export interface IImageService {
 export class SanityImageAdapter implements IImageService {
     resolveUrls(data: any): any { ...
     }
-    
+
     buildUrl(source: ImageSource, options: ImageOptions): string { ...
     }
 }
@@ -1326,7 +1325,7 @@ export class SanityImageAdapter implements IImageService {
 export class CloudinaryImageAdapter implements IImageService {
     resolveUrls(data: any): any { ...
     }
-    
+
     buildUrl(source: ImageSource, options: ImageOptions): string { ...
     }
 }
@@ -1354,9 +1353,8 @@ export class CreateBlogPostUseCase {
     constructor(
         private repository: IBlogRepository,
         private eventBus: IEventBus
-    ) {
-    }
-    
+    ) {}
+
     async execute(data: CreateBlogPostDto): Promise<BlogPost> {
         const post = await this.repository.create(data);
         await this.eventBus.publish(new BlogPostPublished(post.id));
@@ -1804,7 +1802,7 @@ export const getSectionData = (
         props.settings,
         sectionId
     );
-    
+
     switch (sectionId) {
         case "hero":
             return {
@@ -1841,19 +1839,19 @@ export class Email {
             throw new ValidationException("Invalid email address");
         }
     }
-    
+
     static create(email: string): Email {
         return new Email(email);
     }
-    
+
     getValue(): string {
         return this.value;
     }
-    
+
     private isValid(email: string): boolean {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
-    
+
     equals(other: Email): boolean {
         return this.value === other.value;
     }
@@ -1876,9 +1874,8 @@ export class BlogPost {
         public readonly content: string,
         public readonly metadata: BlogMetadata,
         public readonly publishedAt: Date
-    ) {
-    }
-    
+    ) {}
+
     static create(data: {
         id: string;
         title: string;
@@ -1896,7 +1893,7 @@ export class BlogPost {
             data.publishedAt
         );
     }
-    
+
     isPublished(): boolean {
         return this.publishedAt <= new Date();
     }
@@ -1924,7 +1921,7 @@ export class SectionNormalizationService {
         }
         return fallback;
     }
-    
+
     /**
      * Normalizes profile data with fallback.
      */
@@ -1948,14 +1945,14 @@ export class SectionConfigService {
         if (!settings) {
             return this.getDefaultConfig();
         }
-        
+
         return [
-            SectionConfig.create({id: "hero", ...settings.hero}),
-            SectionConfig.create({id: "services", ...settings.services}),
+            SectionConfig.create({ id: "hero", ...settings.hero }),
+            SectionConfig.create({ id: "services", ...settings.services }),
             // ... other sections
         ];
     }
-    
+
     getVerticalRulePosition(
         sectionId: string,
         settings: Settings | null
@@ -1966,7 +1963,7 @@ export class SectionConfigService {
             this.getDefaultPosition(sectionId)
         );
     }
-    
+
     private getDefaultConfig(): SectionConfig[] {
         // Default configuration
     }
@@ -1983,7 +1980,7 @@ import { SectionConfig } from "@/domain/section/value-objects/SectionConfig";
 
 export interface ISectionRepository {
     getSectionData(sectionId: string): Promise<Section>;
-    
+
     getSectionConfig(): Promise<SectionConfig[]>;
 }
 ```
@@ -1993,7 +1990,7 @@ export interface ISectionRepository {
 ```typescript
 export interface IImageService {
     resolveImageUrls(data: any): any;
-    
+
     buildImageUrl(source: ImageSource, options: ImageOptions): string;
 }
 ```
@@ -2014,34 +2011,33 @@ export class GetSectionDataUseCase {
         private readonly normalizationService: SectionNormalizationService,
         private readonly configService: SectionConfigService,
         private readonly logger: ILogger
-    ) {
-    }
-    
+    ) {}
+
     async execute(sectionId: string): Promise<SectionData> {
-        this.logger.info("Fetching section data", {sectionId});
-        
+        this.logger.info("Fetching section data", { sectionId });
+
         try {
             const [section, config] = await Promise.all([
                 this.repository.getSectionData(sectionId),
                 this.repository.getSectionConfig(),
             ]);
-            
+
             const sectionConfig = config.find((c) => c.id === sectionId);
             if (!sectionConfig) {
                 throw new NotFoundException(`Section ${sectionId} not found`);
             }
-            
+
             const normalizedData = this.normalizationService.normalizeArray(
                 section.data,
                 section.fallbackData
             );
-            
+
             const verticalRulePosition =
                 this.configService.getVerticalRulePosition(
                     sectionId,
                     sectionConfig
                 );
-            
+
             return {
                 ...normalizedData,
                 verticalRulePosition,
@@ -2073,29 +2069,28 @@ export class SanitySectionRepository implements ISectionRepository {
     constructor(
         private readonly client: SanityClient,
         private readonly logger: ILogger
-    ) {
-    }
-    
+    ) {}
+
     async getSectionData(sectionId: string): Promise<Section> {
-        this.logger.debug("Fetching section data from Sanity", {sectionId});
-        
+        this.logger.debug("Fetching section data from Sanity", { sectionId });
+
         const query = sectionQueries.getSectionDataQuery(sectionId);
         const data = await this.client.fetch(query);
-        
+
         return Section.create({
             id: sectionId,
             data: data,
             fallbackData: this.getFallbackData(sectionId),
         });
     }
-    
+
     async getSectionConfig(): Promise<SectionConfig[]> {
         const query = sectionQueries.getSettingsQuery();
         const settings = await this.client.fetch(query);
-        
+
         return this.mapToSectionConfigs(settings);
     }
-    
+
     private getFallbackData(sectionId: string): any {
         // Load from mock data
     }
@@ -2126,7 +2121,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
     const [sectionData, setSectionData] = useState<SectionData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
-    
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -2139,10 +2134,10 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
                 setLoading(false);
             }
         };
-        
+
         fetchData();
     }, [sectionId, getSectionDataUseCase]);
-    
+
     if (loading) return <div>Loading
 ...
     </div>;
@@ -2153,7 +2148,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
     }
     </div>;
     if (!sectionData) return null;
-    
+
     const SectionComponent = await loadSectionComponent(sectionId);
     return <SectionComponent {...sectionData}
     />;

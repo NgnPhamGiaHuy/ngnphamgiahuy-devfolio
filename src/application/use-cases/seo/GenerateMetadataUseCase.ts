@@ -1,23 +1,23 @@
 import { Metadata } from "next";
 
-import type { Profile, Settings } from "@/shared/types";
+import type { ProfileType, SettingsType } from "@/schemas";
 
-import { resolveImageUrl } from "@/shared/utils";
-import { createMockData } from "@/infrastructure/persistence/mocks";
-import { sanityFetch } from "@/infrastructure/persistence/sanity/SanityClient";
+import { resolveImageUrl } from "@/shared";
 import {
+    createMockData,
     profileQuery,
+    sanityFetch,
     settingsQuery,
-} from "@/infrastructure/persistence/sanity/queries";
+} from "@/infrastructure";
 
 export const generateHomePageMetadata = async (): Promise<Metadata> => {
     try {
         const [profile, settings] = await Promise.all([
-            sanityFetch<Profile | null>({
+            sanityFetch<ProfileType | null>({
                 query: profileQuery,
                 tags: ["profile"],
             }),
-            sanityFetch<Settings | null>({
+            sanityFetch<SettingsType | null>({
                 query: settingsQuery,
                 tags: ["settings"],
             }),

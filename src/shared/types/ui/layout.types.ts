@@ -1,16 +1,16 @@
-import type { Profile, SectionConfigItem } from "../sanity.types";
+import type { ProfileType, SectionConfigItemType } from "@/schemas";
 
 export interface SidebarProps {
-    profile: Profile;
+    profile: ProfileType;
     isMenuOpen: boolean;
-    enabledSections?: SectionConfigItem[];
+    enabledSections?: SectionConfigItemType[];
 }
 
 export interface SiteHeaderProps {
-    profile: Profile;
+    profile: ProfileType;
     logo?: string;
     className?: string;
-    enabledSections?: SectionConfigItem[];
+    enabledSections?: SectionConfigItemType[];
 }
 
 export interface VerticalRuleProps {

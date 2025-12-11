@@ -1,34 +1,23 @@
-// ============================================================
-// Utility: Section Data Helpers
-// Purpose: Data normalization and section configuration utilities
-// ============================================================
-
-import { createMockData } from "@/infrastructure/persistence/mocks";
-import type { CompleteMockData } from "@/infrastructure/persistence/mocks";
-import {
-    BlogPost,
-    Certificate,
-    Education,
-    Experience,
+import type {
+    BlogPostType,
+    CertificateType,
+    EducationType,
+    ExperienceType,
     MockDataType,
-    Pricing,
-    Profile,
-    Project,
-    SectionConfigItem,
-    Service,
-    Settings,
-    Skill,
-    Testimonial,
-} from "@/shared/types";
+    PricingType,
+    ProfileType,
+    ProjectType,
+    SectionConfigItemType,
+    ServiceType,
+    SettingsType,
+    SkillType,
+    TestimonialType,
+} from "@/schemas";
 
-// ============================================================
-// Constants
-// ============================================================
+import { type CompleteMockData, createMockData } from "@/infrastructure";
 
-/** Fallback data for when Sanity data is unavailable */
 const FALLBACK_DATA = createMockData();
 
-// Helper to convert CompleteMockData to MockDataType (for backward compatibility)
 const toMockDataType = (data: CompleteMockData): MockDataType => ({
     logo: data.logo,
     profile: data.profile,
@@ -43,7 +32,6 @@ const toMockDataType = (data: CompleteMockData): MockDataType => ({
     certificates: data.certificates,
 });
 
-/** Default vertical rule positions for each section */
 const SECTION_VERTICAL_RULE_DEFAULTS: Record<string, "left" | "right"> = {
     hero: "left",
     services: "right",
@@ -58,8 +46,7 @@ const SECTION_VERTICAL_RULE_DEFAULTS: Record<string, "left" | "right"> = {
     map: "left",
 } as const;
 
-/** Default section configuration when settings are unavailable */
-const DEFAULT_SECTION_CONFIG: SectionConfigItem[] = [
+const DEFAULT_SECTION_CONFIG: SectionConfigItemType[] = [
     { id: "hero", enabled: true },
     { id: "services", enabled: true, resetAnimationOnView: false },
     { id: "skills", enabled: true, resetAnimationOnView: false },
@@ -73,141 +60,76 @@ const DEFAULT_SECTION_CONFIG: SectionConfigItem[] = [
     { id: "map", enabled: true },
 ] as const;
 
-/** Default map configuration */
 const DEFAULT_MAP_CONFIG = {
     enabled: true,
     embedUrl: undefined,
     height: 580,
 } as const;
 
-/** Portfolio section configuration */
 const PORTFOLIO_CONFIG = {
     MAX_ITEMS: 6,
 } as const;
 
-// ============================================================
-// Types
-// ============================================================
-
-/** Vertical rule position options */
 export type VerticalRulePosition = "left" | "right";
 
-/** Contact data item structure */
 interface ContactDataItem {
     type: string;
     value: string;
     label: string;
 }
 
-/** Section data result interface */
 interface SectionDataResult {
     verticalRulePosition: VerticalRulePosition;
     [key: string]: any;
 }
 
-// ============================================================
-// Utility Functions
-// ============================================================
-
-/**
- * Gets vertical rule position for a section based on Sanity settings.
- * Provides fallback logic for when settings are unavailable.
- *
- * @param settings - Sanity settings object
- * @param sectionId - Section identifier
- * @param fallbackPosition - Fallback position if settings not available
- * @returns Vertical rule position
- *
- * @example
- * ```typescript
- * const position = getVerticalRulePosition(settings, "hero", "left");
- * console.log(position); // "left" or "right"
- * ```
- */
 export const getVerticalRulePosition = (
-    settings?: Settings | null,
+    settings?: SettingsType | null,
     sectionId?: string,
     fallbackPosition: VerticalRulePosition = "right"
 ): VerticalRulePosition => {
-    // Validate inputs
     if (!sectionId) {
         return fallbackPosition;
     }
 
-    // Use per-section settings if available
     if (settings) {
-        const sectionConfig = settings[sectionId as keyof Settings];
+        const sectionConfig = settings[sectionId as keyof SettingsType];
 
         if (
             sectionConfig &&
             typeof sectionConfig === "object" &&
             "verticalRuleDirection" in sectionConfig
         ) {
-            const config = sectionConfig as SectionConfigItem;
+            const config = sectionConfig as SectionConfigItemType;
             if (config.verticalRuleDirection) {
                 return config.verticalRuleDirection;
             }
         }
     }
 
-    // Fallback to section-specific defaults
     return SECTION_VERTICAL_RULE_DEFAULTS[sectionId] || fallbackPosition;
 };
 
-/**
- * Normalizes profile data with fallback support.
- * Ensures profile data is always available for rendering.
- *
- * @param profile - Profile data from Sanity
- * @param fallbackData - Fallback data object
- * @returns Normalized profile data
- *
- * @example
- * ```typescript
- * const profile = normalizeProfileData(sanityProfile, fallbackData);
- * console.log(profile.name); // Always available
- * ```
- */
 export const normalizeProfileData = (
-    profile?: Profile | null,
+    profile?: ProfileType | null,
     fallbackData?: MockDataType | CompleteMockData
-): Profile => {
-    // Return Sanity profile if available
+): ProfileType => {
     if (profile) return profile;
 
-    // Return fallback profile if available
     if (fallbackData?.profile) return fallbackData.profile;
 
-    // Return default fallback profile
     return FALLBACK_DATA.profile;
 };
 
-/**
- * Normalizes array data with comprehensive fallback logic.
- * Handles various data states and provides consistent array output.
- *
- * @param data - Array data to normalize
- * @param fallbackData - Fallback array data
- * @param defaultFallback - Default fallback array
- * @returns Normalized array data
- *
- * @example
- * ```typescript
- * const services = normalizeArrayData(sanityServices, fallbackServices, []);
- * console.log(services.length); // Always >= 0
- * ```
- */
 export const normalizeArrayData = <T>(
     data?: T[] | null,
     fallbackData?: T[],
     defaultFallback: T[] = []
 ): T[] => {
-    // Return data if it's a valid non-empty array
     if (data && Array.isArray(data) && data.length > 0) {
         return data;
     }
 
-    // Return fallback data if it's a valid non-empty array
     if (
         fallbackData &&
         Array.isArray(fallbackData) &&
@@ -216,25 +138,9 @@ export const normalizeArrayData = <T>(
         return fallbackData;
     }
 
-    // Return default fallback
     return defaultFallback;
 };
 
-/**
- * Generic normalize function for array data with fallback.
- * Provides a consistent interface for normalizing different data types.
- *
- * @param data - Array data to normalize
- * @param fallbackData - Fallback data object
- * @param dataKey - Key to extract from fallback data
- * @param defaultFallback - Default fallback array
- * @returns Normalized array data
- *
- * @example
- * ```typescript
- * const services = normalizeData(sanityServices, fallbackData, "services", []);
- * ```
- */
 export const normalizeData = <T>(
     data: T[] | null | undefined,
     fallbackData: MockDataType | CompleteMockData,
@@ -248,22 +154,12 @@ export const normalizeData = <T>(
     );
 };
 
-// ============================================================
-// Specific Data Normalization Functions
-// ============================================================
-
-/**
- * Normalizes services data with fallback support.
- *
- * @param services - Services data from Sanity
- * @param fallbackData - Fallback data object
- * @returns Normalized services array
- */
 export const normalizeServicesData = (
-    services?: Service[] | null,
+    services?: ServiceType[] | null,
     fallbackData?: MockDataType | CompleteMockData
-): Service[] => {
+): ServiceType[] => {
     const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+
     return normalizeData(
         services,
         fallback,
@@ -272,33 +168,21 @@ export const normalizeServicesData = (
     );
 };
 
-/**
- * Normalizes skills data with fallback support.
- *
- * @param skills - Skills data from Sanity
- * @param fallbackData - Fallback data object
- * @returns Normalized skills array
- */
 export const normalizeSkillsData = (
-    skills?: Skill[] | null,
+    skills?: SkillType[] | null,
     fallbackData?: MockDataType | CompleteMockData
-): Skill[] => {
+): SkillType[] => {
     const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+
     return normalizeData(skills, fallback, "skills", FALLBACK_DATA.skills);
 };
 
-/**
- * Normalizes projects data with fallback support.
- *
- * @param projects - Projects data from Sanity
- * @param fallbackData - Fallback data object
- * @returns Normalized projects array
- */
 export const normalizeProjectsData = (
-    projects?: Project[] | null,
+    projects?: ProjectType[] | null,
     fallbackData?: MockDataType | CompleteMockData
-): Project[] => {
+): ProjectType[] => {
     const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+
     return normalizeData(
         projects,
         fallback,
@@ -307,18 +191,12 @@ export const normalizeProjectsData = (
     );
 };
 
-/**
- * Normalizes experience data with fallback support.
- *
- * @param experience - Experience data from Sanity
- * @param fallbackData - Fallback data object
- * @returns Normalized experience array
- */
 export const normalizeExperienceData = (
-    experience?: Experience[] | null,
+    experience?: ExperienceType[] | null,
     fallbackData?: MockDataType | CompleteMockData
-): Experience[] => {
+): ExperienceType[] => {
     const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+
     return normalizeData(
         experience,
         fallback,
@@ -327,18 +205,12 @@ export const normalizeExperienceData = (
     );
 };
 
-/**
- * Normalizes education data with fallback support.
- *
- * @param education - Education data from Sanity
- * @param fallbackData - Fallback data object
- * @returns Normalized education array
- */
 export const normalizeEducationData = (
-    education?: Education[] | null,
+    education?: EducationType[] | null,
     fallbackData?: MockDataType | CompleteMockData
-): Education[] => {
+): EducationType[] => {
     const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+
     return normalizeData(
         education,
         fallback,
@@ -347,18 +219,12 @@ export const normalizeEducationData = (
     );
 };
 
-/**
- * Normalizes testimonials data with fallback support.
- *
- * @param testimonials - Testimonials data from Sanity
- * @param fallbackData - Fallback data object
- * @returns Normalized testimonials array
- */
 export const normalizeTestimonialsData = (
-    testimonials?: Testimonial[] | null,
+    testimonials?: TestimonialType[] | null,
     fallbackData?: MockDataType | CompleteMockData
-): Testimonial[] => {
+): TestimonialType[] => {
     const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+
     return normalizeData(
         testimonials,
         fallback,
@@ -367,52 +233,26 @@ export const normalizeTestimonialsData = (
     );
 };
 
-/**
- * Normalizes pricing data with fallback support.
- *
- * @param pricing - Pricing data from Sanity
- * @param fallbackData - Fallback data object
- * @returns Normalized pricing array
- */
 export const normalizePricingData = (
-    pricing?: Pricing[] | null,
+    pricing?: PricingType[] | null,
     fallbackData?: MockDataType | CompleteMockData
-): Pricing[] => {
+): PricingType[] => {
     const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+
     return normalizeData(pricing, fallback, "pricing", FALLBACK_DATA.pricing);
 };
 
-/**
- * Normalizes blogs data with fallback support.
- *
- * @param blogs - Blogs data from Sanity
- * @param fallbackData - Fallback data object
- * @returns Normalized blogs array
- */
 export const normalizeBlogsData = (
-    blogs?: BlogPost[] | null,
+    blogs?: BlogPostType[] | null,
     fallbackData?: MockDataType | CompleteMockData
-): BlogPost[] => {
+): BlogPostType[] => {
     const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+
     return normalizeData(blogs, fallback, "blogs", FALLBACK_DATA.blogs);
 };
 
-/**
- * Normalizes contact data from profile information.
- * Extracts contact information and filters out empty values.
- *
- * @param profile - Profile data containing contact information
- * @param fallbackData - Fallback data object
- * @returns Array of contact data items
- *
- * @example
- * ```typescript
- * const contactItems = normalizeContactData(profile, fallbackData);
- * console.log(contactItems); // [{ type: "email", value: "...", label: "Email" }]
- * ```
- */
 export const normalizeContactData = (
-    profile?: Profile | null,
+    profile?: ProfileType | null,
     fallbackData?: MockDataType | CompleteMockData
 ): ContactDataItem[] => {
     const normalizedProfile = normalizeProfileData(profile, fallbackData);
@@ -435,24 +275,17 @@ export const normalizeContactData = (
         },
     ];
 
-    // Filter out items with empty values
     return contactItems.filter(
         (item) => item.value && item.value.trim() !== ""
     );
 };
 
-/**
- * Normalizes certificates data with fallback support.
- *
- * @param certificates - Certificates data from Sanity
- * @param fallbackData - Fallback data object
- * @returns Normalized certificates array
- */
 export const normalizeCertificatesData = (
-    certificates?: Certificate[] | null,
+    certificates?: CertificateType[] | null,
     fallbackData?: MockDataType | CompleteMockData
-): Certificate[] => {
+): CertificateType[] => {
     const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+
     return normalizeData(
         certificates,
         fallback,
@@ -461,33 +294,14 @@ export const normalizeCertificatesData = (
     );
 };
 
-// ============================================================
-// Section Configuration Functions
-// ============================================================
-
-/**
- * Normalizes section configuration data from Sanity settings.
- * Provides default configuration when settings are unavailable.
- *
- * @param settings - Sanity settings object
- * @returns Array of section configuration items
- *
- * @example
- * ```typescript
- * const sections = normalizeSectionConfigData(settings);
- * console.log(sections); // [{ id: "hero", enabled: true }, ...]
- * ```
- */
 export const normalizeSectionConfigData = (
-    settings?: Settings | null
-): SectionConfigItem[] => {
-    // Return default configuration if no settings
+    settings?: SettingsType | null
+): SectionConfigItemType[] => {
     if (!settings) {
         return [...DEFAULT_SECTION_CONFIG];
     }
 
-    // Build sections array with settings data
-    const sections: SectionConfigItem[] = [
+    const sections: SectionConfigItemType[] = [
         { id: "hero", ...settings.hero },
         { id: "services", ...settings.services },
         { id: "skills", ...settings.skills },
@@ -504,38 +318,16 @@ export const normalizeSectionConfigData = (
     return sections;
 };
 
-// ============================================================
-// Section Data Retrieval Functions
-// ============================================================
-
-/**
- * Gets normalized data for a specific section.
- * Provides section-specific data with fallback support and vertical rule positioning.
- *
- * @param sectionId - Section identifier
- * @param props - Section props containing data
- * @param fallbackData - Fallback data object
- * @returns Normalized section data
- *
- * @example
- * ```typescript
- * const heroData = getSectionData("hero", props, fallbackData);
- * console.log(heroData.profile); // Normalized profile data
- * console.log(heroData.verticalRulePosition); // "left" or "right"
- * ```
- */
 export const getSectionData = (
     sectionId: string,
     props: any,
     fallbackData?: MockDataType | CompleteMockData
 ): SectionDataResult => {
-    // Get vertical rule position for the section
     const verticalRulePosition = getVerticalRulePosition(
         props.settings,
         sectionId
     );
 
-    // Handle different section types
     switch (sectionId) {
         case "hero":
             return {
@@ -619,7 +411,6 @@ export const getSectionData = (
             };
 
         default:
-            // Return minimal data for unknown sections
             return {
                 verticalRulePosition,
             };

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "@/schemas/base/sanity-document.schema";
-import SanityImageSchema from "@/schemas/base/sanity-image.schema";
+import SanityDocumentSchema from "../base/sanity-document.schema";
+import SanityImageSchema from "../base/sanity-image.schema";
 
 const TestimonialSchema = SanityDocumentSchema.extend({
     _type: z.literal("testimonial"),
@@ -11,5 +11,7 @@ const TestimonialSchema = SanityDocumentSchema.extend({
     image: z.union([SanityImageSchema, z.string()]),
     order: z.number().optional(),
 });
+
+export type TestimonialType = z.infer<typeof TestimonialSchema>;
 
 export default TestimonialSchema;

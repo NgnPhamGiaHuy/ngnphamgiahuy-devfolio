@@ -1,13 +1,13 @@
-import { Project } from "@/shared/types";
+import type { ProjectType } from "@/schemas";
 
 export interface ProjectCardProps {
     index: number;
-    portfolio: Project;
+    portfolio: ProjectType;
 }
 
 export interface ProjectGridProps {
     maxItems?: number;
-    portfolios: Project[];
+    portfolios: ProjectType[];
 }
 
 export interface ProjectCategoryFilterProps {

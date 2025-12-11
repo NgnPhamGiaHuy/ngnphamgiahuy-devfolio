@@ -1,8 +1,3 @@
-// ============================================================
-// Component: ServiceCard
-// Purpose: Individual service card with animations and call-to-action
-// ============================================================
-
 "use client";
 
 import React from "react";
@@ -11,39 +6,17 @@ import { motion } from "framer-motion";
 
 import type { ServiceCardProps } from "@/shared/types";
 
-import { SERVICE_CARD_VARIANTS } from "@/infrastructure/config";
+import { SERVICE_CARD_VARIANTS } from "@/infrastructure";
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * ServiceCard component renders an individual service in a card format.
- * Features hover animations, active state management, and proper accessibility.
- *
- * @param props - Component props
- * @param props.item - Service data object
- * @param props.index - Index position for animation timing
- * @param props.isActive - Whether the card is currently active
- * @returns Service card component
- */
 const ServiceCard: React.FC<ServiceCardProps> = ({
     item,
     index,
     isActive = false,
     ...props
 }) => {
-    // ============================================================
-    // Data Processing
-    // ============================================================
-
     const serviceTitle = item.title || "Service";
     const serviceCategory = item.category || "General";
     const serviceDescription = item.description || "";
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <motion.article

@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "@/schemas/base/sanity-document.schema";
-import SanityImageSchema from "@/schemas/base/sanity-image.schema";
-import SeoFieldsSchema from "@/schemas/base/seo-fields.schema";
+import SanityDocumentSchema from "../base/sanity-document.schema";
+import SanityImageSchema from "../base/sanity-image.schema";
+import SeoFieldsSchema from "../base/seo-fields.schema";
 
 const ProfileSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
     z.object({
@@ -25,5 +25,7 @@ const ProfileSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
         cv_link: z.string().optional(),
     })
 );
+
+export type ProfileType = z.infer<typeof ProfileSchema>;
 
 export default ProfileSchema;

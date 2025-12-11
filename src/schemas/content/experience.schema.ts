@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "@/schemas/base/sanity-document.schema";
+import SanityDocumentSchema from "../base/sanity-document.schema";
 
 const ExperienceSchema = SanityDocumentSchema.extend({
     _type: z.literal("experience"),
@@ -10,5 +10,7 @@ const ExperienceSchema = SanityDocumentSchema.extend({
     year: z.string(),
     order: z.number().optional(),
 });
+
+export type ExperienceType = z.infer<typeof ExperienceSchema>;
 
 export default ExperienceSchema;

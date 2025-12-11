@@ -1,5 +1,7 @@
-import { ImageConfig, SanityImage } from "@/shared/types";
-import { urlFor } from "@/infrastructure/persistence/sanity/SanityClient";
+import type { ImageConfig } from "@/shared";
+import type { SanityImageType } from "@/schemas";
+
+import { urlFor } from "@/infrastructure";
 
 const DEFAULT_CONFIG: Pick<Required<ImageConfig>, "fallbackAlt"> = {
     fallbackAlt: "Image",
@@ -27,7 +29,7 @@ interface ImageProcessingOptions {
 }
 
 export const resolveImageUrl = (
-    image: SanityImage | string | undefined,
+    image: SanityImageType | string | undefined,
     configOrBaseUrl?: ImageConfig | string
 ): string => {
     try {
@@ -50,7 +52,11 @@ export const resolveImageUrl = (
             return handleStringImage(image, baseUrl, fallbackImage);
         }
 
-        return handleSanityImage(image as SanityImage, config, fallbackImage);
+        return handleSanityImage(
+            image as SanityImageType,
+            config,
+            fallbackImage
+        );
     } catch (error) {
         console.error(ERROR_MESSAGES.PROCESSING_FAILED, error);
         return "";
@@ -88,7 +94,7 @@ const getPlaceholderImageUrl = (width?: number, height?: number): string => {
 };
 
 const handleSanityImage = (
-    image: SanityImage,
+    image: SanityImageType,
     config?: ImageConfig,
     fallbackImage?: string
 ): string => {
@@ -119,7 +125,7 @@ const handleSanityImage = (
 };
 
 export const getImageAlt = (
-    image: SanityImage | string | undefined,
+    image: SanityImageType | string | undefined,
     fallbackText: string = DEFAULT_CONFIG.fallbackAlt
 ): string => {
     if (!image) {
@@ -130,11 +136,11 @@ export const getImageAlt = (
         return fallbackText;
     }
 
-    return (image as SanityImage)?.alt || fallbackText;
+    return (image as SanityImageType)?.alt || fallbackText;
 };
 
 export const processImage = (
-    image: SanityImage | string | undefined,
+    image: SanityImageType | string | undefined,
     config: ImageConfig,
     options: ImageProcessingOptions = {}
 ): ProcessedImage => {
@@ -151,7 +157,7 @@ export const processImage = (
 };
 
 export const processPortfolioImage = (
-    image: SanityImage | string | undefined,
+    image: SanityImageType | string | undefined,
     projectName: string,
     config: ImageConfig
 ): ProcessedImage => {

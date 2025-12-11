@@ -8,3 +8,14 @@ export { default as ProjectSchema } from "./project.schema";
 export { default as ServiceSchema } from "./service.schema";
 export { default as SkillSchema } from "./skill.schema";
 export { default as TestimonialSchema } from "./testimonial.schema";
+
+export * from "./blog-post.schema";
+export * from "./certificate.schema";
+export * from "./education.schema";
+export * from "./experience.schema";
+export * from "./pricing.schema";
+export * from "./profile.schema";
+export * from "./project.schema";
+export * from "./service.schema";
+export * from "./skill.schema";
+export * from "./testimonial.schema";

@@ -16,7 +16,12 @@ import {
     getBlogPostBySlug,
     withCategoriesBlock,
 } from "@/shared/utils/blog/blogPost.helpers";
-import { BlogPostContainer, BlogPostHeader, BlogPostHeroImage, BlogPostIntro, } from "@/components";
+import {
+    BlogPostContainer,
+    BlogPostHeader,
+    BlogPostHeroImage,
+    BlogPostIntro,
+} from "@/components";
 
 // ============================================================
 // Constants

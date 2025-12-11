@@ -1,8 +1,8 @@
 import { headers } from "next/headers";
 
-import type { BlogPost } from "@/shared/types";
+import type { BlogPostType } from "@/schemas";
 
-import { processImage } from "@/shared/utils";
+import { processImage } from "@/shared";
 import { blogPostBySlugQuery, sanityFetch } from "@/infrastructure";
 
 const IMAGE_WIDTH = 800;
@@ -11,23 +11,26 @@ const FALLBACK_IMAGE = "/images/profile2.png";
 
 export const getBlogPostBySlug = async (
     slug: string,
-    fallbackBlogs: BlogPost[]
+    fallbackBlogs: BlogPostType[]
 ) => {
-    let post: BlogPost | null = null;
+    let post: BlogPostType | null = null;
+
     try {
-        post = await sanityFetch<BlogPost>({
+        post = await sanityFetch<BlogPostType>({
             query: blogPostBySlugQuery(slug),
         });
     } catch {
         post = null;
     }
+
     if (!post || !post.slug) {
         post = fallbackBlogs.find((b) => b.slug?.current === slug) || null;
     }
+
     return post;
 };
 
-export const buildImageProps = (post: BlogPost) => {
+export const buildImageProps = (post: BlogPostType) => {
     return processImage(
         post.image,
         {
@@ -47,11 +50,13 @@ export const buildPostUrl = async (slug: string) => {
         hdrs.get("x-forwarded-proto") ||
         (host.includes("localhost") ? "http" : "https");
     const origin = process.env.NEXT_PUBLIC_SITE_URL || `${proto}://${host}`;
+
     return `${origin}/blog/${slug}`;
 };
 
-export const withCategoriesBlock = (post: BlogPost) => {
+export const withCategoriesBlock = (post: BlogPostType) => {
     const contentWithCategories = post.content ? [...post.content] : [];
+
     if (post.categories && post.categories.length > 0) {
         contentWithCategories.push({
             _key: "custom-categories-block",
@@ -59,5 +64,6 @@ export const withCategoriesBlock = (post: BlogPost) => {
             categories: post.categories,
         } as any);
     }
+
     return contentWithCategories;
 };

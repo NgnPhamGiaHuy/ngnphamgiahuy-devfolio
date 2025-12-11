@@ -1,22 +1,14 @@
-// ============================================================
-// Component: Services
-// Purpose: Display services section with carousel layout and animations
-// ============================================================
-
 "use client";
 
+import React from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import React from "react";
 
-import type { Service, ServicesSectionProps } from "@/shared/types";
+import type { ServiceType } from "@/schemas";
+import type { ServicesSectionProps } from "@/shared";
 
-import { StandardAnimations } from "@/infrastructure/config";
+import { StandardAnimations } from "@/infrastructure";
 import { BackdropText, ServiceCard, Wrapper } from "@/components";
-
-// ============================================================
-// Dynamic Imports
-// ============================================================
 
 const ContentCarousel = dynamic(
     () =>
@@ -32,46 +24,23 @@ const ContentCarousel = dynamic(
         ),
     }
 ) as React.ComponentType<{
-    items: Service[];
+    items: ServiceType[];
     spaceBetween?: number;
     renderItem: (
-        item: Service,
+        item: ServiceType,
         index: number,
         isActive?: boolean
     ) => React.ReactNode;
 }>;
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * Services component renders a section displaying available services.
- * Features carousel layout, smooth animations, and responsive design.
- *
- * @param props - Component props
- * @param props.id - Unique identifier for the section
- * @param props.services - Array of service data
- * @param props.resetAnimationOnView - Whether to reset animations on view
- * @returns Services section component
- */
 const Services: React.FC<ServicesSectionProps> = ({
     id,
     services,
     resetAnimationOnView,
     verticalRulePosition,
 }) => {
-    // ============================================================
-    // Animation Configuration
-    // ============================================================
-
-    // Remove unnecessary useMemo - animation variants are static objects
     const containerVariants = StandardAnimations.fadeInUp(15);
     const innerStaggerVariants = StandardAnimations.staggerChildren(0.1, 0.2);
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <Wrapper

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "@/schemas/base/sanity-document.schema";
+import SanityDocumentSchema from "../base/sanity-document.schema";
 
 const ServiceSchema = SanityDocumentSchema.extend({
     _type: z.literal("service"),
@@ -10,5 +10,7 @@ const ServiceSchema = SanityDocumentSchema.extend({
     category: z.string(),
     description: z.string(),
 });
+
+export type ServiceType = z.infer<typeof ServiceSchema>;
 
 export default ServiceSchema;
