@@ -6,13 +6,13 @@
 import React from "react";
 
 import type {
+    AccordionFieldMapping,
     Education,
     Experience,
-    AccordionFieldMapping,
     ResumeSectionProps,
 } from "@/shared/types";
 
-import { Wrapper, Accordion, BackdropText } from "@/components";
+import { Accordion, BackdropText, Wrapper } from "@/components";
 
 // ============================================================
 // Constants

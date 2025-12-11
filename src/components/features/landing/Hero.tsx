@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import type { HeroSectionProps } from "@/shared/types";
 
 import { useDynamicTextAnimation } from "@/shared/hooks";
-import { HeroAnimationsConfig, vlinePositions } from "@/config";
+import { HeroAnimationsConfig, vlinePositions } from "@/infrastructure/config";
 import {
     BackdropText,
     BioSection,

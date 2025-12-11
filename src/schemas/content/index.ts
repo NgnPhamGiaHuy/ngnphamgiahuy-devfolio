@@ -1,0 +1,10 @@
+export { default as BlogPostSchema } from "./blog-post.schema";
+export { default as CertificateSchema } from "./certificate.schema";
+export { default as EducationSchema } from "./education.schema";
+export { default as ExperienceSchema } from "./experience.schema";
+export { default as PricingSchema } from "./pricing.schema";
+export { default as ProfileSchema } from "./profile.schema";
+export { default as ProjectSchema } from "./project.schema";
+export { default as ServiceSchema } from "./service.schema";
+export { default as SkillSchema } from "./skill.schema";
+export { default as TestimonialSchema } from "./testimonial.schema";

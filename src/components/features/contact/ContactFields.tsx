@@ -8,7 +8,7 @@ import clsx from "clsx";
 
 import type { ContactFieldsProps } from "@/shared/types";
 
-import { FORM_FIELDS } from "@/config";
+import { FORM_FIELDS } from "@/infrastructure/config";
 import { FormInput, SubmitButton } from "@/components";
 
 // ============================================================

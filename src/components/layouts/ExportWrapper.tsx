@@ -10,7 +10,7 @@ import { motion, useInView } from "framer-motion";
 import React, { useRef } from "react";
 
 import { WrapperHeader } from "@/components";
-import { backgroundByName, containerVariants } from "@/config";
+import { backgroundByName, containerVariants } from "@/infrastructure/config";
 
 // ============================================================
 // Constants

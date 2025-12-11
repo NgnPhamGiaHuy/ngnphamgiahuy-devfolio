@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 import type { AnimatedTextProps } from "@/shared/types";
 
-import { Duration, HeroAnimationsConfig } from "@/config";
+import { Duration, HeroAnimationsConfig } from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition

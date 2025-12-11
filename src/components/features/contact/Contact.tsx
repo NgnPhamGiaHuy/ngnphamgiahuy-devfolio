@@ -8,10 +8,10 @@ import React from "react";
 import type { ContactSectionProps } from "@/shared/types";
 
 import {
-    Wrapper,
     BackdropText,
-    ContactMethodCard,
     ContactForm,
+    ContactMethodCard,
+    Wrapper,
 } from "@/components";
 
 // ============================================================

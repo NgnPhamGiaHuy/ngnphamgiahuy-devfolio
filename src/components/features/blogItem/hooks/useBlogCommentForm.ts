@@ -3,8 +3,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { API_CONFIG, FORM_MESSAGES } from "@/config";
-import { BlogCommentFormData, blogCommentFormSchema } from "@/schemas";
+import { API_CONFIG, FORM_MESSAGES } from "@/infrastructure/config";
+import {
+    BlogCommentFormData,
+    blogCommentFormSchema,
+} from "@/components/features/blogItem/schemas/blogCommentForm.schema";
 
 interface SubmitStatus {
     type: "success" | "error";

@@ -8,7 +8,7 @@ import React from "react";
 
 import type { NavItemProps } from "@/shared/types";
 
-import { SIDEBAR_CONFIG } from "@/config";
+import { SIDEBAR_CONFIG } from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition

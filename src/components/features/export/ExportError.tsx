@@ -8,7 +8,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { COMMON_ANIMATIONS } from "@/config";
+import { COMMON_ANIMATIONS } from "@/infrastructure/config";
 
 // ============================================================
 // Constants

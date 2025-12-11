@@ -1,84 +1,44 @@
-// ============================================================
-// Page: Portfolios
-// Purpose: Dedicated portfolios page with project showcase
-// ============================================================
-
 import React from "react";
 
 import type { HomePageData } from "@/shared/types";
 
-import { createMockData } from "@/infrastructure/persistence/mocks";
-import { homePageDataQuery, sanityFetch } from "@/lib";
-import { normalizeProfileData, normalizeProjectsData } from "@/shared/utils";
+import { normalizeProfileData, normalizeProjectsData } from "@/shared";
 import {
     Portfolios,
     ScrollToTopButton,
     SiteFooter,
     SiteHeader,
 } from "@/components";
+import {
+    createMockData,
+    homePageDataQuery,
+    sanityFetch,
+} from "@/infrastructure";
 
-// ============================================================
-// Constants
-// ============================================================
-
-/** Cache tags for data invalidation */
 const CACHE_TAGS: string[] = ["profile", "project", "settings"];
 
-/** Page layout constants */
 const PAGE_LAYOUT = {
     MIN_HEIGHT: "min-h-[50vh]",
     CONTENT_TOP_PADDING: "pt-[200px]",
 } as const;
 
-/** Portfolio section configuration */
 const PORTFOLIO_CONFIG = {
     ID: "portfolios",
     HIDE_SEE_MORE: true,
     BACKGROUND_VARIANT: "none" as const,
 } as const;
 
-// ============================================================
-// Page Component
-// ============================================================
-
-/**
- * Portfolios page component displays a dedicated project showcase.
- * Features server-side data fetching, responsive layout, and navigation.
- *
- * @returns JSX element representing the portfolios page
- *
- * @example
- * ```tsx
- * // This page is automatically rendered at /portfolios route
- * // Data is fetched server-side and cached for performance
- * ```
- */
 const PortfoliosPage = async (): Promise<React.JSX.Element> => {
-    // ============================================================
-    // Data Fetching
-    // ============================================================
-
     const data = await sanityFetch<HomePageData>({
         query: homePageDataQuery,
         tags: CACHE_TAGS,
     });
 
-    // ============================================================
-    // Data Processing
-    // ============================================================
-
-    // Generate fallback mock data
     const FallbackData = createMockData();
 
-    // Normalize profile data with fallback
     const profile = normalizeProfileData(data.profile, FallbackData);
 
-    // Normalize projects data with fallback
     const projects = normalizeProjectsData(data.projects, FallbackData);
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <div className={`${PAGE_LAYOUT.MIN_HEIGHT} overflow-hidden relative`}>
@@ -103,10 +63,6 @@ const PortfoliosPage = async (): Promise<React.JSX.Element> => {
         </div>
     );
 };
-
-// ============================================================
-// Page Metadata
-// ============================================================
 
 PortfoliosPage.displayName = "PortfoliosPage";
 

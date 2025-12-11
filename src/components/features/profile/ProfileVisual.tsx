@@ -17,7 +17,7 @@ import {
     DEFAULT_PATTERN_LAYERS,
     DEFAULT_STATS,
     HeroAnimationsConfig,
-} from "@/config";
+} from "@/infrastructure/config";
 
 // ============================================================
 // Constants

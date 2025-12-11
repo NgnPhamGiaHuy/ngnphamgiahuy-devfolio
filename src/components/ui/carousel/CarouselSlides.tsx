@@ -16,7 +16,7 @@ import {
     AUTOPLAY_CONFIG,
     BREAKPOINTS,
     A11Y_CONFIG,
-} from "@/config";
+} from "@/infrastructure/config";
 
 // ============================================================
 // Types

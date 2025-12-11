@@ -1,19 +1,9 @@
-// ============================================================
-// API Route: Export
-// Purpose: Data export API endpoints with validation and error handling
-// ============================================================
-
 import { NextRequest, NextResponse } from "next/server";
 
-import type { ExportOptions, ExportContentType } from "@/shared/types";
+import type { ExportContentType, ExportOptions } from "@/shared";
 
-import { exportPortfolioData, exportContentType } from "@/lib";
+import { exportContentType, exportPortfolioData } from "@/application";
 
-// ============================================================
-// Constants
-// ============================================================
-
-/** Valid content types for export */
 const VALID_CONTENT_TYPES: ExportContentType[] = [
     "profile",
     "skills",
@@ -28,7 +18,6 @@ const VALID_CONTENT_TYPES: ExportContentType[] = [
     "settings",
 ] as const;
 
-/** Default export options */
 const DEFAULT_EXPORT_OPTIONS = {
     includeAssets: true,
     includeMetadata: true,
@@ -36,25 +25,18 @@ const DEFAULT_EXPORT_OPTIONS = {
     contentTypes: ["all"] as string[],
 } as const;
 
-/** HTTP status codes */
 const HTTP_STATUS = {
     OK: 200,
     BAD_REQUEST: 400,
     INTERNAL_SERVER_ERROR: 500,
 } as const;
 
-/** Error messages */
 const ERROR_MESSAGES = {
     INVALID_CONTENT_TYPE: "Invalid content type",
     EXPORT_FAILED: "Failed to export data",
     UNKNOWN_ERROR: "Unknown error",
 } as const;
 
-// ============================================================
-// Types
-// ============================================================
-
-/** Export API response interface */
 interface ExportApiResponse {
     success: boolean;
     data?: any;
@@ -64,7 +46,6 @@ interface ExportApiResponse {
     message?: string;
 }
 
-/** Query parameters interface for GET requests */
 interface ExportQueryParams {
     type?: string;
     assets?: string;
@@ -72,7 +53,6 @@ interface ExportQueryParams {
     format?: string;
 }
 
-/** Request body interface for POST requests */
 interface ExportRequestBody {
     contentTypes?: string[];
     includeAssets?: boolean;
@@ -80,28 +60,12 @@ interface ExportRequestBody {
     format?: "json" | "ndjson";
 }
 
-// ============================================================
-// Utility Functions
-// ============================================================
-
-/**
- * Validates content type against allowed values.
- *
- * @param contentType - Content type to validate
- * @returns True if valid, false otherwise
- */
 const isValidContentType = (
     contentType: string
 ): contentType is ExportContentType => {
     return VALID_CONTENT_TYPES.includes(contentType as ExportContentType);
 };
 
-/**
- * Parses query parameters from request URL.
- *
- * @param searchParams - URL search parameters
- * @returns Parsed query parameters
- */
 const parseQueryParams = (searchParams: URLSearchParams): ExportQueryParams => {
     return {
         type: searchParams.get("type") || undefined,
@@ -111,14 +75,6 @@ const parseQueryParams = (searchParams: URLSearchParams): ExportQueryParams => {
     };
 };
 
-/**
- * Creates error response with consistent structure.
- *
- * @param message - Error message
- * @param status - HTTP status code
- * @param details - Additional error details
- * @returns NextResponse with error data
- */
 const createErrorResponse = (
     message: string,
     status: number,
@@ -134,13 +90,6 @@ const createErrorResponse = (
     );
 };
 
-/**
- * Creates success response with consistent structure.
- *
- * @param data - Exported data
- * @param contentType - Content type (optional)
- * @returns NextResponse with success data
- */
 const createSuccessResponse = (
     data: any,
     contentType?: string
@@ -153,34 +102,10 @@ const createSuccessResponse = (
     });
 };
 
-// ============================================================
-// API Route Handlers
-// ============================================================
-
-/**
- * GET /api/export - Export data via query parameters
- * Supports single content type export or full portfolio export
- *
- * @param request - Next.js request object
- * @returns Export data or error response
- *
- * @example
- * ```typescript
- * // Export specific content type
- * GET /api/export?type=projects&assets=true&metadata=true
- *
- * // Export all data
- * GET /api/export?type=all
- * ```
- */
 export async function GET(
     request: NextRequest
 ): Promise<NextResponse<ExportApiResponse>> {
     try {
-        // ============================================================
-        // Parse Query Parameters
-        // ============================================================
-
         const { searchParams } = new URL(request.url);
         const queryParams = parseQueryParams(searchParams);
 
@@ -191,16 +116,10 @@ export async function GET(
             format = DEFAULT_EXPORT_OPTIONS.format,
         } = queryParams;
 
-        // Parse boolean parameters with defaults
         const includeAssets = assets !== "false";
         const includeMetadata = metadata !== "false";
 
-        // ============================================================
-        // Handle Single Content Type Export
-        // ============================================================
-
         if (contentType && contentType !== "all") {
-            // Validate content type
             if (!isValidContentType(contentType)) {
                 return createErrorResponse(
                     ERROR_MESSAGES.INVALID_CONTENT_TYPE,
@@ -209,16 +128,11 @@ export async function GET(
                 );
             }
 
-            // Export specific content type
             const data = await exportContentType(
                 contentType as ExportContentType
             );
             return createSuccessResponse(data, contentType);
         }
-
-        // ============================================================
-        // Handle Full Portfolio Export
-        // ============================================================
 
         const contentTypes = contentType === "all" ? ["all"] : ["all"];
         const options: ExportOptions = {
@@ -231,10 +145,6 @@ export async function GET(
         const exportedData = await exportPortfolioData(options);
         return createSuccessResponse(exportedData);
     } catch (error) {
-        // ============================================================
-        // Error Handling
-        // ============================================================
-
         console.error("Export GET error:", error);
 
         const errorMessage =
@@ -250,33 +160,10 @@ export async function GET(
     }
 }
 
-/**
- * POST /api/export - Export data via request body
- * Supports bulk export with custom options
- *
- * @param request - Next.js request object
- * @returns Export data or error response
- *
- * @example
- * ```typescript
- * // Export with custom options
- * POST /api/export
- * {
- *   "contentTypes": ["projects", "skills"],
- *   "includeAssets": true,
- *   "includeMetadata": false,
- *   "format": "json"
- * }
- * ```
- */
 export async function POST(
     request: NextRequest
 ): Promise<NextResponse<ExportApiResponse>> {
     try {
-        // ============================================================
-        // Parse Request Body
-        // ============================================================
-
         const body: ExportRequestBody = await request.json();
         const {
             contentTypes = DEFAULT_EXPORT_OPTIONS.contentTypes,
@@ -284,10 +171,6 @@ export async function POST(
             includeMetadata = DEFAULT_EXPORT_OPTIONS.includeMetadata,
             format = DEFAULT_EXPORT_OPTIONS.format,
         } = body;
-
-        // ============================================================
-        // Validate Content Types
-        // ============================================================
 
         if (contentTypes && contentTypes.length > 0) {
             const invalidTypes = contentTypes.filter(
@@ -303,10 +186,6 @@ export async function POST(
             }
         }
 
-        // ============================================================
-        // Export Data
-        // ============================================================
-
         const options: ExportOptions = {
             includeAssets,
             format,
@@ -317,10 +196,6 @@ export async function POST(
         const exportedData = await exportPortfolioData(options);
         return createSuccessResponse(exportedData);
     } catch (error) {
-        // ============================================================
-        // Error Handling
-        // ============================================================
-
         console.error("Export POST error:", error);
 
         const errorMessage =

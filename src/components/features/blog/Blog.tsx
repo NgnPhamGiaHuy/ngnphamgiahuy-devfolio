@@ -8,7 +8,7 @@ import React from "react";
 
 import type { BlogSectionProps } from "@/shared/types";
 
-import { BlogPreview, BackdropText, Wrapper } from "@/components";
+import { BackdropText, BlogPreview, Wrapper } from "@/components";
 
 // ============================================================
 // Constants

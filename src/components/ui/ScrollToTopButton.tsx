@@ -9,7 +9,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUpIcon } from "@heroicons/react/24/outline";
 
-import { BUTTON_VARIANTS } from "@/config";
+import { BUTTON_VARIANTS } from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition

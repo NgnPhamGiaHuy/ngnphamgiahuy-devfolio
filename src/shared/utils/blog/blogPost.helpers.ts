@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import type { BlogPost } from "@/shared/types";
 
 import { processImage } from "@/shared/utils";
-import { sanityFetch, blogPostBySlugQuery } from "@/lib";
+import { blogPostBySlugQuery, sanityFetch } from "@/infrastructure";
 
 const IMAGE_WIDTH = 800;
 const IMAGE_HEIGHT = 450;

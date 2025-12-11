@@ -1,41 +1,20 @@
 import React from "react";
 import Image from "next/image";
 
-import { urlFor } from "@/lib";
 import type { ImageValue } from "@/shared/types/portable-text.types";
 
-// ============================================================
-// Component: ImageBlock
-// Purpose: Renders a responsive image with optional caption from Portable Text
-// ============================================================
+import { urlFor } from "@/infrastructure/persistence/sanity/SanityClient";
 
-// ============================================================
-// Constants
-// ============================================================
 const TEST_IDS = {
     root: "pt-image-block",
     image: "pt-image",
     caption: "pt-image-caption",
 } as const;
 
-// ============================================================
-// Types
-// ============================================================
 interface ImageBlockProps {
     value: ImageValue;
 }
 
-// ============================================================
-// Component Definition
-// ============================================================
-/**
- * ImageBlock renders a responsive image with an optional caption using Next/Image.
- * Designed for SSR and a11y: derives alt text from alt or caption with fallbacks.
- *
- * @param props - Component props
- * @param props.value - Portable Text image value from Sanity
- * @returns JSX.Element | null - Rendered figure or null when invalid
- */
 const ImageBlock = ({ value }: ImageBlockProps) => {
     try {
         const src = value?.asset ? urlFor(value).width(1200).url() : null;
@@ -74,10 +53,6 @@ const ImageBlock = ({ value }: ImageBlockProps) => {
     }
 };
 
-// ============================================================
-// Export
-// ============================================================
 export default ImageBlock;
 
-// DX: Explicit display name for clearer React DevTools identification
 ImageBlock.displayName = "ImageBlock";

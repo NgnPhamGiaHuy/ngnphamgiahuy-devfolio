@@ -10,9 +10,8 @@ import React from "react";
 
 import type { Profile } from "@/shared/types";
 
-import { AnimatedText } from "@/components";
-import { HeroAnimationsConfig } from "@/config";
-import { useHeroAnimationContext } from "@/components";
+import { AnimatedText, useHeroAnimationContext } from "@/components";
+import { HeroAnimationsConfig } from "@/infrastructure/config";
 
 // ============================================================
 // Types

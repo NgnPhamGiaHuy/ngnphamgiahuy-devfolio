@@ -12,7 +12,11 @@ import React, { useEffect, useRef, useState } from "react";
 import type { WrapperProps } from "@/shared/types";
 
 import { VerticalRule, WrapperHeader } from "@/components";
-import { containerVariants, backgroundByName, vlinePositions } from "@/config";
+import {
+    backgroundByName,
+    containerVariants,
+    vlinePositions,
+} from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition

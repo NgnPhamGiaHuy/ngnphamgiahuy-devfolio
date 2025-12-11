@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 import type { Profile } from "@/shared/types";
 
-import { HeroAnimationsConfig } from "@/config";
+import { HeroAnimationsConfig } from "@/infrastructure/config";
 import {
     AnimatedText,
     SocialLinks,

@@ -8,7 +8,7 @@ import Link from "next/link";
 
 import type { ContactMethodCardProps } from "@/shared/types";
 
-import { CONTACT_TYPE_CONFIG, DEFAULT_CONTACT_CONFIG } from "@/config";
+import { CONTACT_TYPE_CONFIG, DEFAULT_CONTACT_CONFIG } from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition

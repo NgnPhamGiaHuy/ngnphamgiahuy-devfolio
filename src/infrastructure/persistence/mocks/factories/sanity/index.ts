@@ -1,14 +1,13 @@
 import { z } from "zod";
 import { faker } from "@faker-js/faker";
-
-import SanityDocumentSchema from "@/schemas/base/sanity-document.schema";
-import SanityImageSchema from "@/schemas/base/sanity-image.schema";
+import { SanityDocumentSchema, SanityImageSchema } from "@/schemas";
 
 function generateSanityAssetId(): string {
     const id = faker.string.alphanumeric(22); // Sanity uses 22-char alphanumeric IDs
     const width = faker.number.int({ min: 800, max: 2000 });
     const height = faker.number.int({ min: 600, max: 3000 });
     const format = faker.helpers.arrayElement(["jpg", "png", "webp"]);
+
     return `image-${id}-${width}x${height}-${format}`;
 }
 

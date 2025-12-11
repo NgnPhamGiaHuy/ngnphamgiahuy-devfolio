@@ -7,7 +7,7 @@
 
 import { useEffect, useState } from "react";
 
-import { COMMON_ANIMATIONS } from "@/config";
+import { COMMON_ANIMATIONS } from "@/infrastructure/config";
 
 // ============================================================
 // Constants

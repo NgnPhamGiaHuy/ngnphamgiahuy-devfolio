@@ -10,8 +10,8 @@ import { motion } from "framer-motion";
 
 import type { SkillsSectionProps } from "@/shared/types";
 
-import { StandardAnimations } from "@/config";
-import { Wrapper, SkillCard, BackdropText } from "@/components";
+import { StandardAnimations } from "@/infrastructure/config";
+import { BackdropText, SkillCard, Wrapper } from "@/components";
 
 // ============================================================
 // Component Definition

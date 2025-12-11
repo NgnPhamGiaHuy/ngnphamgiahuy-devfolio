@@ -1,11 +1,10 @@
 import React from "react";
-import type { Metadata } from "next";
-import type { ResolvingMetadata } from "next";
-import { Roboto, Caveat, Jost } from "next/font/google";
+import type { Metadata, ResolvingMetadata } from "next";
+import { Caveat, Jost, Roboto } from "next/font/google";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components";
-import { generateHomePageMetadata } from "@/lib/metadata";
+import { generateHomePageMetadata } from "@/application";
 
 const geistRoboto = Roboto({
     variable: "--font-geist-roboto",

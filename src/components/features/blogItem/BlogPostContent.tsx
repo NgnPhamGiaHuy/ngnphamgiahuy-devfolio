@@ -12,10 +12,10 @@ import Link from "next/link";
 import { Quote } from "lucide-react";
 import {
     PortableText,
-    PortableTextReactComponents,
     type PortableTextBlockComponent,
-    type PortableTextMarkComponent,
     type PortableTextListComponent,
+    type PortableTextMarkComponent,
+    PortableTextReactComponents,
 } from "@portabletext/react";
 
 import type {

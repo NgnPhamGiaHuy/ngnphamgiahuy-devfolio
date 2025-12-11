@@ -5,7 +5,7 @@
 
 import { z } from "zod";
 
-import { FORM_MESSAGES } from "@/config";
+import { FORM_MESSAGES } from "@/infrastructure/config";
 
 // ============================================================
 // Constants

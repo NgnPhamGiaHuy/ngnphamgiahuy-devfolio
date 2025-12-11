@@ -6,12 +6,12 @@
 "use client";
 
 import React from "react";
-import { motion, AnimatePresence, Target } from "framer-motion";
+import { AnimatePresence, motion, Target } from "framer-motion";
 
 import type { ProjectGridProps } from "@/shared/types";
 
 import { ProjectCard } from "@/components";
-import { COMMON_ANIMATIONS, Duration, Stagger } from "@/config";
+import { COMMON_ANIMATIONS, Duration, Stagger } from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition

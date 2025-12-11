@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 
 import type { SkillCardProps } from "@/shared/types";
 
-import { SKILL_CARD_VARIANTS } from "@/config";
+import { SKILL_CARD_VARIANTS } from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition

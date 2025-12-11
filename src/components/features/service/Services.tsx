@@ -11,7 +11,7 @@ import React from "react";
 
 import type { Service, ServicesSectionProps } from "@/shared/types";
 
-import { StandardAnimations } from "@/config";
+import { StandardAnimations } from "@/infrastructure/config";
 import { BackdropText, ServiceCard, Wrapper } from "@/components";
 
 // ============================================================

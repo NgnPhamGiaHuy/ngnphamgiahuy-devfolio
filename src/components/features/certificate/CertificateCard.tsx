@@ -13,8 +13,8 @@ import { motion } from "framer-motion";
 import type { Certificate } from "@/shared/types";
 
 import { ArrowLink } from "@/components";
-import { CERTIFICATE_CARD_VARIANTS } from "@/config";
-import { processImage, formatDate } from "@/shared/utils";
+import { CERTIFICATE_CARD_VARIANTS } from "@/infrastructure/config";
+import { formatDate, processImage } from "@/shared/utils";
 
 // ============================================================
 // Constants

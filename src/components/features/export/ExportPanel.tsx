@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDownTrayIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
-import { COMMON_ANIMATIONS } from "@/config";
+import { COMMON_ANIMATIONS } from "@/infrastructure/config";
 import { capitalizeFirstLetter } from "@/shared/utils";
 import CustomCheckbox from "./CustomCheckbox";
 import useExport from "./hooks/useExport";

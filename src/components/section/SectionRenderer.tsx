@@ -1,16 +1,7 @@
-// ============================================================
-// Component: Section Renderer
-// Purpose: Dynamic section rendering with component mapping and data normalization
-// ============================================================
-
-// ============================================================
-// Imports
-// ============================================================
 import React from "react";
 
-import type { SectionConfigItem, MockDataType } from "@/shared/types";
+import type { MockDataType, SectionConfigItem } from "@/shared/types";
 
-import { getSectionData } from "@/shared/utils/sections";
 import Hero from "@/components/features/landing/Hero";
 import Certificates from "@/components/features/certificate/Certificates";
 import Services from "@/components/features/service/Services";
@@ -22,10 +13,8 @@ import Pricing from "@/components/features/pricing/Pricing";
 import Blog from "@/components/features/blog/Blog";
 import Contact from "@/components/features/contact/Contact";
 import Map from "@/components/features/contact/Map";
+import { getSectionData } from "@/shared";
 
-// ============================================================
-// Constants
-// ============================================================
 const SECTION_COMPONENTS: Record<string, React.ComponentType<any>> = {
     hero: Hero,
     certificates: Certificates,
@@ -40,9 +29,6 @@ const SECTION_COMPONENTS: Record<string, React.ComponentType<any>> = {
     map: Map,
 } as const;
 
-// ============================================================
-// Types
-// ============================================================
 interface RenderSectionOptions {
     sectionProps?: any;
     fallbackData?: MockDataType;
@@ -54,28 +40,12 @@ interface SectionComponentProps {
     [key: string]: any;
 }
 
-// ============================================================
-// Public API
-// ============================================================
-/**
- * getSectionComponent returns the React component mapped to a section ID.
- * @param sectionId - Section identifier matching SECTION_COMPONENTS keys
- * @returns A React component or null if unmapped
- */
 export const getSectionComponent = (
     sectionId: string
 ): React.ComponentType<any> | null => {
     return SECTION_COMPONENTS[sectionId] || null;
 };
 
-/**
- * renderSection composes a mapped section component with normalized props.
- * Warns and returns null for missing IDs or unmapped sections.
- *
- * @param sectionConfig - Section config item from settings
- * @param options - Optional props and fallback data for normalization
- * @returns Rendered section element or null
- */
 export const renderSection = (
     sectionConfig: SectionConfigItem,
     options?: RenderSectionOptions

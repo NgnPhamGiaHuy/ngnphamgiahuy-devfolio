@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import type { FormInputProps } from "@/shared/types";
 
-import { FORM_VARIANTS } from "@/config";
+import { FORM_VARIANTS } from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition

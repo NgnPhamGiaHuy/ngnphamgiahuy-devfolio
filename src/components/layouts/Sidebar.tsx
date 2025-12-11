@@ -10,7 +10,7 @@ import React from "react";
 import type { SidebarProps } from "@/shared/types";
 
 import useSidebarAnimation from "./hooks/useSidebarAnimation";
-import { SIDEBAR_CONFIG } from "@/config";
+import { SIDEBAR_CONFIG } from "@/infrastructure/config";
 import { generateSocialLinks } from "@/components/ui/social";
 import { NavItem, SocialLinks, VerticalRule } from "@/components";
 

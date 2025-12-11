@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 import type { ProjectCardProps } from "@/shared/types";
 
 import { processPortfolioImage } from "@/shared/utils";
-import { PROJECT_CARD_VARIANTS } from "@/config";
+import { PROJECT_CARD_VARIANTS } from "@/infrastructure/config";
 
 // ============================================================
 // Constants

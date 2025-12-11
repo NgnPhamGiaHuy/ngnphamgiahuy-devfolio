@@ -1,30 +1,11 @@
-// ============================================================
-// Component: ContactForm
-// Purpose: Contact form wrapper with form handling and status display
-// ============================================================
-
 "use client";
 
 import React from "react";
 
-import useContactForm from "./hooks/useContactForm";
-import { FormStatus, ContactFields } from "@/components";
+import { ContactFields, FormStatus } from "@/components";
+import useContactForm from "@/components/features/contact/hooks/useContactForm";
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * ContactForm component renders a contact form with validation and submission handling.
- * Features form fields, validation, submission status, and error handling.
- *
- * @returns Contact form component
- */
 const ContactForm: React.FC = () => {
-    // ============================================================
-    // Form Handling
-    // ============================================================
-
     const {
         register,
         handleSubmit,
@@ -34,10 +15,6 @@ const ContactForm: React.FC = () => {
         onSubmit,
         watch,
     } = useContactForm();
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <div data-testid="contact-form">

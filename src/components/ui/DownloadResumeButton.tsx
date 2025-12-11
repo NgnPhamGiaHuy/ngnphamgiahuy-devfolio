@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 
 import type { DownloadResumeButtonProps } from "@/shared/types";
 
-import { HeroAnimationsConfig } from "@/config";
+import { HeroAnimationsConfig } from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition

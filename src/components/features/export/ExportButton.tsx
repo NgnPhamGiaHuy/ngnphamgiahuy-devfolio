@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { ArrowDownTrayIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
 import { getButtonClass } from "@/shared/utils";
-import { COMMON_ANIMATIONS } from "@/config";
+import { COMMON_ANIMATIONS } from "@/infrastructure/config";
 import ExportError from "./ExportError";
 import useExport from "./hooks/useExport";
 import useExportHandler from "./hooks/useExportHandler";

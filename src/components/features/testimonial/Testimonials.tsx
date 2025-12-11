@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 
 import type { Testimonial, TestimonialsSectionProps } from "@/shared/types";
 
-import { Wrapper, BackdropText, TestimonialCard } from "@/components";
+import { BackdropText, TestimonialCard, Wrapper } from "@/components";
 
 // ============================================================
 // Dynamic Imports

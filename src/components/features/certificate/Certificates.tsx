@@ -11,8 +11,8 @@ import { motion } from "framer-motion";
 import type { CertificatesSectionProps } from "@/shared/types";
 
 import CertificateCard from "./CertificateCard";
-import { StandardAnimations } from "@/config";
-import { Wrapper, BackdropText, ContentCarousel } from "@/components";
+import { StandardAnimations } from "@/infrastructure/config";
+import { BackdropText, ContentCarousel, Wrapper } from "@/components";
 
 // ============================================================
 // Component Definition

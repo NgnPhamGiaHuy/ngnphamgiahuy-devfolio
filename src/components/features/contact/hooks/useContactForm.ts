@@ -9,8 +9,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { API_CONFIG, FORM_MESSAGES } from "@/config";
-import { ContactFormData, contactFormSchema } from "@/schemas";
+import { API_CONFIG, FORM_MESSAGES } from "@/infrastructure/config";
+import {
+    ContactFormData,
+    contactFormSchema,
+} from "@/components/features/contact/schemas/contactForm.schema";
 
 // ============================================================
 // Types

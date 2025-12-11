@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 
 import type { ServiceCardProps } from "@/shared/types";
 
-import { SERVICE_CARD_VARIANTS } from "@/config";
+import { SERVICE_CARD_VARIANTS } from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition

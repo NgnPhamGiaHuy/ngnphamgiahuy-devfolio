@@ -5,7 +5,7 @@ import type {
     ExportQueries,
 } from "@/shared/types";
 
-import { EXPORT_CONTENT_TYPES, EXPORT_DEFAULTS } from "@/config";
+import { EXPORT_CONTENT_TYPES, EXPORT_DEFAULTS } from "@/infrastructure/config";
 
 import {
     profileQuery,

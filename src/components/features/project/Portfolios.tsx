@@ -13,8 +13,8 @@ import type { PortfoliosSectionProps } from "@/shared/types";
 import useCategoryFilter from "./hooks/useCategoryFilter";
 import {
     BackdropText,
-    ProjectGrid,
     ProjectCategoryFilter,
+    ProjectGrid,
     Wrapper,
 } from "@/components";
 
