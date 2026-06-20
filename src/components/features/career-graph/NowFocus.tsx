@@ -39,20 +39,20 @@ const NowFocus: React.FC<NowFocusProps> = ({
             eyebrow="Now"
             title="The compiling edge"
             meta={
-                <p className="font-mono-tnum mt-4 text-xs text-[color:var(--graph-muted)]">
+                <p className="font-mono-tnum mt-4 text-xs text-graph-muted">
                     HEAD · the latest commit in the history above
                 </p>
             }
             aria-label="Current focus"
         >
-            <div className="measure space-y-5 text-lg leading-relaxed text-[color:var(--graph-muted)]">
+            <div className="measure space-y-5 text-lg leading-relaxed text-graph-muted">
                 <p className="font-mono-tnum flex items-center gap-2.5 text-sm">
                     <span className="status-dot" aria-hidden="true" />
                     available — open to roles &amp; collaboration in systems,
                     data &amp; AI
                 </p>
                 <p>
-                    <span className="text-[color:var(--graph-ink)]">
+                    <span className="text-graph-ink">
                         {identity}
                     </span>
                     {current
@@ -62,7 +62,7 @@ const NowFocus: React.FC<NowFocusProps> = ({
                     of data — crawlers and data tools through to the React and
                     Next.js interfaces that read them.
                 </p>
-                <p className="font-mono-tnum text-sm text-[color:var(--graph-muted)]">
+                <p className="font-mono-tnum text-sm text-graph-muted">
                     {"// next — going deeper on system design, scalable architecture, and the AI on top"}
                 </p>
                 {profile.location && (

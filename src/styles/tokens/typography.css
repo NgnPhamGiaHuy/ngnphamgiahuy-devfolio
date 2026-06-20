@@ -1,0 +1,65 @@
+/* ============================================================
+   Token: typography — DESIGN.md scale, no exceptions.
+   Font family vars are injected by next/font in layout.tsx.
+   ============================================================ */
+
+@theme inline {
+    --font-display: var(--font-display);
+    --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
+}
+
+:root {
+    /* ---- Display scale: Copernicus/Cormorant, wt 400-500, negative tracking ---- */
+    --type-display-xl-size: 4rem;         /* 64px */
+    --type-display-xl-height: 1.05;
+    --type-display-xl-tracking: -0.025em; /* ≈ -1.5px */
+
+    --type-display-lg-size: 3rem;         /* 48px */
+    --type-display-lg-height: 1.1;
+    --type-display-lg-tracking: -0.021em; /* ≈ -1px */
+
+    --type-display-md-size: 2.25rem;      /* 36px */
+    --type-display-md-height: 1.15;
+    --type-display-md-tracking: -0.014em; /* ≈ -0.5px */
+
+    --type-display-sm-size: 1.75rem;      /* 28px */
+    --type-display-sm-height: 1.2;
+    --type-display-sm-tracking: -0.011em; /* ≈ -0.3px */
+
+    /* ---- Title scale: StyreneB/Inter, wt 500 ---- */
+    --type-title-lg-size: 1.375rem;       /* 22px */
+    --type-title-lg-height: 1.3;
+
+    --type-title-md-size: 1.125rem;       /* 18px */
+    --type-title-md-height: 1.4;
+
+    --type-title-sm-size: 1rem;           /* 16px */
+    --type-title-sm-height: 1.4;
+
+    /* ---- Body scale: StyreneB/Inter, wt 400 ---- */
+    --type-body-md-size: 1rem;            /* 16px */
+    --type-body-md-height: 1.55;
+
+    --type-body-sm-size: 0.875rem;        /* 14px */
+    --type-body-sm-height: 1.55;
+
+    /* ---- Caption ---- */
+    --type-caption-size: 0.8125rem;       /* 13px */
+    --type-caption-height: 1.4;
+
+    --type-caption-up-size: 0.75rem;      /* 12px */
+    --type-caption-up-height: 1.4;
+    --type-caption-up-tracking: 0.125em;  /* 1.5px */
+
+    /* ---- Code ---- */
+    --type-code-size: 0.875rem;           /* 14px */
+    --type-code-height: 1.6;
+
+    /* ---- UI: button, nav ---- */
+    --type-button-size: 0.875rem;         /* 14px */
+    --type-button-height: 1;
+
+    --type-nav-size: 0.875rem;            /* 14px */
+    --type-nav-height: 1.4;
+}

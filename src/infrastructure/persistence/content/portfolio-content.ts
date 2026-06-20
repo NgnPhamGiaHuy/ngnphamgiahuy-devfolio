@@ -259,7 +259,7 @@ export const REAL_PROJECTS: Partial<ProjectType>[] = [
             "Queries must run against the lake, not live sources",
             "Dashboard must stay responsive over large result sets",
         ],
-        technologies: ["Python", "MongoDB", "Next.js", "React"],
+        technologies: ["Python", "MongoDB", "TypeScript", "Next.js", "React"],
         dependsOn: ["data-lake-lineage"],
         architecture: {
             nodes: [
@@ -308,7 +308,7 @@ export const REAL_PROJECTS: Partial<ProjectType>[] = [
             "Suggestions must be specific and grounded, not generic",
             "Keep latency acceptable for an interactive flow",
         ],
-        technologies: ["Python", "Next.js", "React"],
+        technologies: ["Python", "TypeScript", "Next.js", "React"],
         architecture: {
             nodes: [
                 { id: "cv", label: "CV + target role", layer: "source" },

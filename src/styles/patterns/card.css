@@ -1,0 +1,235 @@
+/* ============================================================
+   Pattern: card — all card variants and the skill-chip badge.
+   Radii: feature-card → --radius-lg (12px). No arbitrary values.
+   Internal padding: --space-xl (32px) per DESIGN.md.
+   ============================================================ */
+
+@layer components {
+    /* ---- ServiceCard ---- */
+    .card {
+        @apply w-full h-full flex items-center justify-center shrink-0 relative;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        box-sizing: border-box;
+    }
+
+    /* DESIGN.md feature-card: surface-card bg, radius-lg, space-xl padding */
+    .card-inner {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: var(--space-xl) var(--space-xl);
+        background: var(--color-surface-card);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        position: relative;
+        transition: opacity var(--motion-normal) var(--ease-emphasized);
+    }
+
+    /* DESIGN.md caption-uppercase for card category labels */
+    .card-category {
+        font-family: var(--font-sans), sans-serif;
+        font-size: var(--type-caption-up-size);
+        font-weight: 500;
+        letter-spacing: var(--type-caption-up-tracking);
+        text-transform: uppercase;
+        color: var(--color-ink);
+        text-align: left;
+    }
+
+    .card-icon {
+        margin-top: var(--space-md);
+        min-height: 50px;
+        font-size: 2.5625rem;
+        color: var(--color-primary);
+        line-height: 1;
+    }
+
+    /* DESIGN.md title-md for card titles */
+    .card-title {
+        margin-bottom: var(--space-md);
+        font-size: var(--type-title-md-size);
+        font-weight: 500;
+        line-height: var(--type-title-md-height);
+        color: var(--color-ink);
+    }
+
+    .card-description {
+        flex: 1;
+        opacity: 0.8;
+    }
+
+    .card-link {
+        display: inline-block;
+        font-size: var(--type-body-md-size);
+        font-weight: 500;
+        color: var(--color-ink);
+        line-height: 1.375;
+        transition: color var(--motion-fast) var(--ease-standard);
+        position: relative;
+    }
+
+    .card-link::after {
+        content: "\2192";
+        margin-left: var(--space-xs);
+        color: var(--color-primary);
+        transition: transform var(--motion-normal) var(--ease-emphasized);
+        display: inline-block;
+    }
+
+    @media (hover: hover) {
+        .card-link:hover::after {
+            transform: translateX(var(--space-xs));
+        }
+    }
+
+    .card-pattern {
+        position: absolute;
+        width: 141px;
+        height: 141px;
+        right: -24px;
+        bottom: -24px;
+        background-image: url("/images/pat-1.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    [data-theme="dark"] .card-pattern {
+        filter: invert(1);
+    }
+
+    /* ---- ProjectCard ---- */
+    .project-card-item {
+        max-width: 100%;
+        height: 100%;
+        padding-top: var(--space-xl);
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+        display: flex;
+        flex-direction: column;
+        flex: none;
+        flex-basis: 100%;
+        overflow: hidden;
+        will-change: transform, opacity;
+    }
+
+    @media (max-width: 768px) {
+        .project-card-item {
+            padding-top: var(--space-lg);
+            padding-left: var(--space-sm);
+            padding-right: var(--space-sm);
+        }
+    }
+
+    .project-card {
+        padding: var(--space-lg);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: var(--color-surface-card);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .project-card-image-container {
+        margin-bottom: var(--space-lg);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        line-height: 0;
+        position: relative;
+    }
+
+    .project-card-image {
+        max-width: 100%;
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        border: none;
+        box-shadow: none;
+        border-radius: var(--radius-lg);
+    }
+
+    .project-card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: var(--space-lg);
+    }
+
+    .project-card-header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    /* DESIGN.md caption-uppercase in primary color for project category */
+    .project-card-category {
+        margin: 0;
+        font-family: var(--font-sans), sans-serif;
+        font-size: var(--type-caption-up-size);
+        font-weight: 500;
+        letter-spacing: var(--type-caption-up-tracking);
+        text-transform: uppercase;
+        color: var(--color-primary);
+        display: block;
+    }
+
+    .project-card-title {
+        margin: 0;
+        font-family: var(--font-display), serif;
+        font-size: var(--type-display-sm-size);
+        font-weight: 500;
+        line-height: var(--type-display-sm-height);
+        letter-spacing: var(--type-display-sm-tracking);
+        color: var(--color-ink);
+    }
+
+    .project-card-footer {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .project-card-description {
+        color: var(--color-ink);
+    }
+
+    .project-card-description-text {
+        margin: 0;
+        font-size: var(--type-body-md-size);
+        line-height: var(--type-body-md-height);
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* ---- Skill chip — DESIGN.md badge-pill ---- */
+    .skill-chip {
+        border: 1px solid var(--color-hairline);
+        border-radius: var(--radius-pill);
+        background: var(--color-surface-card);
+        color: var(--color-body);
+        font-family: var(--font-sans), sans-serif;
+        transition:
+            border-color var(--motion-fast) var(--ease-standard),
+            background var(--motion-fast) var(--ease-standard),
+            color var(--motion-fast) var(--ease-standard);
+    }
+
+    @media (hover: hover) {
+        .skill-chip:hover {
+            border-color: var(--color-primary);
+            color: var(--color-ink);
+        }
+    }
+
+    .skill-chip[data-active="true"] {
+        border-color: var(--color-primary);
+        background: color-mix(in oklab, var(--color-primary) 14%, transparent);
+        color: var(--color-ink);
+    }
+}

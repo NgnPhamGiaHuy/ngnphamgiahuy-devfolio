@@ -1,0 +1,12 @@
+/* ============================================================
+   Token: radius — DESIGN.md hierarchy: btn/input 8 < card 12 < hero 16.
+   ============================================================ */
+
+@theme {
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-pill: 9999px;
+}

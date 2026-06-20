@@ -1,0 +1,27 @@
+/* ============================================================
+   Foundation: layout — core container and section primitives.
+   All sizing derives from spacing tokens.
+   ============================================================ */
+
+/* Max-width content container — DESIGN.md ~1200px */
+.section-inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: var(--content-max);
+}
+
+/* Section rhythm shell — DESIGN.md 96px section-pad */
+.section-shell {
+    width: 100%;
+    padding-top: clamp(4rem, 8vw, var(--space-section));
+    padding-bottom: clamp(4rem, 8vw, var(--space-section));
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    position: relative;
+}
+
+/* Measure (prose line-length cap) */
+.measure {
+    max-width: var(--content-measure);
+}

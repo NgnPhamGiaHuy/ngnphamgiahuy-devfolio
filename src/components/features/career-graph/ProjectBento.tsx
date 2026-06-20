@@ -198,14 +198,14 @@ const ProjectBento: React.FC<ProjectBentoProps> = ({ id, projects }) => {
                                 <h3 className="text-lg font-medium md:text-xl">
                                     {p.name}
                                 </h3>
-                                <span className="font-mono-tnum text-xs text-[color:var(--graph-muted)]">
+                                <span className="font-mono-tnum text-xs text-graph-muted">
                                     {p.category}
                                     {p.year ? ` · ${p.year}` : ""}
                                 </span>
                             </div>
 
                             {!compact && problem && (
-                                <p className="measure mt-1.5 line-clamp-2 text-sm text-[color:var(--graph-muted)]">
+                                <p className="measure mt-1.5 line-clamp-2 text-sm text-graph-muted">
                                     {problem}
                                 </p>
                             )}
@@ -216,7 +216,7 @@ const ProjectBento: React.FC<ProjectBentoProps> = ({ id, projects }) => {
                                 <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
                                     {metric && (
                                         <span className="lineage-pill">
-                                            <span className="font-mono-tnum text-[color:var(--graph-accent)]">
+                                            <span className="font-mono-tnum text-graph-accent">
                                                 {metric.value}
                                             </span>
                                             <span>{metric.label}</span>
@@ -259,11 +259,11 @@ const ProjectBento: React.FC<ProjectBentoProps> = ({ id, projects }) => {
 
                             {!compact && decision && (
                                 <p className="build-log__teaser measure mt-3 text-sm">
-                                    <span className="text-[color:var(--graph-ink)]">
+                                    <span className="text-graph-ink">
                                         chose {phrase(decision.decision)}
                                     </span>
                                     {decision.alternative && (
-                                        <span className="text-[color:var(--graph-muted)]">
+                                        <span className="text-graph-muted">
                                             {" "}
                                             over {phrase(decision.alternative)}
                                         </span>

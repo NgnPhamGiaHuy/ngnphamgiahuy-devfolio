@@ -1,78 +1,72 @@
 /* ============================================================
-   File: header.css
-   Purpose: Persistent 64px CREAM top-nav band (DESIGN.md top-nav).
-            Brand wordmark left · horizontal section links (desktop) ·
-            theme toggle + hamburger (mobile) right.
-   Components: SiteHeader, top-nav links
+   Component: header — DESIGN.md top-nav: cream, 64px, nav-link type.
    ============================================================ */
 
 @layer components {
-    /* ---- The 64px cream nav band ---- */
+    /* ---- 64px cream nav band ---- */
     .header {
-        @apply w-full h-16 px-5 md:px-8 top-0 left-0 absolute z-[90] flex items-center transition-transform duration-300 ease-[cubic-bezier(0.3,0,0.3,1)];
+        @apply w-full top-0 left-0 absolute flex items-center;
+        height: 64px;
+        padding: 0 var(--space-md);
         background: color-mix(in oklab, var(--background) 90%, transparent);
         backdrop-filter: saturate(1.1) blur(8px);
         -webkit-backdrop-filter: saturate(1.1) blur(8px);
         border-bottom: 1px solid var(--color-hairline);
+        z-index: var(--z-nav);
+        transition: transform var(--motion-normal) var(--ease-emphasized);
     }
 
-    /* ---- Desktop horizontal nav links (DESIGN.md nav-link: 14px / 500) ---- */
+    @media (min-width: 768px) {
+        .header {
+            padding: 0 var(--space-xl);
+        }
+    }
+
+    /* ---- Desktop nav links — DESIGN.md nav-link: 14px / 500 ---- */
     .top-nav {
         @apply hidden md:flex items-center gap-1;
     }
+
     .top-nav-link {
-        @apply inline-flex items-center px-3 py-2 relative;
-        font-family: var(--font-sans), sans-serif;
-        font-size: 14px;
+        @apply inline-flex items-center relative;
+        padding: var(--space-xs) var(--space-sm);
+        font-family: var(--font-sans), Inter, sans-serif;
+        font-size: var(--type-nav-size);
         font-weight: 500;
-        line-height: 1.4;
+        line-height: var(--type-nav-height);
         color: var(--color-muted);
         border-radius: var(--radius-md);
-        transition: color 0.15s ease, background-color 0.15s ease;
+        transition: color var(--motion-fast) var(--ease-standard);
     }
+
     .top-nav-link:hover {
         color: var(--color-ink);
     }
+
     .top-nav-link[aria-current="true"] {
         color: var(--color-ink);
     }
-    /* Active marker: a short coral underline (the system's one accent) */
+
+    /* Active marker: coral underline (the system's one accent) */
     .top-nav-link[aria-current="true"]::after {
         content: "";
         position: absolute;
-        left: 12px;
-        right: 12px;
+        left: var(--space-sm);
+        right: var(--space-sm);
         bottom: 2px;
         height: 2px;
         border-radius: var(--radius-pill);
         background: var(--color-primary);
     }
 
-    /* ---- Header scroll show/hide (slide the bar on scroll) ---- */
+    /* ---- Header show/hide (slide on scroll, desktop only) ---- */
     @media screen and (min-width: 1200px) {
         .header.animate-in {
-            animation: header_animate_one 0.5s
-                cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s forwards;
+            animation: header-enter var(--motion-slow) var(--ease-decelerate) forwards;
         }
+
         .header.animate-out {
-            animation: header_animate_two 0.3s
-                cubic-bezier(0.55, 0.06, 0.68, 0.19) 0s forwards;
-        }
-        @keyframes header_animate_one {
-            0% {
-                transform: translateZ(0) translateY(-100px);
-            }
-            100% {
-                transform: translateZ(0) translateY(0px);
-            }
-        }
-        @keyframes header_animate_two {
-            0% {
-                transform: translateZ(0) translateY(0px);
-            }
-            100% {
-                transform: translateZ(0) translateY(-100px);
-            }
+            animation: header-leave var(--motion-normal) var(--ease-accelerate) forwards;
         }
     }
 }

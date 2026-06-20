@@ -235,7 +235,7 @@ const GraphCanvas: React.FC<GraphCanvasProps> = ({ data, onSelectProject }) => {
                                     <p className="font-medium">{node.label}</p>
                                 )}
                                 {node.sublabel && (
-                                    <p className="text-sm text-[color:var(--graph-muted)]">
+                                    <p className="text-sm text-graph-muted">
                                         {node.sublabel}
                                     </p>
                                 )}

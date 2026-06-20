@@ -1,0 +1,67 @@
+/* ============================================================
+   Foundation: typography — base element styles for the type system.
+   Slab-serif display at wt 400-500, negative tracking (non-negotiable).
+   ============================================================ */
+
+:where(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-display), "Tiempos Headline", Garamond,
+        "Times New Roman", serif;
+    color: var(--color-ink);
+    font-weight: 500;
+    margin: 0 0 var(--space-md);
+}
+
+:where(h1) {
+    font-size: var(--type-display-xl-size);
+    line-height: var(--type-display-xl-height);
+    letter-spacing: var(--type-display-xl-tracking);
+}
+
+:where(h2) {
+    font-size: var(--type-display-lg-size);
+    line-height: var(--type-display-lg-height);
+    letter-spacing: var(--type-display-lg-tracking);
+}
+
+:where(h3) {
+    font-size: var(--type-display-md-size);
+    line-height: var(--type-display-md-height);
+    letter-spacing: var(--type-display-md-tracking);
+}
+
+:where(h4) {
+    font-size: var(--type-display-sm-size);
+    line-height: var(--type-display-sm-height);
+    letter-spacing: var(--type-display-sm-tracking);
+}
+
+:where(h5) {
+    font-size: var(--type-title-lg-size);
+    line-height: var(--type-title-lg-height);
+    font-family: var(--font-sans), Inter, sans-serif;
+}
+
+:where(h6) {
+    font-size: var(--type-title-md-size);
+    line-height: var(--type-title-md-height);
+    font-family: var(--font-sans), Inter, sans-serif;
+}
+
+code,
+pre,
+kbd,
+samp {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: var(--type-code-size);
+    line-height: var(--type-code-height);
+}
+
+/* Section h2 heading — fluid scale smaller than the page h1 display-fluid */
+.section-heading-fluid {
+    font-family: var(--font-display), "Tiempos Headline", Garamond, serif;
+    font-size: clamp(1.6rem, 1.2rem + 2vw, 2.6rem);
+    line-height: var(--type-display-lg-height);
+    letter-spacing: var(--type-display-lg-tracking);
+    font-weight: 500;
+    color: var(--color-ink);
+}

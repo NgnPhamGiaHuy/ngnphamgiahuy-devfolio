@@ -1,0 +1,26 @@
+/* ============================================================
+   Utility: interaction — shared transition and hover primitives.
+   All timing uses motion tokens.
+   ============================================================ */
+
+/* Hover-color transition (links, icons) */
+.transition-color {
+    transition: color var(--motion-fast) var(--ease-standard);
+}
+
+/* Hover-background transition (tabs, chips) */
+.transition-bg {
+    transition: background var(--motion-fast) var(--ease-standard);
+}
+
+/* Hover-border transition (inputs, portraits) */
+.transition-border {
+    transition: border-color var(--motion-fast) var(--ease-standard);
+}
+
+/* Scale on hover (images inside browser-frame) */
+@media (hover: hover) {
+    .hover-scale:hover {
+        transform: scale(1.04);
+    }
+}

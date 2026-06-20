@@ -94,7 +94,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                         aria-hidden="true"
                     />
                     <m.div
-                        className="fixed inset-0 z-[101] flex items-start justify-center p-4 md:p-8"
+                        className="case-study__dialog p-4 md:p-8"
                         initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
@@ -105,12 +105,10 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="case-study-title"
-                        style={{ transformOrigin: "center" }}
                         onClick={onClose}
                     >
                         <div
                             className="case-study__panel relative flex w-full max-w-3xl flex-col rounded-2xl"
-                            style={{ maxHeight: "calc(100dvh - 2rem)" }}
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Close button — outside the scroll area so it's always reachable */}
@@ -119,7 +117,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                     ref={closeRef}
                                     onClick={onClose}
                                     aria-label="Close case study"
-                                    className="rounded-full p-2 text-[color:var(--graph-muted)] hover:text-[color:var(--graph-ink)] focus-visible:outline focus-visible:outline-2"
+                                    className="rounded-full p-2 text-graph-muted hover:text-graph-ink focus-visible:outline focus-visible:outline-2"
                                 >
                                     <X size={20} />
                                 </button>
@@ -135,13 +133,12 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                 </p>
                                 <h2
                                     id="case-study-title"
-                                    className="display-fluid"
-                                    style={{ fontSize: "clamp(1.7rem,1.2rem+2vw,2.6rem)" }}
+                                    className="display-fluid case-study-title"
                                 >
                                     {project.name}
                                 </h2>
                                 {project.summary && (
-                                    <p className="measure mt-3 text-[color:var(--graph-muted)]">
+                                    <p className="measure mt-3 text-graph-muted">
                                         {project.summary}
                                     </p>
                                 )}
@@ -222,21 +219,14 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                                 ref={(el) => {
                                                     decisionRefs.current[i] = el;
                                                 }}
-                                                className="border-l-2 pl-4 transition-colors duration-500"
-                                                style={{
-                                                    borderColor:
-                                                        "var(--graph-accent)",
-                                                    background:
-                                                        litDecision === i
-                                                            ? "var(--graph-accent-soft)"
-                                                            : "transparent",
-                                                }}
+                                                className="decision-item border-l-2 pl-4"
+                                                data-lit={litDecision === i ? "true" : undefined}
                                             >
                                                 <p className="font-medium">
                                                     {d.decision}
                                                 </p>
                                                 {d.alternative && (
-                                                    <p className="mt-1 text-sm text-[color:var(--graph-muted)]">
+                                                    <p className="mt-1 text-sm text-graph-muted">
                                                         <span className="font-mono-tnum">
                                                             alt:
                                                         </span>{" "}
@@ -244,7 +234,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                                     </p>
                                                 )}
                                                 {d.whyRejected && (
-                                                    <p className="mt-1 text-sm text-[color:var(--graph-muted)]">
+                                                    <p className="mt-1 text-sm text-graph-muted">
                                                         <span className="font-mono-tnum">
                                                             rejected:
                                                         </span>{" "}
@@ -271,14 +261,11 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                                 (m, i) => (
                                                     <div key={i}>
                                                         <div
-                                                            className="font-mono-tnum text-2xl"
-                                                            style={{
-                                                                color: "var(--graph-accent)",
-                                                            }}
+                                                            className="metric-value font-mono-tnum text-2xl"
                                                         >
                                                             {m.value}
                                                         </div>
-                                                        <div className="text-xs text-[color:var(--graph-muted)]">
+                                                        <div className="text-xs text-graph-muted">
                                                             {m.label}
                                                         </div>
                                                     </div>
@@ -289,9 +276,9 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                 </Section>
                             ) : null}
 
-                            <footer className="mt-8 flex flex-wrap items-center gap-4 border-t pt-5" style={{ borderColor: "var(--graph-line)" }}>
+                            <footer className="case-study__footer mt-8 flex flex-wrap items-center gap-4 border-t pt-5">
                                 {project.scale && (
-                                    <span className="font-mono-tnum text-xs text-[color:var(--graph-muted)]">
+                                    <span className="font-mono-tnum text-xs text-graph-muted">
                                         scale: {project.scale}
                                     </span>
                                 )}
@@ -300,8 +287,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                         href={project.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="font-mono-tnum text-xs underline"
-                                        style={{ color: "var(--graph-accent)" }}
+                                        className="project-link font-mono-tnum text-xs underline"
                                     >
                                         view project ↗
                                     </a>

@@ -32,7 +32,7 @@ const BlogPreview = ({ blog, ...props }: { blog: BlogPostType }) => {
             data-testid="blog-preview-card"
             {...props}
         >
-            <div className="p-[24px] flex flex-col bg-surface-card rounded-[18px] overflow-hidden relative shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] transition-shadow duration-500 h-full">
+            <div className="p-6 flex flex-col bg-surface-card rounded-lg overflow-hidden relative hover:shadow-soft transition-shadow h-full">
                 <div className="h-full flex flex-col justify-between">
                     {/* Blog Image */}
                     <div className="h-auto mt-[20px] text-[0] order-2 relative">

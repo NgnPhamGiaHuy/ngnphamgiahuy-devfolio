@@ -94,9 +94,8 @@ const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({
                         x={ci * colW + colW / 2}
                         y={18}
                         textAnchor="middle"
-                        className="graph-node__sub arch-node"
+                        className="graph-node__sub arch-node arch-column-header"
                         fontSize={9}
-                        style={{ textTransform: "uppercase", letterSpacing: 1 }}
                     >
                         {layer}
                     </text>

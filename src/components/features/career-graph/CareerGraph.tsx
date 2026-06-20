@@ -75,7 +75,7 @@ const CareerGraph: React.FC<CareerGraphProps> = ({
                         {profile.job_title || "Full-Stack & Data Engineer"}
                     </p>
                     <h1 className="display-fluid mb-5">{profile.name}</h1>
-                    <p className="measure text-[color:var(--color-body)] text-lg leading-relaxed">
+                    <p className="measure text-body text-lg leading-relaxed">
                         {profile.description}
                     </p>
 
@@ -99,7 +99,7 @@ const CareerGraph: React.FC<CareerGraphProps> = ({
 
             <GraphCanvas data={graph} onSelectProject={setSelectedSlug} />
 
-            <p className="font-mono-tnum mt-6 text-xs text-[color:var(--graph-muted)]">
+            <p className="font-mono-tnum mt-6 text-xs text-graph-muted">
                 Hover or focus a node to trace its lineage. Select a project to
                 open its case study.
             </p>

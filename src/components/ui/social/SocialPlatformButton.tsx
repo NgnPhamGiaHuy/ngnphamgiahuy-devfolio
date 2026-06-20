@@ -46,7 +46,7 @@ const SocialPlatformButton: React.FC<SocialPlatformButtonProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={label}
-            className="size-9 inline-flex items-center justify-center rounded-full border border-border bg-transparent transition-[colors,transform,opacity] duration-300 hover:border-primary! active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 group"
+            className="size-9 inline-flex items-center justify-center rounded-full border border-hairline bg-transparent transition-[colors,transform,opacity] duration-300 hover:border-primary! active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 group"
             title={label}
             data-testid={TEST_IDS.root}
         >

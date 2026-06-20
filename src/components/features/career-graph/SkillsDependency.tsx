@@ -88,8 +88,7 @@ const SkillsDependency: React.FC<SkillsDependencyProps> = ({
                 </div>
 
                 <div
-                    className="rounded-2xl border p-6"
-                    style={{ borderColor: "var(--graph-line)" }}
+                    className="browser-frame p-6"
                     aria-live="polite"
                 >
                     {activeSkill ? (
@@ -98,7 +97,7 @@ const SkillsDependency: React.FC<SkillsDependencyProps> = ({
                                 {activeSkill.name}
                             </h3>
                             {activeSkill.description && (
-                                <p className="measure mb-5 text-sm text-[color:var(--graph-muted)]">
+                                <p className="measure mb-5 text-sm text-graph-muted">
                                     {activeSkill.description}
                                 </p>
                             )}
@@ -114,21 +113,17 @@ const SkillsDependency: React.FC<SkillsDependencyProps> = ({
                                     {activeProjects.map((p) => (
                                         <li
                                             key={p._id}
-                                            className="border-l-2 pl-3"
-                                            style={{
-                                                borderColor:
-                                                    "var(--graph-accent)",
-                                            }}
+                                            className="build-log__teaser border-l-2 pl-3"
                                         >
                                             <span className="font-medium">
                                                 {p.name}
                                             </span>
-                                            <span className="text-[color:var(--graph-muted)]">
+                                            <span className="text-graph-muted">
                                                 {" "}
                                                 — {p.category}
                                             </span>
                                             {p.summary && (
-                                                <p className="text-sm text-[color:var(--graph-muted)]">
+                                                <p className="text-sm text-graph-muted">
                                                     {p.summary}
                                                 </p>
                                             )}
@@ -136,14 +131,14 @@ const SkillsDependency: React.FC<SkillsDependencyProps> = ({
                                     ))}
                                 </ul>
                             ) : (
-                                <p className="text-sm text-[color:var(--graph-muted)]">
+                                <p className="text-sm text-graph-muted">
                                     Add this skill to a project&apos;s
                                     technologies to wire it into the graph.
                                 </p>
                             )}
                         </>
                     ) : (
-                        <p className="text-[color:var(--graph-muted)]">
+                        <p className="text-graph-muted">
                             Select a skill.
                         </p>
                     )}

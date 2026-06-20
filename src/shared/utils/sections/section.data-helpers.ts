@@ -39,20 +39,6 @@ const toMockDataType = (data: CompleteMockData): MockDataType => ({
     certificates: data.certificates,
 });
 
-const SECTION_VERTICAL_RULE_DEFAULTS: Record<string, "left" | "right"> = {
-    hero: "left",
-    services: "right",
-    skills: "left",
-    portfolios: "right",
-    resume: "left",
-    certificates: "right",
-    testimonials: "left",
-    pricing: "right",
-    blog: "left",
-    contact: "right",
-    map: "left",
-} as const;
-
 // COMMIT HISTORY IA: hero renders the career graph, skills the dependency
 // view, now the current focus. Freelancer sections are intentionally absent.
 const DEFAULT_SECTION_CONFIG: SectionConfigItemType[] = [
@@ -73,45 +59,12 @@ const PORTFOLIO_CONFIG = {
     MAX_ITEMS: 6,
 } as const;
 
-export type VerticalRulePosition = "left" | "right";
-
 interface ContactDataItem {
     type: string;
     value: string;
     label: string;
 }
 
-interface SectionDataResult {
-    verticalRulePosition: VerticalRulePosition;
-    [key: string]: any;
-}
-
-export const getVerticalRulePosition = (
-    settings?: SettingsType | null,
-    sectionId?: string,
-    fallbackPosition: VerticalRulePosition = "right"
-): VerticalRulePosition => {
-    if (!sectionId) {
-        return fallbackPosition;
-    }
-
-    if (settings) {
-        const sectionConfig = settings[sectionId as keyof SettingsType];
-
-        if (
-            sectionConfig &&
-            typeof sectionConfig === "object" &&
-            "verticalRuleDirection" in sectionConfig
-        ) {
-            const config = sectionConfig as SectionConfigItemType;
-            if (config.verticalRuleDirection) {
-                return config.verticalRuleDirection;
-            }
-        }
-    }
-
-    return SECTION_VERTICAL_RULE_DEFAULTS[sectionId] || fallbackPosition;
-};
 
 export const normalizeProfileData = (
     profile?: ProfileType | null,
@@ -306,16 +259,7 @@ export const getSectionData = (
     sectionId: string,
     props: any,
     fallbackData?: MockDataType | CompleteMockData
-): SectionDataResult => {
-    const verticalRulePosition = getVerticalRulePosition(
-        props.settings,
-        sectionId
-    );
-
+): Record<string, unknown> => {
     const builder = SECTION_BUILDERS[sectionId];
-
-    return {
-        ...(builder ? builder(props, fallbackData) : {}),
-        verticalRulePosition,
-    };
+    return builder ? builder(props, fallbackData) : {};
 };

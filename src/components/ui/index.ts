@@ -1,6 +1,4 @@
-export { default as AnimatedText } from "./AnimatedText";
 export { default as ArrowLink } from "./ArrowLink";
-export { default as BackdropText } from "./BackdropText";
 export { default as BrandLink } from "./BrandLink";
 export { default as BrowserFrame } from "./BrowserFrame";
 export { default as FormInput } from "./FormInput";

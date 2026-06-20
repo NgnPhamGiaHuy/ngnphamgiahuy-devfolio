@@ -68,21 +68,13 @@ const Section: React.FC<SectionProps> = ({
                         )}
                         {title && (
                             <Heading
-                                className="display-fluid mb-5"
-                                style={
-                                    as === "h2"
-                                        ? {
-                                              fontSize:
-                                                  "clamp(1.6rem,1.2rem+2vw,2.6rem)",
-                                          }
-                                        : undefined
-                                }
+                                className={`${as === "h2" ? "section-heading-fluid" : "display-fluid"} mb-5`}
                             >
                                 {title}
                             </Heading>
                         )}
                         {intro && (
-                            <div className="measure text-[color:var(--color-body)] text-lg leading-relaxed">
+                            <div className="measure text-body text-lg leading-relaxed">
                                 {intro}
                             </div>
                         )}

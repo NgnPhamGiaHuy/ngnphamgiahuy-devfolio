@@ -75,7 +75,7 @@ const ContactMethodCard: React.FC<ContactMethodCardProps> = ({
             </div>
 
             {/* Value */}
-            <div className="text-sm text-[color:var(--graph-muted)]">
+            <div className="text-sm text-graph-muted">
                 {link ? (
                     <Link
                         href={link}

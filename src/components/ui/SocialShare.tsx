@@ -64,7 +64,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title, className }) => {
             <div className="flex flex-col items-start gap-4">
                 <div>
                     <div
-                        className="mb-2 text-sm text-muted-foreground"
+                        className="mb-2 text-sm text-muted"
                         data-testid={TEST_IDS.heading}
                     >
                         Share

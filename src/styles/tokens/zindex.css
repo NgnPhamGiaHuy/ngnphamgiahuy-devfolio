@@ -1,0 +1,15 @@
+/* ============================================================
+   Token: z-index — stacking context scale.
+   All z-index values MUST reference these tokens.
+   ============================================================ */
+
+:root {
+    --z-base: 0;
+    --z-raised: 1;
+    --z-overlay: 3;
+    --z-nav: 90;
+    --z-sidebar: 95;
+    --z-modal: 100;
+    --z-modal-content: 101;
+    --z-below: -1;
+}

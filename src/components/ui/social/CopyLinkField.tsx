@@ -48,12 +48,12 @@ const CopyLinkField: React.FC<CopyLinkFieldProps> = ({ url }) => {
     return (
         <div className="w-full max-w-md" data-testid={TEST_IDS.root}>
             <label
-                className="mb-1 block text-xs text-muted-foreground"
+                className="mb-1 block text-xs text-muted"
                 htmlFor="share-url"
             >
                 Copy link
             </label>
-            <div className="px-4 py-2 flex items-center gap-2 rounded-lg border border-border bg-transparent">
+            <div className="px-4 py-2 flex items-center gap-2 rounded-lg border border-hairline bg-transparent">
                 <span className="size-7 inline-flex items-center justify-center">
                     <Link2 className="size-4 text-ink" aria-hidden="true" />
                 </span>

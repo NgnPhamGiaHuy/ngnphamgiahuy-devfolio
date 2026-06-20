@@ -70,7 +70,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ className, ...props }) => {
         return (
             <button
                 type="button"
-                className={`mr-10 size-8 flex-center align-middle cursor-pointer text-ink transition-all relative ${className || ""}`}
+                className={`size-8 flex-center align-middle cursor-pointer text-ink transition-all relative ${className || ""}`}
                 aria-label="Theme toggle"
                 aria-pressed={false}
                 title="Toggle theme"
@@ -86,7 +86,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ className, ...props }) => {
     return (
         <button
             type="button"
-            className={`mr-10 size-8 flex-center align-middle cursor-pointer text-ink transition-all relative ${className || ""}`}
+            className={`size-8 flex-center align-middle cursor-pointer text-ink transition-all relative ${className || ""}`}
             onClick={handleToggle}
             aria-label={`Switch to ${nextModeLabel} mode`}
             aria-pressed={resolvedTheme === "dark"}

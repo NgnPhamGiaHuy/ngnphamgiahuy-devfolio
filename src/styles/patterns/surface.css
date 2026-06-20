@@ -1,0 +1,127 @@
+/* ============================================================
+   Pattern: surface — footer, wordmark, vertical-rule, availability.
+   ============================================================ */
+
+@layer components {
+    /* ---- Site footer — DESIGN.md: dark-navy, never inverts ---- */
+    .site-footer {
+        background: var(--color-surface-dark);
+        color: var(--color-on-dark-soft);
+        padding: var(--space-xxl) var(--space-md);
+    }
+
+    @media (min-width: 640px) {
+        .site-footer {
+            padding: var(--space-xxl) var(--space-xl);
+        }
+    }
+
+    .site-footer__inner {
+        max-width: var(--content-max);
+        margin: 0 auto;
+    }
+
+    .site-footer__brand {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: var(--space-lg);
+    }
+
+    .site-footer__wordmark {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-family: var(--font-sans), Inter, sans-serif;
+        font-size: var(--type-nav-size);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--color-on-dark);
+    }
+
+    .site-footer__colophon {
+        margin-top: var(--space-lg);
+        max-width: var(--footer-measure);
+        font-family: var(--font-sans), sans-serif;
+        font-size: var(--type-body-sm-size);
+        line-height: var(--type-body-sm-height);
+        color: var(--color-on-dark-soft);
+    }
+
+    .site-footer__social {
+        display: flex;
+        align-items: center;
+    }
+
+    .site-footer__social a {
+        color: var(--color-on-dark-soft);
+        transition: color var(--motion-fast) var(--ease-standard);
+    }
+
+    .site-footer__social a:hover {
+        color: var(--color-on-dark);
+    }
+
+    .site-footer__rule {
+        height: 1px;
+        margin: var(--space-xl) 0;
+        background: color-mix(in oklab, var(--color-on-dark) 14%, transparent);
+    }
+
+    .site-footer__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        font-family: var(--font-sans), sans-serif;
+        font-size: var(--type-caption-size);
+        color: var(--color-on-dark-soft);
+    }
+
+    .site-footer__meta p {
+        margin: 0;
+    }
+
+    /* ---- Vertical rule — decorative divider ---- */
+    .vertical-rule {
+        background: var(--color-hairline);
+        pointer-events: none;
+        position: absolute;
+        z-index: var(--z-overlay);
+    }
+
+    .vertical-rule::before {
+        @apply absolute content-[""] size-[30px] top-[-15px] left-[-15px] rounded-full;
+        background: var(--color-surface-card);
+        border: 2px solid var(--color-hairline);
+        z-index: var(--z-raised);
+    }
+
+    .vertical-rule::after {
+        @apply absolute content-[""] size-[30px] bottom-[-15px] left-[-15px] rounded-full;
+        background: var(--color-surface-card);
+        border: 2px solid var(--color-hairline);
+        z-index: var(--z-raised);
+    }
+
+    .vertical-rule-pattern {
+        @apply size-[226px] block absolute;
+        top: -188px;
+        left: -168px;
+        background-image: url("/images/pat-1.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .vertical-rule-pattern {
+            filter: invert(1);
+        }
+    }
+
+    [data-theme="dark"] .vertical-rule-pattern {
+        filter: invert(1);
+    }
+}

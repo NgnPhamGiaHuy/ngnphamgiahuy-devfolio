@@ -1,0 +1,20 @@
+/* ============================================================
+   Token: spacing — base unit 4px, DESIGN.md scale.
+   All layout spacing MUST derive from these tokens.
+   ============================================================ */
+
+:root {
+    --space-xxs: 0.25rem;  /* 4px */
+    --space-xs: 0.5rem;    /* 8px */
+    --space-sm: 0.75rem;   /* 12px */
+    --space-md: 1rem;      /* 16px */
+    --space-lg: 1.5rem;    /* 24px */
+    --space-xl: 2rem;      /* 32px */
+    --space-xxl: 3rem;     /* 48px */
+    --space-section: 6rem; /* 96px */
+
+    /* Content maximum width */
+    --content-max: 1200px;
+    --content-measure: 66ch;
+    --footer-measure: 64ch;
+}

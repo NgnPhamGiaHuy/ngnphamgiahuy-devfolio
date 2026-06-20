@@ -96,7 +96,7 @@ const BlogPostHeader = ({
                                     {author}
                                 </span>
                             ) : (
-                                <span className="text-muted-foreground">
+                                <span className="text-muted">
                                     Unknown author
                                 </span>
                             )}

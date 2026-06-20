@@ -1,42 +1,32 @@
 /* ============================================================
-   File: link.css
-   Purpose: Arrow link component styles with hover animations
-   Components: ArrowLink
+   Component: link — DESIGN.md text-link and arrow-link.
+   text-link: coral, body-md (16px), underlined on press.
    ============================================================ */
 
 @layer components {
-    /* ============================================================
-       ArrowLink Component
-       ============================================================ */
-
-    /**
-     * ArrowLink main styling
-     * - Consistent height with bold text
-     * - Uses inverse color for theme compatibility
-     * - Smooth transition for hover effects
-     * - Inline block for proper alignment
-     * - Relative positioning for arrow placement
-     */
-    /* Inline text-link (DESIGN.md text-link: coral, humanist sans). */
+    /* DESIGN.md text-link: coral, body-md typography */
     .arrow-link {
-        font-family: var(--font-sans), sans-serif;
-        font-size: 0.875rem;
+        font-family: var(--font-sans), Inter, sans-serif;
+        font-size: var(--type-body-md-size);
         font-weight: 500;
+        line-height: var(--type-body-md-height);
         color: var(--color-primary);
         display: inline-flex;
         align-items: center;
-        transition: color 0.15s ease;
+        transition: color var(--motion-fast) var(--ease-standard);
     }
-    /* Real Unicode arrow (the old Font Awesome glyph was never loaded). */
+
     .arrow-link::after {
-        content: "\2192"; /* → */
-        margin-left: 8px;
-        transition: margin-left 0.2s ease;
+        content: "\2192";
+        margin-left: var(--space-xs);
+        transition: margin-left var(--motion-normal) var(--ease-standard);
     }
+
     .arrow-link:hover {
         color: var(--color-primary-active);
     }
+
     .arrow-link:hover::after {
-        margin-left: 14px;
+        margin-left: var(--space-md);
     }
 }

@@ -19,7 +19,7 @@ const Contact: React.FC<ContactSectionProps> = ({ id, contactItems }) => {
             title="Let's start the next one"
             intro="Everything above built on the commit before it. If you're working on systems, data, or AI, the next one could be ours."
             meta={
-                <p className="font-mono-tnum mt-4 inline-flex items-center gap-2.5 text-sm text-[color:var(--graph-ink)]">
+                <p className="font-mono-tnum mt-4 inline-flex items-center gap-2.5 text-sm text-graph-ink">
                     <span className="status-dot" aria-hidden="true" />
                     open to work — roles &amp; collaboration
                 </p>

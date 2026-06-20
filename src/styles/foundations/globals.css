@@ -1,0 +1,14 @@
+/* ============================================================
+   Foundation: globals — body defaults.
+   Everything traces back to tokens. No hardcoded values.
+   ============================================================ */
+
+body {
+    background: var(--background);
+    color: var(--color-body);
+    font-family: var(--font-sans), Inter, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, sans-serif;
+    font-size: var(--type-body-md-size);
+    line-height: var(--type-body-md-height);
+    -webkit-font-smoothing: antialiased;
+}

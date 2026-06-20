@@ -1,60 +1,73 @@
 /* ============================================================
-   File: buttons.css
-   Purpose: Button component styles with animations and interactions
-   Components: PrimaryButton, SecondaryButton, SkillButton
+   Component: buttons — DESIGN.md authority.
+   button-primary: coral, 40px, 8px radius, darkens on press only.
+   button-secondary: canvas bg, hairline border.
    ============================================================ */
 
 @layer components {
-    /* ============================================================
-       PrimaryButton Component
-       ============================================================ */
-
-    /**
-     * PrimaryButton main styling
-     * - Rounded pill shape with consistent height
-     * - Bold, uppercase text with wide tracking
-     * - Shadow effect for depth
-     * - Overflow hidden for animation effects
-     * - Smooth color transition on hover
-     */
+    /* ---- Primary button — DESIGN.md button-primary ---- */
     .primary-button {
-        @apply h-[56px] px-[40px] text-[13px] text-ink text-center font-bold border-2 border-solid border-hairline shadow-[var(--shadow-offset-md)] rounded-[56px] outline-none tracking-wider leading-[52px] align-top overflow-hidden inline-block cursor-pointer uppercase relative;
-        transition: color 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        padding: 0 var(--space-md);
+        font-family: var(--font-sans), Inter, sans-serif;
+        font-size: var(--type-button-size);
+        font-weight: 500;
+        line-height: var(--type-button-height);
+        letter-spacing: 0;
+        color: var(--color-on-primary);
+        background: var(--color-primary);
+        border: none;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        transition: background var(--motion-fast) var(--ease-standard);
     }
 
-    /**
-     * PrimaryButton background animation element
-     * - Starts as a point (0x0) in the center
-     * - Expands to fill button on hover
-     * - Primary color background
-     * - Smooth transition with easing
-     * - Positioned behind text content
-     */
-    .primary-button::before {
-        @apply content-[""] w-0 h-0 top-1/2 left-1/2 rounded-[56px] opacity-100 bg-primary! transform -translate-x-1/2 -translate-y-1/2 transition-[width,height] duration-700 ease-[ease] z-[-1] absolute;
-    }
-
-    /**
-     * PrimaryButton hover state
-     * - Text changes to white for contrast
-     * - Delayed color transition for smooth effect
-     * - Border color transition for consistency
-     */
+    /* DESIGN.md: primary darkens on press — nothing else changes */
     .primary-button:hover {
-        @apply text-white;
-        transition:
-            color 0.3s ease 0.2s,
-            border-color 0.3s ease;
+        background: var(--color-primary-active);
+        color: var(--color-on-primary);
     }
 
-    /**
-     * PrimaryButton hover background expansion
-     * - Background expands to 97% width and 90% height
-     * - Creates smooth fill animation effect
-     * - Maintains rounded corners
-     */
-    .primary-button:hover::before {
-        @apply w-[97%] h-[90%];
+    /* ---- Secondary button — DESIGN.md button-secondary ---- */
+    .secondary-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        padding: 0 var(--space-md);
+        font-family: var(--font-sans), Inter, sans-serif;
+        font-size: var(--type-button-size);
+        font-weight: 500;
+        line-height: var(--type-button-height);
+        letter-spacing: 0;
+        color: var(--color-ink);
+        background: var(--color-canvas);
+        border: 1px solid var(--color-hairline);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        transition: background var(--motion-fast) var(--ease-standard),
+                    border-color var(--motion-fast) var(--ease-standard);
     }
 
+    .secondary-button:hover {
+        background: var(--color-surface-soft);
+    }
+
+    /* ---- Secondary on dark — DESIGN.md button-secondary-on-dark ---- */
+    .secondary-button--dark {
+        background: var(--color-surface-dark-elevated);
+        color: var(--color-on-dark);
+        border-color: transparent;
+    }
+
+    .secondary-button--dark:hover {
+        background: color-mix(in oklab, var(--color-surface-dark-elevated) 80%, var(--color-on-dark) 20%);
+    }
 }

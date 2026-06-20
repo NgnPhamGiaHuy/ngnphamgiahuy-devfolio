@@ -1,0 +1,37 @@
+/* ============================================================
+   Styles index — single orchestration point.
+   Load order: tokens → foundations → utilities → patterns → components.
+   Every value in this system traces back to tokens/.
+   ============================================================ */
+
+/* 1. Design tokens — single source of truth */
+@import "./tokens/index.css";
+
+/* 2. Foundations — element defaults, reset, type, accessibility */
+@import "./foundations/reset.css";
+@import "./foundations/globals.css";
+@import "./foundations/typography.css";
+@import "./foundations/accessibility.css";
+@import "./foundations/layout.css";
+
+/* 3. Utilities — atomic helpers */
+@import "./utilities/animation.css";
+@import "./utilities/colors.css";
+@import "./utilities/interaction.css";
+@import "./utilities/layout.css";
+@import "./utilities/visibility.css";
+
+/* 4. Patterns — reusable structural patterns */
+@import "./patterns/section.css";
+@import "./patterns/surface.css";
+@import "./patterns/card.css";
+@import "./patterns/grid.css";
+@import "./patterns/overlay.css";
+
+/* 5. Components — thin consumers of tokens + patterns */
+@import "./components/header.css";
+@import "./components/sidebar.css";
+@import "./components/buttons.css";
+@import "./components/link.css";
+@import "./components/contact.css";
+@import "./components/career.css";

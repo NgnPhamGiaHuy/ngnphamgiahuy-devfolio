@@ -1,0 +1,12 @@
+/* ============================================================
+   Utility: colors — context-aware semantic color utilities.
+   Graph tokens (--graph-*) live in :root / component scopes,
+   not in @theme, so Tailwind doesn't auto-generate utilities
+   for them. Tailwind hover:/focus: variants apply here.
+   ============================================================ */
+
+@layer utilities {
+    .text-graph-ink    { color: var(--graph-ink); }
+    .text-graph-muted  { color: var(--graph-muted); }
+    .text-graph-accent { color: var(--graph-accent); }
+}

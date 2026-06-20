@@ -1,227 +1,133 @@
 /* ============================================================
-   File: sidebar.css
-   Purpose: Sidebar navigation component with animations and accessibility
-   Components: Sidebar, NavItem, MenuToggle
+   Component: sidebar — mobile off-canvas cream sheet.
+   Desktop uses the persistent top-nav; this is mobile-only.
    ============================================================ */
 
 @layer components {
-    /* ============================================================
-       Sidebar Component
-       ============================================================ */
-
-    /**
-     * Sidebar main container
-     * - Fixed positioning with full height
-     * - Responsive width (full on mobile, 512px on desktop)
-     * - Theme-aware background with pseudo-element
-     * - Smooth transition for all properties
-     * - High z-index for proper layering
-     */
-    /* Mobile-only off-canvas cream sheet (desktop uses the persistent top-nav). */
+    /* ---- Off-canvas cream sheet ---- */
     .sidebar {
-        @apply max-md:w-full w-[512px] h-screen top-0 fixed z-[95] md:hidden;
-        transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        @apply h-screen top-0 fixed md:hidden;
+        width: min(100vw, 512px);
+        z-index: var(--z-sidebar);
+        transition: all var(--motion-xslow) var(--ease-emphasized);
     }
+
     .sidebar::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
         background: var(--background);
         border-left: 1px solid var(--color-hairline);
+        transform: skewY(0);
+        transition: transform var(--motion-xslow) var(--ease-emphasized);
     }
 
-    /**
-     * Sidebar background pseudo-element
-     * - Full width and height coverage
-     * - Skew transform for visual effect
-     * - Smooth transition for transform changes
-     * - Positioned absolutely within sidebar
-     */
-    .sidebar::before {
-        @apply content-[""] w-full h-full top-0 left-0 transform skew-y-0 absolute;
-        transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-    }
-
-    /* ============================================================
-       Sidebar Visibility States
-       ============================================================ */
-
-    /**
-     * Sidebar visible state
-     * - Positioned at right edge of screen
-     * - Full opacity and visibility
-     * - Pointer events enabled for interaction
-     * - No skew transform for flat appearance
-     */
+    /* ---- Visibility states ---- */
     .sidebar-visible {
-        @apply right-0 opacity-100 visible pointer-events-auto;
+        right: 0;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
     }
 
     .sidebar-visible::before {
-        @apply skew-x-0;
+        transform: skewX(0);
     }
 
-    /**
-     * Sidebar hidden state
-     * - Positioned off-screen to the right
-     * - Zero opacity and hidden visibility
-     * - Pointer events disabled
-     * - Skew transform for visual effect
-     */
     .sidebar-hidden {
-        @apply -right-[612px] opacity-0 invisible pointer-events-none;
+        right: -612px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
     }
 
     .sidebar-hidden::before {
-        @apply skew-x-10;
+        transform: skewX(10deg);
     }
 
-    /* ============================================================
-       Sidebar Content Layout
-       ============================================================ */
-
-    /**
-     * Sidebar content container
-     * - Full width and height coverage
-     * - Centered content with overflow scroll
-     * - Higher z-index than background
-     * - Absolute positioning for proper layering
-     */
+    /* ---- Content ---- */
     .sidebar-content {
-        @apply w-full h-full top-0 left-0 flex items-center overflow-auto absolute z-3;
+        @apply w-full h-full top-0 left-0 flex items-center overflow-auto absolute;
+        z-index: var(--z-overlay);
     }
 
-    /**
-     * Sidebar container inner
-     * - Responsive max-widths for different screen sizes
-     * - Consistent padding and centering
-     * - Relative positioning for child elements
-     */
     .sidebar-container-inner {
-        @apply xl:max-w-[1140px] lg:max-w-[960px] md:max-w-[720px] sm:max-w-[540px] w-full px-3 m-auto relative;
+        @apply xl:max-w-[1140px] lg:max-w-[960px] md:max-w-[720px] sm:max-w-[540px] w-full m-auto relative;
+        padding: 0 var(--space-sm);
     }
 
-    /**
-     * Sidebar row container
-     * - Negative margins for proper spacing
-     * - Flex wrap for responsive layout
-     * - Allows child elements to use full width
-     */
     .sidebar-row {
-        @apply -mx-3 flex flex-wrap;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 calc(-1 * var(--space-sm));
     }
 
-    /**
-     * Sidebar column container
-     * - Full width with consistent padding
-     * - Flex-none for proper sizing
-     * - Responsive layout support
-     */
     .sidebar-column {
-        @apply w-full px-3 flex-none;
+        width: 100%;
+        padding: 0 var(--space-sm);
+        flex: none;
     }
 
-    /**
-     * Sidebar menu container
-     * - Consistent padding for content
-     * - Responsive padding for different screen sizes
-     * - Relative positioning for child elements
-     */
     .sidebar-menu-container {
-        @apply pt-[80px] pr-[60px] pb-[40px] pl-[130px] relative;
+        padding-top: var(--space-section);
+        padding-right: var(--space-xxl);
+        padding-bottom: var(--space-xxl);
+        padding-left: var(--space-section);
+        position: relative;
     }
 
-    /* ============================================================
-       NavItem Component
-       ============================================================ */
-
-    /**
-     * NavItem main styling
-     * - Consistent bottom margin for spacing
-     * - Smooth transition for all properties
-     * - Initial transform and opacity for animation
-     * - Cubic-bezier easing for smooth animation
-     */
+    /* ---- NavItem ---- */
     .nav-item {
-        @apply mb-5;
-        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-        transform: translateY(8px);
+        margin-bottom: var(--space-md);
+        transition: all var(--motion-normal) var(--ease-emphasized);
+        transform: translateY(var(--space-xs));
         opacity: 0;
     }
 
-    /**
-     * NavItem visible state
-     * - No transform offset
-     * - Full opacity for visibility
-     * - Smooth transition to visible state
-     */
     .nav-item.opacity-100 {
         transform: translateY(0);
         opacity: 1;
     }
 
-    /**
-     * NavItem text styling
-     * - Large, bold, uppercase text
-     * - Uses inverse color for theme compatibility
-     * - Wide tracking for readability
-     * - Cursor pointer for interaction indication
-     * - Smooth transition for hover effects
-     */
+    /* DESIGN.md display-md for mobile nav links */
     .nav-item-text {
-        @apply text-3xl leading-tight align-top relative cursor-pointer;
+        display: inline-block;
         font-family: var(--font-display), serif;
+        font-size: clamp(1.5rem, 5vw, 1.875rem);
         font-weight: 500;
-        letter-spacing: -0.02em;
+        letter-spacing: var(--type-display-md-tracking);
         color: var(--color-ink);
-        transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+        cursor: pointer;
+        position: relative;
+        line-height: 1.25;
+        transition:
+            color var(--motion-normal) var(--ease-standard),
+            transform var(--motion-normal) var(--ease-standard);
     }
 
-    /* Active / hover use the coral accent (the system's one accent). */
     .nav-item-text:hover,
     .nav-item-active .nav-item-text {
         color: var(--color-primary);
-        transform: translateX(4px);
+        transform: translateX(var(--space-xxs));
     }
 
-    /**
-     * NavItem letter styling
-     * - Smooth color transition for individual letters
-     * - Used for character-by-character animations
-     * - Consistent timing with other transitions
-     */
     .nav-item-letter {
-        @apply transition-colors duration-300 ease-in-out;
+        transition: color var(--motion-normal) var(--ease-standard);
     }
 
-    /**
-     * NavItem letter hover state
-     * - Primary color for brand consistency
-     * - Smooth transition for individual letters
-     */
     .nav-item-letter:hover {
-        @apply text-primary;
+        color: var(--color-primary);
     }
 
-    /**
-     * NavItem focus state
-     * - Primary color for accessibility
-     * - Horizontal translation for focus indication
-     * - Ensures keyboard navigation visibility
-     */
     .nav-item:focus-within .nav-item-text {
-        @apply text-primary;
-        transform: translateX(4px);
+        color: var(--color-primary);
+        transform: translateX(var(--space-xxs));
     }
 
-    /* ============================================================
-       Accessibility and Reduced Motion Support
-       ============================================================ */
-
-    /**
-     * Reduced motion media query
-     * - Disables all transitions for users who prefer reduced motion
-     * - Ensures accessibility compliance
-     * - Removes transform animations
-     * - Sets opacity to 1 for immediate visibility
-     */
+    /* ---- Reduced motion ---- */
     @media (prefers-reduced-motion: reduce) {
         .sidebar,
         .sidebar::before,

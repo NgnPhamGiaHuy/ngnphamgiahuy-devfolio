@@ -1,0 +1,36 @@
+/* ============================================================
+   Foundation: reset — runtime canvas vars and dark-mode overrides.
+   Tailwind Preflight handles element normalization.
+   ============================================================ */
+
+/* ---- Light theme (default) ---- */
+:root {
+    --background: var(--color-canvas);
+    --foreground: var(--color-ink);
+    color-scheme: light;
+}
+
+/* ---- Dark theme ---- */
+[data-theme="dark"] {
+    color-scheme: dark;
+    --background: var(--color-surface-dark);
+    --foreground: var(--color-on-dark);
+
+    --color-primary: #d88b6f;
+    --color-primary-active: #cc785c;
+
+    --color-canvas: var(--color-surface-dark);
+    --color-ink: var(--color-on-dark);
+    --color-body-strong: #ece9e3;
+    --color-body: #cfccc5;
+    --color-muted: var(--color-on-dark-soft);
+    --color-muted-soft: #837f78;
+
+    --color-hairline: #2f2c28;
+    --color-hairline-soft: #262320;
+    --color-surface-card: var(--color-surface-dark-elevated);
+    --color-surface-soft: var(--color-surface-dark-soft);
+    --color-surface-cream-strong: #2b2926;
+
+    --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.4);
+}

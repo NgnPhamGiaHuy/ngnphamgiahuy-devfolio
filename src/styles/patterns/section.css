@@ -1,0 +1,32 @@
+/* ============================================================
+   Pattern: section — elevation banding and wrapper primitives.
+   Cream → cream-card → dark: the brand's pacing mechanism.
+   ============================================================ */
+
+/* ---- Section elevation variants ---- */
+.section-shell--panel {
+    background: var(--color-surface-soft);
+    border-top: 1px solid var(--color-hairline);
+    border-bottom: 1px solid var(--color-hairline);
+}
+
+.section-shell--sunken {
+    background: var(--color-surface-cream-strong);
+}
+
+/* Dark-navy band: in LIGHT mode, token cascade re-points to on-dark values.
+   In DARK mode, lift to elevated surface so alternation still reads. */
+.section-shell--dark {
+    background: var(--color-surface-dark);
+    color: var(--color-on-dark);
+    --color-ink: var(--color-on-dark);
+    --color-body-strong: var(--color-on-dark-body-strong);
+    --color-body: var(--color-on-dark-body);
+    --color-muted: var(--color-on-dark-soft);
+    --color-muted-soft: var(--color-on-dark-muted-soft);
+}
+
+[data-theme="dark"] .section-shell--dark {
+    background: var(--color-surface-dark-elevated);
+}
+

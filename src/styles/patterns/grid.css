@@ -1,0 +1,11 @@
+/* ============================================================
+   Pattern: grid — content grids and containers.
+   DESIGN.md: max content width 1200px, 3-up at desktop.
+   ============================================================ */
+
+@layer components {
+    /* Generic full-width flex container */
+    .container-full {
+        @apply mx-auto flex max-lg:flex-wrap relative;
+    }
+}

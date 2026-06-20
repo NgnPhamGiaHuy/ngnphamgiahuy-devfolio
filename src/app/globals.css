@@ -1,16 +1,11 @@
+/* ============================================================
+   globals.css — application CSS entry point.
+   Imports Tailwind, then the design system index.
+   No styles live here directly.
+   ============================================================ */
+
 @import "tailwindcss";
 
-@import "../styles/base.css";
-@import "../styles/common.css";
-@import "../styles/components/career.css";
-
-@import "../styles/components/header.css";
-@import "../styles/components/sidebar.css";
-@import "../styles/components/cards.css";
-@import "../styles/components/buttons.css";
-@import "../styles/components/link.css";
-@import "../styles/components/wrapper.css";
-@import "../styles/components/vertical-rule.css";
-@import "../styles/components/contact.css";
+@import "../styles/index.css";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));

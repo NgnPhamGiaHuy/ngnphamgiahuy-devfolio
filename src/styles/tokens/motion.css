@@ -1,0 +1,23 @@
+/* ============================================================
+   Token: motion — all durations and easings.
+   EVERY transition and animation MUST derive from these tokens.
+   No raw cubic-bezier(). No raw ms/s values in component CSS.
+   ============================================================ */
+
+:root {
+    /* ---- Durations ---- */
+    --motion-fast: 150ms;   /* micro-interactions: link colors, icon fills */
+    --motion-normal: 300ms; /* standard hover, color transitions */
+    --motion-slow: 500ms;   /* reveals, image filters, larger element transitions */
+    --motion-xslow: 800ms;  /* complex: sidebar open, graph draw */
+
+    /* ---- Easings ---- */
+    /* Signature reveal/morph — decelerates dramatically at end (content entering) */
+    --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+    /* Default element motion — balanced enter/exit */
+    --ease-emphasized: cubic-bezier(0.25, 0.1, 0.25, 1);
+    /* Elements entering the screen from off-canvas */
+    --ease-decelerate: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Elements leaving the screen — accelerates */
+    --ease-accelerate: cubic-bezier(0.55, 0.06, 0.68, 0.19);
+}
