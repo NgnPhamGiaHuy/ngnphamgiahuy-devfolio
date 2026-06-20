@@ -1,7 +1,7 @@
 import type { ImageConfig } from "@/shared";
 import type { SanityImageType } from "@/schemas";
 
-import { urlFor } from "@/infrastructure";
+import { urlFor } from "@/infrastructure/persistence/sanity/SanityClient";
 
 const DEFAULT_CONFIG: Pick<Required<ImageConfig>, "fallbackAlt"> = {
     fallbackAlt: "Image",

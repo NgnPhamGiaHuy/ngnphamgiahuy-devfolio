@@ -2,7 +2,7 @@ import React from "react";
 
 import type { HomePageData } from "@/shared/types";
 
-import { normalizeProfileData, normalizeProjectsData } from "@/shared";
+import { normalizeProfileData, normalizeProjectsData } from "@/shared/utils/sections";
 import {
     Portfolios,
     ScrollToTopButton,

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import type { ProfileType } from "@/schemas";
 
-import { HeroAnimationsConfig } from "@/infrastructure";
+import { HeroAnimationsConfig } from "@/infrastructure/config";
 import {
     AnimatedText,
     SocialLinks,

@@ -10,18 +10,19 @@ import {
     certificatesQuery,
     educationQuery,
     experienceQuery,
-    EXPORT_CONTENT_TYPES,
-    EXPORT_DEFAULTS,
     pricingQuery,
     profileQuery,
     projectsQuery,
-    sanityClient,
     servicesQuery,
     settingsQuery,
     skillsQuery,
     testimonialsQuery,
+} from "@/infrastructure/persistence/sanity/queries";
+import {
+    sanityClient,
     urlFor,
-} from "@/infrastructure";
+} from "@/infrastructure/persistence/sanity/SanityClient";
+import { EXPORT_CONTENT_TYPES, EXPORT_DEFAULTS } from "@/infrastructure/config";
 
 const resolveImageUrls = (data: any): any => {
     if (!data) return data;

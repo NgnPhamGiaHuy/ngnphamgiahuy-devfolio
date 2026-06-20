@@ -2,7 +2,7 @@ import React from "react";
 
 import type { MockDataType, SectionConfigItemType } from "@/schemas";
 
-import { getSectionData } from "@/shared";
+import { getSectionData } from "@/shared/utils/sections";
 
 import Hero from "@/components/features/landing/Hero";
 import Certificates from "@/components/features/certificate/Certificates";

@@ -6,13 +6,13 @@ import { motion, Variants } from "framer-motion";
 
 import type { ProfileVisualProps } from "@/shared/types";
 
-import { processImage } from "@/shared";
+import { processImage } from "@/shared/utils/image";
 import { DecorativeLayer, MetricCard } from "@/components";
 import {
     DEFAULT_PATTERN_LAYERS,
     DEFAULT_STATS,
     HeroAnimationsConfig,
-} from "@/infrastructure";
+} from "@/infrastructure/config";
 import { ProfileType, ProjectType } from "@/schemas";
 
 const IMAGE_WIDTH = 680;

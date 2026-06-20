@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 import type { ServiceCardProps } from "@/shared/types";
 
-import { SERVICE_CARD_VARIANTS } from "@/infrastructure";
+import { SERVICE_CARD_VARIANTS } from "@/infrastructure/config";
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
     item,

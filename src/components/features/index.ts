@@ -1,8 +1,5 @@
-// Blog components
+// Blog components (list, preview, and single-post views)
 export * from "./blog";
-
-// Blog item components
-export * from "./blogItem";
 
 // Certificate components
 export * from "./certificate";

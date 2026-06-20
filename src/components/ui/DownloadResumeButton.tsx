@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 
-import { HeroAnimationsConfig } from "@/infrastructure";
+import { HeroAnimationsConfig } from "@/infrastructure/config";
 
 const DownloadResumeButton = ({ cvLink, ...props }: { cvLink?: string }) => {
     const containerVariants = HeroAnimationsConfig.downloadResume.container;

@@ -13,7 +13,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { FormInput, SubmitButton } from "@/components";
-import useBlogCommentForm from "@/components/features/blogItem/hooks/useBlogCommentForm";
+import useBlogCommentForm from "@/components/features/blog/hooks/useBlogCommentForm";
 
 // ============================================================
 // Constants

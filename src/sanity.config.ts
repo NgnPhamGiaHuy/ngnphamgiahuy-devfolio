@@ -5,7 +5,7 @@ import { markdownSchema } from "sanity-plugin-markdown";
 import { defineConfig, SchemaTypeDefinition } from "sanity";
 
 import { getRequiredEnvVar } from "@/shared";
-import { sanityDeskStructure, schemaTypes } from "@/infrastructure";
+import { sanityDeskStructure, schemaTypes } from "@/infrastructure/persistence/sanity";
 
 /* ===== Environment ===== */
 const DATASET_ENV = "NEXT_PUBLIC_SANITY_DATASET";

@@ -7,7 +7,7 @@ import { API_CONFIG, FORM_MESSAGES } from "@/infrastructure/config";
 import {
     BlogCommentFormData,
     blogCommentFormSchema,
-} from "@/components/features/blogItem/schemas/blogCommentForm.schema";
+} from "@/components/features/blog/schemas/blogCommentForm.schema";
 
 interface SubmitStatus {
     type: "success" | "error";

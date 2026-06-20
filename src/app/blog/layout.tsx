@@ -16,7 +16,7 @@ import { createMockData } from "@/infrastructure/persistence/mocks";
 import {
     normalizeProfileData,
     normalizeSectionConfigData,
-} from "@/shared/utils";
+} from "@/shared/utils/sections";
 import { homePageDataQuery, sanityFetch } from "@/infrastructure"; // ============================================================
 
 // ============================================================

@@ -5,7 +5,6 @@ import React, { createContext, ReactNode, useContext } from "react";
 export interface HeroTextTimeline {
     [sectionId: string]: {
         sectionDelay: number;
-        charDelays: number[];
     };
 }
 

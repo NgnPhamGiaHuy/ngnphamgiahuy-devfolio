@@ -8,7 +8,7 @@ import { renderSection } from "@/components/section/SectionRenderer";
 import {
     normalizeProfileData,
     normalizeSectionConfigData,
-} from "@/shared/utils";
+} from "@/shared/utils/sections";
 import { sanityFetch } from "@/infrastructure/persistence/sanity/SanityClient";
 import { homePageDataQuery } from "@/infrastructure/persistence/sanity/queries";
 

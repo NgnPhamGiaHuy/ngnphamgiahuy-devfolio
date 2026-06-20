@@ -6,7 +6,10 @@
 import { useCallback, useState } from "react";
 
 import { downloadJSON } from "@/shared/utils";
-import { exportContentType, getAvailableContentTypes } from "@/application";
+import {
+    exportContentType,
+    getAvailableContentTypes,
+} from "@/application/use-cases/export/ExportPortfolioDataUseCase";
 
 // ============================================================
 // Constants

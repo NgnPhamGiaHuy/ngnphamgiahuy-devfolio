@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import type { ServiceType } from "@/schemas";
 import type { ServicesSectionProps } from "@/shared";
 
-import { StandardAnimations } from "@/infrastructure";
+import { StandardAnimations } from "@/infrastructure/config";
 import { BackdropText, ServiceCard, Wrapper } from "@/components";
 
 const ContentCarousel = dynamic(

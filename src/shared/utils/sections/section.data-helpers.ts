@@ -16,7 +16,14 @@ import type {
 
 import { type CompleteMockData, createMockData } from "@/infrastructure";
 
-const FALLBACK_DATA = createMockData();
+let _fallbackData: CompleteMockData | null = null;
+
+const getFallbackData = (): CompleteMockData => {
+    if (!_fallbackData) {
+        _fallbackData = createMockData();
+    }
+    return _fallbackData;
+};
 
 const toMockDataType = (data: CompleteMockData): MockDataType => ({
     logo: data.logo,
@@ -118,7 +125,7 @@ export const normalizeProfileData = (
 
     if (fallbackData?.profile) return fallbackData.profile;
 
-    return FALLBACK_DATA.profile;
+    return getFallbackData().profile;
 };
 
 export const normalizeArrayData = <T>(
@@ -154,102 +161,41 @@ export const normalizeData = <T>(
     );
 };
 
-export const normalizeServicesData = (
-    services?: ServiceType[] | null,
-    fallbackData?: MockDataType | CompleteMockData
-): ServiceType[] => {
-    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
+/**
+ * Factory producing an array normalizer bound to a mock-data key.
+ * Replaces nine near-identical `normalize<Section>Data` wrappers.
+ */
+const createArrayNormalizer =
+    <T>(dataKey: keyof MockDataType) =>
+    (
+        data?: T[] | null,
+        fallbackData?: MockDataType | CompleteMockData
+    ): T[] => {
+        const fallback = fallbackData || toMockDataType(getFallbackData());
+        return normalizeData(
+            data,
+            fallback,
+            dataKey,
+            getFallbackData()[dataKey] as T[]
+        );
+    };
 
-    return normalizeData(
-        services,
-        fallback,
-        "services",
-        FALLBACK_DATA.services
-    );
-};
-
-export const normalizeSkillsData = (
-    skills?: SkillType[] | null,
-    fallbackData?: MockDataType | CompleteMockData
-): SkillType[] => {
-    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
-
-    return normalizeData(skills, fallback, "skills", FALLBACK_DATA.skills);
-};
-
-export const normalizeProjectsData = (
-    projects?: ProjectType[] | null,
-    fallbackData?: MockDataType | CompleteMockData
-): ProjectType[] => {
-    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
-
-    return normalizeData(
-        projects,
-        fallback,
-        "projects",
-        FALLBACK_DATA.projects
-    );
-};
-
-export const normalizeExperienceData = (
-    experience?: ExperienceType[] | null,
-    fallbackData?: MockDataType | CompleteMockData
-): ExperienceType[] => {
-    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
-
-    return normalizeData(
-        experience,
-        fallback,
-        "experience",
-        FALLBACK_DATA.experience
-    );
-};
-
-export const normalizeEducationData = (
-    education?: EducationType[] | null,
-    fallbackData?: MockDataType | CompleteMockData
-): EducationType[] => {
-    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
-
-    return normalizeData(
-        education,
-        fallback,
-        "education",
-        FALLBACK_DATA.education
-    );
-};
-
-export const normalizeTestimonialsData = (
-    testimonials?: TestimonialType[] | null,
-    fallbackData?: MockDataType | CompleteMockData
-): TestimonialType[] => {
-    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
-
-    return normalizeData(
-        testimonials,
-        fallback,
-        "testimonials",
-        FALLBACK_DATA.testimonials
-    );
-};
-
-export const normalizePricingData = (
-    pricing?: PricingType[] | null,
-    fallbackData?: MockDataType | CompleteMockData
-): PricingType[] => {
-    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
-
-    return normalizeData(pricing, fallback, "pricing", FALLBACK_DATA.pricing);
-};
-
-export const normalizeBlogsData = (
-    blogs?: BlogPostType[] | null,
-    fallbackData?: MockDataType | CompleteMockData
-): BlogPostType[] => {
-    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
-
-    return normalizeData(blogs, fallback, "blogs", FALLBACK_DATA.blogs);
-};
+export const normalizeServicesData =
+    createArrayNormalizer<ServiceType>("services");
+export const normalizeSkillsData = createArrayNormalizer<SkillType>("skills");
+export const normalizeProjectsData =
+    createArrayNormalizer<ProjectType>("projects");
+export const normalizeExperienceData =
+    createArrayNormalizer<ExperienceType>("experience");
+export const normalizeEducationData =
+    createArrayNormalizer<EducationType>("education");
+export const normalizeTestimonialsData =
+    createArrayNormalizer<TestimonialType>("testimonials");
+export const normalizePricingData =
+    createArrayNormalizer<PricingType>("pricing");
+export const normalizeBlogsData = createArrayNormalizer<BlogPostType>("blogs");
+export const normalizeCertificatesData =
+    createArrayNormalizer<CertificateType>("certificates");
 
 export const normalizeContactData = (
     profile?: ProfileType | null,
@@ -258,11 +204,7 @@ export const normalizeContactData = (
     const normalizedProfile = normalizeProfileData(profile, fallbackData);
 
     const contactItems: ContactDataItem[] = [
-        {
-            type: "email",
-            value: normalizedProfile.email,
-            label: "Email",
-        },
+        { type: "email", value: normalizedProfile.email, label: "Email" },
         {
             type: "phone",
             value: normalizedProfile.phone || "",
@@ -280,20 +222,6 @@ export const normalizeContactData = (
     );
 };
 
-export const normalizeCertificatesData = (
-    certificates?: CertificateType[] | null,
-    fallbackData?: MockDataType | CompleteMockData
-): CertificateType[] => {
-    const fallback = fallbackData || toMockDataType(FALLBACK_DATA);
-
-    return normalizeData(
-        certificates,
-        fallback,
-        "certificates",
-        FALLBACK_DATA.certificates
-    );
-};
-
 export const normalizeSectionConfigData = (
     settings?: SettingsType | null
 ): SectionConfigItemType[] => {
@@ -301,7 +229,7 @@ export const normalizeSectionConfigData = (
         return [...DEFAULT_SECTION_CONFIG];
     }
 
-    const sections: SectionConfigItemType[] = [
+    return [
         { id: "hero", ...settings.hero },
         { id: "services", ...settings.services },
         { id: "skills", ...settings.skills },
@@ -314,8 +242,53 @@ export const normalizeSectionConfigData = (
         { id: "contact", ...settings.contact },
         { id: "map", ...settings.map },
     ];
+};
 
-    return sections;
+type SectionBuilder = (
+    props: any,
+    fallbackData?: MockDataType | CompleteMockData
+) => Record<string, unknown>;
+
+/**
+ * Maps a section id to the data it needs. Replaces the former 11-case switch.
+ */
+const SECTION_BUILDERS: Record<string, SectionBuilder> = {
+    hero: (props, fb) => ({
+        profile: normalizeProfileData(props.profile, fb),
+        projects: normalizeProjectsData(props.projects, fb),
+    }),
+    services: (props, fb) => ({
+        services: normalizeServicesData(props.services, fb),
+    }),
+    skills: (props, fb) => ({
+        skills: normalizeSkillsData(props.skills, fb),
+    }),
+    portfolios: (props, fb) => ({
+        maxItems: PORTFOLIO_CONFIG.MAX_ITEMS,
+        projects: normalizeProjectsData(props.projects, fb),
+    }),
+    resume: (props, fb) => ({
+        experience: normalizeExperienceData(props.experience, fb),
+        education: normalizeEducationData(props.education, fb),
+    }),
+    certificates: (props, fb) => ({
+        certificates: normalizeCertificatesData(props.certificates, fb),
+    }),
+    testimonials: (props, fb) => ({
+        testimonials: normalizeTestimonialsData(props.testimonials, fb),
+    }),
+    pricing: (props, fb) => ({
+        pricing: normalizePricingData(props.pricing, fb),
+    }),
+    blog: (props, fb) => ({
+        blogs: normalizeBlogsData(props.blogs, fb),
+    }),
+    contact: (props, fb) => ({
+        contactItems: normalizeContactData(props.profile, fb),
+    }),
+    map: (props) => ({
+        mapConfig: props.settings?.map || DEFAULT_MAP_CONFIG,
+    }),
 };
 
 export const getSectionData = (
@@ -328,91 +301,10 @@ export const getSectionData = (
         sectionId
     );
 
-    switch (sectionId) {
-        case "hero":
-            return {
-                profile: normalizeProfileData(props.profile, fallbackData),
-                projects: normalizeProjectsData(props.projects, fallbackData),
-                verticalRulePosition,
-            };
+    const builder = SECTION_BUILDERS[sectionId];
 
-        case "services":
-            return {
-                services: normalizeServicesData(props.services, fallbackData),
-                verticalRulePosition,
-            };
-
-        case "skills":
-            return {
-                skills: normalizeSkillsData(props.skills, fallbackData),
-                verticalRulePosition,
-            };
-
-        case "portfolios":
-            return {
-                maxItems: PORTFOLIO_CONFIG.MAX_ITEMS,
-                projects: normalizeProjectsData(props.projects, fallbackData),
-                verticalRulePosition,
-            };
-
-        case "resume":
-            return {
-                experience: normalizeExperienceData(
-                    props.experience,
-                    fallbackData
-                ),
-                education: normalizeEducationData(
-                    props.education,
-                    fallbackData
-                ),
-                verticalRulePosition,
-            };
-
-        case "certificates":
-            return {
-                certificates: normalizeCertificatesData(
-                    props.certificates,
-                    fallbackData
-                ),
-                verticalRulePosition,
-            };
-
-        case "testimonials":
-            return {
-                testimonials: normalizeTestimonialsData(
-                    props.testimonials,
-                    fallbackData
-                ),
-                verticalRulePosition,
-            };
-
-        case "pricing":
-            return {
-                pricing: normalizePricingData(props.pricing, fallbackData),
-                verticalRulePosition,
-            };
-
-        case "blog":
-            return {
-                blogs: normalizeBlogsData(props.blogs, fallbackData),
-                verticalRulePosition,
-            };
-
-        case "contact":
-            return {
-                contactItems: normalizeContactData(props.profile, fallbackData),
-                verticalRulePosition,
-            };
-
-        case "map":
-            return {
-                mapConfig: props.settings?.map || DEFAULT_MAP_CONFIG,
-                verticalRulePosition,
-            };
-
-        default:
-            return {
-                verticalRulePosition,
-            };
-    }
+    return {
+        ...(builder ? builder(props, fallbackData) : {}),
+        verticalRulePosition,
+    };
 };

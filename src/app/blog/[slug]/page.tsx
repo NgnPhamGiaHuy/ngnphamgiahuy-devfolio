@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import { createMockData } from "@/infrastructure";
 import { getBlogPostBySlug } from "@/shared/utils/blog/blogPost.helpers";
-import BlogItem from "@/components/features/blogItem/BlogItem";
+import BlogItem from "@/components/features/blog/BlogItem";
 
 interface BlogPostDetailProps {
     params: Promise<{ slug: string }>;

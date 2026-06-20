@@ -11,7 +11,6 @@ interface TextSection {
 
 interface CharacterDelays {
     sectionDelay: number;
-    charDelays: number[];
 }
 
 type TypingTimeline = Record<string, CharacterDelays>;
@@ -34,12 +33,7 @@ const useDynamicTextAnimation = (): UseDynamicTextAnimationReturn => {
 
             timeline[id] = {
                 sectionDelay: currentDelay,
-                charDelays: [],
             };
-
-            for (let i = 0; i < text.length; i++) {
-                timeline[id].charDelays.push(currentDelay + i * TYPING_SPEED);
-            }
 
             const typingDuration = text.length * TYPING_SPEED;
             const nextSectionDelay =

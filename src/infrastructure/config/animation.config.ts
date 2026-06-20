@@ -35,15 +35,6 @@ export const ANIMATION_CONFIG = {
         LOOSE: 0.1,
         TEXT: 0.015,
     },
-
-    REDUCED_MOTION: {
-        duration: 0.15,
-        ease: "linear",
-        stagger: 0,
-        delay: 0,
-        type: "tween",
-        distance: 0,
-    },
 } as const;
 
 export const Duration = ANIMATION_CONFIG.DURATION;

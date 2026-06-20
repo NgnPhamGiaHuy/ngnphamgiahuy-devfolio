@@ -8,8 +8,9 @@ import { motion } from "framer-motion";
 import type { CertificateType } from "@/schemas";
 
 import { ArrowLink } from "@/components";
-import { formatDate, processImage } from "@/shared";
-import { CERTIFICATE_CARD_VARIANTS } from "@/infrastructure";
+import { formatDate } from "@/shared/utils/date";
+import { processImage } from "@/shared/utils/image";
+import { CERTIFICATE_CARD_VARIANTS } from "@/infrastructure/config";
 
 const IMAGE_WIDTH = 400;
 const IMAGE_HEIGHT = 250;
