@@ -4,15 +4,18 @@ import { structureTool } from "sanity/structure";
 import { markdownSchema } from "sanity-plugin-markdown";
 import { defineConfig, SchemaTypeDefinition } from "sanity";
 
-import { getRequiredEnvVar } from "@/shared";
 import { sanityDeskStructure, schemaTypes } from "@/infrastructure/persistence/sanity";
 
-/* ===== Environment ===== */
-const DATASET_ENV = "NEXT_PUBLIC_SANITY_DATASET";
-const PROJECT_ID_ENV = "NEXT_PUBLIC_SANITY_PROJECT_ID";
+/* ===== Environment =====
+ * Must use literal process.env.NEXT_PUBLIC_* access so Turbopack can inline
+ * the values at compile time — dynamic bracket lookup (process.env[name])
+ * prevents bundler inlining and always resolves to undefined in the browser.
+ */
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 
-const dataset = getRequiredEnvVar(DATASET_ENV);
-const projectId = getRequiredEnvVar(PROJECT_ID_ENV);
+if (!dataset) throw new Error("NEXT_PUBLIC_SANITY_DATASET is required but not set.");
+if (!projectId) throw new Error("NEXT_PUBLIC_SANITY_PROJECT_ID is required but not set.");
 
 const sanityPlugins = [
     codeInput(),

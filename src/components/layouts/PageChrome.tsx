@@ -37,6 +37,8 @@ const PageChrome = ({
             <main id="main">{children}</main>
             <SiteFooter
                 socialLinks={profile.social_links}
+                wordmark={logo}
+                name={profile.name}
                 data-testid={TEST_IDS.footer}
             />
             <ScrollToTopButton />

@@ -75,6 +75,33 @@
 .section-shell--sunken {
     background: var(--bg-sunken);
 }
+/* Dark-navy band — the DESIGN.md cream→cream-card→DARK pacing payoff and the one
+   place real product chrome belongs. In LIGHT mode there is NO global token flip
+   for a dark band, so the text/surface tokens are re-pointed to on-dark values
+   within this scope (mirrors the [data-theme="dark"] set). AA-verified. */
+.section-shell--dark {
+    background: var(--color-surface-dark);
+    color: var(--color-on-dark);
+    --color-ink: var(--color-on-dark);
+    --color-body-strong: #ece9e3;
+    --color-body: #d8d4cc;
+    --color-muted: var(--color-on-dark-soft);
+    --color-muted-soft: #837f78;
+    --graph-ink: var(--color-on-dark);
+    --graph-muted: var(--color-on-dark-soft);
+    --graph-line: color-mix(in oklab, var(--color-on-dark) 16%, transparent);
+    --graph-surface: var(--color-surface-dark-elevated);
+    /* Coral nudged warmer so it stays vivid on #181715 (same move as dark mode). */
+    --graph-accent: #d88b6f;
+    --graph-accent-soft: color-mix(in oklab, #d88b6f 22%, transparent);
+}
+/* When the whole SITE is already dark, a #181715 band equals the page bg and the
+   alternation collapses — lift it to the elevated dark surface so it still bands. */
+[data-theme="dark"] .section-shell--dark {
+    background: var(--color-surface-dark-elevated);
+    --graph-surface: #322f2a;
+    --graph-line: color-mix(in oklab, var(--color-on-dark) 12%, transparent);
+}
 
 /* ---- Browser-frame media system ---- */
 .browser-frame {
@@ -157,63 +184,120 @@
     color: var(--graph-accent);
 }
 
-/* ---- Profile portrait (duotone, circular) ---- */
+/* ---- Profile portrait — full colour, circular, commit-author framing ---- */
+.portrait-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.portrait-block__label {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--graph-muted);
+    letter-spacing: 0.03em;
+}
 .portrait {
-    border: 1px solid var(--graph-line);
+    border: 1.5px solid var(--graph-line);
     border-radius: 9999px;
     overflow: hidden;
     isolation: isolate;
+    transition: border-color 0.35s ease;
+}
+.portrait:hover {
+    border-color: var(--graph-accent);
 }
 .portrait img {
-    filter: grayscale(1) contrast(0.96);
-    transition: filter 0.4s ease;
+    /* Full colour from the start — no grayscale. */
+    transition: transform 0.45s var(--ease-standard);
 }
 @media (hover: hover) {
     .portrait:hover img {
-        filter: none;
+        transform: scale(1.04);
     }
 }
-@media (hover: none) {
-    .portrait img {
-        filter: none;
-    }
-}
-
-/* ---- Bento tiles ---- */
-.bento-tile {
-    border: 1px solid var(--graph-line);
-    border-radius: var(--frame-radius);
-    background: var(--graph-surface);
-    overflow: hidden;
-    transition:
-        border-color 0.2s ease,
-        transform 0.2s ease;
-}
-/* The BrowserFrame inside a bento tile is part of the card — suppress its
-   own outer border and radius so there's only one border around the whole card. */
-.bento-tile .browser-frame {
-    border: none;
-    border-radius: 0;
-    border-bottom: 1px solid var(--graph-line);
-}
-/* DESIGN.md elevation is color-block-first / shadow-rare: no translateY lift.
-   Interactive affordance is a faint coral border on hover only. */
-@media (hover: hover) {
-    .bento-tile:hover {
-        border-color: var(--graph-accent);
-    }
-    .bento-tile:hover .browser-frame {
-        border-bottom-color: var(--graph-accent);
-    }
-}
-
 @media (prefers-reduced-motion: reduce) {
-    .browser-frame__img,
-    .bento-tile {
+    .portrait img { transition: none; }
+    .portrait { transition: none; }
+}
+
+/* ---- Build Log (Selected Work as a numbered chapter index) ----
+   Replaces the bento card grid. Each row is one <button>; the section reads as a
+   log printing line by line. No thumbnails here — the rich-media moment lives in
+   the case-study panel. Communication-over-decoration: every slot is information. */
+.build-log {
+    border-top: 1px solid var(--graph-line);
+}
+.build-log__row {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 22px 4px;
+    border-bottom: 1px solid var(--graph-line);
+    transition: background 0.18s ease;
+}
+@media (hover: hover) {
+    .build-log__row:hover {
+        background: color-mix(in oklab, var(--graph-accent) 7%, transparent);
+    }
+}
+.build-log__row:focus-visible {
+    outline: 2px solid var(--graph-accent);
+    outline-offset: -2px;
+    border-radius: var(--radius-sm);
+}
+.build-log__step {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    color: var(--graph-muted);
+}
+/* Trade-off teaser — judgment at the index altitude. Same coral border vocabulary
+   the case-study panel uses for its decisions list. */
+.build-log__teaser {
+    border-left: 2px solid var(--graph-accent);
+    padding-left: 12px;
+}
+/* Plain-text lineage refs — survive SVG-off / no-JS / screen readers. */
+.lineage-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--graph-muted);
+}
+.lineage-pill__ref {
+    position: relative;
+    color: var(--graph-accent);
+    white-space: nowrap;
+}
+/* Meaning-bearing underline: draws in the data-flow direction on row hover. */
+.lineage-pill__ref::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: var(--graph-accent);
+    transform: scaleX(0);
+    transform-origin: var(--pill-origin, left);
+    transition: transform 0.3s var(--ease-standard);
+}
+@media (hover: hover) {
+    .build-log__row:hover .lineage-pill__ref::after {
+        transform: scaleX(1);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .browser-frame__img {
         transition: none;
     }
     .media-hover:hover .browser-frame__img {
         transform: none;
+    }
+    .lineage-pill__ref::after {
+        transition: none;
     }
 }
 
@@ -245,6 +329,38 @@
 
 .measure {
     max-width: 66ch;
+}
+
+/* ---- Availability status (DESIGN.md: green success dot for "available") ---- */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: var(--color-success);
+    flex: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .status-dot {
+        animation: status-pulse 2.4s ease-in-out infinite;
+    }
+}
+@keyframes status-pulse {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0
+            color-mix(in oklab, var(--color-success) 55%, transparent);
+    }
+    50% {
+        box-shadow: 0 0 0 5px
+            color-mix(in oklab, var(--color-success) 0%, transparent);
+    }
+}
+.header-status {
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--color-muted);
 }
 
 /* ---- Blueprint grid (static CSS, zero runtime cost) ---- */

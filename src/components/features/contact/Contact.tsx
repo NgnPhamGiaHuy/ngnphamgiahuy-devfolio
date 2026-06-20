@@ -1,8 +1,3 @@
-// ============================================================
-// Component: Contact
-// Purpose: Contact methods + form, unified onto the COMMIT HISTORY language
-// ============================================================
-
 import React from "react";
 
 import type { ContactSectionProps } from "@/shared/types";
@@ -10,11 +5,6 @@ import type { ContactSectionProps } from "@/shared/types";
 import { Section } from "@/components/layouts";
 import { ContactForm, ContactMethodCard } from "@/components";
 
-/**
- * Contact — rebuilt onto the shared Section primitive. The old decorated era
- * (Wrapper gradient + BackdropText + dotted .pat-background) is removed so the
- * page reads as one site; the form logic/hooks are untouched.
- */
 const Contact: React.FC<ContactSectionProps> = ({ id, contactItems }) => {
     const keyedContacts = contactItems.map((c, index) => ({
         key: (c as any)._id || `${c.type}-${c.value}-${index}`,
@@ -26,8 +16,14 @@ const Contact: React.FC<ContactSectionProps> = ({ id, contactItems }) => {
             id={id}
             tone="sunken"
             eyebrow="Contact"
-            title="Let's talk"
-            intro="Open to roles and collaboration on systems, data, and product engineering."
+            title="Let's start the next one"
+            intro="Everything above built on the commit before it. If you're working on systems, data, or AI, the next one could be ours."
+            meta={
+                <p className="font-mono-tnum mt-4 inline-flex items-center gap-2.5 text-sm text-[color:var(--graph-ink)]">
+                    <span className="status-dot" aria-hidden="true" />
+                    open to work — roles &amp; collaboration
+                </p>
+            }
             aria-label="Contact"
         >
             <div className="grid gap-10 md:grid-cols-[2fr_3fr]">

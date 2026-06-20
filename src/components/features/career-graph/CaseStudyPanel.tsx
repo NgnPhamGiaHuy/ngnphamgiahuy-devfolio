@@ -14,6 +14,11 @@ import ArchitectureDiagram from "./ArchitectureDiagram";
 interface CaseStudyPanelProps {
     project: ProjectType | null;
     onClose: () => void;
+    /**
+     * Optional: open scrolled to (and briefly highlighting) this decision in the
+     * Decisions list. Undefined = open at the top (problem-first reading order).
+     */
+    focusDecisionIndex?: number;
 }
 
 const Section: React.FC<{ label: string; children: React.ReactNode }> = ({
@@ -29,10 +34,33 @@ const Section: React.FC<{ label: string; children: React.ReactNode }> = ({
 const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
     project,
     onClose,
+    focusDecisionIndex,
 }) => {
     const reduce = useReducedMotion();
     const closeRef = React.useRef<HTMLButtonElement | null>(null);
+    const decisionRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+    const [litDecision, setLitDecision] = React.useState<number | null>(null);
     const open = !!project;
+
+    // Deep-link to a specific decision (additive). Runs after the open effect so
+    // it isn't undone by the close-button focus; no-op when no index is given.
+    React.useEffect(() => {
+        if (!open || focusDecisionIndex == null) return;
+        const el = decisionRefs.current[focusDecisionIndex];
+        if (!el) return;
+        const t = window.setTimeout(() => {
+            el.scrollIntoView({
+                behavior: reduce ? "auto" : "smooth",
+                block: "center",
+            });
+            setLitDecision(focusDecisionIndex);
+        }, 60);
+        const clear = window.setTimeout(() => setLitDecision(null), 1600);
+        return () => {
+            window.clearTimeout(t);
+            window.clearTimeout(clear);
+        };
+    }, [open, focusDecisionIndex, reduce]);
 
     React.useEffect(() => {
         if (!open) return;
@@ -191,10 +219,17 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                         {project.decisions.map((d, i) => (
                                             <div
                                                 key={i}
-                                                className="border-l-2 pl-4"
+                                                ref={(el) => {
+                                                    decisionRefs.current[i] = el;
+                                                }}
+                                                className="border-l-2 pl-4 transition-colors duration-500"
                                                 style={{
                                                     borderColor:
                                                         "var(--graph-accent)",
+                                                    background:
+                                                        litDecision === i
+                                                            ? "var(--graph-accent-soft)"
+                                                            : "transparent",
                                                 }}
                                             >
                                                 <p className="font-medium">
@@ -272,7 +307,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                     </a>
                                 )}
                             </footer>
-                            </div>{/* end scrollable content */}
+                            </div>
                         </div>
                     </m.div>
                 </>

@@ -1,61 +1,24 @@
-/* ============================================================
-   File: common.css
-   Purpose: Common utility classes and component styles using Tailwind CSS
-   ============================================================ */
-
 @layer components {
-    /* ============================================================
-       Container Layout Classes
-       ============================================================ */
-
-    /**
-     * Full-width container with responsive flex behavior
-     * - Centers content horizontally
-     * - Switches to flex-wrap on large screens and below
-     * - Provides relative positioning context
-     */
     .container-full {
         @apply mx-auto flex max-lg:flex-wrap relative;
     }
 
-    /**
-     * Constrained container with 1300px max-width
-     * - Limits content width for better readability
-     * - Maintains responsive flex behavior
-     * - Centers content horizontally
-     */
     .container-1300 {
         @apply max-w-[1300px] mx-auto flex max-lg:flex-wrap relative;
     }
 
-    /* ============================================================
-       Flex Layout Utility Classes
-       ============================================================ */
-
-    /**
-     * Flex container with start alignment
-     */
     .flex-start {
         @apply flex items-center justify-start;
     }
 
-    /**
-     * Flex container with center alignment
-     */
     .flex-center {
         @apply flex items-center justify-center;
     }
 
-    /**
-     * Full-width flex container with minimal height
-     */
     .flex-full {
         @apply w-full min-h-[1px] flex relative;
     }
 
-    /**
-     * Flex wrap container with start alignment
-     */
     .flex-wrap-start {
         @apply w-full flex flex-wrap content-start relative;
     }
@@ -64,28 +27,12 @@
         flex: 0 0 auto;
     }
 
-    /* ============================================================
-       Grid Layout Classes
-       ============================================================ */
-
-    /**
-     * Responsive grid container
-     * - 1 column on mobile
-     * - 2 columns on medium screens
-     * - 3 columns on large screens
-     */
     .grid-responsive {
         @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
     }
 
-    /* ============================================================
-       Brand and Logo Styles
-       ============================================================ */
-
-    /**
-     * Brand wordmark — humanist sans, ink, tight tracking (claude.com wordmark).
-     * The radial spike-mark glyph (rendered in BrandLink) is the prefix.
-     */
+    /* Brand wordmark — humanist sans, ink, tight tracking (claude.com wordmark).
+       The radial spike-mark glyph (rendered in BrandLink) is the prefix. */
     .logo {
         font-family: var(--font-sans), sans-serif;
         font-size: 1.05rem;
@@ -95,38 +42,15 @@
         color: var(--color-ink);
     }
 
-    /* ============================================================
-       Background and Decorative Classes
-       ============================================================ */
-
-    /**
-     * Pattern background with dark mode support
-     * - Uses pat-1.png image as background
-     * - Inverts colors in dark mode
-     * - Absolute positioning for overlay effect
-     */
     .pat-background {
         @apply bg-[url("/images/pat-1.png")] bg-no-repeat bg-contain bg-center dark:invert absolute;
     }
 
-    /* ============================================================
-       Typography Utility Classes
-       ============================================================ */
-
-    /**
-     * Caption text styling
-     * - Small, bold, uppercase text
-     * - Wide letter spacing for readability
-     * - Uses inverse color for theme compatibility
-     * - Removes default margins
-     */
     .caption-text {
         @apply m-0! text-[13px] text-ink! font-bold uppercase tracking-wider relative;
     }
 
-    /* ============================================================
-       Site Footer — dark-navy band (DESIGN.md: footer never inverts)
-       ============================================================ */
+    /* Site Footer — dark-navy band (DESIGN.md: footer never inverts) */
     .site-footer {
         background: var(--color-surface-dark);
         color: var(--color-on-dark-soft);
@@ -144,11 +68,22 @@
         gap: 24px;
     }
     .site-footer__wordmark {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
         font-family: var(--font-sans), sans-serif;
         font-size: 1.05rem;
         font-weight: 600;
         letter-spacing: 0.02em;
         color: var(--color-on-dark);
+    }
+    .site-footer__colophon {
+        margin-top: 24px;
+        max-width: 64ch;
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: var(--color-on-dark-soft);
     }
     .site-footer__social {
         display: flex;

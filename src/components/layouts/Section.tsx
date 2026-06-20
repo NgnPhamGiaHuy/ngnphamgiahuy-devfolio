@@ -14,7 +14,7 @@ interface SectionProps {
     /** Extra node under the intro (e.g. the graph's mono counter). */
     meta?: React.ReactNode;
     /** Surface elevation tier for section-contrast banding. */
-    tone?: "default" | "panel" | "sunken";
+    tone?: "default" | "panel" | "sunken" | "dark";
     className?: string;
     headerClassName?: string;
     "aria-label"?: string;
@@ -47,7 +47,9 @@ const Section: React.FC<SectionProps> = ({
             ? "section-shell--panel"
             : tone === "sunken"
               ? "section-shell--sunken"
-              : "";
+              : tone === "dark"
+                ? "section-shell--dark"
+                : "";
 
     return (
         <section

@@ -71,7 +71,9 @@ const CareerGraph: React.FC<CareerGraphProps> = ({
         <Section id={id} className="blueprint-grid" aria-label="Career lineage graph">
             <header className="mb-10 flex flex-col-reverse gap-8 md:flex-row md:items-start md:justify-between">
                 <div className="max-w-2xl">
-                    <p className="eyebrow mb-4">Full-stack developer</p>
+                    <p className="eyebrow mb-4">
+                        {profile.job_title || "Full-Stack & Data Engineer"}
+                    </p>
                     <h1 className="display-fluid mb-5">{profile.name}</h1>
                     <p className="measure text-[color:var(--color-body)] text-lg leading-relaxed">
                         {profile.description}
@@ -79,15 +81,18 @@ const CareerGraph: React.FC<CareerGraphProps> = ({
 
                 </div>
                 {portraitUrl && (
-                    <div className="portrait h-28 w-28 shrink-0 md:h-32 md:w-32">
-                        <Image
-                            src={portraitUrl}
-                            alt={profile.name}
-                            width={256}
-                            height={256}
-                            priority
-                            className="h-full w-full object-cover"
-                        />
+                    <div className="portrait-block shrink-0">
+                        <div className="portrait h-32 w-32 md:h-40 md:w-40">
+                            <Image
+                                src={portraitUrl}
+                                alt={profile.name}
+                                width={320}
+                                height={320}
+                                priority
+                                className="h-full w-full object-cover"
+                            />
+                        </div>
+                        <p className="portrait-block__label">{"// author"}</p>
                     </div>
                 )}
             </header>

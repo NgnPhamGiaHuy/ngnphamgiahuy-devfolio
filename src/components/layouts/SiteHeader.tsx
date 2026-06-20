@@ -1,8 +1,3 @@
-// ============================================================
-// Component: SiteHeader
-// Purpose: Main site header with navigation, theme toggle, and menu
-// ============================================================
-
 "use client";
 
 import React, { useRef } from "react";
@@ -17,21 +12,6 @@ import { buildMenuItems, useActiveSection } from "./hooks/useNavSections";
 import { getHeaderClasses } from "@/shared/utils";
 import { BrandLink, MenuToggle, Sidebar, ThemeToggle } from "@/components";
 
-// ============================================================
-// Component Definition
-// ============================================================
-
-/**
- * SiteHeader component renders the main site header.
- * Features responsive navigation, theme toggle, and mobile menu.
- *
- * @param props - Component props
- * @param props.profile - User profile data
- * @param props.className - Additional CSS classes
- * @param props.logo - Site logo text
- * @param props.enabledSections - Available navigation sections
- * @returns Site header component
- */
 const SiteHeader: React.FC<SiteHeaderProps> = ({
     profile,
     className,
@@ -39,22 +19,10 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({
     enabledSections,
     ...props
 }) => {
-    // ============================================================
-    // State & Refs
-    // ============================================================
-
     const headerRef = useRef<HTMLElement>(null);
-
-    // ============================================================
-    // Custom Hooks
-    // ============================================================
 
     const { isMenuOpen, toggleMenu } = useMenuState();
     const { headerState, handleAnimationEnd } = useHeaderScroll();
-
-    // ============================================================
-    // Data Processing
-    // ============================================================
 
     const headerClassNames = `${getHeaderClasses(headerState)} ${className || ""}`;
 
@@ -67,10 +35,6 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({
     // routes they're root-relative so they navigate home then scroll.
     const onHome = usePathname() === "/";
     const hrefFor = (id: string) => `${onHome ? "" : "/"}#${id}`;
-
-    // ============================================================
-    // Render
-    // ============================================================
 
     return (
         <header
@@ -85,7 +49,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({
             {/* Brand/Logo */}
             <BrandLink logo={logo} />
 
-            {/* Desktop horizontal nav (claude.com top-nav) */}
+            {/* Desktop horizontal nav */}
             <nav className="top-nav mx-auto" aria-label="Primary">
                 {menuItems.map((item) => (
                     <Link
@@ -101,8 +65,16 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({
                 ))}
             </nav>
 
-            {/* Right cluster: theme toggle + mobile hamburger */}
-            <div className="ml-auto md:ml-0 flex items-center gap-2">
+            {/* Right cluster: availability status + theme toggle + mobile hamburger */}
+            <div className="ml-auto md:ml-0 flex items-center gap-3">
+                <span
+                    className="header-status font-mono-tnum hidden md:inline-flex"
+                    aria-label="Availability: open to work"
+                    title="Open to roles and collaboration"
+                >
+                    <span className="status-dot" aria-hidden="true" />
+                    <span className="hidden lg:inline">open to work</span>
+                </span>
                 <ThemeToggle />
                 <div className="md:hidden flex items-center">
                     <MenuToggle isMenuOpen={isMenuOpen} onToggle={toggleMenu} />
