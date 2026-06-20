@@ -6,11 +6,14 @@
 "use client";
 
 import React, { useRef } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import type { SiteHeaderProps } from "@/shared/types";
 
 import useMenuState from "./hooks/useMenuState";
 import useHeaderScroll from "./hooks/useHeaderScroll";
+import { buildMenuItems, useActiveSection } from "./hooks/useNavSections";
 import { getHeaderClasses } from "@/shared/utils";
 import { BrandLink, MenuToggle, Sidebar, ThemeToggle } from "@/components";
 
@@ -53,8 +56,17 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({
     // Data Processing
     // ============================================================
 
-    // Remove unnecessary useMemo - simple string concatenation doesn't need memoization
     const headerClassNames = `${getHeaderClasses(headerState)} ${className || ""}`;
+
+    // Menu items + scroll-spy are shared between the desktop bar and the
+    // mobile off-canvas sheet (single source of truth).
+    const menuItems = buildMenuItems(enabledSections);
+    const activeId = useActiveSection(menuItems.map((i) => i.id));
+
+    // On the home page, anchors are pure hash links (same-page scroll); on other
+    // routes they're root-relative so they navigate home then scroll.
+    const onHome = usePathname() === "/";
+    const hrefFor = (id: string) => `${onHome ? "" : "/"}#${id}`;
 
     // ============================================================
     // Render
@@ -70,30 +82,40 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({
             data-testid="site-header"
             {...props}
         >
-            <section className="relative">
-                <div className="flex-container">
-                    {/* Brand/Logo Section */}
-                    <div className="flex-base">
-                        <BrandLink logo={logo} />
-                    </div>
+            {/* Brand/Logo */}
+            <BrandLink logo={logo} />
 
-                    {/* Controls Section */}
-                    <div className="flex-base">
-                        <div className="flex-wrapper">
-                            <ThemeToggle />
-                            <MenuToggle
-                                isMenuOpen={isMenuOpen}
-                                onToggle={toggleMenu}
-                            />
-                            <Sidebar
-                                profile={profile}
-                                isMenuOpen={isMenuOpen}
-                                enabledSections={enabledSections}
-                            />
-                        </div>
-                    </div>
+            {/* Desktop horizontal nav (claude.com top-nav) */}
+            <nav className="top-nav mx-auto" aria-label="Primary">
+                {menuItems.map((item) => (
+                    <Link
+                        key={item.id}
+                        href={hrefFor(item.id)}
+                        className="top-nav-link"
+                        aria-current={item.id === activeId ? "true" : undefined}
+                        prefetch={false}
+                        data-testid={`top-nav-link-${item.id}`}
+                    >
+                        {item.label}
+                    </Link>
+                ))}
+            </nav>
+
+            {/* Right cluster: theme toggle + mobile hamburger */}
+            <div className="ml-auto md:ml-0 flex items-center gap-2">
+                <ThemeToggle />
+                <div className="md:hidden flex items-center">
+                    <MenuToggle isMenuOpen={isMenuOpen} onToggle={toggleMenu} />
                 </div>
-            </section>
+            </div>
+
+            {/* Mobile off-canvas sheet */}
+            <Sidebar
+                profile={profile}
+                isMenuOpen={isMenuOpen}
+                menuItems={menuItems}
+                activeId={activeId}
+            />
         </header>
     );
 };

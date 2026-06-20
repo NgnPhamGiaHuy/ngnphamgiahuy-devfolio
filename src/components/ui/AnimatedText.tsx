@@ -6,11 +6,11 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 import type { AnimatedTextProps } from "@/shared/types";
 
-import { Duration, HeroAnimationsConfig } from "@/infrastructure/config";
+import { AnimatedTextConfig, Duration } from "@/infrastructure/config";
 
 // ============================================================
 // Component Definition
@@ -50,16 +50,16 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
 
     // Remove unnecessary useMemo - animation variants are static objects
     const wordContainerVariants =
-        HeroAnimationsConfig.animatedText.createWordContainer(baseDelay);
+        AnimatedTextConfig.createWordContainer(baseDelay);
     const charContainerVariants =
-        HeroAnimationsConfig.animatedText.createCharContainer(baseDelay);
+        AnimatedTextConfig.createCharContainer(baseDelay);
 
     // ============================================================
     // Render Functions
     // ============================================================
 
     const renderWordAnimation = () => (
-        <motion.span
+        <m.span
             className={containerClassName}
             initial="hidden"
             animate="visible"
@@ -69,9 +69,9 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
         >
             {words.map((word, index) => (
                 <React.Fragment key={`word-${index}`}>
-                    <motion.span
+                    <m.span
                         className={className}
-                        {...HeroAnimationsConfig.animatedText.wordItem(
+                        {...AnimatedTextConfig.wordItem(
                             baseDelay,
                             index,
                             staggerDelay,
@@ -80,15 +80,15 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
                         data-testid={`animated-word-${index}`}
                     >
                         {word}
-                    </motion.span>
+                    </m.span>
                     {index < words.length - 1 && " "}
                 </React.Fragment>
             ))}
-        </motion.span>
+        </m.span>
     );
 
     const renderCharAnimation = () => (
-        <motion.span
+        <m.span
             className={containerClassName}
             initial="hidden"
             animate="visible"
@@ -97,10 +97,10 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
             {...props}
         >
             {chars.map((char, index) => (
-                <motion.span
+                <m.span
                     key={`${char}-${index}`}
                     className={className}
-                    {...HeroAnimationsConfig.animatedText.charItem(
+                    {...AnimatedTextConfig.charItem(
                         baseDelay,
                         index,
                         staggerDelay,
@@ -109,9 +109,9 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
                     data-testid={`animated-char-${index}`}
                 >
                     {char}
-                </motion.span>
+                </m.span>
             ))}
-        </motion.span>
+        </m.span>
     );
 
     // ============================================================

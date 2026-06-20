@@ -6,7 +6,7 @@
 "use client";
 
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 import type { FormInputProps } from "@/shared/types";
 
@@ -109,7 +109,7 @@ const FormInput: React.FC<FormInputProps> = ({
                 {/* Error Message */}
                 <AnimatePresence>
                     {error && (
-                        <motion.p
+                        <m.p
                             id={`${id}-error`}
                             className="form-input-error-message"
                             variants={FORM_VARIANTS.status()}
@@ -121,7 +121,7 @@ const FormInput: React.FC<FormInputProps> = ({
                             data-testid="form-input-error"
                         >
                             {error}
-                        </motion.p>
+                        </m.p>
                     )}
                 </AnimatePresence>
             </div>

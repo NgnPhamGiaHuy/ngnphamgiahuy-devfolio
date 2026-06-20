@@ -34,7 +34,7 @@ const PageChrome = ({
                 enabledSections={enabledSections}
                 data-testid={TEST_IDS.header}
             />
-            {children}
+            <main id="main">{children}</main>
             <SiteFooter
                 socialLinks={profile.social_links}
                 data-testid={TEST_IDS.footer}

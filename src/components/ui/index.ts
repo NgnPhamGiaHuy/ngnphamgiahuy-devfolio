@@ -1,13 +1,8 @@
-export * from "./carousel";
-
-export { default as Accordion } from "./Accordion";
-export { default as AccordionContent } from "./AccordionContent";
-export { default as AccordionItem } from "./AccordionItem";
 export { default as AnimatedText } from "./AnimatedText";
 export { default as ArrowLink } from "./ArrowLink";
 export { default as BackdropText } from "./BackdropText";
 export { default as BrandLink } from "./BrandLink";
-export { default as DownloadResumeButton } from "./DownloadResumeButton";
+export { default as BrowserFrame } from "./BrowserFrame";
 export { default as FormInput } from "./FormInput";
 export { default as FormStatus } from "./FormStatus";
 export { default as MenuToggle } from "./MenuToggle";

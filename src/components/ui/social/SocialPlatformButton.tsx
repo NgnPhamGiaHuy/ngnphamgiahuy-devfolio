@@ -52,7 +52,7 @@ const SocialPlatformButton: React.FC<SocialPlatformButtonProps> = ({
         >
             <Icon
                 aria-hidden="true"
-                className="size-4 text-inverse! transition-colors duration-300 group-hover:text-primary!"
+                className="size-4 text-ink! transition-colors duration-300 group-hover:text-primary!"
             />
             <span className="sr-only">{label}</span>
         </Link>

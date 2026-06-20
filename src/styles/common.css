@@ -28,34 +28,12 @@
         @apply max-w-[1300px] mx-auto flex max-lg:flex-wrap relative;
     }
 
-    /**
-     * Flex container with space-between justification
-     * - Distributes content evenly across available space
-     * - Responsive flex-wrap behavior
-     * - Centers content horizontally
-     */
-    .flex-container {
-        @apply mx-auto flex max-lg:flex-wrap justify-between relative;
-    }
-
     /* ============================================================
        Flex Layout Utility Classes
        ============================================================ */
 
     /**
-     * Full-width flex wrapper with centered content
-     * - Centers items both horizontally and vertically
-     * - Uses flex-wrap for responsive behavior
-     * - Provides full width coverage
-     */
-    .flex-wrapper {
-        @apply w-full flex flex-wrap items-center justify-center content-center relative;
-    }
-
-    /**
      * Flex container with start alignment
-     * - Aligns items to the start of the container
-     * - Centers items vertically
      */
     .flex-start {
         @apply flex items-center justify-start;
@@ -63,102 +41,23 @@
 
     /**
      * Flex container with center alignment
-     * - Centers items both horizontally and vertically
-     * - Standard centering utility
      */
     .flex-center {
         @apply flex items-center justify-center;
     }
 
     /**
-     * Flex container with space-between distribution
-     * - Distributes items evenly across available space
-     * - Centers items vertically
-     */
-    .flex-between {
-        @apply flex items-center justify-between;
-    }
-
-    /* ============================================================
-       Responsive Width Classes
-       ============================================================ */
-
-    /**
-     * Base flex container with minimal height
-     * - Provides flex context with minimal height
-     * - Relative positioning for child elements
-     */
-    .flex-base {
-        @apply min-h-[1px] flex relative;
-    }
-
-    /**
-     * Full-width flex container
-     * - Takes full width of parent
-     * - Minimal height with flex context
+     * Full-width flex container with minimal height
      */
     .flex-full {
         @apply w-full min-h-[1px] flex relative;
     }
 
     /**
-     * Half-width responsive container
-     * - Full width on mobile, half width on medium screens and up
-     * - Flex context with minimal height
-     */
-    .flex-half {
-        @apply w-full md:w-1/2 min-h-[1px] flex relative;
-    }
-
-    /**
-     * Third-width responsive container
-     * - Full width on mobile, third width on medium screens and up
-     * - Minimal height with relative positioning
-     */
-    .flex-third {
-        @apply w-full md:w-1/3 min-h-[1px] relative;
-    }
-
-    /**
-     * 40% width responsive container
-     * - Full width on mobile, 40% width on large screens and up
-     * - Flex context with minimal height
-     */
-    .flex-2-5 {
-        @apply w-full lg:w-[40%] min-h-[1px] flex relative;
-    }
-
-    /**
-     * 60% width responsive container
-     * - Full width on mobile, 60% width on large screens and up
-     * - Flex context with minimal height
-     */
-    .flex-3-5 {
-        @apply w-full lg:w-[60%] min-h-[1px] flex relative;
-    }
-
-    /* ============================================================
-       Flex Wrap Utility Classes
-       ============================================================ */
-
-    /**
      * Flex wrap container with start alignment
-     * - Wraps content to new lines as needed
-     * - Aligns wrapped content to start
-     * - Full width with relative positioning
      */
     .flex-wrap-start {
         @apply w-full flex flex-wrap content-start relative;
-    }
-
-    /**
-     * Flex wrap container with center alignment
-     * - Wraps content to new lines as needed
-     * - Centers wrapped content both horizontally and vertically
-     * - Full width with relative positioning
-     */
-    .flex-wrap-center {
-        @apply w-full flex flex-wrap items-center content-center relative;
     }
 
     .flex-0-0-auto {
@@ -184,23 +83,16 @@
        ============================================================ */
 
     /**
-     * Logo text styling
-     * - Large, bold, uppercase text
-     * - Uses inverse color for theme compatibility
-     * - Provides brand consistency
+     * Brand wordmark — humanist sans, ink, tight tracking (claude.com wordmark).
+     * The radial spike-mark glyph (rendered in BrandLink) is the prefix.
      */
     .logo {
-        @apply text-2xl text-inverse font-black uppercase;
-    }
-
-    /**
-     * Logo animated indicator
-     * - Small circular indicator with ping animation
-     * - Positioned after logo text
-     * - Uses primary color for brand consistency
-     */
-    .logo::after {
-        @apply content-[""] w-2 h-2 border-2 border-solid border-primary absolute rounded-full top-1/3 ml-2 animate-ping;
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--color-ink);
     }
 
     /* ============================================================
@@ -218,19 +110,6 @@
     }
 
     /* ============================================================
-       Border and Visual Classes
-       ============================================================ */
-
-    /**
-     * Inverse border styling
-     * - 2px solid border using inverse color
-     * - Theme-aware border color
-     */
-    .border-2-inverse {
-        @apply border-2 border-solid border-border-inverse;
-    }
-
-    /* ============================================================
        Typography Utility Classes
        ============================================================ */
 
@@ -242,6 +121,63 @@
      * - Removes default margins
      */
     .caption-text {
-        @apply m-0! text-[13px] text-inverse! font-bold uppercase tracking-wider relative;
+        @apply m-0! text-[13px] text-ink! font-bold uppercase tracking-wider relative;
+    }
+
+    /* ============================================================
+       Site Footer — dark-navy band (DESIGN.md: footer never inverts)
+       ============================================================ */
+    .site-footer {
+        background: var(--color-surface-dark);
+        color: var(--color-on-dark-soft);
+        padding: 64px 20px;
+    }
+    .site-footer__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .site-footer__brand {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+    .site-footer__wordmark {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--color-on-dark);
+    }
+    .site-footer__social {
+        display: flex;
+        align-items: center;
+    }
+    /* Footer social icons read on the dark band */
+    .site-footer__social a {
+        color: var(--color-on-dark-soft);
+        transition: color 0.15s ease;
+    }
+    .site-footer__social a:hover {
+        color: var(--color-on-dark);
+    }
+    .site-footer__rule {
+        height: 1px;
+        margin: 32px 0;
+        background: color-mix(in oklab, var(--color-on-dark) 14%, transparent);
+    }
+    .site-footer__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.8125rem;
+        color: var(--color-on-dark-soft);
+    }
+    .site-footer__meta p {
+        margin: 0;
     }
 }

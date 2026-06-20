@@ -17,9 +17,14 @@
      * - Smooth transition for all properties
      * - High z-index for proper layering
      */
+    /* Mobile-only off-canvas cream sheet (desktop uses the persistent top-nav). */
     .sidebar {
-        @apply max-md:w-full w-[512px] h-screen top-0 fixed before:bg-white dark:before:bg-[#31363c] z-2;
+        @apply max-md:w-full w-[512px] h-screen top-0 fixed z-[95] md:hidden;
         transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    .sidebar::before {
+        background: var(--background);
+        border-left: 1px solid var(--color-hairline);
     }
 
     /**
@@ -161,18 +166,18 @@
      * - Smooth transition for hover effects
      */
     .nav-item-text {
-        @apply text-2xl text-inverse font-bold leading-none tracking-wider align-top uppercase relative cursor-pointer;
-        transition: all 0.2s ease-in-out;
+        @apply text-3xl leading-tight align-top relative cursor-pointer;
+        font-family: var(--font-display), serif;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        color: var(--color-ink);
+        transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
     }
 
-    /**
-     * NavItem text hover state
-     * - Primary color for brand consistency
-     * - Horizontal translation for dynamic effect
-     * - Smooth animation for better UX
-     */
-    .nav-item-text:hover {
-        @apply text-primary;
+    /* Active / hover use the coral accent (the system's one accent). */
+    .nav-item-text:hover,
+    .nav-item-active .nav-item-text {
+        color: var(--color-primary);
         transform: translateX(4px);
     }
 

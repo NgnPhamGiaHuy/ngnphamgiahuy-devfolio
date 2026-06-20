@@ -45,62 +45,39 @@ const SiteFooter: React.FC<SiteFooterProps> = ({ socialLinks, ...props }) => {
 
     return (
         <footer
-            className="m-0 p-0 max-lg:px-[30px] border-t border-solid border-inverse/10"
+            className="site-footer"
             role="contentinfo"
             aria-label="Site footer"
             data-testid="site-footer"
             {...props}
         >
-            <section className="py-[60px] relative">
-                <div className="container-1300">
-                    <div className="flex-third">
-                        {/* Social Links Section */}
-                        <div className="p-[10px] flex-wrapper">
-                            {socialLinksData.length > 0 ? (
-                                <SocialLinks
-                                    links={socialLinksData}
-                                    iconMargin="mr-[15px]"
-                                    iconSize="size-[22px]"
-                                    className="w-full max-md:text-center"
-                                />
-                            ) : null}
-                        </div>
-                    </div>
-
-                    {/* Copyright Section */}
-                    <div className="flex-third">
-                        <div className="p-[10px] flex-wrapper">
-                            <div className="w-full text-center relative">
-                                <div className="caption-text">
-                                    <p data-testid="copyright-text">
-                                        © {currentYear}&nbsp;
-                                        <strong className="text-primary">
-                                            NgnPhamGiaHuy
-                                        </strong>
-                                        . All rights reserved
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Developer Credit Section */}
-                    <div className="flex-third">
-                        <div className="p-[10px] flex-wrapper">
-                            <div className="w-full text-center relative">
-                                <div className="caption-text">
-                                    <p data-testid="developer-credit">
-                                        Developed by&nbsp;
-                                        <strong className="text-primary">
-                                            NgnPhamGiaHuy
-                                        </strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div className="site-footer__inner">
+                {/* Brand + social */}
+                <div className="site-footer__brand">
+                    <span className="site-footer__wordmark">NgnPhamGiaHuy</span>
+                    {socialLinksData.length > 0 ? (
+                        <SocialLinks
+                            links={socialLinksData}
+                            iconMargin="mr-[18px]"
+                            iconSize="size-[20px]"
+                            className="site-footer__social"
+                        />
+                    ) : null}
                 </div>
-            </section>
+
+                {/* Hairline divider */}
+                <div className="site-footer__rule" aria-hidden="true" />
+
+                {/* Copyright + credit */}
+                <div className="site-footer__meta">
+                    <p data-testid="copyright-text">
+                        © {currentYear} NgnPhamGiaHuy. All rights reserved.
+                    </p>
+                    <p data-testid="developer-credit">
+                        Designed &amp; built by NgnPhamGiaHuy
+                    </p>
+                </div>
+            </div>
         </footer>
     );
 };

@@ -3,8 +3,11 @@
 // Purpose: Navigation menu item with staggered animations and accessibility
 // ============================================================
 
+"use client";
+
 import Link from "next/link";
 import React from "react";
+import { usePathname } from "next/navigation";
 
 import type { NavItemProps } from "@/shared/types";
 
@@ -28,6 +31,8 @@ const NavItem: React.FC<NavItemProps> = ({
     text,
     index,
     sidebarEntered,
+    sectionId: sectionIdProp,
+    active,
     ...props
 }) => {
     // ============================================================
@@ -41,9 +46,13 @@ const NavItem: React.FC<NavItemProps> = ({
     };
 
     const base = (text || "").toString().toLowerCase().trim();
-    const sectionId =
+    const derivedId =
         base.replace(/\s+/g, "-").replace(/[^a-z0-9-_]/g, "") || base || "";
-    const href = sectionId ? `#${sectionId}` : "#";
+    // Pure hash on home (same-page scroll); root-relative elsewhere so the nav
+    // navigates home then scrolls (e.g. /portfolios -> /#projects).
+    const onHome = usePathname() === "/";
+    const sectionId = sectionIdProp || derivedId;
+    const href = sectionId ? `${onHome ? "" : "/"}#${sectionId}` : "/";
 
     const letters = Array.from(text);
 
@@ -81,8 +90,9 @@ const NavItem: React.FC<NavItemProps> = ({
         >
             <Link
                 href={href}
-                className="focus:outline-none"
+                className={`focus:outline-none ${active ? "nav-item-active" : ""}`}
                 aria-label={`Navigate to ${text} section`}
+                aria-current={active ? "true" : undefined}
                 title={`Navigate to ${text}`}
                 tabIndex={sidebarEntered ? 0 : -1}
                 prefetch={false}

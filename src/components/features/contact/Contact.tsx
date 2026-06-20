@@ -1,102 +1,61 @@
 // ============================================================
 // Component: Contact
-// Purpose: Display contact methods and contact form in a two-column layout
+// Purpose: Contact methods + form, unified onto the COMMIT HISTORY language
 // ============================================================
 
 import React from "react";
 
 import type { ContactSectionProps } from "@/shared/types";
 
-import {
-    BackdropText,
-    ContactForm,
-    ContactMethodCard,
-    Wrapper,
-} from "@/components";
-
-// ============================================================
-// Component Definition
-// ============================================================
+import { Section } from "@/components/layouts";
+import { ContactForm, ContactMethodCard } from "@/components";
 
 /**
- * Contact component renders a section with contact methods and contact form.
- * Features a two-column layout with contact method cards and a contact form.
- *
- * @param props - Component props
- * @param props.id - Unique identifier for the section
- * @param props.contactItems - Array of contact method data
- * @param props.resetAnimationOnView - Whether to reset animations on view
- * @returns Contact section component
+ * Contact — rebuilt onto the shared Section primitive. The old decorated era
+ * (Wrapper gradient + BackdropText + dotted .pat-background) is removed so the
+ * page reads as one site; the form logic/hooks are untouched.
  */
-const Contact: React.FC<ContactSectionProps> = ({
-    id,
-    contactItems,
-    resetAnimationOnView,
-    verticalRulePosition,
-}) => {
-    // ============================================================
-    // Data Processing
-    // ============================================================
-
+const Contact: React.FC<ContactSectionProps> = ({ id, contactItems }) => {
     const keyedContacts = contactItems.map((c, index) => ({
         key: (c as any)._id || `${c.type}-${c.value}-${index}`,
         item: c,
     }));
 
-    // ============================================================
-    // Render
-    // ============================================================
-
     return (
-        <Wrapper
+        <Section
             id={id}
-            title="Contact Me"
-            subtitle="Let's Talk About Ideas"
-            backgroundVariant="gradientDown"
-            contentMaxWidth="1180px"
-            verticalRulePosition={verticalRulePosition}
-            resetAnimationOnView={resetAnimationOnView}
+            tone="sunken"
+            eyebrow="Contact"
+            title="Let's talk"
+            intro="Open to roles and collaboration on systems, data, and product engineering."
+            aria-label="Contact"
         >
-            {/* Contact Methods Column */}
-            <div className="flex-2-5">
-                <div className="p-[10px] flex-wrap-start">
-                    <div
-                        className="w-full relative z-2"
-                        data-testid="contact-methods"
-                        role="list"
-                        aria-label="Contact methods"
-                    >
-                        {keyedContacts.map(({ key, item }) => (
-                            <ContactMethodCard
-                                key={key}
-                                type={item.type}
-                                value={item.value}
-                                label={item.label}
-                                data-testid={`contact-method-${item.type}`}
-                            />
-                        ))}
-                    </div>
+            <div className="grid gap-10 md:grid-cols-[2fr_3fr]">
+                <div
+                    role="list"
+                    aria-label="Contact methods"
+                    data-testid="contact-methods"
+                    className="space-y-4"
+                >
+                    {keyedContacts.map(({ key, item }) => (
+                        <ContactMethodCard
+                            key={key}
+                            type={item.type}
+                            value={item.value}
+                            label={item.label}
+                            data-testid={`contact-method-${item.type}`}
+                        />
+                    ))}
+                </div>
+
+                <div
+                    className="w-full"
+                    data-testid="contact-form-container"
+                >
+                    <ContactForm />
                 </div>
             </div>
-
-            {/* Contact Form Column */}
-            <div className="flex-3-5">
-                <div className="p-[10px] flex-wrap-start">
-                    {/* Decorative background element */}
-                    <div className="size-[240px] bottom-[-32px] left-[-135px] pat-background"></div>
-
-                    <div
-                        className="w-full relative"
-                        data-testid="contact-form-container"
-                    >
-                        <ContactForm />
-                    </div>
-                </div>
-            </div>
-
-            {/* Decorative backdrop text */}
-            <BackdropText text="Contact Me" />
-        </Wrapper>
+        </Section>
     );
 };
 

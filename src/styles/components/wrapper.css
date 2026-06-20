@@ -46,7 +46,7 @@
      * - Tight leading for compact appearance
      */
     .wrapper-header-title {
-        @apply mt-0 mb-[10px]! text-[44px] max-md:text-[26px] max-lg:text-[34px] text-inverse font-bold uppercase tracking-wider break-words leading-snug;
+        @apply mt-0 mb-[10px]! text-[44px] max-md:text-[26px] max-lg:text-[34px] text-ink font-bold uppercase tracking-wider break-words leading-snug;
     }
 
     /**
@@ -56,7 +56,7 @@
      * - Used for individual word styling
      */
     .wrapper-header-title-word {
-        @apply text-[44px] max-md:text-[26px] max-lg:text-[34px] text-inverse;
+        @apply text-[44px] max-md:text-[26px] max-lg:text-[34px] text-ink;
     }
 
     /**
@@ -78,7 +78,7 @@
      * - Normal case (not uppercase)
      */
     .wrapper-header-subtitle-text {
-        @apply ml-[10px] text-[30px] max-lg:text-[24px] text-inverse font-bold font-["Caveat"] tracking-normal normal-case;
+        @apply ml-[10px] text-[30px] max-lg:text-[24px] text-ink font-bold font-["Caveat"] tracking-normal normal-case;
     }
 
     /* ============================================================

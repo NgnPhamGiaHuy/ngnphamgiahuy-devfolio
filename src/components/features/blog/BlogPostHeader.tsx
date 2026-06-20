@@ -81,7 +81,7 @@ const BlogPostHeader = ({
                             /
                         </span>
                         <time
-                            className="text-inverse!"
+                            className="text-ink!"
                             dateTime={date ?? undefined}
                         >
                             {formatDate(date ?? "")}
@@ -89,7 +89,7 @@ const BlogPostHeader = ({
                         <span className="mx-2" aria-hidden>
                             /
                         </span>
-                        <span className="text-inverse!">
+                        <span className="text-ink!">
                             by&nbsp;
                             {author ? (
                                 <span className="text-primary font-semibold">
@@ -103,7 +103,7 @@ const BlogPostHeader = ({
                         </span>
                     </p>
                     <h1
-                        className="w-full max-w-[900px] mt-[20px]! mb-0! mx-auto! text-[54px] max-md:text-[34px] max-lg:text-[44px] text-inverse! text-center font-bold uppercase tracking-wider leading-[1.3]"
+                        className="w-full max-w-[900px] mt-[20px]! mb-0! mx-auto! text-[54px] max-md:text-[34px] max-lg:text-[44px] text-ink! text-center font-bold uppercase tracking-wider leading-[1.3]"
                         data-testid={TEST_IDS.title}
                     >
                         {title}

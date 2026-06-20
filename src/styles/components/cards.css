@@ -26,7 +26,7 @@
      * - Overflow hidden for clean edges
      */
     .card-inner {
-        @apply w-full h-full mt-0 px-[30px] py-[35px] bg-card-inverse rounded-[18px] opacity-100 transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] overflow-hidden relative;
+        @apply w-full h-full mt-0 px-[30px] py-[35px] bg-surface-card rounded-[18px] opacity-100 transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] overflow-hidden relative;
     }
 
     /**
@@ -35,7 +35,7 @@
      * - Uses inverse color for theme compatibility
      */
     .card-category {
-        @apply text-[13px] text-inverse! text-left font-bold tracking-wider uppercase;
+        @apply text-[13px] text-ink! text-left font-bold tracking-wider uppercase;
     }
 
     /**
@@ -55,7 +55,7 @@
      * - Consistent margin bottom for spacing
      */
     .card-title {
-        @apply mb-[15px]! text-[24px]! text-inverse! font-bold leading-snug;
+        @apply mb-[15px]! text-[24px]! text-ink! font-bold leading-snug;
     }
 
     /**
@@ -75,17 +75,14 @@
      * - Relative positioning for arrow placement
      */
     .card-link {
-        @apply h-[22px] text-[16px] text-inverse font-bold align-top leading-[22px] transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] relative;
+        @apply h-[22px] text-[16px] text-ink font-bold align-top leading-[22px] transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] relative;
     }
 
     /**
-     * ServiceCard link arrow icon
-     * - Font Awesome arrow icon
-     * - Primary color for brand consistency
-     * - Smooth transform animation on hover
+     * Card link arrow icon — real Unicode arrow (Font Awesome was removed).
      */
     .card-link::after {
-        @apply content-["\f061"] ml-[15px] top-[1px] text-primary font-["Font_Awesome_7_Free"] font-black transition duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] transform translate-x-0 absolute;
+        @apply content-["\2192"] ml-[8px] text-primary transition-transform duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] transform translate-x-0 relative;
     }
 
     /**
@@ -129,7 +126,7 @@
      * - Responsive padding (24px desktop, 20px mobile)
      */
     .project-card {
-        @apply p-[24px] h-full flex flex-col bg-card-inverse rounded-[20px] overflow-hidden relative;
+        @apply p-[24px] h-full flex flex-col bg-surface-card rounded-[20px] overflow-hidden relative;
     }
 
     /**
@@ -199,7 +196,7 @@
      * - No margin for gap-based spacing
      */
     .project-card-title {
-        @apply m-0! text-[24px] text-inverse font-bold leading-tight;
+        @apply m-0! text-[24px] text-ink font-bold leading-tight;
     }
 
     /**
@@ -217,7 +214,7 @@
      * - Natural height for content flow
      */
     .project-card-description {
-        @apply min-h-auto text-inverse;
+        @apply min-h-auto text-ink;
     }
 
     /**
@@ -230,38 +227,4 @@
         @apply m-0! text-[16px] leading-relaxed line-clamp-3;
     }
 
-    /* ============================================================
-       PlanCard Component (Pricing Cards)
-       ============================================================ */
-
-    /**
-     * PlanCard wrapper container
-     * - Responsive margins with mobile optimization
-     * - Full width with consistent padding
-     * - Shrink prevention for layout stability
-     */
-    .plan-card-wrapper {
-        @apply max-w-full w-full px-[20px] mb-[40px] max-md:mb-[30px] shrink-0 relative;
-    }
-
-    /**
-     * PlanCard main container
-     * - Rounded corners with border styling
-     * - Consistent padding for content
-     * - Background matching card theme
-     */
-    .plan-card {
-        @apply py-[30px] px-[35px] rounded-[18px] bg-card-inverse border-2 border-solid overflow-hidden relative;
-    }
-
-    /**
-     * PlanCard badge (e.g., "Popular", "Best Value")
-     * - Positioned above card with overlap
-     * - Primary color with white text
-     * - Shadow effect for depth
-     * - Rounded pill shape
-     */
-    .plan-card-badge {
-        @apply h-[26px] px-[15px] top-[-12px] right-[60px] text-[13px] text-white font-bold border-2 border-solid border-border-inverse bg-primary shadow-[5px_5px_0px_0px_rgba(0,0,0,.2)] rounded-[26px] absolute uppercase tracking-wider leading-[22px] z-2;
-    }
 }

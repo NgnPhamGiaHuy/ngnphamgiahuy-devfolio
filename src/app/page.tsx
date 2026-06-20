@@ -3,6 +3,7 @@ import React from "react";
 import type { HomePageData } from "@/shared/types";
 
 import { createMockData } from "@/infrastructure/persistence/mocks";
+import { enrichProjects } from "@/infrastructure/persistence/content/project-enrichment";
 import { PageChrome } from "@/components";
 import { renderSection } from "@/components/section/SectionRenderer";
 import {
@@ -35,6 +36,13 @@ export default async function Home(): Promise<React.JSX.Element> {
     });
 
     const FallbackData = createMockData();
+
+    // Fill missing technologies[]/featured on real Sanity projects so the
+    // skill->project graph edges + highlight-reel hierarchy render (DRAFT — see
+    // project-enrichment.ts; Sanity authoring supersedes it).
+    if (data.projects?.length) {
+        data.projects = enrichProjects(data.projects);
+    }
 
     const profile = normalizeProfileData(data.profile, FallbackData);
 

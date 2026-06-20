@@ -31,7 +31,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({
     containerMargin = "m-0",
     iconSize = "size-5",
     iconMargin = "m-0",
-    textColor = "text-inverse",
+    textColor = "text-ink",
     hoverColor = "hover:text-primary",
     className = "",
     ...props

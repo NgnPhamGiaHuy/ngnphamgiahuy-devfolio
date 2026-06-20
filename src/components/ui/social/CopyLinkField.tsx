@@ -55,7 +55,7 @@ const CopyLinkField: React.FC<CopyLinkFieldProps> = ({ url }) => {
             </label>
             <div className="px-4 py-2 flex items-center gap-2 rounded-lg border border-border bg-transparent">
                 <span className="size-7 inline-flex items-center justify-center">
-                    <Link2 className="size-4 text-inverse" aria-hidden="true" />
+                    <Link2 className="size-4 text-ink" aria-hidden="true" />
                 </span>
 
                 <input
@@ -65,7 +65,7 @@ const CopyLinkField: React.FC<CopyLinkFieldProps> = ({ url }) => {
                     value={url}
                     dir="ltr"
                     title={url}
-                    className="min-w-0 flex-1 text-xs text-inverse/80! truncate bg-transparent outline-none"
+                    className="min-w-0 flex-1 text-xs text-ink/80! truncate bg-transparent outline-none"
                     onFocus={(e) => e.currentTarget.select()}
                     data-testid={TEST_IDS.input}
                 />
@@ -78,7 +78,7 @@ const CopyLinkField: React.FC<CopyLinkFieldProps> = ({ url }) => {
                             ? "Link copied to clipboard"
                             : "Copy link to clipboard"
                     }
-                    className="w-20 h-8 px-2.5 inline-flex items-center justify-center gap-1 text-xs text-inverse! hover:text-primary! font-medium border border-inverse! hover:border-primary! rounded-md transition-all duration-300 active:scale-95 cursor-pointer"
+                    className="w-20 h-8 px-2.5 inline-flex items-center justify-center gap-1 text-xs text-ink! hover:text-primary! font-medium border border-ink! hover:border-primary! rounded-md transition-all duration-300 active:scale-95 cursor-pointer"
                     data-copied={copied ? "true" : "false"}
                     data-testid={TEST_IDS.button}
                 >

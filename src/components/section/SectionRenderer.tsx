@@ -4,30 +4,28 @@ import type { MockDataType, SectionConfigItemType } from "@/schemas";
 
 import { getSectionData } from "@/shared/utils/sections";
 
-import Hero from "@/components/features/landing/Hero";
-import Certificates from "@/components/features/certificate/Certificates";
-import Services from "@/components/features/service/Services";
-import Skills from "@/components/features/skill/Skills";
-import Portfolios from "@/components/features/project/Portfolios";
-import Resume from "@/components/features/profile/Resume";
-import Testimonials from "@/components/features/testimonial/Testimonials";
-import Pricing from "@/components/features/pricing/Pricing";
+import CareerGraph from "@/components/features/career-graph/CareerGraph";
+import ProjectBento from "@/components/features/career-graph/ProjectBento";
+import SkillsDependency from "@/components/features/career-graph/SkillsDependency";
+import NowFocus from "@/components/features/career-graph/NowFocus";
 import Blog from "@/components/features/blog/Blog";
 import Contact from "@/components/features/contact/Contact";
-import Map from "@/components/features/contact/Map";
 
+/**
+ * COMMIT HISTORY information architecture.
+ *
+ * The freelancer-template sections (services, pricing, testimonials, map,
+ * resume, portfolios cards, certificates) are intentionally NOT registered:
+ * their data now feeds the career graph instead. `hero` renders the graph,
+ * `skills` renders the dependency view, `now` the current focus.
+ */
 const SECTION_COMPONENTS: Record<string, React.ComponentType<any>> = {
-    hero: Hero,
-    certificates: Certificates,
-    services: Services,
-    skills: Skills,
-    portfolios: Portfolios,
-    resume: Resume,
-    testimonials: Testimonials,
-    pricing: Pricing,
+    hero: CareerGraph,
+    projects: ProjectBento,
+    skills: SkillsDependency,
+    now: NowFocus,
     blog: Blog,
     contact: Contact,
-    map: Map,
 } as const;
 
 interface RenderSectionOptions {
@@ -60,9 +58,6 @@ export const renderSection = (
 
     const SectionComponent = getSectionComponent(sectionId);
     if (!SectionComponent) {
-        console.warn(
-            `renderSection: No component found for section "${sectionId}"`
-        );
         return null;
     }
 

@@ -1,9 +1,16 @@
 import type { ProfileType, SectionConfigItemType } from "@/schemas";
 
+export interface NavMenuItem {
+    id: string;
+    label: string;
+}
+
 export interface SidebarProps {
     profile: ProfileType;
     isMenuOpen: boolean;
-    enabledSections?: SectionConfigItemType[];
+    /** Menu items + active id are lifted to SiteHeader (shared with desktop nav). */
+    menuItems: NavMenuItem[];
+    activeId: string | null;
 }
 
 export interface SiteHeaderProps {

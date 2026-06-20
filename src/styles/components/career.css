@@ -1,0 +1,419 @@
+/* ============================================================
+   File: career.css
+   Purpose: COMMIT HISTORY — career graph, blueprint grid, case study,
+            and the editorial/mono type primitives.
+   ============================================================ */
+
+/* ---- Theming tokens — mapped onto the DESIGN.md claude.com palette.
+   The graph/section/card surfaces all read from these, so re-toning here
+   cascades the cream/coral/navy reskin through every consumer. ---- */
+:root {
+    --graph-ink: var(--color-ink);
+    --graph-muted: var(--color-muted);
+    --graph-line: var(--color-hairline); /* warm cream hairline */
+    --graph-surface: var(--color-surface-card); /* feature-card cream */
+    /* THE accent is now CORAL — the signature Anthropic primary. */
+    --graph-accent: var(--color-primary);
+    --graph-accent-soft: color-mix(in oklab, var(--color-primary) 14%, transparent);
+    --blueprint-line: color-mix(in oklab, var(--color-ink) 6%, transparent);
+    /* Section elevation banding — cream → cream-card → strong-cream rhythm. */
+    --panel: var(--color-surface-soft);
+    --bg-sunken: var(--color-surface-cream-strong);
+
+    /* Architecture-layer palette (source -> consumption). DIAGRAM-ONLY:
+       these hues may appear only inside graph/architecture diagrams encoding a
+       real data-flow stage — never as chips, card-bars, or section backgrounds. */
+    --layer-source: #7aa2ff;
+    --layer-ingest: var(--color-accent-teal);
+    --layer-storage: var(--color-accent-amber);
+    --layer-transform: #c792ea;
+    --layer-consumption: var(--color-primary);
+
+    /* Shared rhythm + media system (cohesion tokens) */
+    --section-pad: clamp(64px, 8vw, 96px); /* DESIGN.md 96px section rhythm */
+    --frame-radius: var(--radius-lg); /* 12px — content/product cards */
+    --media-ratio-browser: 16 / 10;
+    --media-ratio-card: 4 / 3;
+    /* The signature reveal/morph easing (JS mirror: EASE_STANDARD in motion/). */
+    --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Dark mode: hairline/surface need theme-aware values (the @theme dark block
+   already re-points the base palette; these follow it). Accent stays CORAL. */
+[data-theme="dark"] {
+    --graph-line: color-mix(in oklab, var(--foreground) 16%, transparent);
+    --graph-surface: var(--color-surface-card);
+    --panel: var(--color-surface-soft);
+    --bg-sunken: #121110;
+    --blueprint-line: color-mix(in oklab, var(--foreground) 10%, transparent);
+}
+
+/* ---- Shared section rhythm ---- */
+.section-shell {
+    width: 100%;
+    padding-top: var(--section-pad);
+    padding-bottom: var(--section-pad);
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+}
+.section-inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1200px; /* DESIGN.md ~1200px max content width */
+}
+
+/* Section elevation banding — distinct "stages" via surface + hairline, not
+   colour blocks. Subtle steps + a hairline + the eyebrow keep transitions
+   legible without stripes. */
+.section-shell--panel {
+    background: var(--panel);
+    border-top: 1px solid var(--graph-line);
+    border-bottom: 1px solid var(--graph-line);
+}
+.section-shell--sunken {
+    background: var(--bg-sunken);
+}
+
+/* ---- Browser-frame media system ---- */
+.browser-frame {
+    border: 1px solid var(--graph-line);
+    border-radius: var(--frame-radius);
+    background: var(--graph-surface);
+    overflow: hidden;
+    isolation: isolate; /* fixes Safari rounded-corner + transform leak */
+}
+.browser-frame__bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--graph-line);
+    background: color-mix(in oklab, var(--graph-surface) 70%, var(--background));
+}
+.browser-frame__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 9999px;
+    background: var(--graph-line);
+    flex: none;
+}
+.browser-frame__pill {
+    margin-left: 8px;
+    min-width: 0;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--graph-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.browser-frame__body {
+    position: relative;
+    aspect-ratio: var(--media-ratio-browser);
+    overflow: hidden;
+    background: var(--graph-surface);
+}
+.browser-frame__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: grayscale(1) contrast(0.96);
+    transition:
+        filter 0.45s ease,
+        transform 0.55s var(--ease-standard);
+}
+.browser-frame__placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: var(--graph-muted);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 12px;
+}
+.browser-frame--color .browser-frame__img {
+    filter: none;
+}
+
+/* Desktop: restore colour on hover. Touch: always colour. */
+@media (hover: hover) {
+    .media-hover:hover .browser-frame__img {
+        filter: grayscale(0) contrast(1);
+        transform: scale(1.04);
+    }
+}
+@media (hover: none) {
+    .browser-frame__img {
+        filter: grayscale(0) contrast(1);
+    }
+}
+
+/* ---- Active nav item (scroll-spy) ---- */
+.nav-item-active,
+.nav-item-active .nav-item-letter {
+    color: var(--graph-accent);
+}
+
+/* ---- Profile portrait (duotone, circular) ---- */
+.portrait {
+    border: 1px solid var(--graph-line);
+    border-radius: 9999px;
+    overflow: hidden;
+    isolation: isolate;
+}
+.portrait img {
+    filter: grayscale(1) contrast(0.96);
+    transition: filter 0.4s ease;
+}
+@media (hover: hover) {
+    .portrait:hover img {
+        filter: none;
+    }
+}
+@media (hover: none) {
+    .portrait img {
+        filter: none;
+    }
+}
+
+/* ---- Bento tiles ---- */
+.bento-tile {
+    border: 1px solid var(--graph-line);
+    border-radius: var(--frame-radius);
+    background: var(--graph-surface);
+    overflow: hidden;
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+/* The BrowserFrame inside a bento tile is part of the card — suppress its
+   own outer border and radius so there's only one border around the whole card. */
+.bento-tile .browser-frame {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--graph-line);
+}
+/* DESIGN.md elevation is color-block-first / shadow-rare: no translateY lift.
+   Interactive affordance is a faint coral border on hover only. */
+@media (hover: hover) {
+    .bento-tile:hover {
+        border-color: var(--graph-accent);
+    }
+    .bento-tile:hover .browser-frame {
+        border-bottom-color: var(--graph-accent);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .browser-frame__img,
+    .bento-tile {
+        transition: none;
+    }
+    .media-hover:hover .browser-frame__img {
+        transform: none;
+    }
+}
+
+/* ---- Type primitives ---- */
+.font-mono-tnum {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+}
+
+.display-fluid {
+    font-family: var(--font-display), "Tiempos Headline", Garamond, serif;
+    font-size: clamp(2.4rem, 1.4rem + 4vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-weight: 500; /* serif display — never bold */
+    color: var(--color-ink);
+}
+
+/* Eyebrow = DESIGN.md caption-uppercase: humanist sans, 12px, 1.5px tracking. */
+.eyebrow {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+
+.measure {
+    max-width: 66ch;
+}
+
+/* ---- Blueprint grid (static CSS, zero runtime cost) ---- */
+.blueprint-grid {
+    background-image:
+        linear-gradient(var(--blueprint-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center;
+}
+
+/* ---- Career graph ---- */
+.career-graph {
+    width: 100%;
+}
+/* SVG graph is desktop-only; mobile gets the vertical spine. CSS owns the
+   switch (an explicit display here would otherwise beat Tailwind's `hidden`). */
+.career-graph__svg {
+    width: 100%;
+    height: auto;
+    display: none;
+    overflow: visible;
+}
+.career-spine {
+    display: block;
+}
+@media (min-width: 768px) {
+    .career-graph__svg {
+        display: block;
+    }
+    .career-spine {
+        display: none;
+    }
+}
+
+.graph-node__box {
+    fill: var(--graph-surface);
+    stroke: var(--graph-line);
+    stroke-width: 1.25;
+    transition:
+        stroke 0.18s ease,
+        fill 0.18s ease;
+}
+.graph-node--origin .graph-node__box,
+.graph-node--lit .graph-node__box {
+    stroke: var(--graph-accent);
+    stroke-width: 1.75;
+}
+.graph-node__label {
+    fill: var(--graph-ink);
+    font-family: var(--font-sans), sans-serif;
+}
+.graph-node__sub {
+    fill: var(--graph-muted);
+    font-family: var(--font-mono), ui-monospace, monospace;
+}
+.graph-node[data-interactive="true"] {
+    cursor: pointer;
+}
+.graph-node[data-interactive="true"]:focus-visible {
+    outline: none;
+}
+.graph-node[data-interactive="true"]:focus-visible .graph-node__box {
+    stroke: var(--graph-accent);
+    stroke-width: 2;
+}
+
+.graph-edge {
+    fill: none;
+    stroke: var(--graph-line);
+    stroke-width: 1.25;
+}
+.graph-edge--lit {
+    stroke: var(--graph-accent);
+    stroke-width: 2;
+}
+.graph-edge--pipeline {
+    stroke-dasharray: 5 4;
+}
+
+/* Genesis + lineage cascade — pure CSS so it runs without JS and is fully
+   suppressed under prefers-reduced-motion (handled globally in base.css).
+   Base state is the *final* state (visible / drawn), so no-JS users and the
+   SSR snapshot always see the complete graph. */
+@keyframes graph-pop {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes graph-draw {
+    from {
+        stroke-dashoffset: 1;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+.career-graph[data-animate="true"] .graph-node {
+    animation: graph-pop 0.5s ease both;
+}
+.career-graph[data-animate="true"] .graph-edge {
+    animation: graph-pop 0.5s ease both;
+}
+.career-graph[data-animate="true"] .graph-edge--lit {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    animation:
+        graph-pop 0.4s ease both,
+        graph-draw 0.7s var(--ease-standard) both;
+}
+
+/* De-emphasis is contrast-safe (kept well above 0 opacity) */
+.career-graph[data-focus="true"] .graph-node:not(.is-active) {
+    opacity: 0.45;
+}
+.career-graph[data-focus="true"] .graph-edge:not(.is-active) {
+    opacity: 0.25;
+}
+.career-graph .graph-node,
+.career-graph .graph-edge {
+    transition: opacity 0.18s ease;
+}
+
+/* ---- Case study panel ---- */
+.case-study__scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: color-mix(in oklab, var(--background) 55%, transparent);
+    backdrop-filter: blur(3px);
+}
+.case-study__panel {
+    background: var(--background);
+    border: 1px solid var(--graph-line);
+}
+.arch-node {
+    font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* ---- Skill dependency chips (DESIGN.md badge-pill / category-tab) ---- */
+.skill-chip {
+    border: 1px solid var(--graph-line);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface-card);
+    color: var(--color-body);
+    font-family: var(--font-sans), sans-serif;
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease,
+        color 0.15s ease;
+}
+@media (hover: hover) {
+    .skill-chip:hover {
+        border-color: var(--graph-accent);
+        color: var(--color-ink);
+    }
+}
+.skill-chip[data-active="true"] {
+    border-color: var(--graph-accent);
+    background: var(--graph-accent-soft);
+    color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .career-graph .graph-node,
+    .career-graph .graph-edge {
+        transition: none;
+    }
+}

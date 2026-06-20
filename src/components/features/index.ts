@@ -1,35 +1,9 @@
 // Blog components (list, preview, and single-post views)
 export * from "./blog";
 
-// Certificate components
-export * from "./certificate";
+// Career graph (the portfolio's central artifact: hero graph, case studies,
+// skills, now) — restyled to the DESIGN.md claude.com aesthetic.
+export * from "./career-graph";
 
 // Contact components
 export * from "./contact";
-
-// Export components
-export * from "./export";
-
-// Landing components
-export * from "./landing";
-
-// Pricing components
-export * from "./pricing";
-
-// Profile components
-export * from "./profile";
-
-// Project components
-export * from "./project";
-
-// Service components
-export * from "./service";
-
-// Skill components
-export * from "./skill";
-
-// Statistics components
-export * from "./statistics";
-
-// Testimonial components
-export * from "./testimonial";

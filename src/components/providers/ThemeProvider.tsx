@@ -6,6 +6,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { domAnimation, LazyMotion, MotionConfig } from "framer-motion";
 import { ThemeProvider as NextThemeProvider } from "next-themes";
 
 // ============================================================
@@ -47,11 +48,21 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     // Render
     // ============================================================
 
+    // LazyMotion + the `m` component (used everywhere instead of `motion`) ships
+    // only the domAnimation feature bundle instead of the full motion factory —
+    // the main First-Load-JS win. reducedMotion="user" makes every animation
+    // honor the OS prefers-reduced-motion setting (accessibility baseline).
+    const content = (
+        <LazyMotion features={domAnimation}>
+            <MotionConfig reducedMotion="user">{children}</MotionConfig>
+        </LazyMotion>
+    );
+
     // Prevent hydration mismatch by rendering placeholder until mounted
     if (!mounted) {
         return (
             <div suppressHydrationWarning data-testid="theme-provider-loading">
-                {children}
+                {content}
             </div>
         );
     }
@@ -59,12 +70,12 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     return (
         <NextThemeProvider
             attribute="data-theme"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="light"
+            enableSystem={false}
             disableTransitionOnChange
             data-testid="theme-provider"
         >
-            {children}
+            {content}
         </NextThemeProvider>
     );
 };

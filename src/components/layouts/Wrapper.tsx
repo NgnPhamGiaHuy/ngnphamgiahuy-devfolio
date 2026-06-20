@@ -6,7 +6,7 @@
 "use client";
 
 import clsx from "clsx";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
 import type { WrapperProps } from "@/shared/types";
@@ -91,7 +91,7 @@ const Wrapper: React.FC<WrapperProps> = ({
             data-testid="wrapper-section"
             {...props}
         >
-            <motion.div
+            <m.div
                 key={animationKey}
                 className="container-full"
                 initial="hidden"
@@ -126,7 +126,7 @@ const Wrapper: React.FC<WrapperProps> = ({
                         </section>
                     </div>
                 </div>
-            </motion.div>
+            </m.div>
         </section>
     );
 };

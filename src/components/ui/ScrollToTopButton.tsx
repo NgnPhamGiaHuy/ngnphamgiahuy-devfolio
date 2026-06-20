@@ -6,7 +6,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ChevronUpIcon } from "@heroicons/react/24/outline";
 
 import { BUTTON_VARIANTS } from "@/infrastructure/config";
@@ -61,7 +61,7 @@ const ScrollToTopButton: React.FC = () => {
     return (
         <AnimatePresence>
             {isVisible && (
-                <motion.button
+                <m.button
                     variants={BUTTON_VARIANTS.scrollToTop()}
                     initial="hidden"
                     animate="visible"
@@ -69,12 +69,12 @@ const ScrollToTopButton: React.FC = () => {
                     whileHover="hover"
                     whileTap="tap"
                     onClick={scrollToTop}
-                    className="p-3 bottom-8 right-8 text-inverse bg-card-inverse/80 border-2 border-solid border-primary rounded-full shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] fixed cursor-pointer z-50"
+                    className="p-3 bottom-8 right-8 text-ink bg-surface-card/80 border-2 border-solid border-primary rounded-full shadow-[5px_5px_0px_0px_rgb(0_0_0/20%)] fixed cursor-pointer z-50"
                     aria-label="Scroll to top"
                     title="Scroll to top"
                     data-testid="scroll-to-top-button"
                 >
-                    <motion.div
+                    <m.div
                         animate={{ y: [0, -2, 0] }}
                         transition={{
                             duration: 2,
@@ -83,8 +83,8 @@ const ScrollToTopButton: React.FC = () => {
                         }}
                     >
                         <ChevronUpIcon className="w-6 h-6" aria-hidden="true" />
-                    </motion.div>
-                </motion.button>
+                    </m.div>
+                </m.button>
             )}
         </AnimatePresence>
     );

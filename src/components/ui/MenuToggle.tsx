@@ -60,7 +60,7 @@ const MenuToggle: React.FC<MenuToggleProps> = ({
             {/* Top hamburger line */}
             <span
                 className={clsx(
-                    "w-full h-[2px] left-0 bg-inverse transition-all duration-500 block absolute",
+                    "w-full h-[2px] left-0 bg-ink transition-all duration-500 block absolute",
                     isMenuOpen ? "top-[14px] -rotate-45" : "top-[8px]"
                 )}
                 aria-hidden="true"
@@ -69,7 +69,7 @@ const MenuToggle: React.FC<MenuToggleProps> = ({
             {/* Bottom hamburger line */}
             <span
                 className={clsx(
-                    "w-full h-[2px] left-0 bg-inverse transition-all duration-500 block absolute",
+                    "w-full h-[2px] left-0 bg-ink transition-all duration-500 block absolute",
                     isMenuOpen ? "top-[14px] rotate-45" : "bottom-[8px]"
                 )}
                 aria-hidden="true"

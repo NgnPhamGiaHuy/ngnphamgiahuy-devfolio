@@ -1,81 +1,75 @@
 /* ============================================================
    File: header.css
-   Purpose: Header component styles with scroll animations
-   Components: SiteHeader
+   Purpose: Persistent 64px CREAM top-nav band (DESIGN.md top-nav).
+            Brand wordmark left · horizontal section links (desktop) ·
+            theme toggle + hamburger (mobile) right.
+   Components: SiteHeader, top-nav links
    ============================================================ */
 
 @layer components {
-    /* ============================================================
-       Header Component
-       ============================================================ */
-
-    /**
-     * Header main container
-     * - Full width with responsive padding
-     * - Fixed positioning at top of screen
-     * - Smooth transition for scroll effects
-     * - High z-index for proper layering
-     * - Responsive padding for mobile devices
-     */
+    /* ---- The 64px cream nav band ---- */
     .header {
-        @apply w-full px-5 py-[30px] md:p-[30px] top-0 left-0 absolute transition-all duration-300 ease-[cubic-bezier(0.3,0,0.3,1)] z-[90];
+        @apply w-full h-16 px-5 md:px-8 top-0 left-0 absolute z-[90] flex items-center transition-transform duration-300 ease-[cubic-bezier(0.3,0,0.3,1)];
+        background: color-mix(in oklab, var(--background) 90%, transparent);
+        backdrop-filter: saturate(1.1) blur(8px);
+        -webkit-backdrop-filter: saturate(1.1) blur(8px);
+        border-bottom: 1px solid var(--color-hairline);
     }
 
-    /* ============================================================
-       Header Scroll Animations
-       ============================================================ */
+    /* ---- Desktop horizontal nav links (DESIGN.md nav-link: 14px / 500) ---- */
+    .top-nav {
+        @apply hidden md:flex items-center gap-1;
+    }
+    .top-nav-link {
+        @apply inline-flex items-center px-3 py-2 relative;
+        font-family: var(--font-sans), sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--color-muted);
+        border-radius: var(--radius-md);
+        transition: color 0.15s ease, background-color 0.15s ease;
+    }
+    .top-nav-link:hover {
+        color: var(--color-ink);
+    }
+    .top-nav-link[aria-current="true"] {
+        color: var(--color-ink);
+    }
+    /* Active marker: a short coral underline (the system's one accent) */
+    .top-nav-link[aria-current="true"]::after {
+        content: "";
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: 2px;
+        height: 2px;
+        border-radius: var(--radius-pill);
+        background: var(--color-primary);
+    }
 
-    /**
-     * Header animate-in animation
-     * - Slides down from off-screen position
-     * - Smooth cubic-bezier easing
-     * - 0.6s duration for smooth entrance
-     * - Only applies on large screens (1200px+)
-     */
+    /* ---- Header scroll show/hide (slide the bar on scroll) ---- */
     @media screen and (min-width: 1200px) {
         .header.animate-in {
-            animation: header_animate_one 0.6s
+            animation: header_animate_one 0.5s
                 cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s forwards;
         }
-
-        /**
-         * Header animate-out animation
-         * - Slides up to off-screen position
-         * - Faster duration for quick exit
-         * - Different cubic-bezier for exit timing
-         */
         .header.animate-out {
             animation: header_animate_two 0.3s
                 cubic-bezier(0.55, 0.06, 0.68, 0.19) 0s forwards;
         }
-
-        /**
-         * Header slide-in keyframes
-         * - Starts from -100px translateY (off-screen)
-         * - Ends at 0px translateY (visible position)
-         * - Uses translateZ(0) for hardware acceleration
-         */
         @keyframes header_animate_one {
             0% {
                 transform: translateZ(0) translateY(-100px);
             }
-
             100% {
                 transform: translateZ(0) translateY(0px);
             }
         }
-
-        /**
-         * Header slide-out keyframes
-         * - Starts from 0px translateY (visible position)
-         * - Ends at -100px translateY (off-screen)
-         * - Uses translateZ(0) for hardware acceleration
-         */
         @keyframes header_animate_two {
             0% {
                 transform: translateZ(0) translateY(0px);
             }
-
             100% {
                 transform: translateZ(0) translateY(-100px);
             }

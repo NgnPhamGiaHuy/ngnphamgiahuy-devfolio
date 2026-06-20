@@ -1,5 +1,4 @@
 export type * from "./navigation.types";
-export type * from "./accordion.types";
 export type * from "./animation.types";
 export type * from "./forms.types";
 export type * from "./layout.types";

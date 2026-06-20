@@ -32,7 +32,7 @@ const BlogPreview = ({ blog, ...props }: { blog: BlogPostType }) => {
             data-testid="blog-preview-card"
             {...props}
         >
-            <div className="p-[24px] flex flex-col bg-card-inverse rounded-[18px] overflow-hidden relative shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] transition-shadow duration-500 h-full">
+            <div className="p-[24px] flex flex-col bg-surface-card rounded-[18px] overflow-hidden relative shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] transition-shadow duration-500 h-full">
                 <div className="h-full flex flex-col justify-between">
                     {/* Blog Image */}
                     <div className="h-auto mt-[20px] text-[0] order-2 relative">
@@ -60,14 +60,14 @@ const BlogPreview = ({ blog, ...props }: { blog: BlogPostType }) => {
                         <div>
                             {/* Publication Date */}
                             <time
-                                className="mt-[8px] mb-[2px] text-[13px] text-inverse! font-medium uppercase tracking-wider block"
+                                className="mt-[8px] mb-[2px] text-[13px] text-ink! font-medium uppercase tracking-wider block"
                                 dateTime={blog.date}
                             >
                                 {formattedDate}
                             </time>
 
                             {/* Blog Title */}
-                            <h3 className="text-[22px] text-inverse! line-clamp-2">
+                            <h3 className="text-[22px] text-ink! line-clamp-2">
                                 <Link
                                     href={postHref}
                                     aria-label={`Read blog post: ${postTitle}`}

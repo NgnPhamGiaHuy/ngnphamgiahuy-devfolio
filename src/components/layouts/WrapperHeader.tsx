@@ -5,7 +5,7 @@
 
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { m, Variants } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
 import type { WrapperHeaderProps } from "@/shared/types";
@@ -91,7 +91,7 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({
                     <div className="p-[10px] flex-wrap-start">
                         <div className="w-full text-center relative">
                             {/* Animated Title */}
-                            <motion.h2
+                            <m.h2
                                 key={`title-${animationKey}`}
                                 className="wrapper-header-title"
                                 initial="hidden"
@@ -100,21 +100,21 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({
                             >
                                 {title?.split(" ").map((word, index, array) => (
                                     <React.Fragment key={index}>
-                                        <motion.span
+                                        <m.span
                                             className="wrapper-header-title-word"
                                             variants={spanVariants({ index })}
                                         >
                                             {word}
-                                        </motion.span>
+                                        </m.span>
                                         {index !== array.length - 1 && (
                                             <span> </span>
                                         )}
                                     </React.Fragment>
                                 ))}
-                            </motion.h2>
+                            </m.h2>
 
                             {/* Animated Subtitle */}
-                            <motion.div
+                            <m.div
                                 key={`subtitle-${animationKey}`}
                                 className="wrapper-header-subtitle"
                                 initial="hidden"
@@ -126,7 +126,7 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({
                                     baseDelay={0}
                                     key={`first-word-${animationKey}`}
                                 />
-                                <motion.strong
+                                <m.strong
                                     className="wrapper-header-subtitle-text"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
@@ -138,8 +138,8 @@ const WrapperHeader: React.FC<WrapperHeaderProps> = ({
                                         baseDelay={1200}
                                         key={`rest-words-${animationKey}`}
                                     />
-                                </motion.strong>
-                            </motion.div>
+                                </m.strong>
+                            </m.div>
                         </div>
                     </div>
                 </div>

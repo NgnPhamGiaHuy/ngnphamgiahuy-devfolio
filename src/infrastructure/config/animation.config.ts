@@ -6,11 +6,9 @@ export const ANIMATION_CONFIG = {
     EASING: {
         easeInOut: "easeInOut",
         easeOut: "easeOut",
-        easeIn: "easeIn",
-        circOut: "circOut",
-        circInOut: "circInOut",
-        backOut: "backOut",
-        backInOut: "backInOut",
+        /** The signature cubic-bezier shared by every reveal/morph (single
+         *  source of truth; CSS mirror is --ease-standard in career.css). */
+        standard: [0.22, 1, 0.36, 1],
     },
 
     DURATION: {
@@ -193,90 +191,6 @@ export const PROJECT_CARD_VARIANTS = {
     }),
 } as const;
 
-export const SERVICE_CARD_VARIANTS = {
-    card: (startScale = 0.95): Variants => ({
-        hidden: {
-            opacity: 0,
-            scale: startScale,
-        },
-        visible: {
-            opacity: 1,
-            scale: 1,
-            transition: {
-                duration: ANIMATION_CONFIG.DURATION.NORMAL,
-                ease: ANIMATION_CONFIG.EASING.easeOut,
-            },
-        },
-    }),
-
-    content: (distance = 10): Variants => ({
-        hidden: {
-            opacity: 0,
-            y: distance,
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: ANIMATION_CONFIG.DURATION.NORMAL,
-                ease: ANIMATION_CONFIG.EASING.easeOut,
-            },
-        },
-    }),
-
-    pattern: (): Variants => ({
-        hidden: {
-            opacity: 0,
-            scale: 0.8,
-            rotate: -5,
-        },
-        visible: {
-            opacity: 1,
-            scale: 1,
-            rotate: 0,
-            transition: {
-                delay: ANIMATION_CONFIG.DELAY.LONG,
-                duration: ANIMATION_CONFIG.DURATION.SLOW,
-                ease: ANIMATION_CONFIG.EASING.easeOut,
-            },
-        },
-    }),
-} as const;
-
-export const CERTIFICATE_CARD_VARIANTS = {
-    card: (startScale = 0.95): Variants => ({
-        hidden: {
-            opacity: 0,
-            scale: startScale,
-        },
-        visible: {
-            opacity: 1,
-            scale: 1,
-            transition: {
-                duration: ANIMATION_CONFIG.DURATION.NORMAL,
-                ease: ANIMATION_CONFIG.EASING.easeOut,
-            },
-        },
-    }),
-} as const;
-
-export const SKILL_CARD_VARIANTS = {
-    item: (): Variants => ({
-        hidden: {
-            opacity: 0,
-            y: 20,
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: ANIMATION_CONFIG.DURATION.NORMAL,
-                ease: ANIMATION_CONFIG.EASING.easeOut,
-            },
-        },
-    }),
-} as const;
-
 export const BUTTON_VARIANTS = {
     scrollToTop: (): Variants => ({
         hidden: {
@@ -316,61 +230,9 @@ export const BUTTON_VARIANTS = {
             },
         },
     }),
-
-    downloadResume: (): Variants => ({
-        hidden: {
-            opacity: 0,
-            scale: 0.8,
-        },
-        visible: {
-            opacity: 1,
-            scale: 1,
-            transition: {
-                duration: ANIMATION_CONFIG.DURATION.NORMAL,
-                ease: ANIMATION_CONFIG.EASING.easeOut,
-            },
-        },
-        hover: {
-            scale: 1.05,
-            y: -2,
-            transition: {
-                duration: ANIMATION_CONFIG.DURATION.FAST,
-                ease: ANIMATION_CONFIG.EASING.easeInOut,
-            },
-        },
-        tap: {
-            scale: 0.98,
-            transition: {
-                duration: ANIMATION_CONFIG.DURATION.FASTEST,
-                ease: ANIMATION_CONFIG.EASING.easeInOut,
-            },
-        },
-    }),
 } as const;
 
 export const FORM_VARIANTS = {
-    input: (): Variants => ({
-        hidden: {
-            opacity: 0,
-            y: 10,
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: ANIMATION_CONFIG.DURATION.NORMAL,
-                ease: ANIMATION_CONFIG.EASING.easeOut,
-            },
-        },
-        focus: {
-            scale: 1.02,
-            transition: {
-                duration: ANIMATION_CONFIG.DURATION.FAST,
-                ease: ANIMATION_CONFIG.EASING.easeInOut,
-            },
-        },
-    }),
-
     status: (): Variants => ({
         hidden: {
             opacity: 0,
@@ -398,22 +260,16 @@ export const FORM_VARIANTS = {
     }),
 } as const;
 
-export const StandardAnimations = STANDARD_ANIMATIONS;
-
 export const COMMON_ANIMATIONS = {
     fadeInUp15: STANDARD_ANIMATIONS.fadeInUp(15),
-    fadeInUp20: STANDARD_ANIMATIONS.fadeInUp(20),
-    fadeInUp30: STANDARD_ANIMATIONS.fadeInUp(30),
 
     scaleIn95: STANDARD_ANIMATIONS.scaleIn(0.95),
-    scaleIn90: STANDARD_ANIMATIONS.scaleIn(0.9),
 
     springUp16: STANDARD_ANIMATIONS.springUp(16),
     springUp30: STANDARD_ANIMATIONS.springUp(30),
     springUp50: STANDARD_ANIMATIONS.springUp(50),
 
     staggerNormal: STANDARD_ANIMATIONS.staggerChildren(Stagger.NORMAL),
-    staggerTight: STANDARD_ANIMATIONS.staggerChildren(Stagger.TIGHT),
     staggerLoose: STANDARD_ANIMATIONS.staggerChildren(Stagger.LOOSE),
 
     buttonHover: STANDARD_ANIMATIONS.buttonHover(),

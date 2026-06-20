@@ -53,18 +53,14 @@ const SECTION_VERTICAL_RULE_DEFAULTS: Record<string, "left" | "right"> = {
     map: "left",
 } as const;
 
+// COMMIT HISTORY IA: hero renders the career graph, skills the dependency
+// view, now the current focus. Freelancer sections are intentionally absent.
 const DEFAULT_SECTION_CONFIG: SectionConfigItemType[] = [
     { id: "hero", enabled: true },
-    { id: "services", enabled: true, resetAnimationOnView: false },
+    { id: "projects", enabled: true, resetAnimationOnView: false },
     { id: "skills", enabled: true, resetAnimationOnView: false },
-    { id: "portfolios", enabled: true, resetAnimationOnView: false },
-    { id: "resume", enabled: true, resetAnimationOnView: false },
-    { id: "certificates", enabled: true, resetAnimationOnView: false },
-    { id: "testimonials", enabled: true, resetAnimationOnView: false },
-    { id: "pricing", enabled: true, resetAnimationOnView: false },
-    { id: "blog", enabled: true, resetAnimationOnView: false },
+    { id: "now", enabled: true, resetAnimationOnView: false },
     { id: "contact", enabled: true, resetAnimationOnView: false },
-    { id: "map", enabled: true },
 ] as const;
 
 const DEFAULT_MAP_CONFIG = {
@@ -229,18 +225,19 @@ export const normalizeSectionConfigData = (
         return [...DEFAULT_SECTION_CONFIG];
     }
 
+    const settingsRecord = settings as Record<string, unknown>;
+    const cfg = (key: string): SectionConfigItemType => ({
+        id: key,
+        enabled: true,
+        ...(settingsRecord[key] as object | undefined),
+    });
+
     return [
-        { id: "hero", ...settings.hero },
-        { id: "services", ...settings.services },
-        { id: "skills", ...settings.skills },
-        { id: "portfolios", ...settings.portfolios },
-        { id: "resume", ...settings.resume },
-        { id: "certificates", ...settings.certificates },
-        { id: "testimonials", ...settings.testimonials },
-        { id: "pricing", ...settings.pricing },
-        { id: "blog", ...settings.blog },
-        { id: "contact", ...settings.contact },
-        { id: "map", ...settings.map },
+        cfg("hero"),
+        cfg("projects"),
+        cfg("skills"),
+        cfg("now"),
+        cfg("contact"),
     ];
 };
 
@@ -253,15 +250,29 @@ type SectionBuilder = (
  * Maps a section id to the data it needs. Replaces the former 11-case switch.
  */
 const SECTION_BUILDERS: Record<string, SectionBuilder> = {
+    // The career graph needs the whole spine: profile + education + experience
+    // + skills + projects, joined into a lineage DAG inside the component.
     hero: (props, fb) => ({
         profile: normalizeProfileData(props.profile, fb),
+        education: normalizeEducationData(props.education, fb),
+        experience: normalizeExperienceData(props.experience, fb),
+        skills: normalizeSkillsData(props.skills, fb),
         projects: normalizeProjectsData(props.projects, fb),
+    }),
+    projects: (props, fb) => ({
+        projects: normalizeProjectsData(props.projects, fb),
+    }),
+    now: (props, fb) => ({
+        profile: normalizeProfileData(props.profile, fb),
+        experience: normalizeExperienceData(props.experience, fb),
     }),
     services: (props, fb) => ({
         services: normalizeServicesData(props.services, fb),
     }),
+    // Skills become a dependency graph: each skill + the projects that prove it.
     skills: (props, fb) => ({
         skills: normalizeSkillsData(props.skills, fb),
+        projects: normalizeProjectsData(props.projects, fb),
     }),
     portfolios: (props, fb) => ({
         maxItems: PORTFOLIO_CONFIG.MAX_ITEMS,

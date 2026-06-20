@@ -9,17 +9,21 @@ const SettingsSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
     z.object({
         _type: z.literal("settings"),
         logo: z.string(),
+        // Active COMMIT HISTORY sections
         hero: SectionConfigItemSchema,
-        services: SectionConfigItemSchema,
+        projects: SectionConfigItemSchema,
         skills: SectionConfigItemSchema,
-        portfolios: SectionConfigItemSchema,
-        resume: SectionConfigItemSchema,
-        certificates: SectionConfigItemSchema,
-        testimonials: SectionConfigItemSchema,
-        pricing: SectionConfigItemSchema,
-        blog: SectionConfigItemSchema,
+        now: SectionConfigItemSchema,
         contact: SectionConfigItemSchema,
-        map: MapConfigItemSchema,
+        // Legacy/optional sections (kept for backward-compatible documents)
+        services: SectionConfigItemSchema.optional(),
+        portfolios: SectionConfigItemSchema.optional(),
+        resume: SectionConfigItemSchema.optional(),
+        certificates: SectionConfigItemSchema.optional(),
+        testimonials: SectionConfigItemSchema.optional(),
+        pricing: SectionConfigItemSchema.optional(),
+        blog: SectionConfigItemSchema.optional(),
+        map: MapConfigItemSchema.optional(),
     })
 );
 

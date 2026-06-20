@@ -1,339 +1,136 @@
 import { z } from "zod";
-import { faker } from "@faker-js/faker";
 
-import {
-    createBlogPost,
-    createCertificate,
-    createEducation,
-    createExperience,
-    createPricing,
-    createProfile,
-    createProject,
-    createService,
-    createSkill,
-    createTestimonial,
-} from "./factories";
-import BlogPostSchema from "@/schemas/content/blog-post.schema";
-import CertificateSchema from "@/schemas/content/certificate.schema";
-import EducationSchema from "@/schemas/content/education.schema";
-import ExperienceSchema from "@/schemas/content/experience.schema";
-import PricingSchema from "@/schemas/content/pricing.schema";
 import ProfileSchema from "@/schemas/content/profile.schema";
 import ProjectSchema from "@/schemas/content/project.schema";
-import ServiceSchema from "@/schemas/content/service.schema";
 import SkillSchema from "@/schemas/content/skill.schema";
-import TestimonialSchema from "@/schemas/content/testimonial.schema";
+import EducationSchema from "@/schemas/content/education.schema";
+import ExperienceSchema from "@/schemas/content/experience.schema";
 import MockDataSchema from "@/schemas/mock/mock-data.schema";
-import MapConfigItemSchema from "@/schemas/setting/map-config-item.schema";
-import SectionConfigItemSchema from "@/schemas/setting/section-config-item.schema";
 import SettingsSchema from "@/schemas/setting/settings.schema";
-import { DEFAULT_MOCK_COUNTS } from "./config";
+import {
+    REAL_EDUCATION,
+    REAL_EXPERIENCE,
+    REAL_PROFILE,
+    REAL_PROJECTS,
+    REAL_SKILLS,
+} from "@/infrastructure/persistence/content/portfolio-content";
 
-type BlogPost = z.infer<typeof BlogPostSchema>;
-type Certificate = z.infer<typeof CertificateSchema>;
-type Education = z.infer<typeof EducationSchema>;
-type Experience = z.infer<typeof ExperienceSchema>;
-type Pricing = z.infer<typeof PricingSchema>;
-type Profile = z.infer<typeof ProfileSchema>;
-type Project = z.infer<typeof ProjectSchema>;
-type Service = z.infer<typeof ServiceSchema>;
-type Skill = z.infer<typeof SkillSchema>;
-type Testimonial = z.infer<typeof TestimonialSchema>;
-type Setting = z.infer<typeof SettingsSchema>;
+/**
+ * Static fallback dataset for the COMMIT HISTORY portfolio.
+ *
+ * This is a DORMANT fallback — it renders only when Sanity returns nothing.
+ * The live site is Sanity-driven. Previously this was generated per-request
+ * with @faker-js/faker (3× on /blog/[slug]); it's now a deterministic, static,
+ * memoized object built from the real `REAL_*` content + empty arrays for the
+ * entity types the IA never shows. No faker, no per-request work.
+ */
 
 const CompleteMockDataSchema = MockDataSchema.extend({
     settings: SettingsSchema,
 });
 
 export type CompleteMockData = z.infer<typeof CompleteMockDataSchema>;
+/** Kept for call-site compatibility; the fallback is static and ignores options. */
+export type CreateMockDataOptions = Record<string, never>;
 
-type SingleOptions<T> = {
-    overrides?: Partial<T>;
-};
+const LOGO = "NGUYENHUY";
+/** Neutral placeholder for the dormant fallback (real images come from Sanity). */
+const PLACEHOLDER_IMAGE = "/images/profile2.png";
+const TS = "2025-01-01T00:00:00.000Z";
 
-type CollectionOptions<T> = {
-    count?: number;
-    overrides?: Array<Partial<T>>;
-    all?: Partial<T>;
-};
+/** Sanity-document base fields the real content omits. */
+const doc = (type: string, id: string) => ({
+    _id: id,
+    _type: type,
+    _createdAt: TS,
+    _updatedAt: TS,
+    _rev: "static",
+});
 
-type SettingsOptions = {
-    overrides?: Partial<Setting>;
-    sectionStates?: Partial<Record<SettingSectionKey, boolean>>;
-    mapEmbedUrl?: string;
-};
+const section = (id: string) => ({ id, enabled: true, resetAnimationOnView: false });
 
-export type CreateMockDataOptions = {
-    logo?: string;
-    profile?: SingleOptions<Profile>;
-    services?: CollectionOptions<Service>;
-    skills?: CollectionOptions<Skill>;
-    projects?: CollectionOptions<Project> & { featuredCount?: number };
-    education?: CollectionOptions<Education>;
-    experience?: CollectionOptions<Experience>;
-    testimonials?: CollectionOptions<Testimonial>;
-    pricing?: CollectionOptions<Pricing>;
-    blogs?: CollectionOptions<BlogPost>;
-    certificates?: CollectionOptions<Certificate>;
-    settings?: SettingsOptions;
-};
+let _cache: CompleteMockData | null = null;
 
-type SettingSectionKey =
-    | "hero"
-    | "services"
-    | "skills"
-    | "portfolios"
-    | "resume"
-    | "certificates"
-    | "testimonials"
-    | "pricing"
-    | "blog"
-    | "contact"
-    | "map";
+const build = (): CompleteMockData => {
+    const profile = ProfileSchema.parse({
+        ...doc("profile", "profile-main"),
+        profile_image: PLACEHOLDER_IMAGE,
+        social_links: [
+            {
+                platform: "GitHub",
+                url: "https://github.com/ngnphamgiahuy",
+                icon: "/icons/github.svg",
+            },
+        ],
+        cv_link: "#",
+        ...REAL_PROFILE,
+        _type: "profile",
+    });
 
-type FactoryWithOverrides<T> = (overrides?: Partial<T>) => T;
+    const skills = REAL_SKILLS.map((s, i) =>
+        SkillSchema.parse({ ...doc("skill", s._id ?? `skill-${i}`), ...s, _type: "skill" })
+    );
 
-const withOverrides = <T>(
-    factory: () => T,
-    schema: z.ZodSchema<T>
-): FactoryWithOverrides<T> => {
-    return (overrides: Partial<T> = {}) =>
-        schema.parse({ ...factory(), ...overrides });
-};
-
-const createProfileWithOverrides = withOverrides(createProfile, ProfileSchema);
-const createServiceWithOverrides = withOverrides(createService, ServiceSchema);
-const createSkillWithOverrides = withOverrides(createSkill, SkillSchema);
-const createProjectWithOverrides = withOverrides(createProject, ProjectSchema);
-const createEducationWithOverrides = withOverrides(
-    createEducation,
-    EducationSchema
-);
-const createExperienceWithOverrides = withOverrides(
-    createExperience,
-    ExperienceSchema
-);
-const createTestimonialWithOverrides = withOverrides(
-    createTestimonial,
-    TestimonialSchema
-);
-const createPricingWithOverrides = withOverrides(createPricing, PricingSchema);
-const createBlogPostWithOverrides = withOverrides(
-    createBlogPost,
-    BlogPostSchema
-);
-const createCertificateWithOverrides = withOverrides(
-    createCertificate,
-    CertificateSchema
-);
-
-type ListArgs<T> = {
-    count: number;
-    factory: FactoryWithOverrides<T>;
-    shared?: Partial<T>;
-    overrides?: Array<Partial<T>>;
-    derive?: (index: number) => Partial<T>;
-};
-
-const generateList = <T>({
-    count,
-    factory,
-    shared,
-    overrides = [],
-    derive,
-}: ListArgs<T>): T[] => {
-    return Array.from({ length: count }, (_, index) =>
-        factory({
-            ...shared,
-            ...(derive ? derive(index) : {}),
-            ...(overrides[index] ?? {}),
+    const projects = REAL_PROJECTS.map((p, i) =>
+        ProjectSchema.parse({
+            ...doc("project", p._id ?? `project-${i}`),
+            image: PLACEHOLDER_IMAGE,
+            ...p,
+            _type: "project",
         })
     );
-};
 
-const DEFAULT_COUNTS = DEFAULT_MOCK_COUNTS;
-
-const pickRandom = <T>(items: T[]): T | undefined =>
-    items.length ? faker.helpers.arrayElement(items) : undefined;
-
-const buildSection = (
-    key: SettingSectionKey,
-    sectionStates?: Partial<Record<SettingSectionKey, boolean>>
-) =>
-    SectionConfigItemSchema.parse({
-        id: key,
-        enabled: sectionStates?.[key] ?? true,
-        resetAnimationOnView: false,
-    });
-
-const buildSettings = (
-    logo: string,
-    sectionStates?: Partial<Record<SettingSectionKey, boolean>>,
-    mapEmbedUrl?: string,
-    overrides: Partial<Setting> = {}
-): Setting => {
-    const city = faker.location.city();
-    const data = {
-        _id: faker.string.uuid(),
-        _type: "settings",
-        _createdAt: new Date().toISOString(),
-        _updatedAt: new Date().toISOString(),
-        _rev: faker.string.uuid(),
-        metaTitle: faker.company.name(),
-        metaDescription: faker.lorem.sentence(),
-        logo,
-        hero: buildSection("hero", sectionStates),
-        services: buildSection("services", sectionStates),
-        skills: buildSection("skills", sectionStates),
-        portfolios: buildSection("portfolios", sectionStates),
-        resume: buildSection("resume", sectionStates),
-        certificates: buildSection("certificates", sectionStates),
-        testimonials: buildSection("testimonials", sectionStates),
-        pricing: buildSection("pricing", sectionStates),
-        blog: buildSection("blog", sectionStates),
-        contact: buildSection("contact", sectionStates),
-        map: MapConfigItemSchema.parse({
-            ...buildSection("map", sectionStates),
-            embedUrl:
-                mapEmbedUrl ??
-                `https://www.google.com/maps?q=${encodeURIComponent(city)}`,
-            height: 320,
-        }),
-    };
-
-    return SettingsSchema.parse({ ...data, ...overrides });
-};
-
-export const createMockData = (
-    options: CreateMockDataOptions = {}
-): CompleteMockData => {
-    const logo = options.logo ?? faker.image.url();
-
-    const profile = createProfileWithOverrides(options.profile?.overrides);
-
-    const services = generateList<Service>({
-        count: options.services?.count ?? DEFAULT_COUNTS.services,
-        factory: createServiceWithOverrides,
-        shared: options.services?.all,
-        overrides: options.services?.overrides,
-    });
-
-    const skills = generateList<Skill>({
-        count: options.skills?.count ?? DEFAULT_COUNTS.skills,
-        factory: createSkillWithOverrides,
-        shared: options.skills?.all,
-        overrides: options.skills?.overrides,
-    });
-
-    const serviceCategories = services.map((service) => service.category);
-    const skillNames = skills.map((skill) => skill.name);
-    const blogCategoryPool = [...serviceCategories, ...skillNames];
-
-    const projects = generateList<Project>({
-        count: options.projects?.count ?? DEFAULT_COUNTS.projects,
-        factory: createProjectWithOverrides,
-        shared: options.projects?.all,
-        overrides: options.projects?.overrides,
-        derive: (index) => ({
-            category:
-                pickRandom(serviceCategories) ?? faker.commerce.department(),
-            featured:
-                index <
-                (options.projects?.featuredCount ??
-                    Math.max(
-                        1,
-                        Math.floor(
-                            (options.projects?.count ??
-                                DEFAULT_COUNTS.projects) / 3
-                        )
-                    )),
-        }),
-    });
-
-    const education = generateList<Education>({
-        count: options.education?.count ?? DEFAULT_COUNTS.education,
-        factory: createEducationWithOverrides,
-        shared: options.education?.all,
-        overrides: options.education?.overrides,
-    });
-
-    const experience = generateList<Experience>({
-        count: options.experience?.count ?? DEFAULT_COUNTS.experience,
-        factory: createExperienceWithOverrides,
-        shared: options.experience?.all,
-        overrides: options.experience?.overrides,
-    });
-
-    const testimonials = generateList<Testimonial>({
-        count: options.testimonials?.count ?? DEFAULT_COUNTS.testimonials,
-        factory: createTestimonialWithOverrides,
-        shared: options.testimonials?.all,
-        overrides: options.testimonials?.overrides,
-        derive: () => ({
-            position:
-                pickRandom(services)?.title ??
-                faker.helpers.arrayElement([
-                    "Client",
-                    "Partner",
-                    "Mentor",
-                    "Manager",
-                ]),
-        }),
-    });
-
-    const pricing = generateList<Pricing>({
-        count: options.pricing?.count ?? DEFAULT_COUNTS.pricing,
-        factory: createPricingWithOverrides,
-        shared: options.pricing?.all,
-        overrides: options.pricing?.overrides,
-        derive: (index) => ({ highlight: index === 0 }),
-    });
-
-    const blogs = generateList<BlogPost>({
-        count: options.blogs?.count ?? DEFAULT_COUNTS.blogs,
-        factory: createBlogPostWithOverrides,
-        shared: options.blogs?.all,
-        overrides: options.blogs?.overrides,
-        derive: () => ({
-            author: profile.name,
-            categories:
-                faker.helpers.arrayElements(
-                    blogCategoryPool.length
-                        ? blogCategoryPool
-                        : ["tech", "engineering"],
-                    faker.number.int({ min: 1, max: 3 })
-                ) ?? [],
-        }),
-    });
-
-    const certificates = generateList<Certificate>({
-        count: options.certificates?.count ?? DEFAULT_COUNTS.certificates,
-        factory: createCertificateWithOverrides,
-        shared: options.certificates?.all,
-        overrides: options.certificates?.overrides,
-    });
-
-    const settings = buildSettings(
-        logo,
-        options.settings?.sectionStates,
-        options.settings?.mapEmbedUrl,
-        options.settings?.overrides
+    const education = REAL_EDUCATION.map((e, i) =>
+        EducationSchema.parse({
+            ...doc("education", e._id ?? `edu-${i}`),
+            ...e,
+            _type: "education",
+        })
     );
 
+    const experience = REAL_EXPERIENCE.map((x, i) =>
+        ExperienceSchema.parse({
+            ...doc("experience", x._id ?? `exp-${i}`),
+            ...x,
+            _type: "experience",
+        })
+    );
+
+    const settings = SettingsSchema.parse({
+        ...doc("settings", "settings-main"),
+        _type: "settings",
+        metaTitle: `${REAL_PROFILE.name ?? "Portfolio"} — ${REAL_PROFILE.job_title ?? ""}`.trim(),
+        metaDescription: REAL_PROFILE.description ?? "",
+        logo: LOGO,
+        hero: section("hero"),
+        projects: section("projects"),
+        skills: section("skills"),
+        now: section("now"),
+        contact: section("contact"),
+        blog: section("blog"),
+    });
+
     return CompleteMockDataSchema.parse({
-        logo,
+        logo: LOGO,
         profile,
-        services,
+        services: [],
         skills,
         projects,
         education,
         experience,
-        testimonials,
-        pricing,
-        blogs,
-        certificates,
+        testimonials: [],
+        pricing: [],
+        blogs: [],
+        certificates: [],
         settings,
     });
+};
+
+export const createMockData = (
+    _options: CreateMockDataOptions = {}
+): CompleteMockData => {
+    if (!_cache) _cache = build();
+    return _cache;
 };
 
 export default createMockData;

@@ -6,7 +6,7 @@
 "use client";
 
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 import type { FormStatusProps } from "@/shared/types";
 
@@ -77,7 +77,7 @@ const FormStatus: React.FC<FormStatusProps> = ({ submitStatus }) => {
 
     return (
         <AnimatePresence>
-            <motion.div
+            <m.div
                 className={`status-message ${statusClass}`}
                 variants={FORM_VARIANTS.status()}
                 initial="hidden"
@@ -96,7 +96,7 @@ const FormStatus: React.FC<FormStatusProps> = ({ submitStatus }) => {
                         {submitStatus.message}
                     </span>
                 </div>
-            </motion.div>
+            </m.div>
         </AnimatePresence>
     );
 };

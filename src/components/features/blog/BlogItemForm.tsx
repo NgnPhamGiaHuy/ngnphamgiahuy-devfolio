@@ -81,7 +81,7 @@ const BlogItemForm: React.FC<BlogItemFormProps> = ({ className }) => {
         <div className={className} data-testid={TEST_IDS.root}>
             <div className="relative z-2">
                 <div className="my-0">
-                    <h2 className="mt-0 mb-[10px] text-[34px] max-md:text-[26px] text-inverse! font-bold uppercase tracking-wider leading-[1.3]">
+                    <h2 className="mt-0 mb-[10px] text-[34px] max-md:text-[26px] text-ink! font-bold uppercase tracking-wider leading-[1.3]">
                         Leave a comment
                     </h2>
                     <form
@@ -138,7 +138,7 @@ const BlogItemForm: React.FC<BlogItemFormProps> = ({ className }) => {
                                 htmlFor="termsAccepted"
                                 className={clsx(
                                     labelColor,
-                                    "p-0 text-[16px] text-inverse! font-normal inline align-top transform-none tracking-normal"
+                                    "p-0 text-[16px] text-ink! font-normal inline align-top transform-none tracking-normal"
                                 )}
                                 data-testid={TEST_IDS.termsLabel}
                             >

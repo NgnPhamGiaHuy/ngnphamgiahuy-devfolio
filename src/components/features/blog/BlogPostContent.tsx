@@ -63,7 +63,7 @@ const Paragraph: PortableTextBlockComponent = ({ children }) => {
 const Blockquote: PortableTextBlockComponent = ({ children }) => {
     return (
         <blockquote className={blockquoteClass()}>
-            <Quote className="top-0 left-[50px] size-[58px] text-inverse! absolute" />
+            <Quote className="top-0 left-[50px] size-[58px] text-ink! absolute" />
             {children}
         </blockquote>
     );
@@ -137,7 +137,7 @@ const portableComponents: Partial<PortableTextReactComponents> = {
                         <Link
                             href={`/tags/${cat}`}
                             key={cat}
-                            className="mt-[10px] max-md:mt-[8px] mr-[10px] max-md:mr-[8px] px-[20px] max-md:px-[12px] py-[8px] text-[14px] inline-block text-inverse font-semibold border border-solid border-primary align-middle leading-none transition-shadow hover:shadow-sm"
+                            className="mt-[10px] max-md:mt-[8px] mr-[10px] max-md:mr-[8px] px-[20px] max-md:px-[12px] py-[8px] text-[14px] inline-block text-ink font-semibold border border-solid border-primary align-middle leading-none transition-shadow hover:shadow-sm"
                             aria-label={`View posts tagged ${cat}`}
                         >
                             {cat}
