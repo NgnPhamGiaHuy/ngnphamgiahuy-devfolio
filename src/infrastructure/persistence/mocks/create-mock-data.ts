@@ -15,15 +15,6 @@ import {
     REAL_SKILLS,
 } from "@/infrastructure/persistence/content/portfolio-content";
 
-/**
- * Static fallback dataset for the COMMIT HISTORY portfolio.
- *
- * This is a DORMANT fallback — it renders only when Sanity returns nothing.
- * The live site is Sanity-driven. Previously this was generated per-request
- * with @faker-js/faker (3× on /blog/[slug]); it's now a deterministic, static,
- * memoized object built from the real `REAL_*` content + empty arrays for the
- * entity types the IA never shows. No faker, no per-request work.
- */
 
 const CompleteMockDataSchema = MockDataSchema.extend({
     settings: SettingsSchema,
@@ -34,18 +25,9 @@ export type CompleteMockData = z.infer<typeof CompleteMockDataSchema>;
 export type CreateMockDataOptions = Record<string, never>;
 
 const LOGO = "NGUYENHUY";
-/** Neutral placeholder for the dormant fallback (real images come from Sanity). */
 const PLACEHOLDER_IMAGE = "/images/profile2.png";
-const TS = "2025-01-01T00:00:00.000Z";
 
-/** Sanity-document base fields the real content omits. */
-const doc = (type: string, id: string) => ({
-    _id: id,
-    _type: type,
-    _createdAt: TS,
-    _updatedAt: TS,
-    _rev: "static",
-});
+const doc = (type: string, id: string) => ({ _id: id, _type: type });
 
 const section = (id: string) => ({ id, enabled: true, resetAnimationOnView: false });
 

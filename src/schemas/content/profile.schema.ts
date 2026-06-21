@@ -1,10 +1,9 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "../base/sanity-document.schema";
-import SanityImageSchema from "../base/sanity-image.schema";
+import DocumentBaseSchema from "../base/document-base.schema";
 import SeoFieldsSchema from "../base/seo-fields.schema";
 
-const ProfileSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
+const ProfileSchema = DocumentBaseSchema.and(SeoFieldsSchema).and(
     z.object({
         _type: z.literal("profile"),
         name: z.string(),
@@ -14,12 +13,12 @@ const ProfileSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
         email: z.email(),
         phone: z.string().optional(),
         experience_years: z.number(),
-        profile_image: z.union([SanityImageSchema, z.string()]),
+        profile_image: z.string(),
         social_links: z.array(
             z.object({
                 platform: z.string(),
                 url: z.string(),
-                icon: z.union([SanityImageSchema, z.string()]),
+                icon: z.string(),
             })
         ),
         cv_link: z.string().optional(),

@@ -1,140 +1,97 @@
 import { Metadata } from "next";
 
-import type { ProfileType, SettingsType } from "@/schemas";
-
 import { resolveImageUrl } from "@/shared";
-import {
-    createMockData,
-    profileQuery,
-    sanityFetch,
-    settingsQuery,
-} from "@/infrastructure";
+import { createMockData } from "@/infrastructure";
 
 export const generateHomePageMetadata = async (): Promise<Metadata> => {
-    try {
-        const [profile, settings] = await Promise.all([
-            sanityFetch<ProfileType | null>({
-                query: profileQuery,
-                tags: ["profile"],
-            }),
-            sanityFetch<SettingsType | null>({
-                query: settingsQuery,
-                tags: ["settings"],
-            }),
-        ]);
+    const { profile, settings } = createMockData();
 
-        const resolveBaseUrl = (): string => {
-            const envUrl =
-                process.env.NEXT_PUBLIC_BASE_URL ||
-                process.env.NEXT_PUBLIC_SITE_URL ||
-                process.env.NEXT_PUBLIC_VERCEL_URL ||
-                "http://localhost:3000";
+    const resolveBaseUrl = (): string => {
+        const envUrl =
+            process.env.NEXT_PUBLIC_BASE_URL ||
+            process.env.NEXT_PUBLIC_SITE_URL ||
+            process.env.NEXT_PUBLIC_VERCEL_URL ||
+            "http://localhost:3000";
 
-            const withProtocol = envUrl.startsWith("http")
-                ? envUrl
-                : `https://${envUrl}`;
-            return withProtocol.endsWith("/")
-                ? withProtocol.slice(0, -1)
-                : withProtocol;
-        };
+        const withProtocol = envUrl.startsWith("http")
+            ? envUrl
+            : `https://${envUrl}`;
+        return withProtocol.endsWith("/")
+            ? withProtocol.slice(0, -1)
+            : withProtocol;
+    };
 
-        const baseUrl = resolveBaseUrl();
+    const baseUrl = resolveBaseUrl();
 
-        const mockData = createMockData();
-        const effectiveProfile = profile ?? mockData.profile ?? null;
+    const title =
+        profile.metaTitle ||
+        settings.metaTitle ||
+        `${profile.name} - ${profile.job_title}`;
+    const description =
+        profile.metaDescription ||
+        settings.metaDescription ||
+        profile.description ||
+        "";
 
-        const title =
-            effectiveProfile?.metaTitle ||
-            settings?.metaTitle ||
-            (effectiveProfile
-                ? `${effectiveProfile.name} - ${effectiveProfile.job_title}`
-                : "NgnPhamGiaHuy Devfolio");
-        const description =
-            effectiveProfile?.metaDescription ||
-            settings?.metaDescription ||
-            effectiveProfile?.description ||
-            "";
+    const ogImage = profile.ogImage || settings.ogImage;
+    const ogImageUrl =
+        resolveImageUrl(ogImage, baseUrl) ||
+        resolveImageUrl(profile.profile_image, baseUrl);
 
-        const ogImage = effectiveProfile?.ogImage || settings?.ogImage;
-        const ogImageUrl =
-            resolveImageUrl(ogImage, baseUrl) ||
-            resolveImageUrl(effectiveProfile?.profile_image, baseUrl);
-
-        return {
+    return {
+        title,
+        description,
+        keywords: [
+            profile.name,
+            profile.job_title,
+            "portfolio",
+            "developer",
+            "software engineer",
+            ...(profile.location ? [profile.location] : []),
+        ],
+        authors: [{ name: profile.name }],
+        creator: profile.name,
+        publisher: profile.name,
+        openGraph: {
+            type: "website",
+            locale: "en_US",
+            url: baseUrl,
             title,
             description,
-            keywords: [
-                effectiveProfile?.name,
-                effectiveProfile?.job_title,
-                "portfolio",
-                "developer",
-                "software engineer",
-                ...(effectiveProfile?.location
-                    ? [effectiveProfile.location]
-                    : []),
-            ],
-            authors: effectiveProfile?.name
-                ? [{ name: effectiveProfile.name }]
-                : undefined,
-            creator: effectiveProfile?.name,
-            publisher: effectiveProfile?.name,
-            openGraph: {
-                type: "website",
-                locale: "en_US",
-                url: baseUrl,
-                title,
-                description,
-                siteName: effectiveProfile?.name
-                    ? `${effectiveProfile.name} Portfolio`
-                    : undefined,
-                images: ogImageUrl
-                    ? [
-                          {
-                              url: ogImageUrl,
-                              width: 1200,
-                              height: 630,
-                              alt:
-                                  typeof ogImage === "object" &&
-                                  ogImage &&
-                                  "alt" in (ogImage as any)
-                                      ? (ogImage as any).alt
-                                      : effectiveProfile
-                                        ? `${effectiveProfile.name} - ${effectiveProfile.job_title}`
-                                        : title,
-                          },
-                      ]
-                    : [],
-            },
-            twitter: {
-                card: "summary_large_image",
-                title,
-                description,
-                images: ogImageUrl ? [ogImageUrl] : [],
-                creator: effectiveProfile?.social_links?.find(
-                    (link: any) => link.platform === "Twitter"
-                )?.url,
-            },
-            robots: {
+            siteName: `${profile.name} Portfolio`,
+            images: ogImageUrl
+                ? [
+                      {
+                          url: ogImageUrl,
+                          width: 1200,
+                          height: 630,
+                          alt: `${profile.name} - ${profile.job_title}`,
+                      },
+                  ]
+                : [],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: ogImageUrl ? [ogImageUrl] : [],
+            creator: profile.social_links?.find(
+                (link) => link.platform === "Twitter"
+            )?.url,
+        },
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: {
                 index: true,
                 follow: true,
-                googleBot: {
-                    index: true,
-                    follow: true,
-                    "max-video-preview": -1,
-                    "max-image-preview": "large",
-                    "max-snippet": -1,
-                },
+                "max-video-preview": -1,
+                "max-image-preview": "large",
+                "max-snippet": -1,
             },
-            verification: {
-                google: process.env.GOOGLE_SITE_VERIFICATION,
-            },
-        };
-    } catch (error) {
-        console.error("Error generating metadata:", error);
-
-        return {
-            title: "NgnPhamGiaHuy Devfolio",
-            description: "Developed by NgnPhamGiaHuy",
-        };
-    }
+        },
+        verification: {
+            google: process.env.GOOGLE_SITE_VERIFICATION,
+        },
+    };
 };

@@ -1,12 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-import type { SanityImageType } from "@/schemas";
-
 import { resolveImageUrl } from "@/shared/utils";
 
 interface BrowserFrameProps {
-    image?: SanityImageType | string;
+    image?: string;
     alt: string;
     /** Live URL — its hostname is shown in the chrome's address pill. */
     link?: string;

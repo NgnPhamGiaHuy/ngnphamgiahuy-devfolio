@@ -14,7 +14,6 @@ import {
     buildImageProps,
     buildPostUrl,
     getBlogPostBySlug,
-    withCategoriesBlock,
 } from "@/shared/utils/blog/blogPost.helpers";
 import {
     BlogPostContainer,
@@ -81,8 +80,6 @@ const BlogItem = async ({ slug }: BlogItemProps) => {
     // ------------------------------------------------------------
     const { url: imageUrl, alt: imageAlt } = buildImageProps(post);
     const postUrl = await buildPostUrl(post.slug.current);
-    // Keep content transformation separate from rendering to simplify testing and future reuse
-    const contentWithCategories = withCategoriesBlock(post);
 
     // ============================================================
     // Render
@@ -105,8 +102,6 @@ const BlogItem = async ({ slug }: BlogItemProps) => {
             <BlogPostHeroImage src={imageUrl} alt={imageAlt} />
 
             <BlogPostContainer
-                // Casting retained to preserve current shape; can be replaced when portable-text types are aligned
-                contentValue={contentWithCategories as any}
                 excerpt={post.excerpt}
                 postUrl={postUrl}
                 postTitle={post.title}

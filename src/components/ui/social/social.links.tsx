@@ -6,7 +6,6 @@ import {
     UserIcon,
 } from "@heroicons/react/24/outline";
 
-import type { SanityImageType } from "@/schemas";
 import type { RawSocialLink, SocialLink, SocialPlatform } from "@/shared";
 
 import { getImageAlt, resolveImageUrl } from "@/shared";
@@ -95,12 +94,9 @@ const createCustomIconLink = (
     dimensions: { width: number; height: number }
 ): SocialLink => {
     try {
-        const alt = getImageAlt(
-            link.icon as SanityImageType | string,
-            `${link.platform} icon`
-        );
+        const alt = getImageAlt(link.icon, `${link.platform} icon`);
 
-        const url = resolveImageUrl(link.icon as SanityImageType | string, {
+        const url = resolveImageUrl(link.icon, {
             width: ICON_DIMENSIONS.SANITY_WIDTH,
             height: ICON_DIMENSIONS.SANITY_HEIGHT,
             fallbackImage: "",

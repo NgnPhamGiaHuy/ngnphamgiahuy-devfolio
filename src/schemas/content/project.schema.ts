@@ -1,7 +1,6 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "../base/sanity-document.schema";
-import SanityImageSchema from "../base/sanity-image.schema";
+import DocumentBaseSchema from "../base/document-base.schema";
 import SeoFieldsSchema from "../base/seo-fields.schema";
 
 /**
@@ -42,13 +41,13 @@ const MetricSchema = z.object({
     value: z.string(),
 });
 
-const ProjectSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
+const ProjectSchema = DocumentBaseSchema.and(SeoFieldsSchema).and(
     z.object({
         _type: z.literal("project"),
         name: z.string(),
         category: z.string(),
         description: z.string(),
-        image: z.union([SanityImageSchema, z.string()]),
+        image: z.string(),
         link: z.string().optional(),
         featured: z.boolean().optional(),
         order: z.number().optional(),

@@ -12,7 +12,6 @@ import React from "react";
 
 import {
     BlogItemForm,
-    BlogPostContent,
     SocialShare,
     VerticalRule,
 } from "@/components";
@@ -30,7 +29,6 @@ const TEST_IDS = {
 // ============================================================
 interface BlogPostContainerProps {
     className?: string;
-    contentValue?: any[];
     excerpt?: string;
     postUrl: string;
     postTitle: string;
@@ -57,7 +55,6 @@ interface BlogPostContainerProps {
 // ============================================================
 const BlogPostContainer: React.FC<BlogPostContainerProps> = ({
     className = "",
-    contentValue,
     excerpt,
     postUrl,
     postTitle,
@@ -83,11 +80,7 @@ const BlogPostContainer: React.FC<BlogPostContainerProps> = ({
                             aria-label="Article body"
                             data-testid={TEST_IDS.article}
                         >
-                            {contentValue?.length ? (
-                                <BlogPostContent value={contentValue as any} />
-                            ) : (
-                                <p className="leading-7">{excerpt}</p>
-                            )}
+                            <p className="leading-7">{excerpt}</p>
                         </article>
                         <div className="my-[30px]"></div>
                         <SocialShare

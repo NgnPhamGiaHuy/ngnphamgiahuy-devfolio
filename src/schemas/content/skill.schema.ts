@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "../base/sanity-document.schema";
+import DocumentBaseSchema from "../base/document-base.schema";
 
-const SkillSchema = SanityDocumentSchema.extend({
+const SkillSchema = DocumentBaseSchema.extend({
     _type: z.literal("skill"),
     name: z.string(),
     order: z.number().optional(),

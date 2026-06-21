@@ -3,7 +3,6 @@ import { headers } from "next/headers";
 import type { BlogPostType } from "@/schemas";
 
 import { processImage } from "@/shared";
-import { blogPostBySlugQuery, sanityFetch } from "@/infrastructure";
 
 const IMAGE_WIDTH = 800;
 const IMAGE_HEIGHT = 450;
@@ -11,23 +10,9 @@ const FALLBACK_IMAGE = "/images/profile2.png";
 
 export const getBlogPostBySlug = async (
     slug: string,
-    fallbackBlogs: BlogPostType[]
+    blogs: BlogPostType[]
 ) => {
-    let post: BlogPostType | null = null;
-
-    try {
-        post = await sanityFetch<BlogPostType>({
-            query: blogPostBySlugQuery(slug),
-        });
-    } catch {
-        post = null;
-    }
-
-    if (!post || !post.slug) {
-        post = fallbackBlogs.find((b) => b.slug?.current === slug) || null;
-    }
-
-    return post;
+    return blogs.find((b) => b.slug?.current === slug) || null;
 };
 
 export const buildImageProps = (post: BlogPostType) => {
@@ -52,18 +37,4 @@ export const buildPostUrl = async (slug: string) => {
     const origin = process.env.NEXT_PUBLIC_SITE_URL || `${proto}://${host}`;
 
     return `${origin}/blog/${slug}`;
-};
-
-export const withCategoriesBlock = (post: BlogPostType) => {
-    const contentWithCategories = post.content ? [...post.content] : [];
-
-    if (post.categories && post.categories.length > 0) {
-        contentWithCategories.push({
-            _key: "custom-categories-block",
-            _type: "categoriesBlock",
-            categories: post.categories,
-        } as any);
-    }
-
-    return contentWithCategories;
 };

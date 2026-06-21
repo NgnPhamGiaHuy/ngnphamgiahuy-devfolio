@@ -1,10 +1,9 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "../base/sanity-document.schema";
-import SanityImageSchema from "../base/sanity-image.schema";
+import DocumentBaseSchema from "../base/document-base.schema";
 import SeoFieldsSchema from "../base/seo-fields.schema";
 
-const BlogPostSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
+const BlogPostSchema = DocumentBaseSchema.and(SeoFieldsSchema).and(
     z.object({
         _type: z.literal("blogPost"),
         title: z.string(),
@@ -14,7 +13,7 @@ const BlogPostSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
             _type: z.literal("slug"),
             current: z.string(),
         }),
-        image: z.union([SanityImageSchema, z.string()]),
+        image: z.string(),
         content: z.array(z.any()).optional(),
         categories: z.array(z.string()).optional(),
         author: z.string().optional().nullable(),

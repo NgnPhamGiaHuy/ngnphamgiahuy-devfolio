@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "../base/sanity-document.schema";
+import DocumentBaseSchema from "../base/document-base.schema";
 
-const PricingSchema = SanityDocumentSchema.extend({
+const PricingSchema = DocumentBaseSchema.extend({
     _type: z.literal("pricing"),
     plan: z.string(),
     price: z.string(),

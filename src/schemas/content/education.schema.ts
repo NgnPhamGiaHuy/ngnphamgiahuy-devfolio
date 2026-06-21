@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "../base/sanity-document.schema";
+import DocumentBaseSchema from "../base/document-base.schema";
 
-const EducationSchema = SanityDocumentSchema.extend({
+const EducationSchema = DocumentBaseSchema.extend({
     _type: z.literal("education"),
     year: z.string(),
     degree: z.string(),

@@ -1,11 +1,9 @@
 import { z } from "zod";
 
-import SanityImageSchema from "../base/sanity-image.schema";
-
 const SeoFields = z.object({
     metaTitle: z.string().optional(),
     metaDescription: z.string().optional(),
-    ogImage: SanityImageSchema.optional(),
+    ogImage: z.string().optional(),
 });
 
 export type SeoFieldsType = z.infer<typeof SeoFields>;

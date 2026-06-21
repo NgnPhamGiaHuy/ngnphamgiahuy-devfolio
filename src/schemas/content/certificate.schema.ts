@@ -1,9 +1,8 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "../base/sanity-document.schema";
-import SanityImageSchema from "../base/sanity-image.schema";
+import DocumentBaseSchema from "../base/document-base.schema";
 
-const CertificateSchema = SanityDocumentSchema.extend({
+const CertificateSchema = DocumentBaseSchema.extend({
     _type: z.literal("certificate"),
     title: z.string(),
     issuer: z.string(),
@@ -12,7 +11,7 @@ const CertificateSchema = SanityDocumentSchema.extend({
     credentialId: z.string().optional(),
     credentialUrl: z.string().optional(),
     description: z.string().optional(),
-    image: z.union([SanityImageSchema, z.string()]).optional(),
+    image: z.string().optional(),
     category: z.string().optional(),
     order: z.number().optional(),
 });

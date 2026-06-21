@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-import SanityDocumentSchema from "../base/sanity-document.schema";
+import DocumentBaseSchema from "../base/document-base.schema";
 import SeoFieldsSchema from "../base/seo-fields.schema";
 import MapConfigItemSchema from "../setting/map-config-item.schema";
 import SectionConfigItemSchema from "../setting/section-config-item.schema";
 
-const SettingsSchema = SanityDocumentSchema.and(SeoFieldsSchema).and(
+const SettingsSchema = DocumentBaseSchema.and(SeoFieldsSchema).and(
     z.object({
         _type: z.literal("settings"),
         logo: z.string(),

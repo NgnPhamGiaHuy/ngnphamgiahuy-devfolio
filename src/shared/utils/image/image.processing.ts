@@ -1,7 +1,4 @@
 import type { ImageConfig } from "@/shared";
-import type { SanityImageType } from "@/schemas";
-
-import { urlFor } from "@/infrastructure/persistence/sanity/SanityClient";
 
 const DEFAULT_CONFIG: Pick<Required<ImageConfig>, "fallbackAlt"> = {
     fallbackAlt: "Image",
@@ -29,7 +26,7 @@ interface ImageProcessingOptions {
 }
 
 export const resolveImageUrl = (
-    image: SanityImageType | string | undefined,
+    image: string | undefined,
     configOrBaseUrl?: ImageConfig | string
 ): string => {
     try {
@@ -48,99 +45,37 @@ export const resolveImageUrl = (
             return fallbackImage || "";
         }
 
-        if (typeof image === "string") {
-            return handleStringImage(image, baseUrl, fallbackImage);
+        if (baseUrl) {
+            if (
+                image.startsWith(URL_PATTERNS.HTTP) ||
+                image.startsWith(URL_PATTERNS.HTTPS)
+            ) {
+                return image;
+            }
+
+            if (image.startsWith(URL_PATTERNS.ABSOLUTE_PATH)) {
+                return `${baseUrl}${image}`;
+            }
+
+            return fallbackImage || "";
         }
 
-        return handleSanityImage(
-            image as SanityImageType,
-            config,
-            fallbackImage
-        );
+        return image;
     } catch (error) {
         console.error(ERROR_MESSAGES.PROCESSING_FAILED, error);
         return "";
     }
 };
 
-const handleStringImage = (
-    imageUrl: string,
-    baseUrl?: string,
-    fallbackImage?: string
-): string => {
-    if (baseUrl) {
-        if (
-            imageUrl.startsWith(URL_PATTERNS.HTTP) ||
-            imageUrl.startsWith(URL_PATTERNS.HTTPS)
-        ) {
-            return imageUrl;
-        }
-
-        if (imageUrl.startsWith(URL_PATTERNS.ABSOLUTE_PATH)) {
-            return `${baseUrl}${imageUrl}`;
-        }
-
-        return fallbackImage || "";
-    }
-
-    return imageUrl;
-};
-
-const getPlaceholderImageUrl = (width?: number, height?: number): string => {
-    const w = width || 800;
-    const h = height || 600;
-
-    return `https://picsum.photos/${w}/${h}?random=${Math.random()}`;
-};
-
-const handleSanityImage = (
-    image: SanityImageType,
-    config?: ImageConfig,
-    fallbackImage?: string
-): string => {
-    try {
-        if (config?.width && config?.height) {
-            return urlFor(image)
-                .width(config.width)
-                .height(config.height)
-                .url();
-        }
-
-        return urlFor(image).url();
-    } catch (error) {
-        const placeholderUrl = getPlaceholderImageUrl(
-            config?.width,
-            config?.height
-        );
-
-        if (process.env.NODE_ENV === "development") {
-            console.warn(
-                "Sanity image processing failed, using placeholder:",
-                error instanceof Error ? error.message : error
-            );
-        }
-
-        return fallbackImage || placeholderUrl;
-    }
-};
-
 export const getImageAlt = (
-    image: SanityImageType | string | undefined,
+    image: string | undefined,
     fallbackText: string = DEFAULT_CONFIG.fallbackAlt
 ): string => {
-    if (!image) {
-        return fallbackText;
-    }
-
-    if (typeof image === "string") {
-        return fallbackText;
-    }
-
-    return (image as SanityImageType)?.alt || fallbackText;
+    return image ? fallbackText : fallbackText;
 };
 
 export const processImage = (
-    image: SanityImageType | string | undefined,
+    image: string | undefined,
     config: ImageConfig,
     options: ImageProcessingOptions = {}
 ): ProcessedImage => {
@@ -157,7 +92,7 @@ export const processImage = (
 };
 
 export const processPortfolioImage = (
-    image: SanityImageType | string | undefined,
+    image: string | undefined,
     projectName: string,
     config: ImageConfig
 ): ProcessedImage => {
