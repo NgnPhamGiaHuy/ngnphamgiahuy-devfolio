@@ -72,6 +72,8 @@ const SiteFooter: React.FC<SiteFooterProps> = ({
                             links={socialLinksData}
                             iconMargin="mr-[18px]"
                             iconSize="size-[20px]"
+                            textColor=""
+                            hoverColor=""
                             className="site-footer__social"
                         />
                     ) : null}

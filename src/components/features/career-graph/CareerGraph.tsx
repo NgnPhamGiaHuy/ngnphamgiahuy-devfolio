@@ -67,6 +67,11 @@ const CareerGraph: React.FC<CareerGraphProps> = ({
         ? resolveImageUrl(profile.profile_image, { width: 280, height: 280 })
         : "";
 
+    const techCount = React.useMemo(
+        () => new Set(projects.flatMap((p) => p.technologies ?? [])).size,
+        [projects]
+    );
+
     return (
         <Section id={id} className="blueprint-grid" aria-label="Career lineage graph">
             <header className="mb-10 flex flex-col-reverse gap-8 md:flex-row md:items-start md:justify-between">
@@ -79,6 +84,34 @@ const CareerGraph: React.FC<CareerGraphProps> = ({
                         {profile.description}
                     </p>
 
+                    {(profile.experience_years || projects.length > 0 || techCount > 0) && (
+                        <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-2">
+                            {profile.experience_years ? (
+                                <span className="font-mono-tnum text-sm text-graph-muted">
+                                    <span className="text-2xl font-medium text-graph-ink">
+                                        {profile.experience_years}
+                                    </span>
+                                    {" "}yrs experience
+                                </span>
+                            ) : null}
+                            {projects.length > 0 && (
+                                <span className="font-mono-tnum text-sm text-graph-muted">
+                                    <span className="text-2xl font-medium text-graph-ink">
+                                        {projects.length}
+                                    </span>
+                                    {" "}projects shipped
+                                </span>
+                            )}
+                            {techCount > 0 && (
+                                <span className="font-mono-tnum text-sm text-graph-muted">
+                                    <span className="text-2xl font-medium text-graph-ink">
+                                        {techCount}
+                                    </span>
+                                    {" "}technologies
+                                </span>
+                            )}
+                        </div>
+                    )}
                 </div>
                 {portraitUrl && (
                     <div className="portrait-block shrink-0">
@@ -100,8 +133,7 @@ const CareerGraph: React.FC<CareerGraphProps> = ({
             <GraphCanvas data={graph} onSelectProject={setSelectedSlug} />
 
             <p className="font-mono-tnum mt-6 text-xs text-graph-muted">
-                Hover or focus a node to trace its lineage. Select a project to
-                open its case study.
+                {"// hover a node to trace connections · click a project to open its case study"}
             </p>
 
             {/* Screen-reader relationship model (the graph as text) */}

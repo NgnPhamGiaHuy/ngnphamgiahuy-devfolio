@@ -13,14 +13,6 @@ interface GraphCanvasProps {
 
 const NODE_H = 44;
 
-const KIND_LABEL: Record<GraphNode["kind"], string> = {
-    origin: "origin",
-    education: "education",
-    skill: "skill",
-    role: "role",
-    project: "project",
-};
-
 const truncate = (label: string, width: number): string => {
     const max = Math.max(6, Math.floor((width - 18) / 7.2));
     return label.length > max ? `${label.slice(0, max - 1)}…` : label;
@@ -75,6 +67,25 @@ const GraphCanvas: React.FC<GraphCanvasProps> = ({ data, onSelectProject }) => {
     const isEdgeActive = (from: string, to: string) =>
         !activeSet || (activeSet.has(from) && activeSet.has(to));
 
+    // Column header labels derived from node x-positions — one per kind, in
+    // the authored column order.
+    const colHeaders = React.useMemo(() => {
+        const seen = new Map<GraphNode["kind"], number>();
+        data.nodes.forEach((n) => {
+            if (!seen.has(n.kind)) seen.set(n.kind, n.x);
+        });
+        const ORDER: Array<[GraphNode["kind"], string]> = [
+            ["origin",    "Origin"],
+            ["education", "Education"],
+            ["role",      "Experience"],
+            ["skill",     "Skills"],
+            ["project",   "Projects"],
+        ];
+        return ORDER
+            .filter(([kind]) => seen.has(kind))
+            .map(([kind, label]) => ({ kind, label, x: seen.get(kind)! }));
+    }, [data.nodes]);
+
     const renderNode = (node: GraphNode) => {
         const interactive = node.kind === "project" && !!node.projectSlug;
         const w = node.width;
@@ -102,6 +113,7 @@ const GraphCanvas: React.FC<GraphCanvasProps> = ({ data, onSelectProject }) => {
         return (
             <g
                 key={node.id}
+                data-kind={node.kind}
                 className={clsx(
                     "graph-node",
                     node.kind === "origin" && "graph-node--origin",
@@ -162,6 +174,20 @@ const GraphCanvas: React.FC<GraphCanvasProps> = ({ data, onSelectProject }) => {
                 role="group"
                 aria-label="Interactive career lineage graph: education and skills feeding roles and projects. Use the project buttons to open a case study."
             >
+                {/* Column headers — give each lane a name without a legend */}
+                <g aria-hidden="true">
+                    {colHeaders.map(({ kind, label, x }) => (
+                        <text
+                            key={kind}
+                            x={x}
+                            y={46}
+                            textAnchor="middle"
+                            className="graph-col-header"
+                        >
+                            {label}
+                        </text>
+                    ))}
+                </g>
                 <g>
                     {data.edges.map((edge) => (
                         <path
@@ -187,62 +213,83 @@ const GraphCanvas: React.FC<GraphCanvasProps> = ({ data, onSelectProject }) => {
             </svg>
 
             {/* Mobile: a first-class vertical spine — the landscape SVG can't
-                shrink to a phone, so the same nodes stack as a tappable timeline. */}
-            <ol className="career-spine" aria-label="Career timeline">
-                {[...data.nodes]
-                    .sort((a, b) => a.step - b.step)
-                    .map((node, i, arr) => {
-                        const interactive =
-                            node.kind === "project" && !!node.projectSlug;
-                        return (
-                            <li
-                                key={node.id}
-                                className="relative pb-6 pl-7 last:pb-0"
-                            >
-                                {i < arr.length - 1 && (
-                                    <span
-                                        aria-hidden="true"
-                                        className="absolute left-[5px] top-3 -bottom-1 w-px"
-                                        style={{ background: "var(--graph-line)" }}
-                                    />
-                                )}
-                                <span
-                                    aria-hidden="true"
-                                    className="absolute left-0 top-1.5 size-2.5 rounded-full border"
-                                    style={{
-                                        borderColor: node.onPath
-                                            ? "var(--graph-accent)"
-                                            : "var(--graph-line)",
-                                        background: node.onPath
-                                            ? "var(--graph-accent)"
-                                            : "var(--graph-surface)",
-                                    }}
-                                />
-                                <p className="eyebrow mb-1">
-                                    {KIND_LABEL[node.kind]}
-                                </p>
-                                {interactive ? (
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            onSelectProject(node.projectSlug!)
-                                        }
-                                        className="text-left font-medium underline-offset-2 hover:underline"
-                                    >
-                                        {node.label}
-                                    </button>
-                                ) : (
-                                    <p className="font-medium">{node.label}</p>
-                                )}
-                                {node.sublabel && (
-                                    <p className="text-sm text-graph-muted">
-                                        {node.sublabel}
-                                    </p>
-                                )}
-                            </li>
-                        );
-                    })}
-            </ol>
+                shrink to a phone, so the same nodes stack as a tappable timeline.
+                Column order (col → step) mirrors the desktop left-to-right narrative:
+                origin → education → role → skills → projects. */}
+            <div className="career-spine" aria-label="Career timeline">
+                {(["origin", "education", "role", "skill", "project"] as const).map((kind) => {
+                    const kindNodes = [...data.nodes]
+                        .filter((n) => n.kind === kind)
+                        .sort((a, b) => a.step - b.step);
+                    if (kindNodes.length === 0) return null;
+
+                    const kindHeading: Record<typeof kind, string> = {
+                        origin: "Origin",
+                        education: "Education",
+                        role: "Experience",
+                        skill: "Skills",
+                        project: "Projects",
+                    };
+
+                    return (
+                        <div key={kind} className="career-spine__group">
+                            <p className="eyebrow career-spine__group-label">
+                                {kindHeading[kind]}
+                            </p>
+                            <ol>
+                                {kindNodes.map((node, i, arr) => {
+                                    const interactive =
+                                        node.kind === "project" && !!node.projectSlug;
+                                    return (
+                                        <li
+                                            key={node.id}
+                                            className="relative pb-5 pl-7 last:pb-0"
+                                        >
+                                            {i < arr.length - 1 && (
+                                                <span
+                                                    aria-hidden="true"
+                                                    className="absolute left-[5px] top-3 -bottom-1 w-px"
+                                                    style={{ background: "var(--graph-line)" }}
+                                                />
+                                            )}
+                                            <span
+                                                aria-hidden="true"
+                                                className="absolute left-0 top-1.5 size-2.5 rounded-full border"
+                                                style={{
+                                                    borderColor: node.onPath
+                                                        ? "var(--graph-accent)"
+                                                        : "var(--graph-line)",
+                                                    background: node.onPath
+                                                        ? "var(--graph-accent)"
+                                                        : "var(--graph-surface)",
+                                                }}
+                                            />
+                                            {interactive ? (
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        onSelectProject(node.projectSlug!)
+                                                    }
+                                                    className="text-left font-medium underline-offset-2 hover:underline"
+                                                >
+                                                    {node.label}
+                                                </button>
+                                            ) : (
+                                                <p className="font-medium">{node.label}</p>
+                                            )}
+                                            {node.sublabel && (
+                                                <p className="text-sm text-graph-muted">
+                                                    {node.sublabel}
+                                                </p>
+                                            )}
+                                        </li>
+                                    );
+                                })}
+                            </ol>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 };

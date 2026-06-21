@@ -25,21 +25,26 @@ import type {
  *    no node is ever visually stranded.
  */
 
-const VIEW_WIDTH = 1080;
+const VIEW_WIDTH = 1120;
 const NODE_HEIGHT = 44;
 const HALF_H = NODE_HEIGHT / 2;
 const BAND_TOP = 96;
 const ROW_HEIGHT = 96;
 
+// Column order: origin → education → role → skill → project.
+// Roles precede skills because the career narrative reads as
+// "studied → got a role → applied skills → shipped projects."
+// Skill edges now go to the adjacent column (col3→col4), eliminating
+// the crossing that occurred when skills sat between education and roles.
 const COLUMNS: Record<
     Exclude<GraphNode["kind"], never>,
     { x: number; width: number; col: number }
 > = {
-    origin:    { x: 95,  width: 150, col: 0 },
-    education: { x: 305, width: 178, col: 1 },
-    skill:     { x: 515, width: 140, col: 2 },
-    role:      { x: 720, width: 168, col: 3 },
-    project:   { x: 925, width: 190, col: 4 },
+    origin:    { x: 90,  width: 148, col: 0 },
+    education: { x: 295, width: 175, col: 1 },
+    role:      { x: 508, width: 168, col: 2 },
+    skill:     { x: 718, width: 148, col: 3 },
+    project:   { x: 950, width: 210, col: 4 },
 };
 
 const CAPS = { education: 3, skill: 8, role: 4, project: 8 };
@@ -69,8 +74,9 @@ const edgePath = (from: GraphNode, to: GraphNode): string => {
     const x2   = to.x   - to.width  / 2;
     const span = x2 - x1;
     const colDiff = Math.abs(to.col - from.col);
-    // Single-column gap: 35% arm  |  Two-column gap: 44% arm
-    const arm = span * (colDiff === 1 ? 0.35 : 0.44);
+    // Single-column gap: 38% arm  |  Two-column gap: 44% arm
+    // Floor at 28px so short adjacent edges still curve visibly.
+    const arm = Math.max(28, span * (colDiff === 1 ? 0.38 : 0.44));
     return `M ${x1} ${from.y} C ${x1 + arm} ${from.y} ${x2 - arm} ${to.y} ${x2} ${to.y}`;
 };
 
@@ -87,7 +93,14 @@ export const buildCareerGraph = (input: {
     const education  = (input.education  ?? []).slice(0, CAPS.education);
     const experience = (input.experience ?? []).slice(0, CAPS.role);
     const skills     = (input.skills     ?? []).slice(0, CAPS.skill);
-    const rawProjects = (input.projects  ?? []).slice(0, CAPS.project);
+    // Featured projects first, then by authored order — so the lit path always
+    // lands on the most prominent work regardless of CMS insertion order.
+    const rawProjects = [...(input.projects ?? [])]
+        .sort((a, b) => {
+            if (!!b.featured !== !!a.featured) return a.featured ? -1 : 1;
+            return (a.order ?? 99) - (b.order ?? 99);
+        })
+        .slice(0, CAPS.project);
 
     const maxRows = Math.max(1, education.length, skills.length, experience.length, rawProjects.length);
     const height     = Math.max(480, maxRows * ROW_HEIGHT + 150);
@@ -162,7 +175,7 @@ export const buildCareerGraph = (input: {
             id: s._id || `skill-${i}`, kind: "skill",
             label: s.name, sublabel: s.category,
             step: step++, x: COLUMNS.skill.x, y: skillY[i],
-            col: 2, width: COLUMNS.skill.width, skillName: s.name,
+            col: 3, width: COLUMNS.skill.width, skillName: s.name,
         };
         nodes.push(node); return node;
     });
@@ -171,9 +184,9 @@ export const buildCareerGraph = (input: {
     const roleNodes = experience.map((r, i) => {
         const node: GraphNode = {
             id: r._id || `role-${i}`, kind: "role",
-            label: r.title, sublabel: r.company,
+            label: r.title, sublabel: r.year || r.company,
             step: step++, x: COLUMNS.role.x, y: roleY[i],
-            col: 3, width: COLUMNS.role.width,
+            col: 2, width: COLUMNS.role.width,
         };
         nodes.push(node); return node;
     });
@@ -205,6 +218,23 @@ export const buildCareerGraph = (input: {
     const primaryRole = roleNodes[0];
     const projectParent = primaryRole ?? primaryEdu ?? origin;
 
+    // ── Primary skill bridge ─────────────────────────────────────────────────
+    // Pre-computed as const (not let + closure) so TypeScript CFA can infer
+    // GraphNode | null without narrowing to 'never' at use sites.
+    // Finds the rarest skill shared between skill nodes and project[0]'s
+    // technologies — identical ranking to what the per-project forEach uses.
+    const primaryProjTechs = new Set(
+        (projects[0]?.technologies ?? []).map((t) => t.toLowerCase())
+    );
+    const primaryRouteSkill =
+        skillNodes
+            .filter((sn) => sn.skillName && primaryProjTechs.has(sn.skillName.toLowerCase()))
+            .sort((a, b) => {
+                const fa = skillFreq.get(a.skillName!.toLowerCase()) ?? 1;
+                const fb = skillFreq.get(b.skillName!.toLowerCase()) ?? 1;
+                return fa - fb;
+            })[0] ?? null;
+
     // Lineage spine: origin → education → role
     eduNodes.forEach((e) => push(origin, e, "lineage"));
     if (roleNodes.length) {
@@ -212,19 +242,24 @@ export const buildCareerGraph = (input: {
         else roleNodes.forEach((r) => push(origin, r, "lineage"));
     }
 
-    // Role → primary project only (projectNodes[0] after skill-aligned sort).
-    // Other projects are reached via their distinctive skill edge below.
-    push(projectParent, projectNodes[0], "lineage");
+    // Lineage spine → project.
+    // When a skill bridges the primary project, route through it:
+    //   role (col 2) → skill (col 3) → project (col 4)   ← single-column hops, no crossing
+    // The skill→project[0] edge is added in the loop below; onPath is set via
+    // pathNodeIds so it lights up automatically — no second edge needed here.
+    if (primaryRouteSkill) {
+        push(projectParent, primaryRouteSkill, "lineage");
+    } else {
+        push(projectParent, projectNodes[0], "lineage");
+    }
 
-    // Skill → project: one edge per project from the most distinctive skill.
-    // "Most distinctive" = the skill with the lowest frequency across projects
-    // (e.g. Node.js used in 1 project beats Python used in 4).
-    // Track which projects received a skill edge for the fallback below.
+    // ── Skill → project edges ─────────────────────────────────────────────────
+    // "Most distinctive" = lowest cross-project frequency.
     const hasSkillEdge = new Set<string>();
     projects.forEach((p, i) => {
         const sorted = (p.technologies ?? [])
             .map((t) => ({ t, freq: skillFreq.get(t.toLowerCase()) ?? 1 }))
-            .sort((a, b) => a.freq - b.freq); // rarest first
+            .sort((a, b) => a.freq - b.freq);
 
         const target = projectNodes[i];
         for (const { t } of sorted) {
@@ -255,22 +290,30 @@ export const buildCareerGraph = (input: {
     // Primary project = first in sorted order (skill-aligned top of graph).
     const primaryProjectNode = projectNodes[0];
     const pathNodeIds = new Set<string>(["origin"]);
-    if (primaryEdu) pathNodeIds.add(primaryEdu.id);
-    if (primaryRole) pathNodeIds.add(primaryRole.id);
+    if (primaryEdu)         pathNodeIds.add(primaryEdu.id);
+    if (primaryRole)        pathNodeIds.add(primaryRole.id);
+    if (primaryRouteSkill)  pathNodeIds.add(primaryRouteSkill.id);
     pathNodeIds.add(primaryProjectNode.id);
 
-    // Skills feeding the primary project join the lit subgraph
-    const primaryTechs = new Set(
-        (projects[0]?.technologies ?? []).map((t) => t.toLowerCase())
-    );
+    // All skills feeding the primary project join the lit subgraph (they get
+    // lit arrows into project[0] without the spine highlight).
+    // primaryProjTechs is already computed above — no duplicate Set needed.
     skillNodes.forEach((sn) => {
-        if (sn.skillName && primaryTechs.has(sn.skillName.toLowerCase()))
+        if (sn.skillName && primaryProjTechs.has(sn.skillName.toLowerCase()))
             pathNodeIds.add(sn.id);
     });
 
     nodes.forEach((n) => { if (pathNodeIds.has(n.id)) n.onPath = true; });
 
-    const spineOrder = ["origin", primaryEdu?.id, primaryRole?.id].filter(Boolean) as string[];
+    // spineOrder drives the draw-animation cascade: each entry is one step.
+    // primaryRouteSkill at index 3 ensures role→skill animates at step 2
+    // and skill→project animates at step 3 (sequential, no gap).
+    const spineOrder = [
+        "origin",
+        primaryEdu?.id,
+        primaryRole?.id,
+        primaryRouteSkill?.id,
+    ].filter(Boolean) as string[];
     let cascade = 0;
     edges.forEach((e) => {
         const onPath = pathNodeIds.has(e.from) && pathNodeIds.has(e.to);
