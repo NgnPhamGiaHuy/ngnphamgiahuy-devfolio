@@ -4,8 +4,9 @@ import withBundleAnalyzer from "@next/bundle-analyzer";
 const nextConfig: NextConfig = {
     images: {
         remotePatterns: [
-            { protocol: "https", hostname: "cdn.sanity.io" },
+            { protocol: "https", hostname: "firebasestorage.googleapis.com" },
             { protocol: "https", hostname: "picsum.photos" },
+            { protocol: "https", hostname: "via.placeholder.com" },
         ],
         formats: ["image/webp", "image/avif"],
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

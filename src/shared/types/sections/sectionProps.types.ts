@@ -1,15 +1,10 @@
 import type {
     BlogPostType,
-    CertificateType,
     EducationType,
     ExperienceType,
-    MapConfigItemType,
-    PricingType,
     ProfileType,
     ProjectType,
-    ServiceType,
     SkillType,
-    TestimonialType,
 } from "@/schemas";
 
 export interface BaseSectionProps {
@@ -22,36 +17,23 @@ export interface HeroSectionProps extends BaseSectionProps {
     projects: ProjectType[];
 }
 
-export interface ServicesSectionProps extends BaseSectionProps {
-    services: ServiceType[];
-}
-
 export interface SkillsSectionProps extends BaseSectionProps {
     skills: SkillType[];
+    projects: ProjectType[];
 }
 
-export interface PortfoliosSectionProps extends BaseSectionProps {
+export interface ProjectsSectionProps extends BaseSectionProps {
     projects: ProjectType[];
-    maxItems?: number;
-    hideSeeMore?: boolean;
-    backgroundVariant?: "gradientUp" | "gradientDown" | "none";
+}
+
+export interface NowSectionProps extends BaseSectionProps {
+    profile: ProfileType;
+    experience: ExperienceType[];
 }
 
 export interface ResumeSectionProps extends BaseSectionProps {
     education: EducationType[];
     experience: ExperienceType[];
-}
-
-export interface CertificatesSectionProps extends BaseSectionProps {
-    certificates: CertificateType[];
-}
-
-export interface TestimonialsSectionProps extends BaseSectionProps {
-    testimonials: TestimonialType[];
-}
-
-export interface PricingSectionProps extends BaseSectionProps {
-    pricing: PricingType[];
 }
 
 export interface BlogSectionProps extends BaseSectionProps {
@@ -62,19 +44,11 @@ export interface ContactSectionProps extends BaseSectionProps {
     contactItems: Array<{ type: string; value: string; label: string }>;
 }
 
-export interface MapSectionProps extends BaseSectionProps {
-    mapConfig: MapConfigItemType;
-}
-
 export type SectionProps =
     | HeroSectionProps
-    | ServicesSectionProps
     | SkillsSectionProps
-    | PortfoliosSectionProps
+    | ProjectsSectionProps
+    | NowSectionProps
     | ResumeSectionProps
-    | CertificatesSectionProps
-    | TestimonialsSectionProps
-    | PricingSectionProps
     | BlogSectionProps
-    | ContactSectionProps
-    | MapSectionProps;
+    | ContactSectionProps;

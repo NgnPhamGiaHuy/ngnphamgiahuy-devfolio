@@ -10,7 +10,7 @@ const ProfileSchema = DocumentBaseSchema.and(SeoFieldsSchema).and(
         job_title: z.string(),
         description: z.string(),
         location: z.string(),
-        email: z.email(),
+        email: z.string().email().optional(),
         phone: z.string().optional(),
         experience_years: z.number(),
         profile_image: z.string(),
@@ -18,7 +18,7 @@ const ProfileSchema = DocumentBaseSchema.and(SeoFieldsSchema).and(
             z.object({
                 platform: z.string(),
                 url: z.string(),
-                icon: z.string(),
+                icon: z.string().optional(),
             })
         ),
         cv_link: z.string().optional(),

@@ -82,7 +82,7 @@ const SiteFooter: React.FC<SiteFooterProps> = ({
                 {/* Colophon — the site is itself a build artifact (honest signal). */}
                 <p className="site-footer__colophon" data-testid="footer-colophon">
                     This site is part of the history — built with Next.js,
-                    TypeScript &amp; Sanity, and designed &amp; built by {name}.
+                    TypeScript &amp; Firebase, and designed &amp; built by {name}.
                 </p>
 
                 <div className="site-footer__rule" aria-hidden="true" />

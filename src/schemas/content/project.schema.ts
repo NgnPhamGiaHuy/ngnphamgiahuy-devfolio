@@ -51,6 +51,8 @@ const ProjectSchema = DocumentBaseSchema.and(SeoFieldsSchema).and(
         link: z.string().optional(),
         featured: z.boolean().optional(),
         order: z.number().optional(),
+        /** Visibility gate for the public site (drafts are hidden + rule-protected). */
+        published: z.boolean().optional(),
 
         // --- Case-study depth (all optional, authored progressively) ---
         slug: z.string().optional(),

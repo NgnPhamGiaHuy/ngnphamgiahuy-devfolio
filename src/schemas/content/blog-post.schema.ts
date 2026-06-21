@@ -17,6 +17,8 @@ const BlogPostSchema = DocumentBaseSchema.and(SeoFieldsSchema).and(
         content: z.array(z.any()).optional(),
         categories: z.array(z.string()).optional(),
         author: z.string().optional().nullable(),
+        /** Visibility gate for the public site (drafts are hidden + rule-protected). */
+        published: z.boolean().optional(),
     })
 );
 

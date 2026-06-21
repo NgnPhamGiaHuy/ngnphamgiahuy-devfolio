@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { createMockData } from "@/infrastructure";
+import { getPortfolioData } from "@/application/use-cases/content";
 import { getBlogPostBySlug } from "@/shared/utils/blog/blogPost.helpers";
 import BlogItem from "@/components/features/blog/BlogItem";
 
@@ -15,9 +15,9 @@ export const generateMetadata = async ({
 }: BlogPostDetailProps): Promise<Metadata> => {
     const { slug } = await params;
 
-    const mockData = createMockData();
+    const data = await getPortfolioData();
 
-    const post = mockData.blogs.find((b) => b.slug?.current === slug);
+    const post = data.blogs.find((b) => b.slug?.current === slug);
     if (!post) return {};
 
     return {
@@ -29,9 +29,9 @@ export const generateMetadata = async ({
 const BlogPostPage = async ({ params }: BlogPostDetailProps) => {
     const { slug } = await params;
 
-    const mockData = createMockData();
+    const data = await getPortfolioData();
 
-    const post = await getBlogPostBySlug(slug, mockData.blogs);
+    const post = await getBlogPostBySlug(slug, data.blogs);
     if (!post) return notFound();
 
     return <BlogItem slug={slug} />;

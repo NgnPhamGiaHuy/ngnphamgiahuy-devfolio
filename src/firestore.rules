@@ -1,0 +1,49 @@
+rules_version = '2';
+
+// ============================================================
+// Firestore Security Rules — single-owner portfolio control center
+// Public content is world-readable; ALL writes require an allowlisted,
+// signed-in UID. Drafts (published != true) are readable only by an admin.
+// Keep allowlist() in sync with storage.rules and NEXT_PUBLIC_ADMIN_UIDS.
+// ============================================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // The single source of write authority. Two UIDs from day one:
+    // your primary account + a break-glass account (see CONTROL-CENTER-DESIGN R1).
+    function allowlist() {
+      return ["iF4bJcy3lQeQT7u0Ho43jsaVv582"];
+    }
+    function isAdmin() {
+      return request.auth != null && request.auth.uid in allowlist();
+    }
+
+    // ---- Singletons (pinned doc ids, not wildcards) ----
+    match /profile/main  { allow read: if true; allow write: if isAdmin(); }
+    match /settings/site { allow read: if true; allow write: if isAdmin(); }
+
+    // ---- Always-public collections ----
+    match /education/{doc}  { allow read: if true; allow write: if isAdmin(); }
+    match /experience/{doc} { allow read: if true; allow write: if isAdmin(); }
+    match /skills/{doc}     { allow read: if true; allow write: if isAdmin(); }
+
+    // ---- Draft-gated collections: drafts are NOT world-readable ----
+    // The public query MUST include where("published","==",true), otherwise
+    // Firestore rejects the read for possibly returning a draft.
+    match /projects/{doc} {
+      allow read:  if resource.data.published == true || isAdmin();
+      allow write: if isAdmin();
+    }
+    match /blogPosts/{doc} {
+      allow read:  if resource.data.published == true || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // ---- DEFERRED (services/pricing/testimonials/certificates/map) ----
+    // Intentionally unmatched -> denied by the catch-all. Add a block mirroring
+    // the pattern above if/when content is authored.
+
+    // ---- Default deny ----
+    match /{document=**} { allow read, write: if false; }
+  }
+}

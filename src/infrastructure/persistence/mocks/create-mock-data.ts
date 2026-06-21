@@ -95,15 +95,11 @@ const build = (): CompleteMockData => {
     return CompleteMockDataSchema.parse({
         logo: LOGO,
         profile,
-        services: [],
         skills,
         projects,
         education,
         experience,
-        testimonials: [],
-        pricing: [],
         blogs: [],
-        certificates: [],
         settings,
     });
 };

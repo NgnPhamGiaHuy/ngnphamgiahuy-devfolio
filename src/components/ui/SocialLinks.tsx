@@ -63,8 +63,8 @@ const SocialLinks: React.FC<SocialLinksProps> = ({
             data-testid="social-links"
             {...props}
         >
-            {safeLinks.map((link) => {
-                const key = `${link.href}`;
+            {safeLinks.map((link, index) => {
+                const key = `${link.href}-${index}`;
                 const ariaLabel =
                     link.ariaLabel || `Open ${link.href} in a new tab`;
 
@@ -76,7 +76,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({
                         rel="noopener noreferrer"
                         aria-label={ariaLabel}
                         prefetch={false}
-                        data-testid={`social-link-${key}`}
+                        data-testid={`social-link-${index}`}
                     >
                         <span className={iconWrapperClass}>
                             {link.icon({ className: iconSize })}

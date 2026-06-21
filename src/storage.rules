@@ -1,0 +1,33 @@
+rules_version = '2';
+
+// ============================================================
+// Storage Security Rules — profile / project / blog images
+// Public read (the live site serves them via <Image>), admin-only write,
+// constrained to small raster images. SVG is excluded on purpose because
+// next.config has dangerouslyAllowSVG: true. Keep the UID list in sync with
+// firestore.rules allowlist() and NEXT_PUBLIC_ADMIN_UIDS.
+// ============================================================
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.uid in ["iF4bJcy3lQeQT7u0Ho43jsaVv582"];
+    }
+
+    // contentType is client-supplied metadata (not byte-sniffed), so an
+    // explicit raster allowlist + admin-only write is the realistic ceiling.
+    function isValidImage() {
+      return request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType in
+             ['image/png', 'image/jpeg', 'image/webp', 'image/avif'];
+    }
+
+    match /images/{folder}/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImage();
+    }
+
+    match /{allPaths=**} { allow read, write: if false; }
+  }
+}

@@ -1,12 +1,14 @@
 import React from "react";
 
-import { createMockData } from "@/infrastructure/persistence/mocks";
+import { getPortfolioData } from "@/application/use-cases/content";
 import { PageChrome } from "@/components";
 import { renderSection } from "@/components/section/SectionRenderer";
 import { normalizeSectionConfigData } from "@/shared/utils/sections";
 
+export const revalidate = 300;
+
 export default async function Home(): Promise<React.JSX.Element> {
-    const data = createMockData();
+    const data = await getPortfolioData();
 
     const enabledSections = normalizeSectionConfigData(data.settings).filter(
         (section) => section.enabled

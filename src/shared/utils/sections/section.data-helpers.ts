@@ -1,17 +1,13 @@
 import type {
     BlogPostType,
-    CertificateType,
     EducationType,
     ExperienceType,
     MockDataType,
-    PricingType,
     ProfileType,
     ProjectType,
     SectionConfigItemType,
-    ServiceType,
     SettingsType,
     SkillType,
-    TestimonialType,
 } from "@/schemas";
 
 import { type CompleteMockData, createMockData } from "@/infrastructure";
@@ -28,15 +24,11 @@ const getFallbackData = (): CompleteMockData => {
 const toMockDataType = (data: CompleteMockData): MockDataType => ({
     logo: data.logo,
     profile: data.profile,
-    services: data.services,
     skills: data.skills,
     projects: data.projects,
     education: data.education,
     experience: data.experience,
-    testimonials: data.testimonials,
-    pricing: data.pricing,
     blogs: data.blogs,
-    certificates: data.certificates,
 });
 
 // COMMIT HISTORY IA: hero renders the career graph, skills the dependency
@@ -48,16 +40,6 @@ const DEFAULT_SECTION_CONFIG: SectionConfigItemType[] = [
     { id: "now", enabled: true, resetAnimationOnView: false },
     { id: "contact", enabled: true, resetAnimationOnView: false },
 ] as const;
-
-const DEFAULT_MAP_CONFIG = {
-    enabled: true,
-    embedUrl: undefined,
-    height: 580,
-} as const;
-
-const PORTFOLIO_CONFIG = {
-    MAX_ITEMS: 6,
-} as const;
 
 interface ContactDataItem {
     type: string;
@@ -129,8 +111,6 @@ const createArrayNormalizer =
         );
     };
 
-export const normalizeServicesData =
-    createArrayNormalizer<ServiceType>("services");
 export const normalizeSkillsData = createArrayNormalizer<SkillType>("skills");
 export const normalizeProjectsData =
     createArrayNormalizer<ProjectType>("projects");
@@ -138,13 +118,7 @@ export const normalizeExperienceData =
     createArrayNormalizer<ExperienceType>("experience");
 export const normalizeEducationData =
     createArrayNormalizer<EducationType>("education");
-export const normalizeTestimonialsData =
-    createArrayNormalizer<TestimonialType>("testimonials");
-export const normalizePricingData =
-    createArrayNormalizer<PricingType>("pricing");
 export const normalizeBlogsData = createArrayNormalizer<BlogPostType>("blogs");
-export const normalizeCertificatesData =
-    createArrayNormalizer<CertificateType>("certificates");
 
 export const normalizeContactData = (
     profile?: ProfileType | null,
@@ -153,7 +127,7 @@ export const normalizeContactData = (
     const normalizedProfile = normalizeProfileData(profile, fallbackData);
 
     const contactItems: ContactDataItem[] = [
-        { type: "email", value: normalizedProfile.email, label: "Email" },
+        { type: "email", value: normalizedProfile.email ?? "", label: "Email" },
         {
             type: "phone",
             value: normalizedProfile.phone || "",
@@ -219,39 +193,16 @@ const SECTION_BUILDERS: Record<string, SectionBuilder> = {
         profile: normalizeProfileData(props.profile, fb),
         experience: normalizeExperienceData(props.experience, fb),
     }),
-    services: (props, fb) => ({
-        services: normalizeServicesData(props.services, fb),
-    }),
     // Skills become a dependency graph: each skill + the projects that prove it.
     skills: (props, fb) => ({
         skills: normalizeSkillsData(props.skills, fb),
         projects: normalizeProjectsData(props.projects, fb),
-    }),
-    portfolios: (props, fb) => ({
-        maxItems: PORTFOLIO_CONFIG.MAX_ITEMS,
-        projects: normalizeProjectsData(props.projects, fb),
-    }),
-    resume: (props, fb) => ({
-        experience: normalizeExperienceData(props.experience, fb),
-        education: normalizeEducationData(props.education, fb),
-    }),
-    certificates: (props, fb) => ({
-        certificates: normalizeCertificatesData(props.certificates, fb),
-    }),
-    testimonials: (props, fb) => ({
-        testimonials: normalizeTestimonialsData(props.testimonials, fb),
-    }),
-    pricing: (props, fb) => ({
-        pricing: normalizePricingData(props.pricing, fb),
     }),
     blog: (props, fb) => ({
         blogs: normalizeBlogsData(props.blogs, fb),
     }),
     contact: (props, fb) => ({
         contactItems: normalizeContactData(props.profile, fb),
-    }),
-    map: (props) => ({
-        mapConfig: props.settings?.map || DEFAULT_MAP_CONFIG,
     }),
 };
 

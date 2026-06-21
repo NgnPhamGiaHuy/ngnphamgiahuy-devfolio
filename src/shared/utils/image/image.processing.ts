@@ -91,12 +91,3 @@ export const processImage = (
     return { url, alt };
 };
 
-export const processPortfolioImage = (
-    image: string | undefined,
-    projectName: string,
-    config: ImageConfig
-): ProcessedImage => {
-    const fallbackAlt = `${projectName} project`;
-
-    return processImage(image, config, { fallbackAlt });
-};

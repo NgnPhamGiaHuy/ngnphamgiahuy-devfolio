@@ -9,7 +9,7 @@
 // ============================================================
 import React from "react";
 
-import { createMockData } from "@/infrastructure/persistence/mocks";
+import { getPortfolioData } from "@/application/use-cases/content";
 import {
     buildImageProps,
     buildPostUrl,
@@ -55,9 +55,9 @@ const BlogItem = async ({ slug }: BlogItemProps) => {
     // ------------------------------------------------------------
     // Data Fetch
     // ------------------------------------------------------------
-    // Source is mock/static today; can be swapped with CMS queries without changing the view layer
-    const mockData = createMockData();
-    const post = await getBlogPostBySlug(slug, mockData.blogs);
+    // Content comes from Firestore (or the static fallback) via the read use-case.
+    const data = await getPortfolioData();
+    const post = await getBlogPostBySlug(slug, data.blogs);
 
     // ------------------------------------------------------------
     // Guards

@@ -116,14 +116,28 @@ const CareerGraph: React.FC<CareerGraphProps> = ({
                 {portraitUrl && (
                     <div className="portrait-block shrink-0">
                         <div className="portrait h-32 w-32 md:h-40 md:w-40">
-                            <Image
-                                src={portraitUrl}
-                                alt={profile.name}
-                                width={320}
-                                height={320}
-                                priority
-                                className="h-full w-full object-cover"
-                            />
+                            {portraitUrl.startsWith("/") ? (
+                                <Image
+                                    src={portraitUrl}
+                                    alt={profile.name}
+                                    width={320}
+                                    height={320}
+                                    priority
+                                    className="h-full w-full object-cover"
+                                />
+                            ) : (
+                                // External URLs: native img avoids next/image hostname validation.
+                                // Switch to next/image once a stable /public or Storage URL is set.
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                    src={portraitUrl}
+                                    alt={profile.name}
+                                    width={320}
+                                    height={320}
+                                    className="h-full w-full object-cover"
+                                    loading="eager"
+                                />
+                            )}
                         </div>
                         <p className="portrait-block__label">{"// author"}</p>
                     </div>

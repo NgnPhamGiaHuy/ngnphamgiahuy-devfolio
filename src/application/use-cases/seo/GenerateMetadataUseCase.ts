@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 
 import { resolveImageUrl } from "@/shared";
-import { createMockData } from "@/infrastructure";
+import { getPortfolioData } from "@/application/use-cases/content";
 
 export const generateHomePageMetadata = async (): Promise<Metadata> => {
-    const { profile, settings } = createMockData();
+    const { profile, settings } = await getPortfolioData();
 
     const resolveBaseUrl = (): string => {
         const envUrl =
