@@ -7,6 +7,8 @@ import type { SidebarProps } from "@/shared/types";
 import useSidebarAnimation from "./hooks/useSidebarAnimation";
 import { SIDEBAR_CONFIG } from "@/infrastructure/config";
 import { generateSocialLinks } from "@/components/ui/social";
+import { X } from "lucide-react";
+
 import { NavItem, SocialLinks, VerticalRule } from "@/components";
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -62,6 +64,16 @@ const Sidebar: React.FC<SidebarProps> = ({
             data-testid="sidebar"
             {...props}
         >
+            {/* Close button — always visible inside the sidebar (needed when sidebar fills 100vw) */}
+            <button
+                type="button"
+                onClick={onClose}
+                aria-label="Close navigation menu"
+                className="sidebar-close-btn"
+            >
+                <X size={20} aria-hidden="true" />
+            </button>
+
             <div className="sidebar-content">
                 <div className="sidebar-container-inner">
                     <div className="sidebar-row">

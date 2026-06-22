@@ -96,16 +96,23 @@ const AdminChrome: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 </div>
             </aside>
 
-            {/* Mobile top strip */}
-            <div className="sticky top-0 z-10 flex items-center gap-1 overflow-x-auto border-b border-[var(--color-hairline)] bg-[var(--color-surface-soft)] px-3 py-2 md:hidden">
-                <NavLinks pathname={pathname} />
-                <button
-                    type="button"
-                    onClick={() => void signOut()}
-                    className="ml-auto shrink-0 rounded-md px-3 py-2 text-sm text-[var(--color-body)]"
-                >
-                    Sign out
-                </button>
+            {/* Mobile top strip — horizontally scrollable pill nav */}
+            <div className="relative sticky top-0 z-10 border-b border-[var(--color-hairline)] bg-[var(--color-surface-soft)] md:hidden">
+                <div className="flex items-center gap-1 overflow-x-auto px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    <NavLinks pathname={pathname} />
+                    <button
+                        type="button"
+                        onClick={() => void signOut()}
+                        className="ml-auto shrink-0 rounded-md px-3 py-2 text-sm text-[var(--color-body)]"
+                    >
+                        Sign out
+                    </button>
+                </div>
+                {/* Right fade — indicates more content to scroll */}
+                <div
+                    className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[var(--color-surface-soft)]"
+                    aria-hidden="true"
+                />
             </div>
 
             <main className="min-w-0 flex-1">{children}</main>

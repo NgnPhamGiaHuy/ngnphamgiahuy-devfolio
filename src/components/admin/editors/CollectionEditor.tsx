@@ -114,7 +114,7 @@ const CollectionEditor: React.FC<CollectionEditorProps> = ({
                     {items.map((item, i) => (
                         <li
                             key={item._id}
-                            className="flex items-center gap-3 p-3"
+                            className="flex items-center gap-2 px-3 py-2"
                         >
                             <div className="flex flex-col">
                                 <button
@@ -122,7 +122,7 @@ const CollectionEditor: React.FC<CollectionEditorProps> = ({
                                     aria-label="Move up"
                                     disabled={i === 0}
                                     onClick={() => move(i, -1)}
-                                    className="text-xs text-[var(--color-muted)] disabled:opacity-30"
+                                    className="flex h-6 w-6 items-center justify-center text-xs text-[var(--color-muted)] disabled:opacity-30"
                                 >
                                     ▲
                                 </button>
@@ -131,7 +131,7 @@ const CollectionEditor: React.FC<CollectionEditorProps> = ({
                                     aria-label="Move down"
                                     disabled={i === items.length - 1}
                                     onClick={() => move(i, 1)}
-                                    className="text-xs text-[var(--color-muted)] disabled:opacity-30"
+                                    className="flex h-6 w-6 items-center justify-center text-xs text-[var(--color-muted)] disabled:opacity-30"
                                 >
                                     ▼
                                 </button>
@@ -151,7 +151,7 @@ const CollectionEditor: React.FC<CollectionEditorProps> = ({
                                 onClick={() =>
                                     setEditing({ mode: "edit", item })
                                 }
-                                className="text-sm text-[var(--color-body)] hover:text-[var(--color-ink)]"
+                                className="min-h-[44px] px-2 text-sm text-[var(--color-body)] hover:text-[var(--color-ink)]"
                             >
                                 Edit
                             </button>

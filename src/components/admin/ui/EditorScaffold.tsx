@@ -21,7 +21,7 @@ export const EditorScaffold: React.FC<EditorScaffoldProps> = ({
     actions,
     children,
 }) => (
-    <div className="px-6 py-10 md:px-10">
+    <div className="px-4 py-8 sm:px-6 sm:py-10 md:px-10">
         <div className="mx-auto max-w-[760px]">
             <div className="mb-8 flex items-start justify-between gap-4">
                 <div>

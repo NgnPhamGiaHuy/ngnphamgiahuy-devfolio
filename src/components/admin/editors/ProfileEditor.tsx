@@ -99,46 +99,38 @@ const ProfileForm: React.FC<{ initial: ProfileType }> = ({ initial }) => {
                         Social links
                     </legend>
 
-                    {/* Column headers — shown only when there are rows */}
-                    {fields.length > 0 && (
-                        <div className="mb-1.5 flex items-center gap-2 px-0.5">
-                            <span className="w-28 shrink-0 text-xs text-[var(--color-muted)]">Platform</span>
-                            <span className="flex-1 text-xs text-[var(--color-muted)]">URL</span>
-                            <span className="shrink-0 text-xs text-[var(--color-muted)]">Icon</span>
-                            <span className="w-6 shrink-0" />
-                        </div>
-                    )}
-
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                         {fields.map((field, i) => (
-                            <div key={field.id} className="flex items-center gap-2">
+                            <div key={field.id} className="grid grid-cols-1 gap-2 sm:grid-cols-[7rem_1fr_auto_auto] sm:items-center">
                                 <input
                                     placeholder="Platform"
-                                    className="form-input-field w-28 shrink-0"
+                                    className="form-input-field"
                                     {...register(`social_links.${i}.platform`)}
                                 />
                                 <input
                                     placeholder="https://…"
-                                    className="form-input-field flex-1 font-mono text-xs"
+                                    className="form-input-field font-mono text-xs"
                                     {...register(`social_links.${i}.url`)}
                                 />
-                                <div className="shrink-0">
-                                    <IconPicker
-                                        control={control}
-                                        name={`social_links.${i}.icon`}
-                                    />
+                                <div className="flex items-center gap-2 sm:contents">
+                                    <div>
+                                        <IconPicker
+                                            control={control}
+                                            name={`social_links.${i}.icon`}
+                                        />
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => remove(i)}
+                                        aria-label="Remove"
+                                        className="min-h-[44px] min-w-[44px] rounded flex items-center justify-center text-[var(--color-muted)] transition-colors hover:text-[var(--color-error)]"
+                                    >
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                            <line x1="6" y1="6" x2="18" y2="18" />
+                                        </svg>
+                                    </button>
                                 </div>
-                                <button
-                                    type="button"
-                                    onClick={() => remove(i)}
-                                    aria-label="Remove"
-                                    className="shrink-0 rounded p-1 text-[var(--color-muted)] transition-colors hover:text-[var(--color-error)]"
-                                >
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                                        <line x1="18" y1="6" x2="6" y2="18" />
-                                        <line x1="6" y1="6" x2="18" y2="18" />
-                                    </svg>
-                                </button>
                             </div>
                         ))}
                     </div>
