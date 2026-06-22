@@ -85,9 +85,6 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
             document.removeEventListener("keydown", onKey);
             trigger?.focus?.();
         };
-        // Intentionally omit onClose — the ref always holds the latest value, so
-        // this effect only needs to re-run when the panel opens/closes.
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
 
     return (

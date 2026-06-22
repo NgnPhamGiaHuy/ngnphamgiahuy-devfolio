@@ -1,5 +1,5 @@
 import React from "react";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
@@ -36,10 +36,7 @@ const jetbrainsMono = JetBrains_Mono({
     display: "swap",
 });
 
-export async function generateMetadata(
-    _props: unknown,
-    _parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
     return await generateHomePageMetadata();
 }
 

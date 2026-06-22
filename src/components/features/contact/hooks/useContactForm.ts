@@ -105,7 +105,7 @@ const useContactForm = (): UseContactFormReturn => {
     // Form Submission Handler
     // ============================================================
 
-    const onSubmit = async (data: ContactFormData): Promise<void> => {
+    const onSubmit = async (_data: ContactFormData): Promise<void> => {
         setIsSubmitting(true);
         setSubmitStatus(null);
 
@@ -115,9 +115,6 @@ const useContactForm = (): UseContactFormReturn => {
                 setTimeout(resolve, API_CONFIG.TIMEOUT)
             );
 
-            // Log form data for development
-            console.log("Form data to submit:", data);
-
             // Set success status
             setSubmitStatus({
                 type: "success",
@@ -126,9 +123,7 @@ const useContactForm = (): UseContactFormReturn => {
 
             // Reset form after successful submission
             reset();
-        } catch (error) {
-            console.error("Form submission error:", error);
-
+        } catch (_error) {
             // Set error status
             setSubmitStatus({
                 type: "error",

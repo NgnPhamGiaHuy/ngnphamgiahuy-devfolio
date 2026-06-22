@@ -72,13 +72,11 @@ export const generateSocialLinks = (
     } = options;
 
     if (!Array.isArray(socialLinks)) {
-        console.warn("generateSocialLinks: Expected array of social links");
         return [];
     }
 
-    return socialLinks.map((link, index) => {
+    return socialLinks.map((link) => {
         if (!link || !link.platform || !link.url) {
-            console.warn(`Invalid social link at index ${index}:`, link);
             return createFallbackLink(link, iconDimensions);
         }
 
@@ -128,18 +126,14 @@ const createCustomIconLink = (
             ),
             ariaLabel: `${link.platform} Profile`,
         };
-    } catch (error) {
-        console.error(
-            `Error processing custom icon for ${link.platform}:`,
-            error
-        );
+    } catch (_error) {
         return createPlatformIconLink(link, dimensions);
     }
 };
 
 const createPlatformIconLink = (
     link: RawSocialLink,
-    dimensions: { width: number; height: number }
+    _dimensions: { width: number; height: number }
 ): SocialLink => {
     const IconComponent = getIconForPlatform(link.platform);
 
@@ -152,7 +146,7 @@ const createPlatformIconLink = (
 
 const createFallbackLink = (
     link: RawSocialLink,
-    dimensions: { width: number; height: number }
+    _dimensions: { width: number; height: number }
 ): SocialLink => {
     return {
         href: link?.url || "#",

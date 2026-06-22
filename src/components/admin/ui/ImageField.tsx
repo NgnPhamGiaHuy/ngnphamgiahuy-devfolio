@@ -8,7 +8,7 @@
 //   Shows preview, progress bar, Replace and Remove actions.
 //   Controlled via react-hook-form Controller.
 // ============================================================
-import React, { useCallback, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Controller } from "react-hook-form";
 import type { Control, FieldPath, FieldValues } from "react-hook-form";
 import clsx from "clsx";
@@ -154,15 +154,12 @@ function ImageField<T extends FieldValues>({
                     }
                 };
 
-                const handleDrop = useCallback(
-                    (e: React.DragEvent<HTMLDivElement>) => {
-                        e.preventDefault();
-                        setIsDragging(false);
-                        const file = e.dataTransfer.files[0];
-                        if (file) handleFile(file);
-                    },
-                    [current] // eslint-disable-line react-hooks/exhaustive-deps
-                );
+                const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+                    e.preventDefault();
+                    setIsDragging(false);
+                    const file = e.dataTransfer.files[0];
+                    if (file) handleFile(file);
+                };
 
                 const handleRemove = async () => {
                     if (current?.path) await deleteStorageFile(current.path);

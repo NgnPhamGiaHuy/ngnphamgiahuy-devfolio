@@ -16,9 +16,6 @@ import { HeaderState } from "@/shared/utils";
 /** Scroll threshold for header state changes */
 const SCROLL_THRESHOLD = 50;
 
-/** Throttle delay for scroll events */
-const THROTTLE_DELAY = 16; // ~60fps
-
 // ============================================================
 // Types
 // ============================================================

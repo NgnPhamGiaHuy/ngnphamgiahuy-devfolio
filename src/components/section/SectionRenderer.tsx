@@ -52,7 +52,6 @@ export const renderSection = (
     const { id: sectionId, resetAnimationOnView } = sectionConfig;
 
     if (!sectionId) {
-        console.warn("renderSection: Section ID is required");
         return null;
     }
 
