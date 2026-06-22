@@ -44,7 +44,6 @@ const build = (): CompleteMockData => {
                 icon: "/icons/github.svg",
             },
         ],
-        cv_link: "#",
         ...REAL_PROFILE,
         _type: "profile",
     });

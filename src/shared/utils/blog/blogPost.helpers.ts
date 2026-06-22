@@ -17,7 +17,7 @@ export const getBlogPostBySlug = async (
 
 export const buildImageProps = (post: BlogPostType) => {
     return processImage(
-        post.image,
+        post.image?.url,
         {
             width: IMAGE_WIDTH,
             height: IMAGE_HEIGHT,

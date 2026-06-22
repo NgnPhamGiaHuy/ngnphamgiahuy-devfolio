@@ -9,6 +9,7 @@ import {
 import type { RawSocialLink, SocialLink, SocialPlatform } from "@/shared";
 
 import { getImageAlt, resolveImageUrl } from "@/shared";
+import { resolveIconFn } from "@/shared/utils/icons";
 
 const ICON_DIMENSIONS = {
     WIDTH: 24,
@@ -82,6 +83,15 @@ export const generateSocialLinks = (
         }
 
         if (includeCustomIcons && link.icon) {
+            // New format: { library, name } — use icon resolver
+            if (typeof link.icon === "object" && link.icon.library !== "legacy") {
+                return {
+                    href: link.url,
+                    icon: resolveIconFn(link.icon),
+                    ariaLabel: `${link.platform} Profile`,
+                };
+            }
+            // Legacy format: { library: "legacy", name: "/icons/..." } — render as Image
             return createCustomIconLink(link, iconDimensions);
         }
 
@@ -93,10 +103,12 @@ const createCustomIconLink = (
     link: RawSocialLink,
     dimensions: { width: number; height: number }
 ): SocialLink => {
+    // link.icon here is always { library: "legacy", name: "/path/to/icon.svg" }
+    const iconPath = link.icon?.name;
     try {
-        const alt = getImageAlt(link.icon, `${link.platform} icon`);
+        const alt = getImageAlt(iconPath, `${link.platform} icon`);
 
-        const url = resolveImageUrl(link.icon, {
+        const url = resolveImageUrl(iconPath, {
             width: ICON_DIMENSIONS.SANITY_WIDTH,
             height: ICON_DIMENSIONS.SANITY_HEIGHT,
             fallbackImage: "",

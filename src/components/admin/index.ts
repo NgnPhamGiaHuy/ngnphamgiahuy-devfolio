@@ -11,3 +11,6 @@ export { default as CollectionEditor } from "./editors/CollectionEditor";
 export type { FieldDef } from "./editors/CollectionEditor";
 export { default as ProjectEditor } from "./editors/ProjectEditor";
 export { default as SettingsEditor } from "./editors/SettingsEditor";
+export { default as ImageField } from "./ui/ImageField";
+export { default as FileUploadField } from "./ui/FileUploadField";
+export { default as IconPicker } from "./ui/IconPicker";

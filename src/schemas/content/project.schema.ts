@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import DocumentBaseSchema from "../base/document-base.schema";
 import SeoFieldsSchema from "../base/seo-fields.schema";
+import { ImageFieldSchema } from "../base/stored-image.schema";
 
 /**
  * Case-study depth model. Every field below is optional so legacy/shallow
@@ -47,7 +48,7 @@ const ProjectSchema = DocumentBaseSchema.and(SeoFieldsSchema).and(
         name: z.string(),
         category: z.string(),
         description: z.string(),
-        image: z.string(),
+        image: ImageFieldSchema,
         link: z.string().optional(),
         featured: z.boolean().optional(),
         order: z.number().optional(),

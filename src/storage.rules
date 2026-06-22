@@ -23,9 +23,23 @@ service firebase.storage {
              ['image/png', 'image/jpeg', 'image/webp', 'image/avif'];
     }
 
-    match /images/{folder}/{fileName} {
+    // Supports nested paths: images/profile/, images/projects/{slug}/, images/blog/{slug}/, images/site/
+    match /images/{allPaths=**} {
       allow read: if true;
       allow write: if isAdmin() && isValidImage();
+      allow delete: if isAdmin();
+    }
+
+    // Resume / CV uploads (PDF only, max 5 MB)
+    function isValidFile() {
+      return request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType in ['application/pdf'];
+    }
+
+    match /resume/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidFile();
+      allow delete: if isAdmin();
     }
 
     match /{allPaths=**} { allow read, write: if false; }

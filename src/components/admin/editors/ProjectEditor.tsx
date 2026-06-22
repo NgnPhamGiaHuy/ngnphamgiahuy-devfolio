@@ -22,6 +22,7 @@ import {
 } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
+import type { StoredImage } from "@/schemas";
 import ProjectSchema from "@/schemas/content/project.schema";
 import {
     COLLECTIONS,
@@ -31,6 +32,7 @@ import {
 import { revalidatePublic } from "@/application/use-cases/admin";
 
 import AdminField from "../ui/AdminField";
+import ImageField from "../ui/ImageField";
 import Select from "../ui/Select";
 import TagInput from "../ui/TagInput";
 import Toggle from "../ui/Toggle";
@@ -44,11 +46,13 @@ type EdgeRow = { from: string; to: string; label: string };
 type DecisionRow = { decision: string; alternative: string; whyRejected: string };
 type MetricRow = { label: string; value: string };
 
+const EMPTY_IMAGE: StoredImage = { url: "", path: "", fileName: "" };
+
 type FormValues = {
     name: string;
     category: string;
     description: string;
-    image: string;
+    image: StoredImage;
     link: string;
     slug: string;
     year: string;
@@ -66,7 +70,7 @@ type FormValues = {
     outcome: { summary: string; metrics: MetricRow[] };
     metaTitle: string;
     metaDescription: string;
-    ogImage: string;
+    ogImage: StoredImage;
 };
 
 const LAYER_OPTIONS = [
@@ -81,7 +85,7 @@ const EMPTY: FormValues = {
     name: "",
     category: "",
     description: "",
-    image: "",
+    image: EMPTY_IMAGE,
     link: "",
     slug: "",
     year: "",
@@ -99,7 +103,7 @@ const EMPTY: FormValues = {
     outcome: { summary: "", metrics: [] },
     metaTitle: "",
     metaDescription: "",
-    ogImage: "",
+    ogImage: EMPTY_IMAGE,
 };
 
 // ---- Helpers ---------------------------------------------------------------
@@ -109,7 +113,11 @@ const toFormValues = (raw: Record<string, unknown>): FormValues => ({
     name: String(raw.name ?? ""),
     category: String(raw.category ?? ""),
     description: String(raw.description ?? ""),
-    image: String(raw.image ?? ""),
+    image: (raw.image && typeof raw.image === "object" && "url" in (raw.image as object))
+        ? (raw.image as StoredImage)
+        : typeof raw.image === "string" && raw.image
+            ? { url: raw.image as string, path: "", fileName: "" }
+            : EMPTY_IMAGE,
     link: String(raw.link ?? ""),
     slug: String(raw.slug ?? raw._id ?? ""),
     year: String(raw.year ?? ""),
@@ -168,14 +176,18 @@ const toFormValues = (raw: Record<string, unknown>): FormValues => ({
     },
     metaTitle: String(raw.metaTitle ?? ""),
     metaDescription: String(raw.metaDescription ?? ""),
-    ogImage: String(raw.ogImage ?? ""),
+    ogImage: (raw.ogImage && typeof raw.ogImage === "object" && "url" in (raw.ogImage as object))
+        ? (raw.ogImage as StoredImage)
+        : typeof raw.ogImage === "string" && raw.ogImage
+            ? { url: raw.ogImage as string, path: "", fileName: "" }
+            : EMPTY_IMAGE,
 });
 
 const toDoc = (values: FormValues): Record<string, unknown> => ({
     name: values.name,
     category: values.category,
     description: values.description,
-    image: values.image,
+    image: values.image?.url ? values.image : undefined,
     link: values.link || undefined,
     slug: values.slug,
     year: values.year || undefined,
@@ -222,7 +234,7 @@ const toDoc = (values: FormValues): Record<string, unknown> => ({
             : undefined,
     metaTitle: values.metaTitle || undefined,
     metaDescription: values.metaDescription || undefined,
-    ogImage: values.ogImage || undefined,
+    ogImage: values.ogImage?.url ? values.ogImage : undefined,
 });
 
 // ---- Section header --------------------------------------------------------
@@ -281,6 +293,8 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
         append: appendMetric,
         remove: removeMetric,
     } = useFieldArray({ control, name: "outcome.metrics" });
+
+    const watchedSlug = useWatch({ control, name: "slug" }) as string;
 
     // Guard 5: edge from/to options are derived from the current nodes
     const watchedNodes = useWatch({
@@ -696,12 +710,12 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
 
             {/* ---- Image & Links ---- */}
             <SectionHeader title="Image & Links" />
-            <AdminField
-                id="image"
-                label="Image (path or URL)"
-                mono
-                hint="A /public path or absolute URL. Firebase Storage upload field coming later."
-                registration={register("image")}
+            <ImageField
+                control={control}
+                name="image"
+                label="Cover image"
+                storagePath={`images/projects/${watchedSlug || "project"}`}
+                hint="Main project image shown in the case study. Upload or paste a URL."
             />
             <AdminField
                 id="link"
@@ -724,11 +738,12 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                 rows={2}
                 registration={register("metaDescription")}
             />
-            <AdminField
-                id="ogImage"
-                label="OG image"
-                mono
-                registration={register("ogImage")}
+            <ImageField
+                control={control}
+                name="ogImage"
+                label="OG / social share image"
+                storagePath={`images/projects/${watchedSlug || "project"}`}
+                hint="Used for social sharing previews. Ideally 1200×630."
             />
 
             <SaveBar saving={saving} dirty={isDirty} status={status} />

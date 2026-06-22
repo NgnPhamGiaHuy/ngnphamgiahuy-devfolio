@@ -33,10 +33,9 @@ export const generateHomePageMetadata = async (): Promise<Metadata> => {
         profile.description ||
         "";
 
-    const ogImage = profile.ogImage || settings.ogImage;
     const ogImageUrl =
-        resolveImageUrl(ogImage, baseUrl) ||
-        resolveImageUrl(profile.profile_image, baseUrl);
+        resolveImageUrl(profile.ogImage?.url || settings.ogImage?.url, baseUrl) ||
+        resolveImageUrl(profile.profile_image?.url, baseUrl);
 
     return {
         title,

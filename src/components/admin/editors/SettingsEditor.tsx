@@ -7,7 +7,7 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import type { SettingsType } from "@/schemas";
+import type { SettingsType, StoredImage } from "@/schemas";
 import SettingsSchema from "@/schemas/setting/settings.schema";
 import {
     COLLECTIONS,
@@ -19,6 +19,7 @@ import { createMockData } from "@/infrastructure/persistence/mocks";
 import { revalidatePublic } from "@/application/use-cases/admin";
 
 import AdminField from "../ui/AdminField";
+import ImageField from "../ui/ImageField";
 import Toggle from "../ui/Toggle";
 import { EditorScaffold, SaveBar } from "../ui/EditorScaffold";
 import { useAsyncData } from "../ui/useAsyncData";
@@ -35,11 +36,13 @@ const ACTIVE_SECTIONS = [
 
 type SectionKey = (typeof ACTIVE_SECTIONS)[number]["key"];
 
+const EMPTY_IMAGE: StoredImage = { url: "", path: "", fileName: "" };
+
 type FormValues = {
     logo: string;
     metaTitle: string;
     metaDescription: string;
-    ogImage: string;
+    ogImage: StoredImage;
     sections: Record<SectionKey, { enabled: boolean; resetAnimationOnView: boolean }>;
 };
 
@@ -58,7 +61,7 @@ const SettingsForm: React.FC<{ initial: SettingsType }> = ({ initial }) => {
             logo: initial.logo ?? "",
             metaTitle: initial.metaTitle ?? "",
             metaDescription: initial.metaDescription ?? "",
-            ogImage: initial.ogImage ?? "",
+            ogImage: initial.ogImage ?? EMPTY_IMAGE,
             sections: Object.fromEntries(
                 ACTIVE_SECTIONS.map(({ key }) => [
                     key,
@@ -83,7 +86,7 @@ const SettingsForm: React.FC<{ initial: SettingsType }> = ({ initial }) => {
             logo: values.logo,
             metaTitle: values.metaTitle || undefined,
             metaDescription: values.metaDescription || undefined,
-            ogImage: values.ogImage || undefined,
+            ogImage: values.ogImage?.url ? values.ogImage : undefined,
             _id: "settings-site",
             _type: "settings",
         };
@@ -152,11 +155,12 @@ const SettingsForm: React.FC<{ initial: SettingsType }> = ({ initial }) => {
                     rows={2}
                     registration={register("metaDescription")}
                 />
-                <AdminField
-                    id="ogImage"
-                    label="OG image"
-                    mono
-                    registration={register("ogImage")}
+                <ImageField
+                    control={control}
+                    name="ogImage"
+                    label="OG / social share image"
+                    storagePath="images/site"
+                    hint="Used for social sharing previews (Twitter, Open Graph). Ideally 1200×630."
                 />
 
                 <h3 className="mb-4 mt-6 border-b border-[var(--color-hairline)] pb-2 font-[family-name:var(--font-display)] text-base font-medium text-[var(--color-ink)]">

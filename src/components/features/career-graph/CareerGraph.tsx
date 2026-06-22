@@ -53,6 +53,7 @@ const CareerGraph: React.FC<CareerGraphProps> = ({
     );
 
     const [selectedSlug, setSelectedSlug] = React.useState<string | null>(null);
+    const handleClose = React.useCallback(() => setSelectedSlug(null), []);
 
     const selectedProject = React.useMemo(() => {
         if (!selectedSlug) return null;
@@ -63,8 +64,8 @@ const CareerGraph: React.FC<CareerGraphProps> = ({
         );
     }, [selectedSlug, projects]);
 
-    const portraitUrl = profile.profile_image
-        ? resolveImageUrl(profile.profile_image, { width: 280, height: 280 })
+    const portraitUrl = profile.profile_image?.url
+        ? resolveImageUrl(profile.profile_image.url, { width: 280, height: 280 })
         : "";
 
     const techCount = React.useMemo(
@@ -174,7 +175,7 @@ const CareerGraph: React.FC<CareerGraphProps> = ({
 
             <CaseStudyPanel
                 project={selectedProject}
-                onClose={() => setSelectedSlug(null)}
+                onClose={handleClose}
             />
         </Section>
     );

@@ -13,6 +13,9 @@ import { createMockData } from "@/infrastructure/persistence/mocks";
 import { revalidatePublic } from "@/application/use-cases/admin";
 
 import AdminField from "../ui/AdminField";
+import FileUploadField from "../ui/FileUploadField";
+import IconPicker from "../ui/IconPicker";
+import ImageField from "../ui/ImageField";
 import { EditorScaffold, SaveBar } from "../ui/EditorScaffold";
 import { useAsyncData } from "../ui/useAsyncData";
 
@@ -76,34 +79,74 @@ const ProfileForm: React.FC<{ initial: ProfileType }> = ({ initial }) => {
                 <AdminField id="email" label="Email" type="email" registration={register("email")} error={errors.email?.message} />
                 <AdminField id="phone" label="Phone" registration={register("phone")} error={errors.phone?.message} />
                 <AdminField id="experience_years" label="Years of experience" type="number" registration={register("experience_years", { valueAsNumber: true })} error={errors.experience_years?.message} />
-                <AdminField id="profile_image" label="Profile image (path or URL)" mono registration={register("profile_image")} error={errors.profile_image?.message} hint="Upload-to-Storage field comes later; a /public path or absolute URL works." />
-                <AdminField id="cv_link" label="CV link" registration={register("cv_link")} error={errors.cv_link?.message} />
+                <ImageField
+                    control={control}
+                    name="profile_image"
+                    label="Profile image"
+                    storagePath="images/profile"
+                    hint="Shown in the hero section. Upload (PNG/JPEG/WEBP) or paste a URL."
+                />
+                <FileUploadField
+                    control={control}
+                    name="resume"
+                    label="Resume / CV"
+                    storagePath="resume"
+                    hint="Upload PDF or paste a Google Drive / Dropbox link."
+                />
 
                 <fieldset className="mb-5 rounded-lg border border-[var(--color-hairline)] p-4">
                     <legend className="px-1 text-sm font-medium text-[var(--color-ink)]">
                         Social links
                     </legend>
-                    {fields.map((field, i) => (
-                        <div
-                            key={field.id}
-                            className="mb-3 grid grid-cols-1 gap-2 border-b border-[var(--color-hairline-soft)] pb-3 last:border-0 sm:grid-cols-[1fr_1fr_1fr_auto] sm:items-end"
-                        >
-                            <AdminField id={`sl-platform-${i}`} label="Platform" registration={register(`social_links.${i}.platform`)} />
-                            <AdminField id={`sl-url-${i}`} label="URL" mono registration={register(`social_links.${i}.url`)} />
-                            <AdminField id={`sl-icon-${i}`} label="Icon" mono registration={register(`social_links.${i}.icon`)} />
-                            <button
-                                type="button"
-                                onClick={() => remove(i)}
-                                className="mb-5 rounded-md px-3 py-2 text-sm text-[var(--color-error)]"
-                            >
-                                Remove
-                            </button>
+
+                    {/* Column headers — shown only when there are rows */}
+                    {fields.length > 0 && (
+                        <div className="mb-1.5 flex items-center gap-2 px-0.5">
+                            <span className="w-28 shrink-0 text-xs text-[var(--color-muted)]">Platform</span>
+                            <span className="flex-1 text-xs text-[var(--color-muted)]">URL</span>
+                            <span className="shrink-0 text-xs text-[var(--color-muted)]">Icon</span>
+                            <span className="w-6 shrink-0" />
                         </div>
-                    ))}
+                    )}
+
+                    <div className="space-y-2">
+                        {fields.map((field, i) => (
+                            <div key={field.id} className="flex items-center gap-2">
+                                <input
+                                    placeholder="Platform"
+                                    className="form-input-field w-28 shrink-0"
+                                    {...register(`social_links.${i}.platform`)}
+                                />
+                                <input
+                                    placeholder="https://…"
+                                    className="form-input-field flex-1 font-mono text-xs"
+                                    {...register(`social_links.${i}.url`)}
+                                />
+                                <div className="shrink-0">
+                                    <IconPicker
+                                        control={control}
+                                        name={`social_links.${i}.icon`}
+                                    />
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => remove(i)}
+                                    aria-label="Remove"
+                                    className="shrink-0 rounded p-1 text-[var(--color-muted)] transition-colors hover:text-[var(--color-error)]"
+                                >
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                                        <line x1="18" y1="6" x2="6" y2="18" />
+                                        <line x1="6" y1="6" x2="18" y2="18" />
+                                    </svg>
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+
                     <button
                         type="button"
-                        onClick={() => append({ platform: "", url: "", icon: "" })}
-                        className="text-sm text-[var(--color-body)] hover:text-[var(--color-ink)]"
+                        onClick={() => append({ platform: "", url: "", icon: undefined })}
+                        className="mt-3 text-sm text-[var(--color-body)] hover:text-[var(--color-ink)]"
                     >
                         + Add link
                     </button>

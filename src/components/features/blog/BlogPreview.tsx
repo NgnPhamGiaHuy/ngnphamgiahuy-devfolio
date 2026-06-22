@@ -13,7 +13,7 @@ const FALLBACK_IMAGE = "/images/profile2.png";
 
 const BlogPreview = ({ blog, ...props }: { blog: BlogPostType }) => {
     const { url: imageUrl, alt: imageAlt } = processImage(
-        blog.image,
+        blog.image?.url,
         {
             width: IMAGE_WIDTH,
             height: IMAGE_HEIGHT,

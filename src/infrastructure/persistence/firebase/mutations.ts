@@ -24,7 +24,7 @@ const stripBase = <T extends Record<string, unknown>>(data: T) => {
 };
 
 // Firestore rejects `undefined` field values — omit them at the write boundary.
-// Recurses into plain objects; leaves arrays untouched (array items are fine).
+// Recurses into plain objects and into items of arrays.
 const stripUndefined = (
     obj: Record<string, unknown>
 ): Record<string, unknown> =>
@@ -33,11 +33,17 @@ const stripUndefined = (
             .filter(([, v]) => v !== undefined)
             .map(([k, v]) => [
                 k,
-                v !== null &&
-                typeof v === "object" &&
-                !Array.isArray(v)
-                    ? stripUndefined(v as Record<string, unknown>)
-                    : v,
+                Array.isArray(v)
+                    ? v.map((item) =>
+                          item !== null &&
+                          typeof item === "object" &&
+                          !Array.isArray(item)
+                              ? stripUndefined(item as Record<string, unknown>)
+                              : item
+                      )
+                    : v !== null && typeof v === "object"
+                      ? stripUndefined(v as Record<string, unknown>)
+                      : v,
             ])
     );
 

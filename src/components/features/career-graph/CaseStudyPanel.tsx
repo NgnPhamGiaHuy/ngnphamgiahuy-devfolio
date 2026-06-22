@@ -42,6 +42,13 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
     const [litDecision, setLitDecision] = React.useState<number | null>(null);
     const open = !!project;
 
+    // Keep a stable ref to the latest onClose so the keydown listener never
+    // needs to be torn down and re-added just because the parent re-rendered.
+    const onCloseRef = React.useRef(onClose);
+    React.useEffect(() => {
+        onCloseRef.current = onClose;
+    });
+
     // Deep-link to a specific decision (additive). Runs after the open effect so
     // it isn't undone by the close-button focus; no-op when no index is given.
     React.useEffect(() => {
@@ -69,7 +76,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
         const prevOverflow = document.body.style.overflow;
         document.body.style.overflow = "hidden";
         const onKey = (e: KeyboardEvent) => {
-            if (e.key === "Escape") onClose();
+            if (e.key === "Escape") onCloseRef.current();
         };
         document.addEventListener("keydown", onKey);
         closeRef.current?.focus();
@@ -78,7 +85,10 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
             document.removeEventListener("keydown", onKey);
             trigger?.focus?.();
         };
-    }, [open, onClose]);
+        // Intentionally omit onClose — the ref always holds the latest value, so
+        // this effect only needs to re-run when the panel opens/closes.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [open]);
 
     return (
         <AnimatePresence>
@@ -106,6 +116,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                         aria-modal="true"
                         aria-labelledby="case-study-title"
                         onClick={onClose}
+                        onKeyDown={(e) => { if (e.key === "Escape") onCloseRef.current(); }}
                     >
                         <div
                             className="case-study__panel relative flex w-full max-w-3xl flex-col rounded-2xl"
@@ -144,7 +155,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                 )}
                             </header>
 
-                            {project.image && (
+                            {project.image?.url && (
                                 <m.div
                                     className="mb-8"
                                     initial={
@@ -167,7 +178,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                     }}
                                 >
                                     <BrowserFrame
-                                        image={project.image}
+                                        image={project.image.url}
                                         alt={`${project.name} screenshot`}
                                         link={project.link}
                                         tone="color"

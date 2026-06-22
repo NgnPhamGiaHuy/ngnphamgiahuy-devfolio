@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import DocumentBaseSchema from "../base/document-base.schema";
 import SeoFieldsSchema from "../base/seo-fields.schema";
+import { ImageFieldSchema } from "../base/stored-image.schema";
 
 const BlogPostSchema = DocumentBaseSchema.and(SeoFieldsSchema).and(
     z.object({
@@ -13,7 +14,7 @@ const BlogPostSchema = DocumentBaseSchema.and(SeoFieldsSchema).and(
             _type: z.literal("slug"),
             current: z.string(),
         }),
-        image: z.string(),
+        image: ImageFieldSchema,
         content: z.array(z.any()).optional(),
         categories: z.array(z.string()).optional(),
         author: z.string().optional().nullable(),
