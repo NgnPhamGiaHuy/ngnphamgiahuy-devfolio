@@ -25,6 +25,15 @@
         transition: transform var(--motion-xslow) var(--ease-emphasized);
     }
 
+    /* ---- Backdrop — sits behind the sidebar, closes on click ---- */
+    .sidebar-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: calc(var(--z-sidebar) - 1);
+        background: transparent;
+        cursor: pointer;
+    }
+
     /* ---- Visibility states ---- */
     .sidebar-visible {
         right: 0;

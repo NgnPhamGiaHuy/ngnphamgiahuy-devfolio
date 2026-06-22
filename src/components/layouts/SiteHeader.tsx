@@ -21,7 +21,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({
 }) => {
     const headerRef = useRef<HTMLElement>(null);
 
-    const { isMenuOpen, toggleMenu } = useMenuState();
+    const { isMenuOpen, toggleMenu, closeMenu } = useMenuState();
     const { headerState, handleAnimationEnd } = useHeaderScroll();
 
     const headerClassNames = `${getHeaderClasses(headerState)} ${className || ""}`;
@@ -87,6 +87,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({
                 isMenuOpen={isMenuOpen}
                 menuItems={menuItems}
                 activeId={activeId}
+                onClose={closeMenu}
             />
         </header>
     );

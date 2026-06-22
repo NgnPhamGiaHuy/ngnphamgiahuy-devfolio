@@ -419,7 +419,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                 }
             />
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <AdminField
                     id="year"
                     label="Year"
@@ -576,7 +576,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
             {nodeFields.map((f, i) => (
                 <div
                     key={f.id}
-                    className="mb-3 grid grid-cols-[1fr_1fr_1fr_auto] items-end gap-2"
+                    className="mb-3 grid grid-cols-1 sm:grid-cols-[1fr_1fr_1fr_auto] items-end gap-2"
                 >
                     <AdminField
                         id={`node-id-${i}`}
@@ -626,7 +626,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
             {edgeFields.map((f, i) => (
                 <div
                     key={f.id}
-                    className="mb-3 grid grid-cols-[1fr_1fr_1fr_auto] items-end gap-2"
+                    className="mb-3 grid grid-cols-1 sm:grid-cols-[1fr_1fr_1fr_auto] items-end gap-2"
                 >
                     {/* Guard 5 */}
                     <Select
@@ -678,7 +678,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
             {metricFields.map((f, i) => (
                 <div
                     key={f.id}
-                    className="mb-2 grid grid-cols-[1fr_1fr_auto] items-end gap-2"
+                    className="mb-2 grid grid-cols-1 sm:grid-cols-[1fr_1fr_auto] items-end gap-2"
                 >
                     <AdminField
                         id={`metric-label-${i}`}

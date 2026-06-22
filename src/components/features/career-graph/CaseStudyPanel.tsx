@@ -125,7 +125,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                                     ref={closeRef}
                                     onClick={onClose}
                                     aria-label="Close case study"
-                                    className="rounded-full p-2 text-graph-muted hover:text-graph-ink focus-visible:outline focus-visible:outline-2"
+                                    className="rounded-full p-3 text-graph-muted hover:text-graph-ink focus-visible:outline focus-visible:outline-2"
                                 >
                                     <X size={20} />
                                 </button>

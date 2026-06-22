@@ -1,6 +1,6 @@
 /* ============================================================
    Component: buttons — DESIGN.md authority.
-   button-primary: coral, 40px, 8px radius, darkens on press only.
+   button-primary: coral, 44px (WCAG min touch target), 8px radius, darkens on press only.
    button-secondary: canvas bg, hairline border.
    ============================================================ */
 
@@ -10,7 +10,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        height: 40px;
+        height: 44px;
         padding: 0 var(--space-md);
         font-family: var(--font-sans), Inter, sans-serif;
         font-size: var(--type-button-size);
@@ -38,7 +38,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        height: 40px;
+        height: 44px;
         padding: 0 var(--space-md);
         font-family: var(--font-sans), Inter, sans-serif;
         font-size: var(--type-button-size);

@@ -78,10 +78,36 @@
         width: 100%;
         padding: var(--space-xxs) 0 0;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: stretch;
         gap: var(--space-sm);
+    }
+
+    .contact-fields-footer > button,
+    .contact-fields-footer > .contact-fields-terms-container {
+        width: 100%;
+    }
+
+    .contact-fields-footer > button > .primary-button {
+        width: 100%;
+    }
+
+    @media (min-width: 640px) {
+        .contact-fields-footer {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .contact-fields-footer > button,
+        .contact-fields-footer > .contact-fields-terms-container {
+            width: auto;
+        }
+
+        .contact-fields-footer > button > .primary-button {
+            width: auto;
+        }
     }
 
     .contact-fields-terms-container {
@@ -94,7 +120,9 @@
         align-items: center;
         gap: var(--space-xs);
         cursor: pointer;
-        padding: 0;
+        /* Ensure the label has a 44px minimum touch target height */
+        min-height: 44px;
+        padding: var(--space-xxs) 0;
     }
 
     .contact-fields-terms-text {

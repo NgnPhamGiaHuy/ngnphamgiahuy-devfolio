@@ -14,6 +14,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     isMenuOpen,
     menuItems,
     activeId,
+    onClose,
     ...props
 }) => {
     const { sidebarEntered, handleTransitionEnd } =
@@ -23,7 +24,36 @@ const Sidebar: React.FC<SidebarProps> = ({
 
     const sidebarClasses = `sidebar ${isMenuOpen ? "sidebar-visible" : "sidebar-hidden"}`;
 
+    // Close on ESC key
+    React.useEffect(() => {
+        if (!isMenuOpen) return;
+        const handler = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onClose();
+        };
+        document.addEventListener("keydown", handler);
+        return () => document.removeEventListener("keydown", handler);
+    }, [isMenuOpen, onClose]);
+
+    // Lock body scroll while sidebar is open
+    React.useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => { document.body.style.overflow = ""; };
+    }, [isMenuOpen]);
+
     return (
+        <>
+            {/* Backdrop — closes menu on tap outside the sidebar */}
+            {isMenuOpen && (
+                <div
+                    className="sidebar-backdrop"
+                    onClick={onClose}
+                    aria-hidden="true"
+                />
+            )}
         <div
             className={sidebarClasses}
             onTransitionEnd={handleTransitionEnd}
@@ -80,6 +110,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

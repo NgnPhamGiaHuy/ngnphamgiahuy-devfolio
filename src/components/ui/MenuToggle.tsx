@@ -45,7 +45,8 @@ const MenuToggle: React.FC<MenuToggleProps> = ({
         <button
             type="button"
             className={clsx(
-                "w-[28px] h-[30px] top-0 right-0 relative z-3 cursor-pointer",
+                "relative z-3 cursor-pointer flex items-center justify-center",
+                "min-w-[44px] min-h-[44px]",
                 className
             )}
             onClick={handleClick}
@@ -57,23 +58,25 @@ const MenuToggle: React.FC<MenuToggleProps> = ({
             data-testid="menu-toggle"
             {...props}
         >
-            {/* Top hamburger line */}
-            <span
-                className={clsx(
-                    "w-full h-[2px] left-0 bg-ink transition-all duration-500 block absolute",
-                    isMenuOpen ? "top-[14px] -rotate-45" : "top-[8px]"
-                )}
-                aria-hidden="true"
-            />
-
-            {/* Bottom hamburger line */}
-            <span
-                className={clsx(
-                    "w-full h-[2px] left-0 bg-ink transition-all duration-500 block absolute",
-                    isMenuOpen ? "top-[14px] rotate-45" : "bottom-[8px]"
-                )}
-                aria-hidden="true"
-            />
+            {/* Visual icon wrapper — 28×30px centered in the 44×44 touch target */}
+            <span className="relative w-[28px] h-[30px] flex-shrink-0">
+                {/* Top hamburger line */}
+                <span
+                    className={clsx(
+                        "w-full h-[2px] left-0 bg-ink transition-all duration-500 block absolute",
+                        isMenuOpen ? "top-[14px] -rotate-45" : "top-[8px]"
+                    )}
+                    aria-hidden="true"
+                />
+                {/* Bottom hamburger line */}
+                <span
+                    className={clsx(
+                        "w-full h-[2px] left-0 bg-ink transition-all duration-500 block absolute",
+                        isMenuOpen ? "top-[14px] rotate-45" : "bottom-[8px]"
+                    )}
+                    aria-hidden="true"
+                />
+            </span>
         </button>
     );
 };

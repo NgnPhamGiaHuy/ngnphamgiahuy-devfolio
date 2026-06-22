@@ -270,12 +270,12 @@ const GraphCanvas: React.FC<GraphCanvasProps> = ({ data, onSelectProject }) => {
                                                     onClick={() =>
                                                         onSelectProject(node.projectSlug!)
                                                     }
-                                                    className="text-left font-medium underline-offset-2 hover:underline"
+                                                    className="block py-2 text-left font-medium underline-offset-2 hover:underline min-h-[44px] flex items-start"
                                                 >
                                                     {node.label}
                                                 </button>
                                             ) : (
-                                                <p className="font-medium">{node.label}</p>
+                                                <p className="py-2 font-medium">{node.label}</p>
                                             )}
                                             {node.sublabel && (
                                                 <p className="text-sm text-graph-muted">

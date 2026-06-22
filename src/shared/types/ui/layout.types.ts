@@ -11,6 +11,8 @@ export interface SidebarProps {
     /** Menu items + active id are lifted to SiteHeader (shared with desktop nav). */
     menuItems: NavMenuItem[];
     activeId: string | null;
+    /** Called when the sidebar should close (backdrop click or ESC). */
+    onClose: () => void;
 }
 
 export interface SiteHeaderProps {
