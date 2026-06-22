@@ -104,11 +104,13 @@ const CollectionEditor: React.FC<CollectionEditorProps> = ({
             )}
             {error && <p className="text-sm text-[var(--color-error)]">{error}</p>}
 
-            {!loading && !error && (
+            {/* Hide list while editing: focused mode avoids sticky save bar
+                covering the bottom list items when both are visible. */}
+            {!loading && !error && !editing && (
                 <ul className="mb-8 divide-y divide-[var(--color-hairline)] rounded-[var(--radius-lg)] border border-[var(--color-hairline)]">
                     {items.length === 0 && (
                         <li className="p-4 text-sm text-[var(--color-muted)]">
-                            No items yet. Use “+ New” to create one.
+                            No items yet. Click &ldquo;+ New&rdquo; to create one.
                         </li>
                     )}
                     {items.map((item, i) => (
@@ -307,23 +309,23 @@ const ItemForm: React.FC<ItemFormProps> = ({
                 />
             ))}
 
+            {mode === "edit" && (
+                <button
+                    type="button"
+                    onClick={onDelete}
+                    disabled={saving}
+                    className="mt-6 text-sm text-[var(--color-error)]"
+                >
+                    Delete
+                </button>
+            )}
+
             <SaveBar
                 saving={saving}
                 dirty={isDirty}
                 status={status}
                 onDiscard={() => reset(initial)}
             />
-
-            {mode === "edit" && (
-                <button
-                    type="button"
-                    onClick={onDelete}
-                    disabled={saving}
-                    className="mt-4 text-sm text-[var(--color-error)]"
-                >
-                    Delete
-                </button>
-            )}
         </form>
     );
 };
