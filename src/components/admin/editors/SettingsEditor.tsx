@@ -202,7 +202,12 @@ const SettingsForm: React.FC<{ initial: SettingsType }> = ({ initial }) => {
                     </div>
                 ))}
 
-                <SaveBar saving={saving} dirty={isDirty} status={status} />
+                <SaveBar
+                    saving={saving}
+                    dirty={isDirty}
+                    status={status}
+                    onDiscard={() => reset()}
+                />
             </form>
         </EditorScaffold>
     );

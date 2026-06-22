@@ -36,9 +36,19 @@
     }
 
     @media (max-width: 767px) {
+        /* Mobile: present as a bottom sheet — anchored to the bottom edge,
+           full-width, rounded top corners, taller than the centered desktop
+           dialog. Feels native instead of a desktop modal squeezed small. */
+        .case-study__dialog {
+            align-items: flex-end;
+        }
+
         .case-study__panel {
-            /* On mobile: leave safe-area top gap for browser chrome/notch */
-            max-height: calc(100dvh - 2rem);
+            max-height: 92dvh;
+            border-bottom: none;
+            /* Tuck the bottom border off-screen so the sheet reads as flush. */
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
         }
     }
 

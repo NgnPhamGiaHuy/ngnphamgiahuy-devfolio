@@ -83,7 +83,18 @@ const Sidebar: React.FC<SidebarProps> = ({
                                 className="sidebar-menu-container"
                                 aria-label="Navigation menu"
                             >
-                                <ul role="menubar">
+                                {/* Auto-close the drawer when any nav link is
+                                    tapped (covers same-page hash links, which
+                                    don't fire a route change). */}
+                                <ul
+                                    role="menubar"
+                                    onClick={(e) => {
+                                        if (
+                                            (e.target as HTMLElement).closest("a")
+                                        )
+                                            onClose();
+                                    }}
+                                >
                                     {menuItems.map((item, index) => (
                                         <NavItem
                                             key={item.id}

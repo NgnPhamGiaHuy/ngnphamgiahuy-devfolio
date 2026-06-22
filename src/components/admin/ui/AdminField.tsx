@@ -14,6 +14,9 @@ interface AdminFieldProps {
     id: string;
     label: string;
     type?: string;
+    /** Hints the mobile soft keyboard (e.g. "email", "url", "tel", "numeric"). */
+    inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
+    autoComplete?: string;
     multiline?: boolean;
     rows?: number;
     placeholder?: string;
@@ -27,6 +30,8 @@ const AdminField: React.FC<AdminFieldProps> = ({
     id,
     label,
     type = "text",
+    inputMode,
+    autoComplete,
     multiline = false,
     rows = 4,
     placeholder,
@@ -67,6 +72,8 @@ const AdminField: React.FC<AdminFieldProps> = ({
                 <input
                     id={id}
                     type={type}
+                    inputMode={inputMode}
+                    autoComplete={autoComplete}
                     placeholder={placeholder}
                     className={clsx(
                         "form-input-field w-full",

@@ -101,7 +101,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                         aria-hidden="true"
                     />
                     <m.div
-                        className="case-study__dialog p-4 md:p-8"
+                        className="case-study__dialog p-0 md:p-8"
                         initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
@@ -116,7 +116,7 @@ const CaseStudyPanel: React.FC<CaseStudyPanelProps> = ({
                         onKeyDown={(e) => { if (e.key === "Escape") onCloseRef.current(); }}
                     >
                         <div
-                            className="case-study__panel relative flex w-full max-w-3xl flex-col rounded-2xl"
+                            className="case-study__panel relative flex w-full max-w-3xl flex-col rounded-t-2xl md:rounded-2xl"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Close button — outside the scroll area so it's always reachable */}

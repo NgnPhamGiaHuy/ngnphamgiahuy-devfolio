@@ -95,7 +95,7 @@ const FileCard: React.FC<{
                         href={value.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-[var(--radius-xs)] border border-[var(--color-hairline)] bg-white px-3 py-1.5 text-xs font-medium text-[var(--color-ink)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
+                        className="rounded-[var(--radius-xs)] border border-[var(--color-hairline)] bg-white inline-flex items-center justify-center min-h-[44px] px-3 text-xs font-medium text-[var(--color-ink)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
                     >
                         Download
                     </a>
@@ -103,14 +103,14 @@ const FileCard: React.FC<{
                 <button
                     type="button"
                     onClick={onReplace}
-                    className="rounded-[var(--radius-xs)] border border-[var(--color-hairline)] bg-white px-3 py-1.5 text-xs font-medium text-[var(--color-ink)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
+                    className="rounded-[var(--radius-xs)] border border-[var(--color-hairline)] bg-white inline-flex items-center justify-center min-h-[44px] px-3 text-xs font-medium text-[var(--color-ink)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
                 >
                     Replace
                 </button>
                 <button
                     type="button"
                     onClick={onRemove}
-                    className="rounded-[var(--radius-xs)] px-3 py-1.5 text-xs font-medium text-[var(--color-error)] transition-colors hover:bg-[var(--color-error)]/10"
+                    className="rounded-[var(--radius-xs)] inline-flex items-center justify-center min-h-[44px] px-3 text-xs font-medium text-[var(--color-error)] transition-colors hover:bg-[var(--color-error)]/10"
                 >
                     Remove
                 </button>
@@ -236,7 +236,7 @@ function FileUploadField<T extends FieldValues>({
                                             type="button"
                                             onClick={() => setTab(t)}
                                             className={clsx(
-                                                "px-4 py-2 text-xs font-medium capitalize transition-colors",
+                                                "inline-flex min-h-[44px] items-center px-4 text-xs font-medium capitalize transition-colors",
                                                 tab === t
                                                     ? "border-b-2 border-[var(--color-primary)] text-[var(--color-primary)]"
                                                     : "text-[var(--color-muted)] hover:text-[var(--color-ink)]"
@@ -354,7 +354,7 @@ function FileUploadField<T extends FieldValues>({
                                                     type="button"
                                                     onClick={handleSetUrl}
                                                     disabled={!urlInput.trim()}
-                                                    className="rounded-[var(--radius-xs)] bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[var(--color-primary-active)] disabled:opacity-40"
+                                                    className="inline-flex min-h-[44px] items-center justify-center rounded-[var(--radius-xs)] bg-[var(--color-primary)] px-4 text-sm font-medium text-white transition-colors hover:bg-[var(--color-primary-active)] disabled:opacity-40"
                                                 >
                                                     Set
                                                 </button>

@@ -46,22 +46,51 @@ interface SaveBarProps {
     dirty?: boolean;
     status?: { type: "success" | "error"; message: string } | null;
     label?: string;
+    /** Optional discard handler — renders a "Discard" button beside Save. */
+    onDiscard?: () => void;
 }
 
+/**
+ * Sticky action bar. On mobile it pins to the bottom of the viewport (full-bleed,
+ * honouring the home-indicator safe area) so Save is always one tap away while
+ * editing a long form. On sm+ it relaxes back into an inline footer row.
+ */
 export const SaveBar: React.FC<SaveBarProps> = ({
     saving,
     dirty = false,
     status,
     label = "Save",
+    onDiscard,
 }) => (
-    <div className="mt-6 flex items-center gap-4 border-t border-[var(--color-hairline)] pt-5">
-        <button type="submit" disabled={saving} aria-busy={saving}>
-            <span className="primary-button">
+    <div
+        className={clsx(
+            "sticky bottom-0 z-20 -mx-4 mt-6 flex items-center gap-3 border-t border-[var(--color-hairline)]",
+            "bg-[var(--background)]/95 px-4 py-3 backdrop-blur-sm",
+            "[padding-bottom:max(0.75rem,env(safe-area-inset-bottom))]",
+            "sm:static sm:mx-0 sm:gap-4 sm:bg-transparent sm:px-0 sm:py-0 sm:pt-5 sm:backdrop-blur-none"
+        )}
+    >
+        <button
+            type="submit"
+            disabled={saving}
+            aria-busy={saving}
+            className="flex-1 sm:flex-initial"
+        >
+            <span className="primary-button w-full sm:w-auto">
                 {saving ? "Saving…" : label}
             </span>
         </button>
-        {dirty && !saving && (
-            <span className="font-mono text-xs text-[var(--color-muted)]">
+        {onDiscard && dirty && !saving && (
+            <button
+                type="button"
+                onClick={onDiscard}
+                className="secondary-button shrink-0"
+            >
+                Discard
+            </button>
+        )}
+        {dirty && !saving && !onDiscard && (
+            <span className="hidden font-mono text-xs text-[var(--color-muted)] sm:inline">
                 ● Unsaved changes
             </span>
         )}

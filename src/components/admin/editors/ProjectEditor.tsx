@@ -31,6 +31,7 @@ import {
 } from "@/infrastructure/persistence/firebase";
 import { revalidatePublic } from "@/application/use-cases/admin";
 
+import AccordionSection from "../ui/AccordionSection";
 import AdminField from "../ui/AdminField";
 import ImageField from "../ui/ImageField";
 import Select from "../ui/Select";
@@ -239,12 +240,6 @@ const toDoc = (values: FormValues): Record<string, unknown> => ({
 
 // ---- Section header --------------------------------------------------------
 
-const SectionHeader: React.FC<{ title: string }> = ({ title }) => (
-    <h3 className="mb-4 mt-8 border-b border-[var(--color-hairline)] pb-2 font-[family-name:var(--font-display)] text-base font-medium text-[var(--color-ink)]">
-        {title}
-    </h3>
-);
-
 // ---- Project form ----------------------------------------------------------
 
 interface ProjectFormProps {
@@ -383,7 +378,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
     return (
         <form onSubmit={onSubmit} noValidate>
             {/* ---- Core ---- */}
-            <SectionHeader title="Core" />
+            <AccordionSection title="Core" defaultOpen>
             <AdminField
                 id="name"
                 label="Name"
@@ -459,8 +454,10 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                 )}
             />
 
+            </AccordionSection>
+
             {/* ---- Story ---- */}
-            <SectionHeader title="Story" />
+            <AccordionSection title="Story">
             <AdminField
                 id="summary"
                 label="Summary (one-line for graph node)"
@@ -479,8 +476,10 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                 registration={register("scale")}
             />
 
+            </AccordionSection>
+
             {/* ---- Lineage ---- */}
-            <SectionHeader title="Lineage" />
+            <AccordionSection title="Lineage">
 
             {/* Guard 1: technologies — skill names */}
             <TagInput
@@ -508,8 +507,10 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                 placeholder="Add constraint…"
             />
 
+            </AccordionSection>
+
             {/* ---- Decisions ---- */}
-            <SectionHeader title="Decisions" />
+            <AccordionSection title="Decisions">
             {decisionFields.map((f, i) => (
                 <div
                     key={f.id}
@@ -560,8 +561,10 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                 + Add decision
             </button>
 
+            </AccordionSection>
+
             {/* ---- Architecture ---- */}
-            <SectionHeader title="Architecture" />
+            <AccordionSection title="Architecture">
 
             <p className="mb-4 text-xs text-[var(--color-muted)]">
                 Nodes define the system components; edges define data-flow
@@ -663,8 +666,10 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                 + Add edge
             </button>
 
+            </AccordionSection>
+
             {/* ---- Outcome ---- */}
-            <SectionHeader title="Outcome" />
+            <AccordionSection title="Outcome">
             <AdminField
                 id="outcome-summary"
                 label="Outcome summary"
@@ -708,8 +713,10 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                 + Add metric
             </button>
 
+            </AccordionSection>
+
             {/* ---- Image & Links ---- */}
-            <SectionHeader title="Image & Links" />
+            <AccordionSection title="Image & Links">
             <ImageField
                 control={control}
                 name="image"
@@ -720,12 +727,16 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
             <AdminField
                 id="link"
                 label="Live URL (optional)"
+                type="url"
+                inputMode="url"
                 mono
                 registration={register("link")}
             />
 
+            </AccordionSection>
+
             {/* ---- SEO ---- */}
-            <SectionHeader title="SEO" />
+            <AccordionSection title="SEO">
             <AdminField
                 id="metaTitle"
                 label="Meta title"
@@ -746,7 +757,14 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                 hint="Used for social sharing previews. Ideally 1200×630."
             />
 
-            <SaveBar saving={saving} dirty={isDirty} status={status} />
+            </AccordionSection>
+
+            <SaveBar
+                saving={saving}
+                dirty={isDirty}
+                status={status}
+                onDiscard={() => reset()}
+            />
 
             {!isNew && (
                 <button

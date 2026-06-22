@@ -76,8 +76,8 @@ const ProfileForm: React.FC<{ initial: ProfileType }> = ({ initial }) => {
                 <AdminField id="job_title" label="Job title" registration={register("job_title")} error={errors.job_title?.message} />
                 <AdminField id="description" label="Description" multiline rows={4} registration={register("description")} error={errors.description?.message} />
                 <AdminField id="location" label="Location" registration={register("location")} error={errors.location?.message} />
-                <AdminField id="email" label="Email" type="email" registration={register("email")} error={errors.email?.message} />
-                <AdminField id="phone" label="Phone" registration={register("phone")} error={errors.phone?.message} />
+                <AdminField id="email" label="Email" type="email" inputMode="email" autoComplete="email" registration={register("email")} error={errors.email?.message} />
+                <AdminField id="phone" label="Phone" type="tel" inputMode="tel" autoComplete="tel" registration={register("phone")} error={errors.phone?.message} />
                 <AdminField id="experience_years" label="Years of experience" type="number" registration={register("experience_years", { valueAsNumber: true })} error={errors.experience_years?.message} />
                 <ImageField
                     control={control}
@@ -99,37 +99,64 @@ const ProfileForm: React.FC<{ initial: ProfileType }> = ({ initial }) => {
                         Social links
                     </legend>
 
-                    <div className="space-y-3">
+                    {/* Each link is a self-contained card: labeled fields stack
+                        on mobile, collapse to a compact row on sm+. */}
+                    <div className="space-y-4">
                         {fields.map((field, i) => (
-                            <div key={field.id} className="grid grid-cols-1 gap-2 sm:grid-cols-[7rem_1fr_auto_auto] sm:items-center">
-                                <input
-                                    placeholder="Platform"
-                                    className="form-input-field"
-                                    {...register(`social_links.${i}.platform`)}
-                                />
-                                <input
-                                    placeholder="https://…"
-                                    className="form-input-field font-mono text-xs"
-                                    {...register(`social_links.${i}.url`)}
-                                />
-                                <div className="flex items-center gap-2 sm:contents">
+                            <div
+                                key={field.id}
+                                className="rounded-[var(--radius-md)] border border-[var(--color-hairline)] bg-[var(--color-surface-soft)] p-3"
+                            >
+                                <div className="mb-2 flex items-center justify-between">
+                                    <span className="font-mono text-xs text-[var(--color-muted)]">
+                                        Link {i + 1}
+                                    </span>
+                                    <button
+                                        type="button"
+                                        onClick={() => remove(i)}
+                                        aria-label={`Remove link ${i + 1}`}
+                                        className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded text-[var(--color-muted)] transition-colors hover:text-[var(--color-error)]"
+                                    >
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                            <line x1="6" y1="6" x2="18" y2="18" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div className="grid gap-3 sm:grid-cols-[8rem_1fr_auto] sm:items-end">
                                     <div>
+                                        <label className="mb-1 block text-xs text-[var(--color-muted)]">
+                                            Platform
+                                        </label>
+                                        <input
+                                            placeholder="github"
+                                            autoCapitalize="none"
+                                            className="form-input-field w-full"
+                                            {...register(`social_links.${i}.platform`)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="mb-1 block text-xs text-[var(--color-muted)]">
+                                            URL
+                                        </label>
+                                        <input
+                                            type="url"
+                                            inputMode="url"
+                                            autoCapitalize="none"
+                                            placeholder="https://…"
+                                            className="form-input-field w-full font-mono text-xs"
+                                            {...register(`social_links.${i}.url`)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="mb-1 block text-xs text-[var(--color-muted)]">
+                                            Icon
+                                        </label>
                                         <IconPicker
                                             control={control}
                                             name={`social_links.${i}.icon`}
                                         />
                                     </div>
-                                    <button
-                                        type="button"
-                                        onClick={() => remove(i)}
-                                        aria-label="Remove"
-                                        className="min-h-[44px] min-w-[44px] rounded flex items-center justify-center text-[var(--color-muted)] transition-colors hover:text-[var(--color-error)]"
-                                    >
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                        </svg>
-                                    </button>
                                 </div>
                             </div>
                         ))}
@@ -144,7 +171,12 @@ const ProfileForm: React.FC<{ initial: ProfileType }> = ({ initial }) => {
                     </button>
                 </fieldset>
 
-                <SaveBar saving={saving} dirty={isDirty} status={status} />
+                <SaveBar
+                    saving={saving}
+                    dirty={isDirty}
+                    status={status}
+                    onDiscard={() => reset()}
+                />
             </form>
         </EditorScaffold>
     );
