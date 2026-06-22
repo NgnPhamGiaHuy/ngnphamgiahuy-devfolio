@@ -170,7 +170,7 @@ const SettingsForm: React.FC<{ initial: SettingsType }> = ({ initial }) => {
                 {ACTIVE_SECTIONS.map(({ key, label }) => (
                     <div
                         key={key}
-                        className="mb-5 rounded-lg border border-[var(--color-hairline)] p-4"
+                        className="mb-4 rounded-[var(--radius-lg)] border border-[var(--color-hairline)] p-4"
                     >
                         <p className="mb-3 font-medium text-[var(--color-ink)]">
                             {label}

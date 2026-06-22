@@ -28,7 +28,7 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
     const id = useId();
 
     return (
-        <section className="mt-4 overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-hairline)]">
+        <section className="mt-4 overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-hairline)]">
             <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}

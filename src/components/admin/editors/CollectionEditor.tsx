@@ -105,7 +105,7 @@ const CollectionEditor: React.FC<CollectionEditorProps> = ({
             {error && <p className="text-sm text-[var(--color-error)]">{error}</p>}
 
             {!loading && !error && (
-                <ul className="mb-8 divide-y divide-[var(--color-hairline)] rounded-lg border border-[var(--color-hairline)]">
+                <ul className="mb-8 divide-y divide-[var(--color-hairline)] rounded-[var(--radius-lg)] border border-[var(--color-hairline)]">
                     {items.length === 0 && (
                         <li className="p-4 text-sm text-[var(--color-muted)]">
                             No items yet. Use “+ New” to create one.
@@ -208,6 +208,7 @@ const ItemForm: React.FC<ItemFormProps> = ({
     const {
         register,
         handleSubmit,
+        reset,
         formState: { isDirty },
     } = useForm<Record<string, unknown>>({ defaultValues: initial });
     const [saving, setSaving] = useState(false);
@@ -275,7 +276,7 @@ const ItemForm: React.FC<ItemFormProps> = ({
         <form
             onSubmit={onSubmit}
             noValidate
-            className="rounded-lg border border-[var(--color-hairline)] bg-[var(--color-surface-card)] p-5"
+            className="mt-8 border-t border-[var(--color-hairline)] pt-6"
         >
             <div className="mb-4 flex items-center justify-between">
                 <h2 className="font-[family-name:var(--font-display)] text-xl font-medium text-[var(--color-ink)]">
@@ -306,7 +307,12 @@ const ItemForm: React.FC<ItemFormProps> = ({
                 />
             ))}
 
-            <SaveBar saving={saving} dirty={isDirty} status={status} />
+            <SaveBar
+                saving={saving}
+                dirty={isDirty}
+                status={status}
+                onDiscard={() => reset(initial)}
+            />
 
             {mode === "edit" && (
                 <button

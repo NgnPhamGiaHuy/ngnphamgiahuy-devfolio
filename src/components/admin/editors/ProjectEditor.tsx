@@ -514,7 +514,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
             {decisionFields.map((f, i) => (
                 <div
                     key={f.id}
-                    className="mb-4 rounded-lg border border-[var(--color-hairline)] p-4"
+                    className="mb-4 rounded-[var(--radius-md)] border border-[var(--color-hairline)] bg-[var(--color-surface-soft)] p-3"
                 >
                     <div className="mb-2 flex items-center justify-between">
                         <span className="font-mono text-xs text-[var(--color-muted)]">
@@ -523,9 +523,13 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                         <button
                             type="button"
                             onClick={() => removeDecision(i)}
-                            className="text-xs text-[var(--color-error)]"
+                            aria-label={`Remove decision ${i + 1}`}
+                            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded text-[var(--color-muted)] transition-colors hover:text-[var(--color-error)]"
                         >
-                            Remove
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
                         </button>
                     </div>
                     <AdminField
@@ -606,7 +610,8 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                     <button
                         type="button"
                         onClick={() => removeNode(i)}
-                        className="mb-5 text-xs text-[var(--color-error)]"
+                        aria-label="Remove row"
+                        className="mb-5 flex h-11 w-11 items-center justify-center justify-self-start rounded text-[var(--color-muted)] transition-colors hover:text-[var(--color-error)]"
                     >
                         ✕
                     </button>
@@ -652,7 +657,8 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                     <button
                         type="button"
                         onClick={() => removeEdge(i)}
-                        className="mb-5 text-xs text-[var(--color-error)]"
+                        aria-label="Remove row"
+                        className="mb-5 flex h-11 w-11 items-center justify-center justify-self-start rounded text-[var(--color-muted)] transition-colors hover:text-[var(--color-error)]"
                     >
                         ✕
                     </button>
@@ -699,7 +705,8 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ initial, docId, isNew }) => {
                     <button
                         type="button"
                         onClick={() => removeMetric(i)}
-                        className="mb-5 text-xs text-[var(--color-error)]"
+                        aria-label="Remove row"
+                        className="mb-5 flex h-11 w-11 items-center justify-center justify-self-start rounded text-[var(--color-muted)] transition-colors hover:text-[var(--color-error)]"
                     >
                         ✕
                     </button>

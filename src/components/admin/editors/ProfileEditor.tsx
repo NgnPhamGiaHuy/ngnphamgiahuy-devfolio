@@ -94,7 +94,7 @@ const ProfileForm: React.FC<{ initial: ProfileType }> = ({ initial }) => {
                     hint="Upload PDF or paste a Google Drive / Dropbox link."
                 />
 
-                <fieldset className="mb-5 rounded-lg border border-[var(--color-hairline)] p-4">
+                <fieldset className="mb-4 rounded-[var(--radius-lg)] border border-[var(--color-hairline)] p-4">
                     <legend className="px-1 text-sm font-medium text-[var(--color-ink)]">
                         Social links
                     </legend>
