@@ -6,6 +6,7 @@ import Link from "next/link";
 const CARDS = [
     { href: "/admin/profile", label: "Profile", note: "Name, bio, socials, SEO" },
     { href: "/admin/projects", label: "Projects", note: "Case studies + lineage" },
+    { href: "/admin/blog", label: "Blog", note: "Posts (Markdown)" },
     { href: "/admin/skills", label: "Skills", note: "The graph join keys" },
     { href: "/admin/education", label: "Education", note: "Career spine" },
     { href: "/admin/experience", label: "Experience", note: "Roles + Now" },

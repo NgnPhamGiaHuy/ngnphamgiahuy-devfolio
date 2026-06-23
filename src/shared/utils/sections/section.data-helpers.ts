@@ -1,5 +1,4 @@
 import type {
-    BlogPostType,
     EducationType,
     ExperienceType,
     MockDataType,
@@ -118,7 +117,6 @@ export const normalizeExperienceData =
     createArrayNormalizer<ExperienceType>("experience");
 export const normalizeEducationData =
     createArrayNormalizer<EducationType>("education");
-export const normalizeBlogsData = createArrayNormalizer<BlogPostType>("blogs");
 
 export const normalizeContactData = (
     profile?: ProfileType | null,
@@ -197,9 +195,6 @@ const SECTION_BUILDERS: Record<string, SectionBuilder> = {
     skills: (props, fb) => ({
         skills: normalizeSkillsData(props.skills, fb),
         projects: normalizeProjectsData(props.projects, fb),
-    }),
-    blog: (props, fb) => ({
-        blogs: normalizeBlogsData(props.blogs, fb),
     }),
     contact: (props, fb) => ({
         contactItems: normalizeContactData(props.profile, fb),

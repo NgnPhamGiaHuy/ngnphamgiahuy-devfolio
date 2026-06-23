@@ -22,6 +22,7 @@ const NAV: NavEntry[] = [
     { group: "Content" },
     { href: "/admin/profile", label: "Profile" },
     { href: "/admin/projects", label: "Projects" },
+    { href: "/admin/blog", label: "Blog" },
     { href: "/admin/skills", label: "Skills" },
     { group: "Career" },
     { href: "/admin/education", label: "Education" },

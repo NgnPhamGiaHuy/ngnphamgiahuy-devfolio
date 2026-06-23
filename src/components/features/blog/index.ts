@@ -1,7 +1,4 @@
-export { default as Blog } from "./Blog";
-export { default as BlogPreview } from "./BlogPreview";
-export { default as BlogItemForm } from "./BlogItemForm";
-export { default as BlogPostContainer } from "./BlogPostContainer";
-export { default as BlogPostHeader } from "./BlogPostHeader";
-export { default as BlogPostHeroImage } from "./BlogPostHeroImage";
-export { default as BlogPostIntro } from "./BlogPostIntro";
+export { default as BlogList } from "./BlogList";
+export { default as BlogCard } from "./BlogCard";
+export { default as BlogArticle } from "./BlogArticle";
+export { default as Markdown } from "./Markdown";

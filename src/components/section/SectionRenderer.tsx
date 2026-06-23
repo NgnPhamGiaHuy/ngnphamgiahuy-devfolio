@@ -8,7 +8,6 @@ import CareerGraph from "@/components/features/career-graph/CareerGraph";
 import ProjectBento from "@/components/features/career-graph/ProjectBento";
 import SkillsDependency from "@/components/features/career-graph/SkillsDependency";
 import NowFocus from "@/components/features/career-graph/NowFocus";
-import Blog from "@/components/features/blog/Blog";
 import Contact from "@/components/features/contact/Contact";
 
 /**
@@ -24,7 +23,6 @@ const SECTION_COMPONENTS: Record<string, React.ComponentType<any>> = {
     projects: ProjectBento,
     skills: SkillsDependency,
     now: NowFocus,
-    blog: Blog,
     contact: Contact,
 } as const;
 

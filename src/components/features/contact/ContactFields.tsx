@@ -96,6 +96,28 @@ const ContactFields: React.FC<ContactFieldsProps> = ({
                 data-testid="message-input"
             />
 
+            {/* Honeypot — visually hidden, off the tab order, ignored by humans.
+                A bot that fills "company" is rejected by the API (see route.ts). */}
+            <div
+                aria-hidden="true"
+                style={{
+                    position: "absolute",
+                    left: "-9999px",
+                    width: 1,
+                    height: 1,
+                    overflow: "hidden",
+                }}
+            >
+                <label htmlFor="company">Company</label>
+                <input
+                    id="company"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    {...register("company")}
+                />
+            </div>
+
             {/* Footer with Terms and Submit */}
             <div className="contact-fields-footer">
                 <div className="contact-fields-terms-container">

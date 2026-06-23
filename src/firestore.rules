@@ -43,6 +43,15 @@ service cloud.firestore {
     // Intentionally unmatched -> denied by the catch-all. Add a block mirroring
     // the pattern above if/when content is authored.
 
+    // ---- Contact inbox ----
+    // Created ONLY server-side via the Admin SDK (POST /api/contact), which
+    // bypasses these rules. Clients can never write here; the owner reads/manages
+    // the inbox (future CRM). This preserves the "no public writes" invariant.
+    match /contacts/{doc} {
+      allow read, update, delete: if isAdmin();
+      allow create: if false;
+    }
+
     // ---- Default deny ----
     match /{document=**} { allow read, write: if false; }
   }

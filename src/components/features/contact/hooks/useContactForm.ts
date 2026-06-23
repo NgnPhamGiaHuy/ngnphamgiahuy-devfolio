@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { API_CONFIG, FORM_MESSAGES } from "@/infrastructure/config";
+import { AnalyticsEvent, trackEvent } from "@/shared/analytics";
 import {
     ContactFormData,
     contactFormSchema,
@@ -98,6 +99,7 @@ const useContactForm = (): UseContactFormReturn => {
             subject: "",
             message: "",
             termsAccepted: false,
+            company: "",
         },
     });
 
@@ -105,30 +107,41 @@ const useContactForm = (): UseContactFormReturn => {
     // Form Submission Handler
     // ============================================================
 
-    const onSubmit = async (_data: ContactFormData): Promise<void> => {
+    const onSubmit = async (data: ContactFormData): Promise<void> => {
         setIsSubmitting(true);
         setSubmitStatus(null);
 
         try {
-            // Simulate API call with timeout
-            await new Promise((resolve) =>
-                setTimeout(resolve, API_CONFIG.TIMEOUT)
-            );
+            const response = await fetch(API_CONFIG.ENDPOINT, {
+                method: API_CONFIG.METHOD,
+                headers: API_CONFIG.HEADERS,
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    subject: data.subject,
+                    message: data.message,
+                    company: data.company ?? "",
+                }),
+            });
 
-            // Set success status
+            if (!response.ok) {
+                throw new Error(`Request failed with status ${response.status}`);
+            }
+
             setSubmitStatus({
                 type: "success",
                 message: FORM_MESSAGES.SUCCESS,
             });
-
-            // Reset form after successful submission
+            trackEvent(AnalyticsEvent.ContactSubmit, { subject: data.subject });
             reset();
-        } catch (_error) {
-            // Set error status
+        } catch (error) {
+            // eslint-disable-next-line no-console -- surfaced for debugging; UI shows a friendly status
+            console.error("[useContactForm] submission failed", error);
             setSubmitStatus({
                 type: "error",
                 message: FORM_MESSAGES.ERROR,
             });
+            trackEvent(AnalyticsEvent.ContactSubmitError);
         } finally {
             setIsSubmitting(false);
         }

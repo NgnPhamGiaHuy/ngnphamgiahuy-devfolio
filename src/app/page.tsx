@@ -1,7 +1,10 @@
 import React from "react";
 
 import { getPortfolioData } from "@/application/use-cases/content";
+import { getSiteUrl } from "@/shared";
+import { buildPersonLd } from "@/shared/utils/seo";
 import { PageChrome } from "@/components";
+import JsonLd from "@/components/seo/JsonLd";
 import { renderSection } from "@/components/section/SectionRenderer";
 import { normalizeSectionConfigData } from "@/shared/utils/sections";
 
@@ -20,6 +23,7 @@ export default async function Home(): Promise<React.JSX.Element> {
             logo={data.settings.logo}
             enabledSections={enabledSections}
         >
+            <JsonLd data={buildPersonLd(data.profile, getSiteUrl())} />
             <div className="relative">
                 {enabledSections.map((section) =>
                     renderSection(section, { sectionProps: data })

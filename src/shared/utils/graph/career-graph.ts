@@ -10,6 +10,7 @@ import type {
     GraphEdge,
     GraphNode,
 } from "@/shared/types";
+import { projectSlug } from "@/shared/utils/project";
 
 /**
  * buildCareerGraph — deterministic DAG layout for the COMMIT HISTORY section.
@@ -79,9 +80,6 @@ const edgePath = (from: GraphNode, to: GraphNode): string => {
     const arm = Math.max(28, span * (colDiff === 1 ? 0.38 : 0.44));
     return `M ${x1} ${from.y} C ${x1 + arm} ${from.y} ${x2 - arm} ${to.y} ${x2} ${to.y}`;
 };
-
-const slugOf = (p: ProjectType, origIdx: number): string =>
-    p.slug || p._id || `project-${origIdx}`;
 
 export const buildCareerGraph = (input: {
     profile?:    ProfileType   | null;
@@ -194,7 +192,7 @@ export const buildCareerGraph = (input: {
     const projectY = distribute(projects.length, BAND_TOP, bandBottom);
     const slugById = new Map<string, string>();
     const projectNodes = projects.map((p, i) => {
-        const slug = slugOf(p, withMeta[i].origIdx);
+        const slug = projectSlug(p, withMeta[i].origIdx);
         const node: GraphNode = {
             id: `proj-${slug}`, kind: "project",
             label: p.name, sublabel: p.category,

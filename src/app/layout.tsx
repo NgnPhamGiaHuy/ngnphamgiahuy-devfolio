@@ -2,6 +2,8 @@ import React from "react";
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 import "./globals.css";
 import { ThemeProvider } from "@/components";
 import { generateHomePageMetadata } from "@/application";
@@ -54,6 +56,9 @@ export default function RootLayout({
                 suppressHydrationWarning
             >
                 <ThemeProvider>{children}</ThemeProvider>
+                {process.env.NEXT_PUBLIC_GA_ID && (
+                    <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+                )}
             </body>
         </html>
     );

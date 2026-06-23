@@ -24,6 +24,34 @@ const nextConfig: NextConfig = {
     typescript: {
         ignoreBuildErrors: process.env.NODE_ENV === "development",
     },
+    // Baseline security headers (Sprint C). A document-level Content-Security-
+    // Policy is intentionally NOT set here yet — it needs careful per-source
+    // allowlisting (GA4, Firebase, Google Fonts, inline JSON-LD) and dedicated
+    // testing, tracked as a follow-up. These headers are safe and universal.
+    async headers() {
+        return [
+            {
+                source: "/:path*",
+                headers: [
+                    { key: "X-Content-Type-Options", value: "nosniff" },
+                    { key: "X-Frame-Options", value: "SAMEORIGIN" },
+                    {
+                        key: "Referrer-Policy",
+                        value: "strict-origin-when-cross-origin",
+                    },
+                    { key: "X-DNS-Prefetch-Control", value: "on" },
+                    {
+                        key: "Strict-Transport-Security",
+                        value: "max-age=63072000; includeSubDomains; preload",
+                    },
+                    {
+                        key: "Permissions-Policy",
+                        value: "camera=(), microphone=(), geolocation=()",
+                    },
+                ],
+            },
+        ];
+    },
 };
 
 export default withBundleAnalyzer({

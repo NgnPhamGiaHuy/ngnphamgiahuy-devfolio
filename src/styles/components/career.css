@@ -190,6 +190,9 @@
     padding: 22px var(--space-xxs);
     border-bottom: 1px solid var(--graph-line);
     transition: background var(--motion-fast) var(--ease-standard);
+    /* Rendered as an <a> (navigates to /projects/[slug]) — neutralize link defaults. */
+    color: inherit;
+    text-decoration: none;
 }
 
 @media (hover: hover) {

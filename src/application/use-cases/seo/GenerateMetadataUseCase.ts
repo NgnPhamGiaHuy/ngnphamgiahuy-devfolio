@@ -1,27 +1,12 @@
 import { Metadata } from "next";
 
-import { resolveImageUrl } from "@/shared";
+import { getSiteUrl, resolveImageUrl } from "@/shared";
 import { getPortfolioData } from "@/application/use-cases/content";
 
 export const generateHomePageMetadata = async (): Promise<Metadata> => {
     const { profile, settings } = await getPortfolioData();
 
-    const resolveBaseUrl = (): string => {
-        const envUrl =
-            process.env.NEXT_PUBLIC_BASE_URL ||
-            process.env.NEXT_PUBLIC_SITE_URL ||
-            process.env.NEXT_PUBLIC_VERCEL_URL ||
-            "http://localhost:3000";
-
-        const withProtocol = envUrl.startsWith("http")
-            ? envUrl
-            : `https://${envUrl}`;
-        return withProtocol.endsWith("/")
-            ? withProtocol.slice(0, -1)
-            : withProtocol;
-    };
-
-    const baseUrl = resolveBaseUrl();
+    const baseUrl = getSiteUrl();
 
     const title =
         profile.metaTitle ||
@@ -40,6 +25,10 @@ export const generateHomePageMetadata = async (): Promise<Metadata> => {
     return {
         title,
         description,
+        metadataBase: new URL(baseUrl),
+        alternates: {
+            canonical: "/",
+        },
         keywords: [
             profile.name,
             profile.job_title,

@@ -1,0 +1,151 @@
+/* ============================================================
+   Component: blog — index cards + Markdown prose.
+   Tokens only. Code colors come from the highlight.js theme
+   imported in app/blog/layout.tsx; this file styles the container.
+   ============================================================ */
+
+/* ---- Index list ---- */
+.blog-list {
+    border-top: 1px solid var(--color-hairline);
+}
+
+.blog-card {
+    border-bottom: 1px solid var(--color-hairline);
+}
+
+.blog-card__link {
+    display: block;
+    padding: var(--space-lg) var(--space-xxs);
+    color: inherit;
+    text-decoration: none;
+    transition: background var(--motion-fast) var(--ease-standard);
+}
+
+@media (hover: hover) {
+    .blog-card__link:hover {
+        background: color-mix(in oklab, var(--color-primary) 6%, transparent);
+    }
+}
+
+.blog-card__title {
+    font-family: var(--font-display), Garamond, serif;
+    font-size: var(--type-display-sm-size);
+    line-height: var(--type-display-sm-height);
+    letter-spacing: var(--type-display-sm-tracking);
+    font-weight: 500;
+    color: var(--color-ink);
+}
+
+.blog-card__more {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    font-size: 11px;
+    color: var(--color-primary);
+}
+
+/* ---- Markdown prose ---- */
+.blog-prose {
+    color: var(--color-body);
+    font-size: var(--type-body-md-size);
+    line-height: 1.7;
+}
+
+.blog-prose > * + * {
+    margin-top: 1.1em;
+}
+
+.blog-prose h2 {
+    margin-top: 1.8em;
+    font-family: var(--font-display), Garamond, serif;
+    font-size: var(--type-display-sm-size);
+    line-height: var(--type-display-sm-height);
+    letter-spacing: var(--type-display-sm-tracking);
+    font-weight: 500;
+    color: var(--color-ink);
+}
+
+.blog-prose h3 {
+    margin-top: 1.5em;
+    font-family: var(--font-display), Garamond, serif;
+    font-size: var(--type-title-lg-size);
+    font-weight: 500;
+    color: var(--color-ink);
+}
+
+.blog-prose a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.blog-prose strong {
+    color: var(--color-ink);
+    font-weight: 600;
+}
+
+.blog-prose ul,
+.blog-prose ol {
+    padding-left: 1.4em;
+}
+.blog-prose ul {
+    list-style: disc;
+}
+.blog-prose ol {
+    list-style: decimal;
+}
+.blog-prose li {
+    margin-top: 0.4em;
+}
+
+.blog-prose blockquote {
+    border-left: 3px solid var(--color-primary);
+    padding-left: var(--space-md);
+    color: var(--color-muted);
+    font-style: italic;
+}
+
+.blog-prose code {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.875em;
+    background: var(--color-surface-card);
+    padding: 0.15em 0.4em;
+    border-radius: var(--radius-xs);
+}
+
+.blog-prose pre {
+    overflow-x: auto;
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-hairline);
+    background: var(--color-surface-soft);
+    font-size: 0.85em;
+    line-height: 1.6;
+}
+
+.blog-prose pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+}
+
+.blog-prose img {
+    max-width: 100%;
+    border-radius: var(--radius-md);
+}
+
+.blog-prose hr {
+    border: none;
+    border-top: 1px solid var(--color-hairline);
+}
+
+.blog-prose table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+.blog-prose th,
+.blog-prose td {
+    border: 1px solid var(--color-hairline);
+    padding: 0.5em 0.7em;
+    text-align: left;
+}

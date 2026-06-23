@@ -61,6 +61,9 @@ export const contactFormSchema = z.object({
     termsAccepted: z.boolean().refine((val) => val === true, {
         message: FORM_MESSAGES.REQUIRED.TERMS,
     }),
+
+    // Honeypot — hidden from humans; bots that fill it are rejected server-side.
+    company: z.string().optional(),
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;

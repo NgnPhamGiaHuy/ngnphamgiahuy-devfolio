@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { m, useReducedMotion, type Variants } from "framer-motion";
 
 import type { ProjectType } from "@/schemas";
 
+import { projectSlug } from "@/shared/utils";
 import { Section } from "@/components/layouts";
 import { EASE_STANDARD } from "@/components/motion";
-
-import CaseStudyPanel from "./CaseStudyPanel";
 
 interface ProjectBentoProps {
     id: string;
@@ -27,9 +27,6 @@ const item: Variants = {
         transition: { duration: 0.5, ease: EASE_STANDARD },
     },
 };
-
-const slugOf = (p: ProjectType, i: number): string =>
-    p.slug || p._id || `project-${i}`;
 
 // Metrics that mimic the form of proof without substance — render nothing rather
 // than a vanity placeholder (per the audit: "multiple" read as a hard number).
@@ -77,22 +74,12 @@ interface Indexed {
  */
 const ProjectBento: React.FC<ProjectBentoProps> = ({ id, projects }) => {
     const reduce = useReducedMotion();
-    const [selectedSlug, setSelectedSlug] = React.useState<string | null>(null);
-
-    const selectedProject = React.useMemo(
-        () =>
-            selectedSlug
-                ? (projects.find((p, i) => slugOf(p, i) === selectedSlug) ??
-                  null)
-                : null,
-        [selectedSlug, projects]
-    );
 
     const { lineage, also, single } = React.useMemo(() => {
         const indexed: Indexed[] = projects.map((p, i) => ({
             p,
             i,
-            ref: slugOf(p, i),
+            ref: projectSlug(p, i),
         }));
         const byRef = new Map(indexed.map((x) => [x.ref, x.p]));
 
@@ -148,7 +135,7 @@ const ProjectBento: React.FC<ProjectBentoProps> = ({ id, projects }) => {
 
     const nameOfRef = React.useCallback(
         (ref: string): string | undefined =>
-            projects.find((p, i) => slugOf(p, i) === ref)?.name,
+            projects.find((p, i) => projectSlug(p, i) === ref)?.name,
         [projects]
     );
     const feedsOf = React.useCallback(
@@ -172,7 +159,7 @@ const ProjectBento: React.FC<ProjectBentoProps> = ({ id, projects }) => {
         step: number,
         compact: boolean
     ) => {
-        const slug = slugOf(p, i);
+        const slug = projectSlug(p, i);
         const metric = p.outcome?.metrics?.find((m) => isHonestMetric(m.value));
         const buildsOn = (p.dependsOn ?? [])
             .map((d) => nameOfRef(d))
@@ -183,11 +170,10 @@ const ProjectBento: React.FC<ProjectBentoProps> = ({ id, projects }) => {
 
         return (
             <m.li key={p._id || slug} variants={item}>
-                <button
-                    type="button"
-                    onClick={() => setSelectedSlug(slug)}
+                <Link
+                    href={`/projects/${slug}`}
                     className="build-log__row group"
-                    aria-label={`Open case study: ${p.name}`}
+                    aria-label={`${p.name} — open case study`}
                 >
                     <div className="flex items-baseline gap-4 md:gap-6">
                         <span className="build-log__step text-sm">
@@ -272,7 +258,7 @@ const ProjectBento: React.FC<ProjectBentoProps> = ({ id, projects }) => {
                             )}
                         </div>
                     </div>
-                </button>
+                </Link>
             </m.li>
         );
     };
@@ -325,11 +311,6 @@ const ProjectBento: React.FC<ProjectBentoProps> = ({ id, projects }) => {
                     )}
                 </>
             )}
-
-            <CaseStudyPanel
-                project={selectedProject}
-                onClose={() => setSelectedSlug(null)}
-            />
         </>
     );
 };

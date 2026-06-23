@@ -11,6 +11,16 @@ interface DateFormatOptions {
     options?: Intl.DateTimeFormatOptions;
 }
 
+const SHORT_DATE_OPTIONS: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+} as const;
+
+/** "Jun 2, 2026" — empty string for missing input (used by blog dates). */
+export const formatShortDate = (dateString?: string): string =>
+    dateString ? formatDate(dateString, { options: SHORT_DATE_OPTIONS }) : "";
+
 export const formatDate = (
     dateString: string,
     options: DateFormatOptions = {}
